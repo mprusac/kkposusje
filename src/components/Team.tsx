@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import player1 from "@/assets/player-1.jpg";
 import player2 from "@/assets/player-2.jpg";
 import player3 from "@/assets/player-3.jpg";
@@ -59,12 +62,70 @@ const players: Player[] = [
     image: player5,
     stats: { ppg: 4.8, rpg: 3.1, apg: 0.7, mpg: "20:25" },
   },
+  {
+    id: 6,
+    name: "Luka Marić",
+    position: "Point Guard",
+    number: "03",
+    image: player1,
+    stats: { ppg: 7.2, rpg: 1.5, apg: 4.8, mpg: "25:12" },
+  },
+  {
+    id: 7,
+    name: "Petar Babić",
+    position: "Shooting Guard",
+    number: "21",
+    image: player2,
+    stats: { ppg: 9.1, rpg: 2.3, apg: 1.9, mpg: "26:30" },
+  },
+  {
+    id: 8,
+    name: "Marko Jurić",
+    position: "Power Forward",
+    number: "32",
+    image: player3,
+    stats: { ppg: 6.4, rpg: 5.2, apg: 0.9, mpg: "22:15" },
+  },
+  {
+    id: 9,
+    name: "Ivan Tomić",
+    position: "Center",
+    number: "44",
+    image: player4,
+    stats: { ppg: 5.5, rpg: 6.8, apg: 0.5, mpg: "19:45" },
+  },
+  {
+    id: 10,
+    name: "Nikola Perić",
+    position: "Small Forward",
+    number: "17",
+    image: player5,
+    stats: { ppg: 8.8, rpg: 3.4, apg: 2.2, mpg: "27:00" },
+  },
 ];
 
 const Team = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { elementRef, isVisible } = useScrollReveal();
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 300;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section id="tim" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+      <div 
+        ref={elementRef}
+        className={`container mx-auto px-4 transition-all duration-700 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <h2 className="section-title text-center mb-4">
           <span className="section-title-white">NAŠ </span>
           <span className="section-title-gold">TIM</span>
@@ -81,51 +142,76 @@ const Team = () => {
           </span>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
-          {players.map((player, index) => (
-            <div
-              key={player.id}
-              className="group relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.03] hover-lift border border-transparent hover:border-primary/30 animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Player Number Watermark */}
-              <span className="player-number font-display">{player.number}</span>
+        <div className="relative max-w-7xl mx-auto">
+          {/* Scroll Buttons */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-secondary/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-all duration-300"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-secondary/80 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-all duration-300"
+          >
+            <ChevronRight size={24} />
+          </button>
 
-              {/* Player Image */}
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={player.image}
-                  alt={player.name}
-                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-              </div>
+          {/* Scrollable Container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {players.map((player, index) => (
+              <div
+                key={player.id}
+                className="group flex-shrink-0 w-[260px] relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.03] hover-lift border border-transparent hover:border-primary/30"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateX(0)" : "translateX(30px)",
+                  transition: `all 0.5s ease ${index * 0.05}s`,
+                }}
+              >
+                {/* Player Number Watermark */}
+                <span className="player-number font-display">{player.number}</span>
 
-              {/* Player Info */}
-              <div className="p-4 relative z-10">
-                <span className="text-xs uppercase tracking-wider text-primary">
-                  {player.position}
-                </span>
-                <h3 className="text-xl font-display text-foreground mt-1">
-                  {player.name}
-                </h3>
+                {/* Player Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={player.image}
+                    alt={player.name}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+                </div>
 
-                <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
-                  Ključni igrač naše ekipe koji doprinosi svakoj utakmici.
-                </p>
-
-                {/* Stats */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
-                    {player.stats.ppg} PPG
+                {/* Player Info */}
+                <div className="p-4 relative z-10">
+                  <span className="text-xs uppercase tracking-wider text-primary">
+                    {player.position}
                   </span>
-                  <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
-                    {player.stats.rpg} RPG
-                  </span>
+                  <h3 className="text-xl font-display text-foreground mt-1">
+                    {player.name}
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+                    Ključni igrač naše ekipe koji doprinosi svakoj utakmici.
+                  </p>
+
+                  {/* Stats */}
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
+                      {player.stats.ppg} PPG
+                    </span>
+                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
+                      {player.stats.rpg} RPG
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

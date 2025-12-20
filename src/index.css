@@ -61,6 +61,9 @@
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 222 30% 18%;
     --sidebar-ring: 48 96% 53%;
+
+    /* Logo glow */
+    --logo-glow: 0 0 20px hsl(48, 96%, 53%);
   }
 
   .dark {
@@ -143,6 +146,22 @@
 
   .player-number {
     @apply absolute top-4 right-4 text-7xl md:text-8xl font-display text-primary/20;
+  }
+
+  /* Navigation link with underline animation */
+  .nav-link span::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover span::after {
+    width: 100%;
   }
 }
 

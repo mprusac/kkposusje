@@ -1,17 +1,29 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import teamPhoto from "@/assets/team-photo.jpg";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <section
       id="pocetna"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background Image */}
+      {/* Parallax Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${teamPhoto})` }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        style={{ 
+          backgroundImage: `url(${teamPhoto})`,
+          transform: `translateY(${scrollY * 0.5}px) scale(1.1)`,
+        }}
       >
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
@@ -32,10 +44,13 @@ const Hero = () => {
           <div className="animate-fade-in-up delay-400">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold uppercase tracking-wider px-8 py-6 text-base"
+              className="group relative overflow-hidden bg-transparent border-2 border-primary text-primary hover:text-primary-foreground font-display uppercase tracking-widest px-10 py-7 text-lg transition-all duration-500"
               asChild
             >
-              <a href="#kontakt">Pridruži se</a>
+              <a href="#kontakt">
+                <span className="absolute inset-0 bg-primary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+                <span className="relative z-10">Pridruži se</span>
+              </a>
             </Button>
           </div>
         </div>

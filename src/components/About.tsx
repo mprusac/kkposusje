@@ -1,4 +1,5 @@
 import { useCountUp } from "@/hooks/useCountUp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Trophy, Medal, Users, Star } from "lucide-react";
 
 interface StatItem {
@@ -69,6 +70,11 @@ const StatCounter = ({ stat, index }: { stat: StatItem; index: number }) => {
 };
 
 const About = () => {
+  const { elementRef: aboutRef, isVisible: aboutVisible } = useScrollReveal();
+  const { elementRef: catRef, isVisible: catVisible } = useScrollReveal();
+  const { elementRef: achRef, isVisible: achVisible } = useScrollReveal();
+  const { elementRef: visRef, isVisible: visVisible } = useScrollReveal();
+
   return (
     <section id="o-klubu" className="py-20 bg-background overflow-hidden">
       {/* Stats */}
@@ -82,40 +88,56 @@ const About = () => {
 
       {/* About Content */}
       <div className="container mx-auto px-4">
-        <h2 className="section-title mb-12">
-          <span className="section-title-white">O </span>
-          <span className="section-title-gold">NAMA</span>
-        </h2>
+        <div 
+          ref={aboutRef}
+          className={`max-w-4xl mx-auto transition-all duration-700 ${
+            aboutVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h2 className="section-title mb-12 text-center">
+            <span className="section-title-white">O </span>
+            <span className="section-title-gold">NAMA</span>
+          </h2>
 
-        <div className="max-w-4xl gold-border-left mb-16">
-          <p className="text-muted-foreground mb-4">
-            <span className="text-primary font-semibold">KK POSUŠJE</span> je ponosni
-            košarkaški klub iz srca Zapadne Hercegovine, s tradicijom dugom preko dva
-            desetljeća. Osnovan{" "}
-            <span className="text-primary font-semibold">1998. godine</span>, klub okuplja
-            dječake i mlade muškarce iz cijele regije, razvijajući ih od omladinskih
-            kategorija do seniorskog tima koji se natječe u{" "}
-            <span className="text-primary font-semibold">Premier ligi BiH</span>.
-          </p>
-          <p className="text-muted-foreground">
-            U <span className="text-primary font-semibold">27 godina postojanja</span>,
-            klub je okupio preko{" "}
-            <span className="text-primary font-semibold">150 aktivnih članova</span> te se
-            posvetio razvoju mladih talenata, promicanju zajedništva i sportskog duha.
-          </p>
+          <div className="gold-border-left mb-16 text-center md:text-left mx-auto" style={{ maxWidth: "800px" }}>
+            <p className="text-muted-foreground mb-4">
+              <span className="text-primary font-semibold">KK POSUŠJE</span> je ponosni
+              košarkaški klub iz srca Zapadne Hercegovine, s tradicijom dugom preko dva
+              desetljeća. Osnovan{" "}
+              <span className="text-primary font-semibold">1998. godine</span>, klub okuplja
+              dječake i mlade muškarce iz cijele regije, razvijajući ih od omladinskih
+              kategorija do seniorskog tima koji se natječe u{" "}
+              <span className="text-primary font-semibold">Premier ligi BiH</span>.
+            </p>
+            <p className="text-muted-foreground">
+              U <span className="text-primary font-semibold">27 godina postojanja</span>,
+              klub je okupio preko{" "}
+              <span className="text-primary font-semibold">150 aktivnih članova</span> te se
+              posvetio razvoju mladih talenata, promicanju zajedništva i sportskog duha.
+            </p>
+          </div>
         </div>
 
         {/* Categories */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider">
+        <div 
+          ref={catRef}
+          className={`mb-20 max-w-4xl mx-auto transition-all duration-700 ${
+            catVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
             Kategorije
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {categories.map((category, index) => (
               <div
                 key={category}
-                className="group bg-secondary/50 border border-border rounded-lg px-6 py-4 text-center text-sm font-medium text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300 animate-fade-in-up cursor-default"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="group bg-secondary/50 border border-border rounded-lg px-6 py-4 text-center text-sm font-medium text-foreground hover:border-primary hover:bg-primary/10 transition-all duration-300 cursor-default"
+                style={{ 
+                  opacity: catVisible ? 1 : 0,
+                  transform: catVisible ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease ${index * 0.1}s`
+                }}
               >
                 <span className="group-hover:text-primary transition-colors duration-300">
                   {category}
@@ -126,18 +148,27 @@ const About = () => {
         </div>
 
         {/* Achievements - Vertical Timeline Style */}
-        <div className="mb-20">
-          <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider">
+        <div 
+          ref={achRef}
+          className={`mb-20 max-w-2xl mx-auto transition-all duration-700 ${
+            achVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
             Postignuća
           </h3>
-          <div className="max-w-2xl space-y-4">
+          <div className="space-y-4">
             {achievements.map((achievement, index) => {
               const IconComponent = achievement.icon;
               return (
                 <div
                   key={achievement.title}
-                  className="group relative flex items-start gap-4 p-5 rounded-xl bg-secondary/30 border border-border hover:border-primary/50 hover:bg-secondary/50 transition-all duration-300 animate-fade-in-up"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group relative flex items-start gap-4 p-5 rounded-xl bg-secondary/30 border border-border hover:border-primary/50 hover:bg-secondary/50 transition-all duration-300"
+                  style={{ 
+                    opacity: achVisible ? 1 : 0,
+                    transform: achVisible ? "translateX(0)" : "translateX(-30px)",
+                    transition: `all 0.5s ease ${index * 0.1}s`
+                  }}
                 >
                   {/* Icon */}
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300">
@@ -168,21 +199,28 @@ const About = () => {
         </div>
 
         {/* Vision */}
-        <div className="group bg-secondary/30 border border-border hover:border-primary/50 rounded-xl p-8 max-w-4xl transition-all duration-300">
-          <h3 className="text-2xl font-display mb-4">
-            <span className="text-foreground">NAŠA </span>
-            <span className="text-primary">VIZIJA</span>
-          </h3>
-          <p className="text-muted-foreground">
-            Izgraditi snažnu bazu mladih sportaša i promovirati košarku kao pozitivan
-            temelj za zajednicu. KK Posušje teži postati prepoznati klub u regiji kroz
-            razvoj mladih, sportske vrijednosti i profesionalnost – uz kontinuirano
-            ulaganje u infrastrukturu i trenerski kadar te postati{" "}
-            <span className="text-primary font-semibold">
-              košarkaški centar Zapadne Hercegovine
-            </span>
-            .
-          </p>
+        <div 
+          ref={visRef}
+          className={`max-w-4xl mx-auto transition-all duration-700 ${
+            visVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="group bg-secondary/30 border border-border hover:border-primary/50 rounded-xl p-8 transition-all duration-300 text-center">
+            <h3 className="text-2xl font-display mb-4">
+              <span className="text-foreground">NAŠA </span>
+              <span className="text-primary">VIZIJA</span>
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Izgraditi snažnu bazu mladih sportaša i promovirati košarku kao pozitivan
+              temelj za zajednicu. KK Posušje teži postati prepoznati klub u regiji kroz
+              razvoj mladih, sportske vrijednosti i profesionalnost – uz kontinuirano
+              ulaganje u infrastrukturu i trenerski kadar te postati{" "}
+              <span className="text-primary font-semibold">
+                košarkaški centar Zapadne Hercegovine
+              </span>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </section>
