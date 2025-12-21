@@ -184,7 +184,9 @@ const Team = () => {
                   <img
                     src={player.image}
                     alt={player.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                      player.image === player2 ? "object-top scale-125 -translate-y-4" : "object-top"
+                    }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
                 </div>
