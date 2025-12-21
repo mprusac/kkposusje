@@ -19,18 +19,17 @@ const Hero = () => {
     >
       {/* Parallax Background Image - Full Width & Centered */}
       <div
-        className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 will-change-transform"
+        className="absolute top-0 left-0 right-0 bottom-0 w-full h-full will-change-transform"
         style={{ 
           backgroundImage: `url(${teamPhoto})`,
           backgroundPosition: 'center center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          transform: `translateY(${scrollY * 0.5}px) scale(1.1)`,
-          minWidth: '100vw',
+          transform: `translateY(${scrollY * 0.3}px)`,
         }}
       >
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
 
       {/* Content */}
