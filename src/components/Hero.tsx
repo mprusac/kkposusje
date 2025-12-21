@@ -23,7 +23,7 @@ const Hero = () => {
         style={{ 
           backgroundImage: `url(${teamPhoto})`,
           backgroundPosition: 'center center',
-          backgroundSize: 'cover',
+          backgroundSize: '120%',
           backgroundRepeat: 'no-repeat',
           transform: `translateY(${scrollY * 0.3}px)`,
         }}
