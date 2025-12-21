@@ -18,8 +18,8 @@ const allNews: NewsItem[] = [
   // Utakmica category
   {
     id: 1,
-    title: "KK Posušje pobijedio HKK Grude na domaćem terenu",
-    excerpt: "KK Posušje ostvario je uvjerljivu pobjedu protiv HKK Grude rezultatom 85:72. Ian Krishnan predvodio je ekipu s 24 poena...",
+    title: "HKK Posušje pobijedio HKK Grude na domaćem terenu",
+    excerpt: "HKK Posušje ostvario je uvjerljivu pobjedu protiv HKK Grude rezultatom 85:72. Ian Krishnan predvodio je ekipu s 24 poena...",
     date: "14. 12. 2024.",
     category: "utakmica",
     image: news1,
@@ -35,7 +35,7 @@ const allNews: NewsItem[] = [
   {
     id: 3,
     title: "Poraz od HKK Mostar u napetoj utakmici",
-    excerpt: "Unatoč velikom trudu, KK Posušje izgubio je od HKK Mostar rezultatom 68:75...",
+    excerpt: "Unatoč velikom trudu, HKK Posušje izgubio je od HKK Mostar rezultatom 68:75...",
     date: "30. 11. 2024.",
     category: "utakmica",
     image: news3,
@@ -51,8 +51,8 @@ const allNews: NewsItem[] = [
   // Transfer category
   {
     id: 5,
-    title: "Novo pojačanje stiglo u KK Posušje",
-    excerpt: "KK Posušje s ponosom objavljuje dolazak novog igrača koji će pojačati našu seniorsku ekipu za ostatak sezone...",
+    title: "Novo pojačanje stiglo u HKK Posušje",
+    excerpt: "HKK Posušje s ponosom objavljuje dolazak novog igrača koji će pojačati našu seniorsku ekipu za ostatak sezone...",
     date: "10. 12. 2024.",
     category: "transfer",
     image: news2,
@@ -126,7 +126,7 @@ const allNews: NewsItem[] = [
   {
     id: 14,
     title: "Novi sponzorski ugovor s Vokel d.o.o.",
-    excerpt: "KK Posušje potpisao je novi višegodišnji sponzorski ugovor s tvrtkom Vokel d.o.o...",
+    excerpt: "HKK Posušje potpisao je novi višegodišnji sponzorski ugovor s tvrtkom Vokel d.o.o...",
     date: "03. 12. 2024.",
     category: "klub",
     image: news2,
@@ -142,7 +142,7 @@ const allNews: NewsItem[] = [
   {
     id: 16,
     title: "Godišnja skupština kluba",
-    excerpt: "Održana je godišnja skupština KK Posušje na kojoj je usvojen plan za sljedeću sezonu...",
+    excerpt: "Održana je godišnja skupština HKK Posušje na kojoj je usvojen plan za sljedeću sezonu...",
     date: "18. 11. 2024.",
     category: "klub",
     image: news1,

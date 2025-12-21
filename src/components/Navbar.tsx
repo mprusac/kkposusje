@@ -50,7 +50,7 @@ const Navbar = () => {
           <a href="#pocetna" className="flex items-center gap-3 group">
             <img 
               src={logo} 
-              alt="KK Posušje" 
+              alt="HKK Posušje" 
               className="h-14 w-auto transition-all duration-300 group-hover:drop-shadow-[0_0_20px_hsl(48,96%,53%)] group-hover:scale-105" 
             />
           </a>

@@ -9,10 +9,10 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { value: 1998, label: "GODINA OSNUTKA" },
+  { value: 1975, label: "GODINA OSNUTKA" },
   { value: 150, suffix: "+", label: "AKTIVNIH ČLANOVA" },
   { value: 6, label: "UZRASNE KATEGORIJE" },
-  { value: 27, label: "GODINA POSTOJANJA" },
+  { value: 50, label: "GODINA POSTOJANJA" },
 ];
 
 const categories = [
@@ -105,16 +105,16 @@ const About = () => {
 
           <div className="gold-border-left mb-16 text-center md:text-left mx-auto" style={{ maxWidth: "800px" }}>
             <p className="text-muted-foreground mb-4">
-              <span className="text-primary font-semibold">KK POSUŠJE</span> je ponosni
-              košarkaški klub iz srca Zapadne Hercegovine, s tradicijom dugom preko dva
+              <span className="text-primary font-semibold">HKK POSUŠJE</span> je ponosni
+              košarkaški klub iz srca Zapadne Hercegovine, s tradicijom dugom preko pet
               desetljeća. Osnovan{" "}
-              <span className="text-primary font-semibold">1998. godine</span>, klub okuplja
+              <span className="text-primary font-semibold">1975. godine</span>, klub okuplja
               dječake i mlade muškarce iz cijele regije, razvijajući ih od omladinskih
               kategorija do seniorskog tima koji se natječe u{" "}
               <span className="text-primary font-semibold">Premier ligi BiH</span>.
             </p>
             <p className="text-muted-foreground">
-              U <span className="text-primary font-semibold">27 godina postojanja</span>,
+              U <span className="text-primary font-semibold">50 godina postojanja</span>,
               klub je okupio preko{" "}
               <span className="text-primary font-semibold">150 aktivnih članova</span> te se
               posvetio razvoju mladih talenata, promicanju zajedništva i sportskog duha.

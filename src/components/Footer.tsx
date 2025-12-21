@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {/* Logo & Description */}
           <div>
-            <img src={logo} alt="KK Posušje" className="h-20 w-auto mb-4" />
+            <img src={logo} alt="HKK Posušje" className="h-20 w-auto mb-4" />
             <p className="text-muted-foreground text-sm">
               Košarkaški klub koji dominira ne samo na terenu, već u srcima svojih
               navijača.
@@ -68,7 +68,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} KK Posušje. Sva prava pridržana.
+            © {new Date().getFullYear()} HKK Posušje. Sva prava pridržana.
           </p>
 
           {/* Social Links */}

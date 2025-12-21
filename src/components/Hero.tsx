@@ -36,7 +36,7 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-display tracking-wider mb-4 animate-fade-in-up">
-            <span className="text-foreground">KK </span>
+            <span className="text-foreground">HKK </span>
             <span className="text-primary">POSUŠJE</span>
           </h1>
           

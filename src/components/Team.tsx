@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import player1 from "@/assets/player-1.jpg";
-import player2 from "@/assets/player-2.jpg";
+import player2 from "@/assets/player-rados.png";
 import player3 from "@/assets/player-3.jpg";
 import player4 from "@/assets/player-4.jpg";
 import player5 from "@/assets/player-5.jpg";
@@ -132,7 +132,7 @@ const Team = () => {
         </h2>
 
         <p className="text-muted-foreground text-center mb-8">
-          Igrači koji predstavljaju srce i dušu KK Posušje
+          Igrači koji predstavljaju srce i dušu HKK Posušje
         </p>
 
         <div className="text-center mb-16">

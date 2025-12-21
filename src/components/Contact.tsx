@@ -210,7 +210,7 @@ const Contact = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Lokacija KK Posušje"
+                title="Lokacija HKK Posušje"
               />
             </div>
           </div>
