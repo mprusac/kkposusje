@@ -186,7 +186,7 @@ const Team = () => {
                     alt={player.name}
                     className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
                       player.image === playerIan ? "object-top scale-110" : 
-                      player.image === playerRados ? "object-top scale-105" : 
+                      player.image === playerRados ? "object-top scale-110" : 
                       "object-top"
                     }`}
                   />
