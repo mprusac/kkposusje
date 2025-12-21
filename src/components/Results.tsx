@@ -111,7 +111,7 @@ const Results = () => {
   };
 
   return (
-    <section id="rezultati" className="py-20 bg-background">
+    <section id="rezultati" className="py-20 bg-gradient-to-b from-secondary/30 via-background to-background">
       <div 
         ref={elementRef}
         className={`container mx-auto px-4 transition-all duration-700 ${
@@ -144,13 +144,21 @@ const Results = () => {
             className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollSnapType: "x mandatory" }}
           >
-            {results.map((match, index) => (
+            {results.map((match, index) => {
+              const isWin = (match.isHome && match.homeScore > match.awayScore) ||
+                (!match.isHome && match.awayScore > match.homeScore);
+              
+              return (
               <a
                 key={match.id}
                 href={match.sofaScoreLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex-shrink-0 bg-card hover:bg-secondary/50 rounded-lg p-5 transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 border border-transparent hover-glow`}
+                className={`group flex-shrink-0 rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] border backdrop-blur-sm ${
+                  isWin 
+                    ? "bg-gradient-to-br from-primary/10 via-secondary/50 to-secondary/30 border-primary/20 hover:border-primary/50" 
+                    : "bg-gradient-to-br from-red-500/5 via-secondary/50 to-secondary/30 border-red-500/10 hover:border-red-500/30"
+                }`}
                 style={{ 
                   width: 'calc((100% - 2rem) / 3)',
                   minWidth: '280px',
@@ -229,7 +237,8 @@ const Results = () => {
                   </span>
                 </div>
               </a>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

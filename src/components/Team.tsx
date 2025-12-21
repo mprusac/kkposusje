@@ -137,8 +137,8 @@ const Team = () => {
 
         <div className="text-center mb-16">
           <span className="inline-block px-6 py-2 bg-secondary rounded-full text-sm font-medium">
-            <span className="text-muted-foreground">TRENER:</span>{" "}
-            <span className="text-foreground">IVAN MARTINOVIĆ</span>
+          <span className="text-muted-foreground">TRENER:</span>{" "}
+            <span className="text-foreground">MATE BAKOVIĆ</span>
           </span>
         </div>
 
@@ -213,6 +213,9 @@ const Team = () => {
                       {player.stats.rpg} RPG
                     </span>
                   </div>
+
+                  {/* Hover yellow line animation */}
+                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
                 </div>
               </div>
             ))}
