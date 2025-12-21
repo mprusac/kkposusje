@@ -30,24 +30,28 @@ const achievements = [
     subtitle: "Promocija u Premier ligu BiH",
     description: "Osvojen naslov prvaka Prve lige 2021. godine",
     icon: Trophy,
+    emoji: "🏆",
   },
   {
     title: "Državna natjecanja",
     subtitle: "BiH & Hrvatska",
     description: "Višestruko sudjelovanje u turnirima na razini BiH i Hrvatske",
     icon: Medal,
+    emoji: "🥇",
   },
   {
     title: "Reprezentativci",
     subtitle: "U16 & U18 BiH",
     description: "Više igrača pozvano za reprezentacije BiH",
     icon: Star,
+    emoji: "⭐",
   },
   {
     title: "Zajednica",
     subtitle: "Sportske vrijednosti",
     description: "Klub koji gradi pozitivne vrijednosti u lokalnoj zajednici",
     icon: Users,
+    emoji: "🤝",
   },
 ];
 
@@ -181,9 +185,7 @@ const About = () => {
                       <h4 className="font-display text-xl text-foreground tracking-wide">
                         {achievement.title}
                       </h4>
-                      {index === 0 && (
-                        <span className="text-lg">🏆</span>
-                      )}
+                      <span className="text-lg">{achievement.emoji}</span>
                     </div>
                     <p className="text-primary font-medium text-sm mb-1">
                       {achievement.subtitle}
@@ -205,24 +207,26 @@ const About = () => {
             visVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <div className="relative group rounded-xl p-8 transition-all duration-300 text-center overflow-hidden" style={{
-            background: 'linear-gradient(135deg, hsl(0 0% 12%) 0%, hsl(0 0% 8%) 100%)',
-          }}>
-            {/* Gradient border */}
-            <div className="absolute inset-0 rounded-xl p-[2px] bg-gradient-to-r from-primary/60 via-primary/20 to-primary/60 -z-10" />
-            <div className="absolute inset-[2px] rounded-[10px] bg-gradient-to-br from-secondary/80 to-background -z-10" />
+          <div 
+            className="relative group rounded-3xl p-10 transition-all duration-300 text-center overflow-hidden border-2 border-primary"
+            style={{
+              background: 'linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(45 100% 51% / 0.1) 50%, hsl(0 0% 8%) 100%)',
+            }}
+          >
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/5 via-transparent to-primary/10 pointer-events-none" />
             
-            <h3 className="text-3xl md:text-4xl font-display mb-6 tracking-wide">
+            <h3 className="text-3xl md:text-4xl font-display mb-6 tracking-wide relative z-10">
               <span className="text-foreground">NAŠA </span>
               <span className="text-primary">VIZIJA</span>
             </h3>
-            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-base md:text-lg">
-              Temeljna ideja osnivača kluba je kvalitetan rad s djecom i mladima, doprinos afirmaciji vrijednosti kao što su odgovornost, asertivnost i timski rad.
+            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-base md:text-lg relative z-10">
+              Temeljna ideja osnivača kluba je kvalitetan rad s djecom i mladima, doprinos afirmaciji vrijednosti kao što su odgovornost, asertivnost, disciplina i timski rad.
             </p>
-            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-base md:text-lg mt-4">
-              Kroz kontinuirano ulaganje u razvoj djece, stručan trenerski kadar i akvizicije mladih igrača iz Hercegovine i regije želimo stvoriti bazen talenata i postati{" "}
+            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-base md:text-lg mt-4 relative z-10">
+              Kroz kontinuirano ulaganje u razvoj djece, stručan trenerski kadar i akvizicije mladih igrača iz Hercegovine i regije želimo stvoriti bazen talenata te postati{" "}
               <span className="text-primary font-bold">
-                košarkaški centar južnog Balkana
+                košarkaški centar cijelog južnog Balkana
               </span>.
             </p>
           </div>

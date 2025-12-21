@@ -17,11 +17,14 @@ const Hero = () => {
       id="pocetna"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Parallax Background Image - Full Width */}
+      {/* Parallax Background Image - Full Width & Centered */}
       <div
-        className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 bg-cover bg-center bg-no-repeat will-change-transform"
+        className="absolute inset-0 w-screen left-1/2 -translate-x-1/2 will-change-transform"
         style={{ 
           backgroundImage: `url(${teamPhoto})`,
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
           transform: `translateY(${scrollY * 0.5}px) scale(1.1)`,
           minWidth: '100vw',
         }}
