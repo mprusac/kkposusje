@@ -184,11 +184,10 @@ const Team = () => {
                   <img
                     src={player.image}
                     alt={player.name}
-                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-                      player.image === playerIan ? "object-top scale-110" : 
-                      player.image === playerRados ? "object-top scale-[1.15] sepia-[0.15] saturate-[1.1] brightness-105" : 
-                      player.image === playerRamljak ? "object-top sepia-[0.15] saturate-[1.1] brightness-105" :
-                      "object-top"
+                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 object-top ${
+                      player.image === playerRados ? "sepia-[0.15] saturate-[1.1] brightness-105" : 
+                      player.image === playerRamljak ? "sepia-[0.15] saturate-[1.1] brightness-105" :
+                      ""
                     }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
