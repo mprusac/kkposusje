@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import playerIan from "@/assets/player-ian.png";
 import playerRados from "@/assets/player-rados.png";
@@ -13,6 +13,7 @@ interface Player {
   position: string;
   number: string;
   image: string;
+  sofascoreLink?: string;
   stats: {
     ppg: number;
     rpg: number;
@@ -29,6 +30,7 @@ const players: Player[] = [
     position: "Guard-Forward",
     number: "03",
     image: playerIan,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/krishnan-ian/1182874",
     stats: { ppg: 11.4, rpg: 2.9, apg: 1.3, mpg: "28:03" },
   },
   {
@@ -45,6 +47,7 @@ const players: Player[] = [
     position: "Guard",
     number: "04",
     image: playerRamljak,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845",
     stats: { ppg: 5.9, rpg: 1.7, apg: 1.8, mpg: "20:45" },
   },
   {
@@ -53,6 +56,7 @@ const players: Player[] = [
     position: "Forward",
     number: "09",
     image: player4,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
     stats: { ppg: 4.8, rpg: 2.4, apg: 1.0, mpg: "20:38" },
   },
   {
@@ -61,6 +65,7 @@ const players: Player[] = [
     position: "Center",
     number: "13",
     image: player5,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853",
     stats: { ppg: 4.8, rpg: 3.1, apg: 0.7, mpg: "20:25" },
   },
   // Igrači sa slikama
@@ -70,6 +75,7 @@ const players: Player[] = [
     position: "Guard",
     number: "05",
     image: playerRamljak,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/gabrijel-bisko/1578846",
     stats: { ppg: 6.2, rpg: 2.0, apg: 2.5, mpg: "22:30" },
   },
   {
@@ -78,6 +84,7 @@ const players: Player[] = [
     position: "Guard",
     number: "11",
     image: playerIan,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/matthews-tristan-connor/1971827",
     stats: { ppg: 9.5, rpg: 2.8, apg: 3.2, mpg: "26:15" },
   },
   {
@@ -86,6 +93,7 @@ const players: Player[] = [
     position: "Center",
     number: "17",
     image: player5,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855",
     stats: { ppg: 5.2, rpg: 4.5, apg: 0.8, mpg: "18:45" },
   },
   {
@@ -94,6 +102,7 @@ const players: Player[] = [
     position: "Forward",
     number: "62",
     image: player4,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/toni-cutuk/1651129",
     stats: { ppg: 7.1, rpg: 3.8, apg: 1.2, mpg: "21:20" },
   },
   {
@@ -102,6 +111,7 @@ const players: Player[] = [
     position: "Forward",
     number: "06",
     image: playerRados,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/darryl-anthony-owens-ii/2046151",
     stats: { ppg: 10.2, rpg: 4.1, apg: 1.5, mpg: "25:00" },
   },
   // Igrači s pozicijama (bez slika)
@@ -111,6 +121,7 @@ const players: Player[] = [
     position: "Guard",
     number: "14",
     image: playerRamljak,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-ramljak/2339280",
     stats: { ppg: 4.5, rpg: 1.8, apg: 2.0, mpg: "17:30" },
   },
   {
@@ -119,6 +130,7 @@ const players: Player[] = [
     position: "Guard",
     number: "06",
     image: playerIan,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/dominik-jukic/1578847",
     stats: { ppg: 5.8, rpg: 1.5, apg: 2.8, mpg: "19:15" },
   },
   {
@@ -127,6 +139,7 @@ const players: Player[] = [
     position: "Guard",
     number: "13",
     image: playerRados,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/simovic-nemanja/1970677",
     stats: { ppg: 7.0, rpg: 2.2, apg: 3.0, mpg: "23:40" },
   },
   {
@@ -135,6 +148,7 @@ const players: Player[] = [
     position: "Forward",
     number: "14",
     image: player4,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150",
     stats: { ppg: 6.5, rpg: 3.5, apg: 0.9, mpg: "20:00" },
   },
 ];
@@ -213,6 +227,19 @@ const Team = () => {
               >
                 {/* Player Number Watermark */}
                 <span className="player-number font-display">{player.number}</span>
+
+                {/* SofaScore Link */}
+                {player.sofascoreLink && (
+                  <a
+                    href={player.sofascoreLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-3 right-3 z-20 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/80 hover:scale-110 transition-all duration-300 shadow-lg"
+                    title="Pogledaj na SofaScore"
+                  >
+                    <ExternalLink size={16} />
+                  </a>
+                )}
 
                 {/* Player Image */}
                 <div className="relative h-64 overflow-hidden">
