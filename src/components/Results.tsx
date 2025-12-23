@@ -49,7 +49,7 @@ const results: MatchResult[] = [
     homeScore: 85,
     awayScore: 81,
     isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014496",
   },
   {
     id: 2,
@@ -59,7 +59,7 @@ const results: MatchResult[] = [
     homeScore: 33,
     awayScore: 107,
     isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15185580",
   },
   {
     id: 3,
@@ -69,7 +69,7 @@ const results: MatchResult[] = [
     homeScore: 60,
     awayScore: 56,
     isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014486",
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ const results: MatchResult[] = [
     homeScore: 90,
     awayScore: 77,
     isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014481",
   },
   {
     id: 5,
@@ -89,7 +89,7 @@ const results: MatchResult[] = [
     homeScore: 79,
     awayScore: 72,
     isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014461",
   },
   {
     id: 6,
@@ -99,7 +99,7 @@ const results: MatchResult[] = [
     homeScore: 92,
     awayScore: 78,
     isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014458",
   },
   {
     id: 7,
@@ -109,7 +109,7 @@ const results: MatchResult[] = [
     homeScore: 81,
     awayScore: 85,
     isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/",
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:14973017",
   },
 ];
 
