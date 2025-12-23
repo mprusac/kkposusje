@@ -2,6 +2,16 @@ import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+// Import team logos
+import logoGrude from "@/assets/logos/hkk_grude.png";
+import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
+import logoMostar from "@/assets/logos/hkk_mostar.png";
+import logoRama from "@/assets/logos/hkk_rama.png";
+import logoSiroki from "@/assets/logos/hkk_siroki.png";
+import logoTomislav from "@/assets/logos/hkk_tomislav.png";
+import logoPosusje from "@/assets/logos/kk_posusje.png";
+import logoCapljina from "@/assets/logos/hkk_capljina.png";
+
 interface MatchResult {
   id: number;
   date: string;
@@ -12,6 +22,22 @@ interface MatchResult {
   isHome: boolean;
   sofaScoreLink: string;
 }
+
+// Logo mapping
+const teamLogos: Record<string, string> = {
+  "HKK Grude": logoGrude,
+  "HKK Ljubuški": logoLjubuski,
+  "HKK Mostar": logoMostar,
+  "HKK Rama": logoRama,
+  "HKK Široki": logoSiroki,
+  "KK Široki": logoSiroki,
+  "HKK Tomislav": logoTomislav,
+  "KK Tomislavgrad": logoTomislav,
+  "HKK Posušje": logoPosusje,
+  "KK Posušje": logoPosusje,
+  "HKK Čapljina": logoCapljina,
+  "KK Čapljina": logoCapljina,
+};
 
 const results: MatchResult[] = [
   {
@@ -27,7 +53,7 @@ const results: MatchResult[] = [
   {
     id: 2,
     date: "07.12.2024",
-    homeTeam: "KK Čapljina",
+    homeTeam: "HKK Čapljina",
     awayTeam: "HKK Posušje",
     homeScore: 78,
     awayScore: 82,
@@ -47,7 +73,7 @@ const results: MatchResult[] = [
   {
     id: 4,
     date: "23.11.2024",
-    homeTeam: "KK Široki",
+    homeTeam: "HKK Široki",
     awayTeam: "HKK Posušje",
     homeScore: 70,
     awayScore: 74,
@@ -58,7 +84,7 @@ const results: MatchResult[] = [
     id: 5,
     date: "16.11.2024",
     homeTeam: "HKK Posušje",
-    awayTeam: "KK Livno",
+    awayTeam: "HKK Ljubuški",
     homeScore: 88,
     awayScore: 65,
     isHome: true,
@@ -67,7 +93,7 @@ const results: MatchResult[] = [
   {
     id: 6,
     date: "09.11.2024",
-    homeTeam: "KK Tomislavgrad",
+    homeTeam: "HKK Tomislav",
     awayTeam: "HKK Posušje",
     homeScore: 72,
     awayScore: 80,
@@ -78,7 +104,7 @@ const results: MatchResult[] = [
     id: 7,
     date: "02.11.2024",
     homeTeam: "HKK Posušje",
-    awayTeam: "KK Vitez",
+    awayTeam: "HKK Rama",
     homeScore: 79,
     awayScore: 71,
     isHome: true,
@@ -87,10 +113,30 @@ const results: MatchResult[] = [
   {
     id: 8,
     date: "26.10.2024",
-    homeTeam: "KK Zrinjski",
+    homeTeam: "HKK Grude",
     awayTeam: "HKK Posušje",
     homeScore: 83,
     awayScore: 77,
+    isHome: false,
+    sofaScoreLink: "https://www.sofascore.com/",
+  },
+  {
+    id: 9,
+    date: "19.10.2024",
+    homeTeam: "HKK Posušje",
+    awayTeam: "HKK Čapljina",
+    homeScore: 91,
+    awayScore: 84,
+    isHome: true,
+    sofaScoreLink: "https://www.sofascore.com/",
+  },
+  {
+    id: 10,
+    date: "12.10.2024",
+    homeTeam: "HKK Mostar",
+    awayTeam: "HKK Posušje",
+    homeScore: 76,
+    awayScore: 81,
     isHome: false,
     sofaScoreLink: "https://www.sofascore.com/",
   },
@@ -110,6 +156,10 @@ const Results = () => {
     }
   };
 
+  const getTeamLogo = (teamName: string) => {
+    return teamLogos[teamName] || null;
+  };
+
   return (
     <section id="rezultati" className="py-20 bg-gradient-to-b from-secondary/30 via-background to-background">
       <div 
@@ -123,8 +173,8 @@ const Results = () => {
           <span className="section-title-gold">UTAKMICE</span>
         </h2>
 
-        <div className="relative max-w-[1000px] mx-auto px-16">
-          {/* Scroll Buttons - Outside boxes with yellow background */}
+        <div className="relative max-w-[1100px] mx-auto px-16">
+          {/* Scroll Buttons */}
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
@@ -138,105 +188,139 @@ const Results = () => {
             <ChevronRight size={24} />
           </button>
 
-          {/* Scrollable Container - Shows exactly 3 */}
+          {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
+            className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollSnapType: "x mandatory" }}
           >
             {results.map((match, index) => {
               const isWin = (match.isHome && match.homeScore > match.awayScore) ||
                 (!match.isHome && match.awayScore > match.homeScore);
+              const homeLogo = getTeamLogo(match.homeTeam);
+              const awayLogo = getTeamLogo(match.awayTeam);
               
               return (
-              <a
-                key={match.id}
-                href={match.sofaScoreLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group flex-shrink-0 rounded-xl p-5 transition-all duration-300 hover:scale-[1.02] border backdrop-blur-sm ${
-                  isWin 
-                    ? "bg-gradient-to-br from-primary/10 via-secondary/50 to-secondary/30 border-primary/20 hover:border-primary/50" 
-                    : "bg-gradient-to-br from-red-500/5 via-secondary/50 to-secondary/30 border-red-500/10 hover:border-red-500/30"
-                }`}
-                style={{ 
-                  width: 'calc((100% - 2rem) / 3)',
-                  minWidth: '280px',
-                  scrollSnapAlign: 'start',
-                  animationDelay: `${index * 100}ms`,
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateX(0)" : "translateX(30px)",
-                  transition: `all 0.5s ease ${index * 0.1}s`
-                }}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs text-muted-foreground">{match.date}</span>
-                  <ExternalLink
-                    size={14}
-                    className="text-muted-foreground group-hover:text-primary transition-colors"
-                  />
-                </div>
-
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex-1 text-right pr-3">
-                    <span
-                      className={`text-sm font-semibold ${
-                        match.isHome ? "text-primary" : "text-foreground"
-                      }`}
-                    >
-                      {match.homeTeam}
+                <a
+                  key={match.id}
+                  href={match.sofaScoreLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group flex-shrink-0 rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl ${
+                    isWin 
+                      ? "bg-gradient-to-br from-secondary/80 via-secondary/60 to-primary/10 border-primary/30 hover:border-primary/60" 
+                      : "bg-gradient-to-br from-secondary/80 via-secondary/60 to-red-500/10 border-red-500/20 hover:border-red-500/40"
+                  }`}
+                  style={{ 
+                    width: 'calc((100% - 2.5rem) / 3)',
+                    minWidth: '320px',
+                    scrollSnapAlign: 'start',
+                    animationDelay: `${index * 100}ms`,
+                    opacity: isVisible ? 1 : 0,
+                    transform: isVisible ? "translateX(0)" : "translateX(30px)",
+                    transition: `all 0.5s ease ${index * 0.1}s`
+                  }}
+                >
+                  {/* Header with date and link */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-xs font-medium text-muted-foreground bg-background/50 px-3 py-1 rounded-full">
+                      {match.date}
                     </span>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-full ${
+                          isWin
+                            ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                            : "bg-red-500/20 text-red-400 border border-red-500/30"
+                        }`}
+                      >
+                        {isWin ? "W" : "L"}
+                      </span>
+                      <ExternalLink
+                        size={14}
+                        className="text-muted-foreground group-hover:text-primary transition-colors"
+                      />
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`text-2xl font-display ${
-                        match.homeScore > match.awayScore
-                          ? "text-primary"
-                          : "text-foreground"
-                      }`}
-                    >
-                      {match.homeScore}
-                    </span>
-                    <span className="text-muted-foreground text-lg">:</span>
-                    <span
-                      className={`text-2xl font-display ${
-                        match.awayScore > match.homeScore
-                          ? "text-primary"
-                          : "text-foreground"
-                      }`}
-                    >
-                      {match.awayScore}
-                    </span>
-                  </div>
+                  {/* Match content - Teams with logos */}
+                  <div className="flex items-center justify-between gap-4">
+                    {/* Home Team */}
+                    <div className="flex-1 flex flex-col items-center gap-2">
+                      <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-1.5 border border-border/50">
+                        {homeLogo ? (
+                          <img 
+                            src={homeLogo} 
+                            alt={match.homeTeam}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                            <span className="text-xs font-bold text-muted-foreground">
+                              {match.homeTeam.substring(0, 2).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <span
+                        className={`text-xs font-semibold text-center leading-tight ${
+                          match.isHome ? "text-primary" : "text-foreground"
+                        }`}
+                      >
+                        {match.homeTeam}
+                      </span>
+                    </div>
 
-                  <div className="flex-1 pl-3">
-                    <span
-                      className={`text-sm font-semibold ${
-                        !match.isHome ? "text-primary" : "text-foreground"
-                      }`}
-                    >
-                      {match.awayTeam}
-                    </span>
-                  </div>
-                </div>
+                    {/* Score */}
+                    <div className="flex items-center gap-3 bg-background/40 px-4 py-3 rounded-xl border border-border/30">
+                      <span
+                        className={`text-3xl font-display font-bold ${
+                          match.homeScore > match.awayScore
+                            ? "text-primary"
+                            : "text-foreground/70"
+                        }`}
+                      >
+                        {match.homeScore}
+                      </span>
+                      <span className="text-muted-foreground text-xl font-light">:</span>
+                      <span
+                        className={`text-3xl font-display font-bold ${
+                          match.awayScore > match.homeScore
+                            ? "text-primary"
+                            : "text-foreground/70"
+                        }`}
+                      >
+                        {match.awayScore}
+                      </span>
+                    </div>
 
-                <div className="text-center">
-                  <span
-                    className={`text-xs uppercase tracking-wider px-3 py-1 rounded-full ${
-                      (match.isHome && match.homeScore > match.awayScore) ||
-                      (!match.isHome && match.awayScore > match.homeScore)
-                        ? "bg-green-500/20 text-green-400"
-                        : "bg-red-500/20 text-red-400"
-                    }`}
-                  >
-                    {(match.isHome && match.homeScore > match.awayScore) ||
-                    (!match.isHome && match.awayScore > match.homeScore)
-                      ? "Pobjeda"
-                      : "Poraz"}
-                  </span>
-                </div>
-              </a>
+                    {/* Away Team */}
+                    <div className="flex-1 flex flex-col items-center gap-2">
+                      <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-1.5 border border-border/50">
+                        {awayLogo ? (
+                          <img 
+                            src={awayLogo} 
+                            alt={match.awayTeam}
+                            className="w-full h-full object-contain"
+                          />
+                        ) : (
+                          <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                            <span className="text-xs font-bold text-muted-foreground">
+                              {match.awayTeam.substring(0, 2).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <span
+                        className={`text-xs font-semibold text-center leading-tight ${
+                          !match.isHome ? "text-primary" : "text-foreground"
+                        }`}
+                      >
+                        {match.awayTeam}
+                      </span>
+                    </div>
+                  </div>
+                </a>
               );
             })}
           </div>
