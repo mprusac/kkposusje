@@ -24,23 +24,23 @@ interface Player {
 }
 
 const players: Player[] = [
-  // Prvih 5 igrača - ostaju isti
   {
     id: 1,
-    name: "Ian Krishnan",
-    position: "Guard-Forward",
-    number: "03",
-    image: playerIan,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/krishnan-ian/1182874",
-    stats: { ppg: 11.4, rpg: 2.9, apg: 1.3, mpg: "28:03" },
+    name: "Ante Kovač",
+    position: "Forward",
+    number: "09",
+    image: playerKovac,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
+    stats: { ppg: 22.2, rpg: 5.5, apg: 2.0, mpg: "" },
   },
   {
     id: 2,
-    name: "Radoš Vuković",
-    position: "Guard-Forward",
-    number: "11",
-    image: playerRados,
-    stats: { ppg: 8.5, rpg: 3.1, apg: 2.1, mpg: "29:40" },
+    name: "Ante Begić",
+    position: "Forward",
+    number: "14",
+    image: player4,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150",
+    stats: { ppg: 16.7, rpg: 7.0, apg: 3.8, mpg: "" },
   },
   {
     id: 3,
@@ -49,108 +49,107 @@ const players: Player[] = [
     number: "04",
     image: playerRamljak,
     sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845",
-    stats: { ppg: 5.9, rpg: 1.7, apg: 1.8, mpg: "20:45" },
+    stats: { ppg: 16.0, rpg: 6.2, apg: 6.3, mpg: "" },
   },
   {
     id: 4,
-    name: "Ante Kovač",
-    position: "Forward",
-    number: "09",
-    image: playerKovac,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
-    stats: { ppg: 4.8, rpg: 2.4, apg: 1.0, mpg: "20:38" },
-  },
-  {
-    id: 5,
     name: "Mirko Đerek",
     position: "Center",
     number: "13",
     image: player5,
     sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853",
-    stats: { ppg: 4.8, rpg: 3.1, apg: 0.7, mpg: "20:25" },
-  },
-  // Igrači sa slikama
-  {
-    id: 6,
-    name: "Gabrijel Biško",
-    position: "Guard",
-    number: "05",
-    image: playerRamljak,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/gabrijel-bisko/1578846",
-    stats: { ppg: 6.2, rpg: 2.0, apg: 2.5, mpg: "22:30" },
+    stats: { ppg: 8.3, rpg: 4.5, apg: 2.0, mpg: "" },
   },
   {
-    id: 7,
-    name: "Triston Matthews",
-    position: "Guard",
-    number: "11",
-    image: playerIan,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/matthews-tristan-connor/1971827",
-    stats: { ppg: 9.5, rpg: 2.8, apg: 3.2, mpg: "26:15" },
-  },
-  {
-    id: 8,
+    id: 5,
     name: "Marko Protrka",
     position: "Center",
     number: "17",
     image: player5,
     sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855",
-    stats: { ppg: 5.2, rpg: 4.5, apg: 0.8, mpg: "18:45" },
+    stats: { ppg: 6.3, rpg: 5.7, apg: 0, mpg: "" },
+  },
+  {
+    id: 6,
+    name: "Luka Bašić",
+    position: "Guard",
+    number: "07",
+    image: playerRamljak,
+    stats: { ppg: 3.8, rpg: 2.8, apg: 0, mpg: "" },
+  },
+  {
+    id: 7,
+    name: "Josip Pavković",
+    position: "Guard",
+    number: "08",
+    image: playerRados,
+    stats: { ppg: 3.7, rpg: 3.0, apg: 0, mpg: "" },
+  },
+  {
+    id: 8,
+    name: "David Dragoja",
+    position: "Guard",
+    number: "10",
+    image: playerIan,
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
     id: 9,
-    name: "Toni Cutuk",
-    position: "Forward",
-    number: "62",
+    name: "Stipe Beslić",
+    position: "Guard",
+    number: "12",
     image: player4,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/toni-cutuk/1651129",
-    stats: { ppg: 7.1, rpg: 3.8, apg: 1.2, mpg: "21:20" },
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
     id: 10,
-    name: "Darryl Anthony Owens II",
-    position: "Forward",
-    number: "06",
-    image: playerRados,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/darryl-anthony-owens-ii/2046151",
-    stats: { ppg: 10.2, rpg: 4.1, apg: 1.5, mpg: "25:00" },
+    name: "Luka Ramljak",
+    position: "Guard",
+    number: "15",
+    image: playerRamljak,
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
-  // Igrači s pozicijama (bez slika)
   {
     id: 11,
+    name: "Jakov Ramljak",
+    position: "Guard",
+    number: "16",
+    image: playerRados,
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
+  },
+  // Dodatni igrači koje je korisnik naveo
+  {
+    id: 12,
+    name: "Ivan Ramljak",
+    position: "Guard",
+    number: "01",
+    image: playerRamljak,
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
+  },
+  {
+    id: 13,
+    name: "Marko Petrović",
+    position: "Forward",
+    number: "02",
+    image: playerRados,
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
+  },
+  {
+    id: 14,
+    name: "Ante Pišković",
+    position: "Guard",
+    number: "03",
+    image: playerIan,
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
+  },
+  {
+    id: 15,
     name: "Ante Ramljak",
     position: "Guard",
     number: "14",
     image: playerRamljak,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-ramljak/2339280",
-    stats: { ppg: 4.5, rpg: 1.8, apg: 2.0, mpg: "17:30" },
-  },
-  {
-    id: 12,
-    name: "Dominik Jukić",
-    position: "Guard",
-    number: "06",
-    image: playerIan,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/dominik-jukic/1578847",
-    stats: { ppg: 5.8, rpg: 1.5, apg: 2.8, mpg: "19:15" },
-  },
-  {
-    id: 13,
-    name: "Nemanja Simovic",
-    position: "Guard",
-    number: "13",
-    image: playerRados,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/simovic-nemanja/1970677",
-    stats: { ppg: 7.0, rpg: 2.2, apg: 3.0, mpg: "23:40" },
-  },
-  {
-    id: 14,
-    name: "Ante Begić",
-    position: "Forward",
-    number: "14",
-    image: player4,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150",
-    stats: { ppg: 6.5, rpg: 3.5, apg: 0.9, mpg: "20:00" },
+    stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
 ];
 
@@ -271,12 +270,21 @@ const Team = () => {
 
                   {/* Stats */}
                   <div className="mt-4 flex flex-wrap gap-2">
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
-                      {player.stats.ppg} PPG
-                    </span>
-                    <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
-                      {player.stats.rpg} RPG
-                    </span>
+                    {player.stats.ppg >= 1 && (
+                      <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
+                        {player.stats.ppg} PPG
+                      </span>
+                    )}
+                    {player.stats.rpg >= 1 && (
+                      <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
+                        {player.stats.rpg} RPG
+                      </span>
+                    )}
+                    {player.stats.apg >= 1 && (
+                      <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
+                        {player.stats.apg} APG
+                      </span>
+                    )}
                   </div>
 
                   {/* Hover yellow line animation */}
