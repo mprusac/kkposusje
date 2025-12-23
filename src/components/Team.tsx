@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import playerIan from "@/assets/player-ian.png";
 import playerRados from "@/assets/player-rados.png";
@@ -164,16 +165,21 @@ const Team = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollSnapType: "x mandatory" }}
           >
             {players.map((player, index) => (
-              <div
+              <motion.div
                 key={player.id}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
                 className="group flex-shrink-0 relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.03] hover-lift border border-transparent hover:border-primary/30"
                 style={{
                   width: 'calc((100% - 5rem) / 5)',
                   minWidth: '220px',
                   scrollSnapAlign: 'start',
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateX(0)" : "translateX(30px)",
-                  transition: `all 0.5s ease ${index * 0.05}s`,
                 }}
               >
                 {/* Player Number Watermark */}
@@ -219,7 +225,7 @@ const Team = () => {
                   {/* Hover yellow line animation */}
                   <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
