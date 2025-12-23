@@ -6,6 +6,7 @@ import playerRados from "@/assets/player-rados.png";
 import playerRamljak from "@/assets/player-ramljak.png";
 import player4 from "@/assets/player-4.jpg";
 import player5 from "@/assets/player-5.jpg";
+import playerKovac from "@/assets/player-kovac.png";
 
 interface Player {
   id: number;
@@ -55,7 +56,7 @@ const players: Player[] = [
     name: "Ante Kovač",
     position: "Forward",
     number: "09",
-    image: player4,
+    image: playerKovac,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
     stats: { ppg: 4.8, rpg: 2.4, apg: 1.0, mpg: "20:38" },
   },
