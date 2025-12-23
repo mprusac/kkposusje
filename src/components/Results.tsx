@@ -236,25 +236,23 @@ const Results = () => {
                   </div>
 
                   {/* Match content - Teams with logos */}
-                  <div className="flex items-stretch justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4">
                     {/* Home Team */}
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="flex-1 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-2 border border-border/50 overflow-hidden">
-                          {homeLogo ? (
-                            <img 
-                              src={homeLogo} 
-                              alt={match.homeTeam}
-                              className="w-10 h-10 object-contain flex-shrink-0"
-                            />
-                          ) : (
-                            <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                              <span className="text-xs font-bold text-muted-foreground">
-                                {match.homeTeam.substring(0, 2).toUpperCase()}
-                              </span>
-                            </div>
-                          )}
-                        </div>
+                      <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-2 border border-border/50 overflow-hidden">
+                        {homeLogo ? (
+                          <img 
+                            src={homeLogo} 
+                            alt={match.homeTeam}
+                            className="w-10 h-10 object-contain flex-shrink-0"
+                          />
+                        ) : (
+                          <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                            <span className="text-xs font-bold text-muted-foreground">
+                              {match.homeTeam.substring(0, 2).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <span
                         className={`text-xs font-semibold text-center leading-tight mt-2 ${
@@ -266,7 +264,7 @@ const Results = () => {
                     </div>
 
                     {/* Score */}
-                    <div className="flex items-center gap-3 bg-background/40 px-4 py-2 rounded-xl border border-border/30 self-center">
+                    <div className="flex items-center gap-3 bg-background/40 px-4 py-2 rounded-xl border border-border/30 h-14">
                       <span
                         className={`text-3xl font-display font-bold ${
                           match.homeScore > match.awayScore
@@ -290,22 +288,20 @@ const Results = () => {
 
                     {/* Away Team */}
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="flex-1 flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-2 border border-border/50 overflow-hidden">
-                          {awayLogo ? (
-                            <img 
-                              src={awayLogo} 
-                              alt={match.awayTeam}
-                              className="w-10 h-10 object-contain flex-shrink-0"
-                            />
-                          ) : (
-                            <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                              <span className="text-xs font-bold text-muted-foreground">
-                                {match.awayTeam.substring(0, 2).toUpperCase()}
-                              </span>
-                            </div>
-                          )}
-                        </div>
+                      <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-2 border border-border/50 overflow-hidden">
+                        {awayLogo ? (
+                          <img 
+                            src={awayLogo} 
+                            alt={match.awayTeam}
+                            className="w-10 h-10 object-contain flex-shrink-0"
+                          />
+                        ) : (
+                          <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                            <span className="text-xs font-bold text-muted-foreground">
+                              {match.awayTeam.substring(0, 2).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
                       </div>
                       <span
                         className={`text-xs font-semibold text-center leading-tight mt-2 ${
