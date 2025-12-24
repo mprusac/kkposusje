@@ -199,7 +199,7 @@ const Results = () => {
                 >
                   {/* Header with date and link */}
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-14 flex justify-center">
+                    <div className="w-14 flex justify-center items-center">
                       {match.youtubeLink && (
                         <a
                           href={match.youtubeLink}
@@ -207,19 +207,22 @@ const Results = () => {
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
                           className="text-muted-foreground hover:text-red-500 transition-colors"
+                          title="YouTube"
                         >
-                          <Youtube size={16} />
+                          <Youtube size={18} />
                         </a>
                       )}
                     </div>
                     <span className="text-xs font-medium text-muted-foreground bg-background/50 px-3 py-1 rounded-full">
                       {match.date}
                     </span>
-                    <div className="w-14 flex justify-center">
-                      <ExternalLink
-                        size={16}
-                        className="text-muted-foreground group-hover:text-primary transition-colors"
-                      />
+                    <div className="w-14 flex justify-center items-center">
+                      <span title="SofaScore">
+                        <ExternalLink
+                          size={16}
+                          className="text-muted-foreground group-hover:text-primary transition-colors"
+                        />
+                      </span>
                     </div>
                   </div>
 
