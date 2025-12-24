@@ -149,7 +149,7 @@ const Results = () => {
           <span className="section-title-gold">UTAKMICE</span>
         </h2>
 
-        <div className="relative max-w-[1100px] mx-auto px-16">
+        <div className="relative max-w-[1200px] mx-auto px-20">
           {/* Scroll Buttons */}
           <button
             onClick={() => scroll("left")}
@@ -167,7 +167,7 @@ const Results = () => {
           {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
+            className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 px-1"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollSnapType: "x mandatory" }}
           >
             {results.map((match, index) => {
