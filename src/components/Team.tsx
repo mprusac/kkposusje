@@ -6,7 +6,7 @@ import playerRados from "@/assets/player-rados.png";
 import playerRamljak from "@/assets/player-ramljak.png";
 import player4 from "@/assets/player-4.jpg";
 import player5 from "@/assets/player-5.jpg";
-import playerKovac from "@/assets/player-kovac.png";
+import playerKovac from "@/assets/player-kovac-new.png";
 import playerDerek from "@/assets/player-derek.png";
 import playerBegic from "@/assets/player-begic.png";
 import playerProtrka from "@/assets/player-protrka.png";
