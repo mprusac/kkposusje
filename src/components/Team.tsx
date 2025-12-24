@@ -11,7 +11,7 @@ import playerDerek from "@/assets/player-derek.png";
 import playerBegic from "@/assets/player-begic.png";
 import playerProtrka from "@/assets/player-protrka.png";
 import playerBasic from "@/assets/player-basic-new.png";
-import playerPavkovic from "@/assets/player-pavkovic.png";
+import playerPavkovic from "@/assets/player-pavkovic-new.png";
 
 interface Player {
   id: number;
