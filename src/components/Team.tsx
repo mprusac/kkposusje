@@ -258,7 +258,8 @@ const Team = () => {
                       player.image === playerBegic ? "object-[center_8%]" : 
                       player.image === playerProtrka ? "object-[center_8%]" : 
                       player.image === playerBasic ? "object-[center_12%]" : 
-                      player.image === playerPavkovic ? "object-[center_10%]" : "object-top"
+                      player.image === playerPavkovic ? "object-[center_10%]" : 
+                      player.image === playerKovac ? "object-[center_5%]" : "object-top"
                     } ${
                       player.image === playerRados ? "sepia-[0.15] saturate-[1.1] brightness-105" : 
                       player.image === playerRamljak ? "sepia-[0.15] saturate-[1.1] brightness-105" :
