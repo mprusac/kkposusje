@@ -10,7 +10,7 @@ import playerKovac from "@/assets/player-kovac.png";
 import playerDerek from "@/assets/player-derek.png";
 import playerBegic from "@/assets/player-begic.png";
 import playerProtrka from "@/assets/player-protrka.png";
-import playerBasic from "@/assets/player-basic.png";
+import playerBasic from "@/assets/player-basic-new.png";
 import playerPavkovic from "@/assets/player-pavkovic.png";
 
 interface Player {
