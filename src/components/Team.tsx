@@ -311,13 +311,16 @@ const Team = () => {
                     {player.name}
                   </h3>
 
-                  {/* Description or Stats */}
-                  {player.description ? (
+                  {/* Description */}
+                  {player.description && (
                     <p className="mt-3 text-xs text-muted-foreground leading-relaxed line-clamp-3">
                       {player.description}
                     </p>
-                  ) : (
-                    <div className="mt-4 flex flex-wrap gap-2">
+                  )}
+
+                  {/* Stats */}
+                  {(player.stats.ppg >= 1 || player.stats.rpg >= 1 || player.stats.apg >= 1) && (
+                    <div className={`flex flex-wrap gap-2 ${player.description ? 'mt-2' : 'mt-4'}`}>
                       {player.stats.ppg >= 1 && (
                         <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
                           {player.stats.ppg} PPG
