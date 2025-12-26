@@ -37,7 +37,7 @@ const players: Player[] = [
     number: "09",
     image: playerKovac,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
-    description: "Klupsko dijete i najbolji strijelac momčadi koji svojim iskustvom i eksplozivnim nastupima predvodi ekipu.",
+    description: "Klupsko dijete i najbolji strijelac tima koji svojim iskustvom i eksplozivnoscu predvodi ekipu.",
     stats: { ppg: 22.2, rpg: 5.5, apg: 2.0, mpg: "" },
   },
   {
@@ -67,7 +67,7 @@ const players: Player[] = [
     number: "13",
     image: playerDerek,
     sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853",
-    description: "Veteran pod obručima i vođa na terenu koji pouzdano pokriva poziciju centra te donosi sigurnost pod košem.",
+    description: "Veteran i vođa na terenu koji pouzdano pokriva poziciju centra te donosi sigurnost pod košem.",
     stats: { ppg: 8.3, rpg: 4.5, apg: 2.0, mpg: "" },
   },
   {
@@ -77,7 +77,7 @@ const players: Player[] = [
     number: "17",
     image: playerProtrka,
     sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855",
-    description: "Mladi centar svijetle budućnosti koji već prikazuje zrelost na parketu, jedan od najvećih klupskih talenata.",
+    description: "Mladi centar svijetle budućnosti koji već prikazuje zrelost na parketu, veliki klupskih talent.",
     stats: { ppg: 6.3, rpg: 5.7, apg: 0, mpg: "" },
   },
   {
@@ -87,7 +87,7 @@ const players: Player[] = [
     number: "08",
     image: playerBasic,
     sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464",
-    description: "Talentirani 18-godišnjak posuškog omladinskog pogona koji vrijedno gradi put prema seniorskoj košarci.",
+    description: "Talentirani 18-godišnjak posuškog omladinskog pogona koji vrijedno gradi svoj košarkaški put.",
     stats: { ppg: 3.8, rpg: 2.8, apg: 0, mpg: "" },
   },
   {
