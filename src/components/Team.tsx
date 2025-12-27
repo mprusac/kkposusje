@@ -12,6 +12,7 @@ import playerBegic from "@/assets/player-begic.png";
 import playerProtrka from "@/assets/player-protrka.png";
 import playerBasic from "@/assets/player-basic-new.png";
 import playerPavkovic from "@/assets/player-pavkovic-new.png";
+import playerBasicLuka from "@/assets/player-basic-luka.png";
 
 interface Player {
   id: number;
@@ -86,7 +87,7 @@ const players: Player[] = [
     name: "Luka Bašić",
     position: "Guard",
     number: "08",
-    image: "",
+    image: playerBasicLuka,
     sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464",
     description: "Talentirani 18-godišnjak posuškog omladinskog pogona koji vrijedno gradi svoj košarkaški put.",
     stats: { ppg: 5, rpg: 4, apg: 0, mpg: "" },
