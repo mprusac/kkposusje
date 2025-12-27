@@ -35,19 +35,19 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-display tracking-wider mb-4 animate-fade-in-up">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display tracking-wider mb-4 animate-fade-in-up">
             <span className="text-foreground">HKK </span>
             <span className="text-primary">POSUŠJE</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground uppercase tracking-[0.3em] mb-8 animate-fade-in-up delay-200">
+          <p className="text-sm sm:text-lg md:text-xl text-muted-foreground uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8 animate-fade-in-up delay-200">
             Više od igre
           </p>
 
           <div className="animate-fade-in-up delay-400">
             <Button
               size="lg"
-              className="group relative overflow-hidden bg-transparent border-2 border-primary text-primary hover:text-primary-foreground font-display uppercase tracking-widest px-10 py-7 text-lg transition-all duration-500"
+              className="group relative overflow-hidden bg-transparent border-2 border-primary text-primary hover:text-primary-foreground font-display uppercase tracking-widest px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg transition-all duration-500"
               asChild
             >
               <a href="#kontakt">
