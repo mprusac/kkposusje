@@ -328,19 +328,19 @@ const Team = () => {
 
                   {/* Stats */}
                   {(player.stats.ppg >= 1 || player.stats.rpg >= 1 || player.stats.apg >= 1) && (
-                    <div className={`flex gap-1 ${player.description ? 'mt-2' : 'mt-4'}`}>
+                    <div className={`flex gap-2 ${player.description ? 'mt-2' : 'mt-4'}`}>
                       {player.stats.ppg >= 1 && (
-                        <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[10px] rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded whitespace-nowrap">
                           {player.stats.ppg} PPG
                         </span>
                       )}
                       {player.stats.rpg >= 1 && (
-                        <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[10px] rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded whitespace-nowrap">
                           {player.stats.rpg} RPG
                         </span>
                       )}
                       {player.stats.apg >= 1 && (
-                        <span className="px-1.5 py-0.5 bg-primary/20 text-primary text-[10px] rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded whitespace-nowrap">
                           {player.stats.apg} APG
                         </span>
                       )}
