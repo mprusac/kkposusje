@@ -117,7 +117,7 @@ const players: Player[] = [
     number: "12",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/stipe-beslic/2339336",
-    description: "Mladi igrač iz juniorskog pogona, odlikuje ga velika želja za napretkom, čime najavljuje uspješnu budućnost.",
+    description: "Mladi igrač iz juniorskog pogona, odlikuje ga velika želja za napretkom i požrtvovnost za tim.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
@@ -127,7 +127,7 @@ const players: Player[] = [
     number: "15",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289",
-    description: "16-godišnji bek šuter i novi posuški talenat, poziv u kadetsku reprezentaciju BiH potvrđuje njegov potencijal.",
+    description: "16-godišnji bek šuter i posuški talent, poziv u kadetsku reprezentaciju BiH potvrđuje potencijal.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
@@ -137,7 +137,7 @@ const players: Player[] = [
     number: "16",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/jakov-ramljak/1578854",
-    description: "Mladi bek iz koji marljivo gradi svoju ulogu u ekipi, borben na parketu i sve zapaženiji u rotaciji.",
+    description: "Mladi bek koji marljivo gradi svoju ulogu u ekipi, borben na parketu i sve zapaženiji u rotaciji.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
@@ -147,7 +147,7 @@ const players: Player[] = [
     number: "01",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/ivan-ramljak/2339345",
-    description: "Najiskusnije ime u sastavu, povratnik iz europskih liga koji znanjem i autoritetom daje kvalitet i primjer mlađima.",
+    description: "Najiskusnije ime u sastavu, povratnik iz europskih liga koji pridonosi znanjem i autoritetom.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
@@ -167,7 +167,7 @@ const players: Player[] = [
     number: "03",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-piskovic/2364287",
-    description: "Produkt omladinske škole Posušja, mladi razigravač koji unosi energiju s klupe te sazrijeva u seniorskoj konkurenciji.",
+    description: "Produkt Posušja, mladi razigravač koji unosi energiju s klupe te sazrijeva u seniorskoj konkurenciji.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
@@ -177,7 +177,7 @@ const players: Player[] = [
     number: "14",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-ramljak/2339280",
-    description: "Dugogodišnji član kluba poznat po preciznom šutu izvana i preuzimanju napadačke odgovornosti.",
+    description: "Vjerni igrač poznat po preciznom šutu izvana i preuzimanju napadačke odgovornosti.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
 ];
