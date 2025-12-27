@@ -182,13 +182,13 @@ const Results = () => {
                   href={match.sofaScoreLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 md:hover:scale-[1.02] md:hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-start ${
+                  className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-start ${
                     isWin 
                       ? "bg-gradient-to-br from-secondary/80 via-secondary/60 to-primary/10 border-primary/30 hover:border-primary/60" 
                       : "bg-gradient-to-br from-secondary/80 via-secondary/60 to-red-500/10 border-red-500/20 hover:border-red-500/40"
                   }`}
                   style={{ 
-                    width: 'calc((100% - 1.5rem) / 2)',
+                    width: 'calc((100% - 2.5rem) / 3)',
                     minWidth: '260px',
                     animationDelay: `${index * 100}ms`,
                     opacity: isVisible ? 1 : 0,

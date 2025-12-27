@@ -237,9 +237,9 @@ const News = () => {
             {filteredNews.map((item, index) => (
               <article
                 key={item.id}
-                className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 md:hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-start"
+                className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-start"
                 style={{
-                  width: 'calc((100% - 0.75rem) / 1.2)',
+                  width: 'calc((100% - 3rem) / 3)',
                   minWidth: '260px',
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateX(0)" : "translateX(30px)",
