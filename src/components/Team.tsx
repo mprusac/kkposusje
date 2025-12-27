@@ -285,6 +285,7 @@ const Team = () => {
                         player.image === playerBasic ? "object-[center_12%]" : 
                         player.image === playerPavkovic ? "object-[center_10%]" : 
                         player.image === playerKovac ? "object-[center_5%]" : 
+                        player.image === playerBasicLuka ? "object-[center_5%]" : 
                         player.name === "Josip Ramljak" ? "object-top scale-115" : "object-top"
                       } ${
                         player.image === playerRados ? "sepia-[0.15] saturate-[1.1] brightness-105" : 
