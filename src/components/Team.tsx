@@ -253,8 +253,8 @@ const Team = () => {
                   transition: `all 0.5s ease ${index * 0.05}s`,
                 }}
               >
-                {/* Player Number Watermark - Always visible */}
-                <span className="player-number font-display opacity-20">{player.number}</span>
+              {/* Player Number Watermark - Behind image for players with photos, visible for silhouettes */}
+                <span className={`player-number font-display ${player.image ? 'opacity-10 -z-10' : 'opacity-30 z-10'}`}>{player.number}</span>
 
                 {/* SofaScore Link */}
                 {player.sofascoreLink && (

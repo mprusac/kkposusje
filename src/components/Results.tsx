@@ -149,17 +149,17 @@ const Results = () => {
           <span className="section-title-gold">UTAKMICE</span>
         </h2>
 
-        <div className="relative max-w-[1200px] mx-auto px-20">
-          {/* Scroll Buttons */}
+        <div className="relative max-w-[1200px] mx-auto px-4 md:px-20">
+          {/* Scroll Buttons - Hidden on mobile */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronRight size={24} />
           </button>
@@ -167,8 +167,8 @@ const Results = () => {
           {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 px-1"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollSnapType: "x mandatory" }}
+            className="flex gap-3 md:gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 px-1 snap-x snap-mandatory"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {results.map((match, index) => {
               const isWin = (match.isHome && match.homeScore > match.awayScore) ||
@@ -182,15 +182,14 @@ const Results = () => {
                   href={match.sofaScoreLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group flex-shrink-0 rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl ${
+                  className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 md:hover:scale-[1.02] md:hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-start ${
                     isWin 
                       ? "bg-gradient-to-br from-secondary/80 via-secondary/60 to-primary/10 border-primary/30 hover:border-primary/60" 
                       : "bg-gradient-to-br from-secondary/80 via-secondary/60 to-red-500/10 border-red-500/20 hover:border-red-500/40"
                   }`}
                   style={{ 
-                    width: 'calc((100% - 2.5rem) / 3)',
-                    minWidth: '320px',
-                    scrollSnapAlign: 'start',
+                    width: 'calc((100% - 1.5rem) / 2)',
+                    minWidth: '260px',
                     animationDelay: `${index * 100}ms`,
                     opacity: isVisible ? 1 : 0,
                     transform: isVisible ? "translateX(0)" : "translateX(30px)",
@@ -198,8 +197,8 @@ const Results = () => {
                   }}
                 >
                   {/* Header with date and link */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-14 flex justify-center items-center">
+                  <div className="flex items-center justify-between mb-3 md:mb-5">
+                    <div className="w-8 md:w-14 flex justify-center items-center">
                       {match.youtubeLink && (
                         <a
                           href={match.youtubeLink}
@@ -209,44 +208,49 @@ const Results = () => {
                           className="text-muted-foreground hover:text-red-500 transition-colors"
                           title="YouTube"
                         >
-                          <Youtube size={18} />
+                          <Youtube size={16} className="md:hidden" />
+                          <Youtube size={18} className="hidden md:block" />
                         </a>
                       )}
                     </div>
-                    <span className="text-xs font-medium text-muted-foreground bg-background/50 px-3 py-1 rounded-full">
+                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground bg-background/50 px-2 md:px-3 py-1 rounded-full">
                       {match.date}
                     </span>
-                    <div className="w-14 flex justify-center items-center">
+                    <div className="w-8 md:w-14 flex justify-center items-center">
                       <span title="SofaScore">
                         <ExternalLink
+                          size={14}
+                          className="md:hidden text-muted-foreground group-hover:text-primary transition-colors"
+                        />
+                        <ExternalLink
                           size={16}
-                          className="text-muted-foreground group-hover:text-primary transition-colors"
+                          className="hidden md:block text-muted-foreground group-hover:text-primary transition-colors"
                         />
                       </span>
                     </div>
                   </div>
 
                   {/* Match content - Teams with logos */}
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start justify-between gap-2 md:gap-4">
                     {/* Home Team */}
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-2 border border-border/50 overflow-hidden">
+                      <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-1.5 md:p-2 border border-border/50 overflow-hidden">
                         {homeLogo ? (
                           <img 
                             src={homeLogo} 
                             alt={match.homeTeam}
-                            className="w-10 h-10 object-contain flex-shrink-0"
+                            className="w-7 h-7 md:w-10 md:h-10 object-contain flex-shrink-0"
                           />
                         ) : (
                           <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                            <span className="text-xs font-bold text-muted-foreground">
+                            <span className="text-[10px] md:text-xs font-bold text-muted-foreground">
                               {match.homeTeam.substring(0, 2).toUpperCase()}
                             </span>
                           </div>
                         )}
                       </div>
                       <span
-                        className={`text-xs font-semibold text-center leading-tight mt-2 ${
+                        className={`text-[10px] md:text-xs font-semibold text-center leading-tight mt-1.5 md:mt-2 ${
                           match.isHome ? "text-primary" : "text-foreground"
                         }`}
                       >
@@ -255,9 +259,9 @@ const Results = () => {
                     </div>
 
                     {/* Score */}
-                    <div className="flex items-center gap-3 bg-background/40 px-4 py-2 rounded-xl border border-border/30 h-14">
+                    <div className="flex items-center gap-1.5 md:gap-3 bg-background/40 px-2 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl border border-border/30 h-10 md:h-14">
                       <span
-                        className={`text-3xl font-display font-bold ${
+                        className={`text-xl md:text-3xl font-display font-bold ${
                           match.homeScore > match.awayScore
                             ? "text-primary"
                             : "text-foreground/70"
@@ -265,9 +269,9 @@ const Results = () => {
                       >
                         {match.homeScore}
                       </span>
-                      <span className="text-muted-foreground text-xl font-light">:</span>
+                      <span className="text-muted-foreground text-base md:text-xl font-light">:</span>
                       <span
-                        className={`text-3xl font-display font-bold ${
+                        className={`text-xl md:text-3xl font-display font-bold ${
                           match.awayScore > match.homeScore
                             ? "text-primary"
                             : "text-foreground/70"
@@ -279,23 +283,23 @@ const Results = () => {
 
                     {/* Away Team */}
                     <div className="flex-1 flex flex-col items-center">
-                      <div className="w-14 h-14 rounded-full bg-background/60 flex items-center justify-center p-2 border border-border/50 overflow-hidden">
+                      <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-1.5 md:p-2 border border-border/50 overflow-hidden">
                         {awayLogo ? (
                           <img 
                             src={awayLogo} 
                             alt={match.awayTeam}
-                            className="w-10 h-10 object-contain flex-shrink-0"
+                            className="w-7 h-7 md:w-10 md:h-10 object-contain flex-shrink-0"
                           />
                         ) : (
                           <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                            <span className="text-xs font-bold text-muted-foreground">
+                            <span className="text-[10px] md:text-xs font-bold text-muted-foreground">
                               {match.awayTeam.substring(0, 2).toUpperCase()}
                             </span>
                           </div>
                         )}
                       </div>
                       <span
-                        className={`text-xs font-semibold text-center leading-tight mt-2 ${
+                        className={`text-[10px] md:text-xs font-semibold text-center leading-tight mt-1.5 md:mt-2 ${
                           !match.isHome ? "text-primary" : "text-foreground"
                         }`}
                       >

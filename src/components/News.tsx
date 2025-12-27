@@ -191,20 +191,21 @@ const News = () => {
         </p>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-2">
           {categories.map((category) => {
             const IconComponent = category.icon;
             return (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
                   activeCategory === category.id
                     ? "bg-primary text-primary-foreground"
                     : "bg-secondary/50 text-foreground hover:bg-secondary hover:text-primary"
                 }`}
               >
-                <IconComponent size={18} />
+                <IconComponent size={16} className="md:hidden" />
+                <IconComponent size={18} className="hidden md:block" />
                 {category.label}
               </button>
             );
@@ -212,42 +213,41 @@ const News = () => {
         </div>
 
         {/* News Slider */}
-        <div className="relative max-w-[1100px] mx-auto px-16">
-          {/* Scroll Buttons - Outside boxes with yellow background */}
+        <div className="relative max-w-[1100px] mx-auto px-4 md:px-16">
+          {/* Scroll Buttons - Hidden on mobile */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronLeft size={24} />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronRight size={24} />
           </button>
 
-          {/* Scrollable Container - Shows exactly 3 */}
+          {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none", scrollSnapType: "x mandatory" }}
+            className="flex gap-3 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {filteredNews.map((item, index) => (
               <article
                 key={item.id}
-                className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30"
+                className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 md:hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-start"
                 style={{
-                  width: 'calc((100% - 3rem) / 3)',
-                  minWidth: '320px',
-                  scrollSnapAlign: 'start',
+                  width: 'calc((100% - 0.75rem) / 1.2)',
+                  minWidth: '260px',
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateX(0)" : "translateX(30px)",
                   transition: `all 0.5s ease ${index * 0.1}s`,
                 }}
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-36 md:h-48 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -256,26 +256,28 @@ const News = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
-                    <Calendar size={14} />
+                <div className="p-4 md:p-6">
+                  <div className="flex items-center gap-2 text-muted-foreground text-xs md:text-sm mb-2 md:mb-3">
+                    <Calendar size={12} className="md:hidden" />
+                    <Calendar size={14} className="hidden md:block" />
                     {item.date}
                   </div>
 
-                  <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-base md:text-lg font-bold text-foreground mb-2 md:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                  <p className="text-muted-foreground text-xs md:text-sm mb-3 md:mb-4 line-clamp-2 md:line-clamp-3">
                     {item.excerpt}
                   </p>
 
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-primary text-xs md:text-sm font-medium hover:gap-3 transition-all"
                   >
                     Pročitaj više
-                    <ArrowRight size={16} />
+                    <ArrowRight size={14} className="md:hidden" />
+                    <ArrowRight size={16} className="hidden md:block" />
                   </a>
                 </div>
               </article>
