@@ -85,7 +85,7 @@ const players: Player[] = [
     name: "Luka Bašić",
     position: "Guard",
     number: "08",
-    image: playerBasic,
+    image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464",
     description: "Talentirani 18-godišnjak posuškog omladinskog pogona koji vrijedno gradi svoj košarkaški put.",
     stats: { ppg: 3.8, rpg: 2.8, apg: 0, mpg: "" },
@@ -127,7 +127,7 @@ const players: Player[] = [
     number: "15",
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289",
-    description: "16-godišnji bek šuter i posuški talent, poziv u kadetsku reprezentaciju BiH potvrđuje potencijal.",
+    description: "16-godišnji bek šuter i posuški talent s pozivom u kadetsku reprezentaciju BiH.",
     stats: { ppg: 0, rpg: 0, apg: 0, mpg: "" },
   },
   {
