@@ -11,7 +11,7 @@ interface StatItem {
 const stats: StatItem[] = [
   { value: 1975, label: "GODINA OSNUTKA" },
   { value: 150, suffix: "+", label: "AKTIVNIH ČLANOVA" },
-  { value: 8, label: "UZRASNE KATEGORIJE" },
+  { value: 8, label: "UZRASNE SELEKCIJE" },
   { value: 50, label: "GODINA POSTOJANJA" },
 ];
 
@@ -31,7 +31,7 @@ const femaleCategories = [
 
 const achievements = [
   {
-    title: "Višestruki prvaci Lige Herceg-Bosne",
+    title: "Višestruki seniorski prvaci Lige Herceg-Bosne",
     subtitle: "Tri osvojena naslova prvaka (2012, 2016, 2021)",
     description: "Promocija u Premijer ligu BiH",
     icon: Trophy,
@@ -52,9 +52,9 @@ const achievements = [
     emoji: "🌍",
   },
   {
-    title: "Juniorski prvaci BiH 2009./10.",
-    subtitle: "Kruna rada s mladima kroz osvajanje državnog naslova",
-    description: "Zlatna generacija omladinskog pogona HKK Posušje",
+    title: "Brojni naslovi prvaka Lige Mladih Herceg-Bosne",
+    subtitle: "Redovite titule muških i ženskih omladinskih selekcija u svim uzrastima",
+    description: "Rezultat kontinuiranog rada, stručnog kadra i ulaganja u mlade naraštaje",
     icon: Medal,
     emoji: "🥇",
   },
@@ -151,51 +151,54 @@ const About = () => {
           }`}
         >
           <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
-            Kategorije
+            Selekcije
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Muške kategorije */}
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-primary uppercase tracking-widest text-center mb-4 flex items-center justify-center gap-2">
-                <span className="w-8 h-px bg-primary/50"></span>
-                Muški
-                <span className="w-8 h-px bg-primary/50"></span>
-              </h4>
+          
+          {/* Muške selekcije */}
+          <div className="mb-8">
+            <h4 className="text-sm font-semibold text-primary uppercase tracking-widest text-center mb-4 flex items-center justify-center gap-2">
+              <span className="w-8 h-px bg-primary/50"></span>
+              Muške selekcije
+              <span className="w-8 h-px bg-primary/50"></span>
+            </h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {maleCategories.map((category, index) => (
                 <div
                   key={category}
-                  className="group bg-gradient-to-r from-secondary/60 to-secondary/30 border border-border rounded-lg px-6 py-4 text-center font-medium text-foreground hover:border-primary hover:from-primary/20 hover:to-primary/10 transition-all duration-300 cursor-default"
+                  className="group bg-gradient-to-r from-secondary/60 to-secondary/30 border border-border rounded-lg px-4 py-3 text-center font-medium text-foreground hover:border-primary hover:from-primary/20 hover:to-primary/10 transition-all duration-300 cursor-default"
                   style={{ 
                     opacity: catVisible ? 1 : 0,
                     transform: catVisible ? "translateY(0)" : "translateY(20px)",
                     transition: `all 0.5s ease ${index * 0.1}s`
                   }}
                 >
-                  <span className="group-hover:text-primary transition-colors duration-300">
+                  <span className="group-hover:text-primary transition-colors duration-300 text-sm md:text-base">
                     {category}
                   </span>
                 </div>
               ))}
             </div>
-            
-            {/* Ženske kategorije */}
-            <div className="space-y-3">
-              <h4 className="text-sm font-semibold text-primary uppercase tracking-widest text-center mb-4 flex items-center justify-center gap-2">
-                <span className="w-8 h-px bg-primary/50"></span>
-                Ženske
-                <span className="w-8 h-px bg-primary/50"></span>
-              </h4>
+          </div>
+          
+          {/* Ženske selekcije */}
+          <div>
+            <h4 className="text-sm font-semibold text-primary uppercase tracking-widest text-center mb-4 flex items-center justify-center gap-2">
+              <span className="w-8 h-px bg-primary/50"></span>
+              Ženske selekcije
+              <span className="w-8 h-px bg-primary/50"></span>
+            </h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {femaleCategories.map((category, index) => (
                 <div
                   key={category}
-                  className="group bg-gradient-to-r from-secondary/60 to-secondary/30 border border-border rounded-lg px-6 py-4 text-center font-medium text-foreground hover:border-primary hover:from-primary/20 hover:to-primary/10 transition-all duration-300 cursor-default"
+                  className="group bg-gradient-to-r from-secondary/60 to-secondary/30 border border-border rounded-lg px-4 py-3 text-center font-medium text-foreground hover:border-primary hover:from-primary/20 hover:to-primary/10 transition-all duration-300 cursor-default"
                   style={{ 
                     opacity: catVisible ? 1 : 0,
                     transform: catVisible ? "translateY(0)" : "translateY(20px)",
                     transition: `all 0.5s ease ${(index + 4) * 0.1}s`
                   }}
                 >
-                  <span className="group-hover:text-primary transition-colors duration-300">
+                  <span className="group-hover:text-primary transition-colors duration-300 text-sm md:text-base">
                     {category}
                   </span>
                 </div>
