@@ -91,7 +91,7 @@ const Sponsors = () => {
           >
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="w-full p-6 flex items-center justify-between hover:bg-primary/5 transition-all duration-300"
+              className="w-full p-6 flex items-center justify-between transition-all duration-300"
             >
               <div>
                 <h3 className="text-xl font-display text-left">
