@@ -114,24 +114,21 @@ const Sponsors = () => {
               }`}
             >
               <div className="p-6 pt-0">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                   {sponsorTiers.map((tier, index) => {
-                    const shadowStyle = tier.name === "GENERALNO" 
-                      ? "0 -15px 40px -10px hsl(48 96% 53% / 0.25), 0 15px 40px -10px hsl(48 96% 53% / 0.25)" 
+                    const shadowColor = tier.name === "GENERALNO" 
+                      ? "hover:shadow-[0_0_25px_hsl(48,96%,53%,0.4)]" 
                       : tier.name === "GOLD" 
-                      ? "0 -15px 40px -10px hsl(48 96% 53% / 0.2), 0 15px 40px -10px hsl(48 96% 53% / 0.2)" 
+                      ? "hover:shadow-[0_0_25px_hsl(48,96%,53%,0.35)]" 
                       : tier.name === "SILVER" 
-                      ? "0 -15px 40px -10px hsl(0 0% 60% / 0.2), 0 15px 40px -10px hsl(0 0% 60% / 0.2)" 
-                      : "0 -15px 40px -10px hsl(350 80% 55% / 0.2), 0 15px 40px -10px hsl(350 80% 55% / 0.2)";
+                      ? "hover:shadow-[0_0_25px_hsl(0,0%,70%,0.3)]" 
+                      : "hover:shadow-[0_0_25px_hsl(0,80%,60%,0.3)]";
                     
                     return (
                       <div
                         key={tier.name}
-                        className="group bg-secondary/40 border border-border rounded-xl p-6 animate-fade-in-up transition-all duration-300 hover:scale-[1.03] hover:border-primary/50"
-                        style={{ 
-                          animationDelay: `${index * 100}ms`,
-                          boxShadow: shadowStyle
-                        }}
+                        className={`group bg-secondary/40 border border-border rounded-lg p-6 animate-fade-in-up transition-all duration-300 hover:scale-[1.03] hover:border-primary/50 ${shadowColor}`}
+                        style={{ animationDelay: `${index * 100}ms` }}
                       >
                         <div className={`${tier.color} mb-3 transition-transform duration-300 group-hover:scale-110`}>{tier.icon}</div>
                         <h4 className={`font-semibold ${tier.color} transition-colors duration-300`}>{tier.name}</h4>
