@@ -210,14 +210,14 @@ const About = () => {
         {/* Achievements - Vertical Timeline Style */}
         <div 
           ref={achRef}
-          className={`mb-20 max-w-2xl mx-auto transition-all duration-700 ${
+          className={`mb-20 w-full flex flex-col items-center transition-all duration-700 ${
             achVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           <h3 className="text-3xl md:text-4xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
             Postignuća
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-4 max-w-2xl w-full">
             {achievements.map((achievement, index) => {
               const IconComponent = achievement.icon;
               return (
