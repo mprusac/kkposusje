@@ -199,7 +199,7 @@ const Team = () => {
   };
 
   return (
-    <section id="tim" className="py-20 bg-background">
+    <section id="tim" className="py-20">
       <div 
         ref={elementRef}
         className={`container mx-auto px-4 transition-all duration-700 ${

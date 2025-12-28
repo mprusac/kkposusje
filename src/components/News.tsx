@@ -174,7 +174,7 @@ const News = () => {
   };
 
   return (
-    <section id="vijesti" className="py-20 bg-card">
+    <section id="vijesti" className="py-20">
       <div 
         ref={elementRef}
         className={`container mx-auto px-4 transition-all duration-700 ${

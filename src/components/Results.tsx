@@ -137,7 +137,7 @@ const Results = () => {
   };
 
   return (
-    <section id="rezultati" className="py-20 bg-gradient-to-b from-secondary/30 via-background to-background">
+    <section id="rezultati" className="py-20">
       <div 
         ref={elementRef}
         className={`container mx-auto px-4 transition-all duration-700 ${
