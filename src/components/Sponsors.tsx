@@ -63,8 +63,7 @@ const Sponsors = () => {
         </h2>
 
         <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">
-          Hvala našim partnerima koji podržavaju razvoj kluba i omogućavaju nam da
-          ostvarujemo naše ciljeve
+          Naši partneri koji podržavaju razvoj kluba i omogućavaju ostvarivanje naših ciljeva
         </p>
 
         {/* Sponsor Logos */}
