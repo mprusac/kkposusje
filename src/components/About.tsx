@@ -130,10 +130,10 @@ const About = () => {
               <span className="text-primary font-semibold">1975. godine</span>.
             </p>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Klub njeguje više od <span className="text-primary font-semibold">pet desetljeća tradicije</span> rada s mladima i okuplja igrače iz cijele regije. Kroz sustavan rad u omladinskim kategorijama i disciplinirane treninge razvijamo temelje za seniorski tim.
+              Klub njeguje više od <span className="text-primary font-semibold">pet desetljeća tradicije</span> rada s mladima i okuplja igrače iz cijele regije. Kroz&nbsp;sustavan rad u omladinskim kategorijama i disciplinirane treninge razvijamo temelje za seniorski tim.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Kroz intenzivan trud gradimo <span className="text-primary font-semibold">zajedništvo, odgovornost i timski duh</span> kroz svaki trening. Zajedno težimo stvaranju novih sportskih uspjeha i pozitivnih vrijednosti u lokalnoj zajednici.
+              Kroz intenzivan trud gradimo <span className="text-primary font-semibold">zajedništvo, odgovornost i timski duh</span> kroz svaki trening. Zajedno&nbsp;težimo stvaranju novih sportskih uspjeha i pozitivnih vrijednosti u lokalnoj zajednici.
             </p>
           </div>
         </div>
