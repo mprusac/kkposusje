@@ -150,7 +150,7 @@ const About = () => {
             catVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
+          <h3 className="text-3xl md:text-4xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
             Selekcije
           </h3>
           
@@ -214,7 +214,7 @@ const About = () => {
             achVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h3 className="text-2xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
+          <h3 className="text-3xl md:text-4xl font-display text-foreground mb-8 uppercase tracking-wider text-center">
             Postignuća
           </h3>
           <div className="space-y-4">
