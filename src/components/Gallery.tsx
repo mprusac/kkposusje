@@ -19,7 +19,7 @@ const Gallery = () => {
   return (
     <section id="galerija" className="py-20 bg-card">
       <div className="container mx-auto px-4">
-        <h2 className="section-title mb-16">
+        <h2 className="section-title text-center mb-16">
           <span className="section-title-white">U </span>
           <span className="section-title-gold">AKCIJI</span>
         </h2>

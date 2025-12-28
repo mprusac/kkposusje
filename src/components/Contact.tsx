@@ -44,7 +44,7 @@ const Contact = () => {
     <section id="kontakt" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-center mb-4">
-          <span className="text-primary">KONTAKTIRAJ NAS</span>
+          <span className="text-primary">KONTAKTIRAJTE NAS</span>
         </h2>
 
         <p className="text-muted-foreground text-center mb-16 max-w-2xl mx-auto">

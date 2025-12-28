@@ -187,7 +187,7 @@ const News = () => {
         </h2>
 
         <p className="text-muted-foreground text-center mb-8">
-          Ostani u toku sa svim događanjima
+          Prati sve aktualnosti i novosti iz kluba
         </p>
 
         {/* Category Tabs */}
