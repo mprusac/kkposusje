@@ -130,10 +130,13 @@ const About = () => {
               <span className="text-primary font-semibold">1975. godine</span>.
             </p>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Klub njeguje više od <span className="text-primary font-semibold">pet desetljeća tradicije</span> rada s mladima i okuplja igrače iz cijele regije. Kroz&nbsp;sustavan rad u omladinskim kategorijama i disciplinirane treninge razvijamo temelje za seniorski tim.
+              Klub njeguje više od <span className="text-primary font-semibold">pet desetljeća tradicije</span> rada s mladima i okuplja igrače iz cijele regije.
+            </p>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              Kroz sustavan rad u omladinskim kategorijama i disciplinirane treninge razvijamo temelje za seniorski tim.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Kroz intenzivan trud gradimo <span className="text-primary font-semibold">zajedništvo, odgovornost i timski duh</span> kroz svaki trening. Zajedno&nbsp;težimo stvaranju novih sportskih uspjeha i pozitivnih vrijednosti u lokalnoj zajednici.
+              Intenzivnim trudom gradimo <span className="text-primary font-semibold">zajedništvo, odgovornost i timski duh</span> kroz svaki trening. Zajedno težimo stvaranju novih sportskih uspjeha i pozitivnih vrijednosti u lokalnoj zajednici.
             </p>
           </div>
         </div>
@@ -237,13 +240,7 @@ const About = () => {
               <span className="text-primary">VIZIJA</span>
             </h3>
             <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-base md:text-lg relative z-10">
-              Temeljna ideja osnivača kluba je kvalitetan rad s djecom i mladima, doprinos afirmaciji vrijednosti kao što su odgovornost, asertivnost, disciplina i timski rad.
-            </p>
-            <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-base md:text-lg mt-4 relative z-10">
-              Kroz kontinuirano ulaganje u razvoj djece, stručan trenerski kadar i akvizicije mladih igrača iz Hercegovine i regije želimo stvoriti bazen talenata te postati{" "}
-              <span className="text-primary font-bold">
-                košarkaški centar cijelog južnog Balkana
-              </span>.
+              Naša vizija temelji se na kontinuiranom razvoju mladih talenata kroz sustavan i kvalitetan rad. Naglašavamo vrijednosti kao što su odgovornost, disciplina i timski duh u svakom aspektu klupskih aktivnosti. Cilj nam je stvoriti okruženje u kojem svaki mladi igrač može napredovati u vrhunskog sportaša i odgovornu osobu. Kroz ulaganja u stručni trenažni kadar, infrastrukturu i partnersku suradnju, nastojimo učvrstiti <span className="text-primary font-bold">HKK Posušje kao košarkaški centar BiH</span> i simbol sportskih uspjeha i pozitivnih životnih vrijednosti.
             </p>
           </div>
         </div>
