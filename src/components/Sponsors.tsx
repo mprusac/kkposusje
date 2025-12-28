@@ -113,8 +113,8 @@ const Sponsors = () => {
                 isExpanded ? "max-h-[800px]" : "max-h-0"
               }`}
             >
-              <div className="p-6 pt-8">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 pt-2">
+              <div className="p-6 pt-0">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                   {sponsorTiers.map((tier, index) => {
                     const shadowColor = tier.name === "GENERALNO" 
                       ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]" 
