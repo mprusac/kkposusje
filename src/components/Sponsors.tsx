@@ -114,15 +114,15 @@ const Sponsors = () => {
               }`}
             >
               <div className="p-6 pt-0">
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                   {sponsorTiers.map((tier, index) => {
                     const shadowColor = tier.name === "GENERALNO" 
-                      ? "hover:shadow-[0_0_25px_hsl(48,96%,53%,0.4)]" 
+                      ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]" 
                       : tier.name === "GOLD" 
-                      ? "hover:shadow-[0_0_25px_hsl(48,96%,53%,0.35)]" 
+                      ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.3)]" 
                       : tier.name === "SILVER" 
-                      ? "hover:shadow-[0_0_25px_hsl(0,0%,70%,0.3)]" 
-                      : "hover:shadow-[0_0_25px_hsl(0,80%,60%,0.3)]";
+                      ? "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,70%,0.25)]" 
+                      : "hover:[box-shadow:0_0_25px_8px_hsl(0,80%,60%,0.25)]";
                     
                     return (
                       <div
