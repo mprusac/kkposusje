@@ -352,17 +352,17 @@ const Statistics = () => {
                   const awayLogo = getTeamLogo(match.awayTeam);
                   
                   const matchContent = (
-                    <div className={`p-2 hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
+                    <div className={`p-3 hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground mb-1">
+                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground mb-1.5">
                             <span>{match.date}</span>
                             {match.time && <span>{match.time}</span>}
                             {!match.isUpcoming && <span className="text-muted-foreground/60">FT</span>}
                           </div>
                           
                           {/* Home Team */}
-                          <div className="flex items-center justify-between mb-0.5">
+                          <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-1.5">
                               {homeLogo && <img src={homeLogo} alt="" className="w-4 h-4 object-contain" />}
                               <span className={`text-xs ${match.homeTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
