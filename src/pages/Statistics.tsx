@@ -1,0 +1,728 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Info, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+// Import team logos
+import logoGrude from "@/assets/logos/hkk_grude.png";
+import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
+import logoMostar from "@/assets/logos/hkk_mostar.png";
+import logoRama from "@/assets/logos/hkk_rama.png";
+import logoSiroki from "@/assets/logos/hkk_siroki.png";
+import logoTomislav from "@/assets/logos/hkk_tomislav.png";
+import logoPosusje from "@/assets/logos/kk_posusje.png";
+import logoCapljina from "@/assets/logos/hkk_capljina.png";
+
+// Import player images
+import playerRamljak from "@/assets/player-ramljak.png";
+import playerIan from "@/assets/player-ian.png";
+import playerRados from "@/assets/player-rados.png";
+import playerDerek from "@/assets/player-derek.png";
+import playerProtrka from "@/assets/player-protrka.png";
+import playerKovac from "@/assets/player-kovac-new.png";
+import playerBegic from "@/assets/player-begic.png";
+import playerPavkovic from "@/assets/player-pavkovic-new.png";
+import playerBasicLuka from "@/assets/player-basic-luka.png";
+
+// Logo mapping
+const teamLogos: Record<string, string> = {
+  "HKK Grude": logoGrude,
+  "HKK Ljubuški": logoLjubuski,
+  "HKK Mostar": logoMostar,
+  "HKK Rama": logoRama,
+  "HKK Široki": logoSiroki,
+  "HKK Široki II": logoSiroki,
+  "KK Široki": logoSiroki,
+  "HKK Tomislav Tomislavgrad": logoTomislav,
+  "KK Tomislavgrad": logoTomislav,
+  "HKK Posušje": logoPosusje,
+  "KK Posušje": logoPosusje,
+  "Čapljina": logoCapljina,
+  "HKK Čapljina": logoCapljina,
+};
+
+interface Match {
+  id: number;
+  date: string;
+  time?: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore?: number;
+  awayScore?: number;
+  isUpcoming: boolean;
+}
+
+interface Standing {
+  position: number;
+  team: string;
+  played: number;
+  won: number;
+  lost: number;
+  diff: number;
+  last5: ("W" | "L")[];
+  points: number;
+}
+
+interface Player {
+  number: number;
+  name: string;
+  position: string;
+  nationality: string;
+  height?: string;
+  dateOfBirth?: string;
+  age?: number;
+  image?: string;
+}
+
+interface TopPlayer {
+  rank: number;
+  name: string;
+  position: string;
+  value: number | string;
+  image?: string;
+}
+
+// Form data - based on actual results
+const formData = [
+  { opponent: "HKK Tomislav Tomislavgrad", logo: logoTomislav, result: "L" as const },
+  { opponent: "HKK Mostar", logo: logoMostar, result: "L" as const },
+  { opponent: "HKK Široki II", logo: logoSiroki, result: "W" as const },
+  { opponent: "HKK Rama", logo: logoRama, result: "W" as const },
+  { opponent: "HKK Grude", logo: logoGrude, result: "L" as const },
+  { opponent: "Čapljina", logo: logoCapljina, result: "W" as const },
+  { opponent: "HKK Ljubuški", logo: logoLjubuski, result: "L" as const },
+];
+
+// All matches - from oldest to newest, upcoming at the end
+const matches: Match[] = [
+  // Played matches (oldest first)
+  { id: 7, date: "02.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Tomislav Tomislavgrad", homeScore: 81, awayScore: 85, isUpcoming: false },
+  { id: 6, date: "09.11.2025", homeTeam: "HKK Mostar", awayTeam: "KK Posušje", homeScore: 92, awayScore: 78, isUpcoming: false },
+  { id: 5, date: "15.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Široki II", homeScore: 79, awayScore: 72, isUpcoming: false },
+  { id: 4, date: "23.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Rama", homeScore: 90, awayScore: 77, isUpcoming: false },
+  { id: 3, date: "30.11.2025", homeTeam: "HKK Grude", awayTeam: "KK Posušje", homeScore: 60, awayScore: 56, isUpcoming: false },
+  { id: 2, date: "07.12.2025", homeTeam: "Čapljina", awayTeam: "KK Posušje", homeScore: 33, awayScore: 107, isUpcoming: false },
+  { id: 1, date: "14.12.2025", homeTeam: "HKK Ljubuški", awayTeam: "KK Posušje", homeScore: 85, awayScore: 81, isUpcoming: false },
+  // Upcoming matches
+  { id: 8, date: "15.02.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Mostar", isUpcoming: true },
+  { id: 9, date: "08.02.2026", time: "19:00", homeTeam: "HKK Tomislav Tomislavgrad", awayTeam: "KK Posušje", isUpcoming: true },
+  { id: 10, date: "22.02.2026", time: "19:00", homeTeam: "HKK Široki II", awayTeam: "KK Posušje", isUpcoming: true },
+  { id: 11, date: "01.03.2026", time: "19:00", homeTeam: "HKK Rama", awayTeam: "KK Posušje", isUpcoming: true },
+  { id: 12, date: "08.03.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Grude", isUpcoming: true },
+  { id: 13, date: "15.03.2026", time: "19:00", homeTeam: "Čapljina", awayTeam: "KK Posušje", isUpcoming: true },
+  { id: 14, date: "22.03.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Ljubuški", isUpcoming: true },
+];
+
+// Standings data
+const standings: Standing[] = [
+  { position: 1, team: "HKK Ljubuški", played: 7, won: 6, lost: 1, diff: 89, last5: ["W", "W", "W", "L", "W"], points: 13 },
+  { position: 2, team: "HKK Grude", played: 7, won: 6, lost: 1, diff: 71, last5: ["W", "W", "W", "W", "W"], points: 13 },
+  { position: 3, team: "HKK Mostar", played: 7, won: 5, lost: 2, diff: 95, last5: ["L", "L", "W", "W", "W"], points: 12 },
+  { position: 4, team: "HKK Tomislav Tomislavgrad", played: 7, won: 3, lost: 4, diff: -6, last5: ["L", "W", "L", "L", "L"], points: 10 },
+  { position: 5, team: "KK Posušje", played: 7, won: 3, lost: 4, diff: 68, last5: ["W", "W", "L", "W", "L"], points: 10 },
+  { position: 6, team: "HKK Rama", played: 7, won: 3, lost: 4, diff: 15, last5: ["W", "L", "W", "L", "W"], points: 10 },
+  { position: 7, team: "HKK Široki II", played: 6, won: 1, lost: 5, diff: -16, last5: ["L", "L", "L", "L", "W"], points: 7 },
+  { position: 8, team: "Čapljina", played: 6, won: 0, lost: 6, diff: -316, last5: ["L", "L", "L", "L", "L"], points: 6 },
+];
+
+// Players roster
+const players: Player[] = [
+  { number: 4, name: "Josip Ramljak", position: "Guard", nationality: "BIH", height: "190 cm", dateOfBirth: "18.08.2000", age: 25, image: playerRamljak },
+  { number: 5, name: "Gabrijel Biško", position: "Guard", nationality: "BIH", height: "192 cm", dateOfBirth: "01.01.2003", age: 22 },
+  { number: 14, name: "Ante Ramljak", position: "Guard", nationality: "CRO", height: "189 cm" },
+  { number: 6, name: "Dominik Jukić", position: "Guard", nationality: "BIH", dateOfBirth: "25.07.1994", age: 31 },
+  { number: 11, name: "Triston Matthews", position: "Guard", nationality: "CAN", height: "195 cm", dateOfBirth: "16.09.1998", age: 27 },
+  { number: 13, name: "Nemanja Simović", position: "Guard", nationality: "SRB", height: "192 cm", dateOfBirth: "19.11.1995", age: 30 },
+  { number: 3, name: "Ian Krishnan", position: "Guard-Forward", nationality: "USA", height: "187 cm", dateOfBirth: "16.11.1998", age: 27, image: playerIan },
+  { number: 17, name: "Marko Protrka", position: "Center", nationality: "BIH", dateOfBirth: "21.01.2007", age: 18, image: playerProtrka },
+  { number: 13, name: "Mirko Đerek", position: "Center", nationality: "CRO", dateOfBirth: "25.06.1990", age: 35, image: playerDerek },
+  { number: 9, name: "Ante Kovač", position: "Forward", nationality: "BIH", height: "190 cm", dateOfBirth: "30.05.2001", age: 24, image: playerKovac },
+  { number: 6, name: "David Dragoja", position: "Forward", nationality: "BIH", dateOfBirth: "05.09.2007", age: 18 },
+  { number: 7, name: "Radoš Vuković", position: "Guard-Forward", nationality: "BIH", height: "193 cm", image: playerRados },
+  { number: 8, name: "Luka Bašić", position: "Forward", nationality: "BIH", height: "198 cm", image: playerBasicLuka },
+  { number: 15, name: "Mario Begić", position: "Center", nationality: "BIH", height: "205 cm", image: playerBegic },
+  { number: 21, name: "Ivan Pavković", position: "Forward", nationality: "BIH", height: "201 cm", image: playerPavkovic },
+];
+
+// Top players data
+const topScorers: TopPlayer[] = [
+  { rank: 1, name: "Ian Krishnan", position: "Guard-Forward", value: 11.4, image: playerIan },
+  { rank: 2, name: "Radoš Vuković", position: "Guard-Forward", value: 8.5, image: playerRados },
+  { rank: 3, name: "Josip Ramljak", position: "Guard", value: 5.9, image: playerRamljak },
+];
+
+const topRebounders: TopPlayer[] = [
+  { rank: 1, name: "Mirko Đerek", position: "Center", value: 3.1, image: playerDerek },
+  { rank: 2, name: "Radoš Vuković", position: "Guard-Forward", value: 3.1, image: playerRados },
+  { rank: 3, name: "Ian Krishnan", position: "Guard-Forward", value: 2.9, image: playerIan },
+];
+
+const topAssisters: TopPlayer[] = [
+  { rank: 1, name: "Radoš Vuković", position: "Guard-Forward", value: 2.1, image: playerRados },
+  { rank: 2, name: "Josip Ramljak", position: "Guard", value: 1.8, image: playerRamljak },
+  { rank: 3, name: "Ian Krishnan", position: "Guard-Forward", value: 1.3, image: playerIan },
+];
+
+const topMinutes: TopPlayer[] = [
+  { rank: 1, name: "Radoš Vuković", position: "Guard-Forward", value: "29:40", image: playerRados },
+  { rank: 2, name: "Ian Krishnan", position: "Guard-Forward", value: "28:03", image: playerIan },
+  { rank: 3, name: "Josip Ramljak", position: "Guard", value: "20:45", image: playerRamljak },
+];
+
+const Statistics = () => {
+  const [activeMainTab, setActiveMainTab] = useState("standings");
+  const [activePlayersTab, setActivePlayersTab] = useState("squad");
+  const [matchPage, setMatchPage] = useState(0);
+  const matchesPerPage = 8;
+  
+  // Reverse matches for display (upcoming first, then newest to oldest)
+  const sortedMatches = [...matches].reverse();
+  const totalPages = Math.ceil(sortedMatches.length / matchesPerPage);
+  const displayedMatches = sortedMatches.slice(matchPage * matchesPerPage, (matchPage + 1) * matchesPerPage);
+
+  const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
+
+  const getMatchResult = (match: Match) => {
+    if (match.isUpcoming) return null;
+    const isPosusjeHome = match.homeTeam.includes("Posušje");
+    const posusjeScore = isPosusjeHome ? match.homeScore : match.awayScore;
+    const opponentScore = isPosusjeHome ? match.awayScore : match.homeScore;
+    return posusjeScore! > opponentScore! ? "W" : "L";
+  };
+
+  const getFlagEmoji = (nationality: string) => {
+    const flags: Record<string, string> = {
+      "BIH": "🇧🇦",
+      "CRO": "🇭🇷",
+      "SRB": "🇷🇸",
+      "USA": "🇺🇸",
+      "CAN": "🇨🇦",
+    };
+    return flags[nationality] || "🏳️";
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="bg-secondary/50 border-b border-border/50 sticky top-0 z-50 backdrop-blur-md">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-4">
+            <Link 
+              to="/" 
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <ArrowLeft size={20} />
+              <span className="font-medium">Natrag</span>
+            </Link>
+            <div className="flex items-center gap-3">
+              <img src={logoPosusje} alt="KK Posušje" className="w-10 h-10" />
+              <div>
+                <h1 className="font-display text-xl text-foreground">KK Posušje</h1>
+                <p className="text-xs text-muted-foreground">Liga Košarkaškog saveza Herceg Bosne</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left Column - Form & Games */}
+          <div className="lg:col-span-3 space-y-6">
+            {/* Recent Form */}
+            <div className="bg-secondary/30 rounded-xl p-4 border border-border/30">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-display text-lg text-foreground">Recent form</h3>
+                <Info size={16} className="text-muted-foreground" />
+              </div>
+              <p className="text-xs text-muted-foreground mb-4">Hover over the columns to see scores</p>
+              
+              {/* Team logos */}
+              <div className="flex gap-1 mb-2 justify-center">
+                {formData.map((game, index) => (
+                  <div key={index} className="w-8 h-8 rounded-full bg-background/50 flex items-center justify-center p-1" title={game.opponent}>
+                    <img src={game.logo} alt={game.opponent} className="w-6 h-6 object-contain" />
+                  </div>
+                ))}
+              </div>
+              
+              {/* Win/Loss bars */}
+              <div className="flex gap-1 justify-center">
+                {formData.map((game, index) => (
+                  <div
+                    key={index}
+                    className={`w-8 h-6 rounded ${
+                      game.result === "W" ? "bg-green-500" : "bg-red-500"
+                    }`}
+                    title={`${game.opponent}: ${game.result === "W" ? "Pobjeda" : "Poraz"}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Games */}
+            <div className="bg-secondary/30 rounded-xl border border-border/30">
+              <div className="p-4 border-b border-border/30">
+                <div className="flex items-center justify-between">
+                  <button 
+                    onClick={() => setMatchPage(p => Math.max(0, p - 1))}
+                    disabled={matchPage === 0}
+                    className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 transition-colors"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <h3 className="font-display text-lg text-foreground">Games</h3>
+                  <button 
+                    onClick={() => setMatchPage(p => Math.min(totalPages - 1, p + 1))}
+                    disabled={matchPage >= totalPages - 1}
+                    className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 transition-colors"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="p-4 border-b border-border/30">
+                <div className="flex items-center gap-2">
+                  <img src={logoPosusje} alt="Liga" className="w-6 h-6" />
+                  <span className="text-sm text-foreground">Liga Košarkaškog saveza Herceg Bosne</span>
+                </div>
+              </div>
+
+              <div className="divide-y divide-border/20">
+                {displayedMatches.map((match) => {
+                  const result = getMatchResult(match);
+                  const homeLogo = getTeamLogo(match.homeTeam);
+                  const awayLogo = getTeamLogo(match.awayTeam);
+                  
+                  return (
+                    <div key={match.id} className="p-3 hover:bg-secondary/50 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                            <span>{match.date}</span>
+                            {match.time && <span>{match.time}</span>}
+                            {!match.isUpcoming && <span className="text-muted-foreground/60">FT</span>}
+                          </div>
+                          
+                          {/* Home Team */}
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center gap-2">
+                              {homeLogo && <img src={homeLogo} alt="" className="w-5 h-5 object-contain" />}
+                              <span className={`text-sm ${match.homeTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
+                                {match.homeTeam}
+                              </span>
+                            </div>
+                            {!match.isUpcoming && (
+                              <span className={`text-sm font-medium ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                                {match.homeScore}
+                              </span>
+                            )}
+                          </div>
+                          
+                          {/* Away Team */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              {awayLogo && <img src={awayLogo} alt="" className="w-5 h-5 object-contain" />}
+                              <span className={`text-sm ${match.awayTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
+                                {match.awayTeam}
+                              </span>
+                            </div>
+                            {!match.isUpcoming && (
+                              <span className={`text-sm font-medium ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                                {match.awayScore}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div className="ml-3 flex items-center gap-2">
+                          {result && (
+                            <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white ${
+                              result === "W" ? "bg-green-500" : "bg-red-500"
+                            }`}>
+                              {result}
+                            </span>
+                          )}
+                          <Star size={16} className="text-muted-foreground/30" />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Tabs */}
+          <div className="lg:col-span-9">
+            <Tabs value={activeMainTab} onValueChange={setActiveMainTab} className="w-full">
+              <TabsList className="w-full bg-secondary/30 border border-border/30 rounded-xl p-1 mb-6">
+                <TabsTrigger value="standings" className="flex-1 font-display data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  Standings
+                </TabsTrigger>
+                <TabsTrigger value="statistics" className="flex-1 font-display data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  Statistics
+                </TabsTrigger>
+                <TabsTrigger value="players" className="flex-1 font-display data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  Players
+                </TabsTrigger>
+              </TabsList>
+
+              {/* Standings Tab */}
+              <TabsContent value="standings" className="mt-0">
+                <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden">
+                  <div className="p-4 border-b border-border/30">
+                    <div className="flex items-center gap-3">
+                      <img src={logoPosusje} alt="" className="w-6 h-6" />
+                      <span className="text-sm text-foreground">Liga Košarkaškog saveza Herceg Bosne</span>
+                      <span className="text-xs text-muted-foreground bg-background/50 px-2 py-1 rounded">25/26</span>
+                    </div>
+                  </div>
+                  
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="hover:bg-transparent border-border/30">
+                        <TableHead className="w-12 text-center">#</TableHead>
+                        <TableHead>Team</TableHead>
+                        <TableHead className="text-center w-12">P</TableHead>
+                        <TableHead className="text-center w-12">W</TableHead>
+                        <TableHead className="text-center w-12">L</TableHead>
+                        <TableHead className="text-center w-16">DIFF</TableHead>
+                        <TableHead className="text-center w-32">Last 5</TableHead>
+                        <TableHead className="text-center w-16">PTS</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {standings.map((team) => (
+                        <TableRow 
+                          key={team.position} 
+                          className={`hover:bg-secondary/50 border-border/20 ${team.team === "KK Posušje" ? "bg-primary/10" : ""}`}
+                        >
+                          <TableCell className="text-center font-medium">{team.position}</TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              {getTeamLogo(team.team) && (
+                                <img src={getTeamLogo(team.team)!} alt="" className="w-6 h-6 object-contain" />
+                              )}
+                              <span className={team.team === "KK Posušje" ? "text-primary font-medium" : ""}>
+                                {team.team}
+                              </span>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-center">{team.played}</TableCell>
+                          <TableCell className="text-center">{team.won}</TableCell>
+                          <TableCell className="text-center">{team.lost}</TableCell>
+                          <TableCell className={`text-center ${team.diff > 0 ? "text-green-400" : team.diff < 0 ? "text-red-400" : ""}`}>
+                            {team.diff > 0 ? `+${team.diff}` : team.diff}
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <div className="flex gap-0.5 justify-center">
+                              {team.last5.map((result, i) => (
+                                <span 
+                                  key={i} 
+                                  className={`text-xs font-bold px-1.5 py-0.5 rounded ${
+                                    result === "W" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                                  }`}
+                                >
+                                  {result}
+                                </span>
+                              ))}
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-center font-bold">{team.points}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </TabsContent>
+
+              {/* Statistics Tab */}
+              <TabsContent value="statistics" className="mt-0">
+                <div className="bg-secondary/30 rounded-xl border border-border/30 p-6">
+                  {/* Summary */}
+                  <h3 className="font-display text-lg text-center mb-6">Summary</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div className="bg-background/30 rounded-lg p-4 text-center border border-border/20">
+                      <p className="text-xs text-muted-foreground uppercase mb-1">Points</p>
+                      <p className="text-2xl font-display text-primary">572</p>
+                      <p className="text-xs text-muted-foreground">#5</p>
+                    </div>
+                    <div className="bg-background/30 rounded-lg p-4 text-center border border-border/20">
+                      <p className="text-xs text-muted-foreground uppercase mb-1">Points Allowed</p>
+                      <p className="text-2xl font-display text-foreground">504</p>
+                      <p className="text-xs text-muted-foreground">#4</p>
+                    </div>
+                    <div className="bg-background/30 rounded-lg p-4 text-center border border-border/20">
+                      <p className="text-xs text-muted-foreground uppercase mb-1">Assists</p>
+                      <p className="text-2xl font-display text-foreground">87</p>
+                      <p className="text-xs text-muted-foreground">#5</p>
+                    </div>
+                    <div className="bg-background/30 rounded-lg p-4 text-center border border-border/20">
+                      <p className="text-xs text-muted-foreground uppercase mb-1">Assist to Turnover</p>
+                      <p className="text-2xl font-display text-foreground">1.2</p>
+                      <p className="text-xs text-muted-foreground">#3</p>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Offense */}
+                    <div>
+                      <h4 className="font-display text-center mb-4">Offense</h4>
+                      <div className="space-y-2">
+                        {[
+                          { label: "Field goals made", value: "203", rank: 5 },
+                          { label: "Field goals attempts", value: "478", rank: 6 },
+                          { label: "Field goals %", value: "42.5%", rank: 4 },
+                          { label: "Three points made", value: "67", rank: 4 },
+                          { label: "3 pointers attempted", value: "189", rank: 5 },
+                          { label: "Three point %", value: "35.4%", rank: 3 },
+                        ].map((stat, i) => (
+                          <div key={i} className="flex items-center justify-between py-2 border-b border-border/10">
+                            <span className="text-sm text-muted-foreground">{stat.label}</span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-medium">{stat.value}</span>
+                              <span className="w-6 h-6 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">
+                                {stat.rank}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Defense & Rebounds */}
+                    <div>
+                      <h4 className="font-display text-center mb-4">Rebounds (per game)</h4>
+                      <div className="space-y-2 mb-6">
+                        {[
+                          { label: "Offensive", value: "28", rank: 4 },
+                          { label: "Defensive", value: "79", rank: 3 },
+                          { label: "Total", value: "107", rank: 4 },
+                        ].map((stat, i) => (
+                          <div key={i} className="flex items-center justify-between py-2 border-b border-border/10">
+                            <span className="text-sm text-muted-foreground">{stat.label}</span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-medium">{stat.value}</span>
+                              <span className="w-6 h-6 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center font-bold">
+                                {stat.rank}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <h4 className="font-display text-center mb-4">Defense</h4>
+                      <div className="space-y-2">
+                        {[
+                          { label: "Blocks", value: "14", rank: 5 },
+                          { label: "Steals", value: "52", rank: 3 },
+                        ].map((stat, i) => (
+                          <div key={i} className="flex items-center justify-between py-2 border-b border-border/10">
+                            <span className="text-sm text-muted-foreground">{stat.label}</span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-medium">{stat.value}</span>
+                              <span className="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-xs flex items-center justify-center font-bold">
+                                {stat.rank}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+
+              {/* Players Tab */}
+              <TabsContent value="players" className="mt-0">
+                <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden">
+                  {/* Sub-tabs */}
+                  <div className="p-4 border-b border-border/30">
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setActivePlayersTab("squad")}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activePlayersTab === "squad" 
+                            ? "bg-primary text-primary-foreground" 
+                            : "bg-background/30 text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        Squad
+                      </button>
+                      <button
+                        onClick={() => setActivePlayersTab("top")}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          activePlayersTab === "top" 
+                            ? "bg-primary text-primary-foreground" 
+                            : "bg-background/30 text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        Top players
+                      </button>
+                    </div>
+                  </div>
+
+                  {activePlayersTab === "squad" ? (
+                    <Table>
+                      <TableHeader>
+                        <TableRow className="hover:bg-transparent border-border/30">
+                          <TableHead className="w-20">Players</TableHead>
+                          <TableHead></TableHead>
+                          <TableHead className="text-center">Nationality</TableHead>
+                          <TableHead className="text-center">Height</TableHead>
+                          <TableHead className="text-center">Date of Birth</TableHead>
+                          <TableHead className="text-center">Age</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {players.map((player, index) => (
+                          <TableRow key={index} className="hover:bg-secondary/50 border-border/20">
+                            <TableCell className="font-bold text-primary">{player.number}</TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden">
+                                  {player.image ? (
+                                    <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+                                  ) : (
+                                    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                                      {player.name.charAt(0)}
+                                    </div>
+                                  )}
+                                </div>
+                                <div>
+                                  <p className="font-medium">{player.name}</p>
+                                  <p className="text-xs text-primary">{player.position}</p>
+                                </div>
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-center">
+                              <span className="text-lg mr-1">{getFlagEmoji(player.nationality)}</span>
+                              <span className="text-sm">{player.nationality}</span>
+                            </TableCell>
+                            <TableCell className="text-center text-muted-foreground">{player.height || "-"}</TableCell>
+                            <TableCell className="text-center text-muted-foreground">{player.dateOfBirth || "-"}</TableCell>
+                            <TableCell className="text-center text-muted-foreground">{player.age ? `${player.age} yrs` : "-"}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  ) : (
+                    <div className="p-6 grid md:grid-cols-2 gap-6">
+                      {/* Points */}
+                      <div className="bg-background/20 rounded-lg p-4 border border-border/20">
+                        <h4 className="font-display text-center mb-4">Points</h4>
+                        <div className="space-y-3">
+                          {topScorers.map((player) => (
+                            <div key={player.rank} className="flex items-center gap-3">
+                              <span className="text-primary font-bold w-4">{player.rank}</span>
+                              <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden">
+                                {player.image ? (
+                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  <div className="w-full h-full bg-muted" />
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{player.name}</p>
+                                <p className="text-xs text-primary">{player.position}</p>
+                              </div>
+                              <span className="text-lg font-display text-primary">{player.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Rebounds */}
+                      <div className="bg-background/20 rounded-lg p-4 border border-border/20">
+                        <h4 className="font-display text-center mb-4">Rebounds</h4>
+                        <div className="space-y-3">
+                          {topRebounders.map((player) => (
+                            <div key={player.rank} className="flex items-center gap-3">
+                              <span className="text-primary font-bold w-4">{player.rank}</span>
+                              <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden">
+                                {player.image ? (
+                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  <div className="w-full h-full bg-muted" />
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{player.name}</p>
+                                <p className="text-xs text-primary">{player.position}</p>
+                              </div>
+                              <span className="text-lg font-display text-primary">{player.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Assists */}
+                      <div className="bg-background/20 rounded-lg p-4 border border-border/20">
+                        <h4 className="font-display text-center mb-4">Assists</h4>
+                        <div className="space-y-3">
+                          {topAssisters.map((player) => (
+                            <div key={player.rank} className="flex items-center gap-3">
+                              <span className="text-primary font-bold w-4">{player.rank}</span>
+                              <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden">
+                                {player.image ? (
+                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  <div className="w-full h-full bg-muted" />
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{player.name}</p>
+                                <p className="text-xs text-primary">{player.position}</p>
+                              </div>
+                              <span className="text-lg font-display text-primary">{player.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Minutes per game */}
+                      <div className="bg-background/20 rounded-lg p-4 border border-border/20">
+                        <h4 className="font-display text-center mb-4">Minutes per game</h4>
+                        <div className="space-y-3">
+                          {topMinutes.map((player) => (
+                            <div key={player.rank} className="flex items-center gap-3">
+                              <span className="text-primary font-bold w-4">{player.rank}</span>
+                              <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden">
+                                {player.image ? (
+                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+                                ) : (
+                                  <div className="w-full h-full bg-muted" />
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <p className="font-medium text-sm">{player.name}</p>
+                                <p className="text-xs text-primary">{player.position}</p>
+                              </div>
+                              <span className="text-lg font-display text-primary">{player.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Statistics;
