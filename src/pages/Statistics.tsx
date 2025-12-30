@@ -283,16 +283,14 @@ const Statistics = () => {
             {/* Recent Form */}
             <div className="bg-secondary/30 rounded-xl p-3 border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <h3 className="font-display text-base text-foreground mb-3">Nedavna forma</h3>
-              <p className="text-[10px] text-muted-foreground text-center mb-2">Prelazite iznad stupca za detalje</p>
               
-              {/* Result display on hover */}
-              <div className="h-5 mb-2 text-center">
-                {hoveredFormIndex !== null && (
-                  <p className="text-xs text-foreground animate-fade-in">
-                    {formData[hoveredFormIndex].homeTeam} {formData[hoveredFormIndex].homeScore} - {formData[hoveredFormIndex].awayScore} {formData[hoveredFormIndex].awayTeam}
-                  </p>
-                )}
-              </div>
+              {/* Dynamic text - changes on hover */}
+              <p className="text-[10px] text-muted-foreground text-center mb-2 h-4 transition-all duration-200">
+                {hoveredFormIndex !== null 
+                  ? `${formData[hoveredFormIndex].homeTeam} ${formData[hoveredFormIndex].homeScore} - ${formData[hoveredFormIndex].awayScore} ${formData[hoveredFormIndex].awayTeam}`
+                  : "Prelazite iznad stupca za detalje"
+                }
+              </p>
               
               {/* Team logos */}
               <div className="flex gap-1 mb-2 justify-center">
@@ -346,12 +344,6 @@ const Statistics = () => {
                 </div>
               </div>
 
-              <div className="p-2 border-b border-border/30">
-                <div className="flex items-center gap-2">
-                  <img src={logoKSHB} alt="Liga" className="w-4 h-4 object-contain" />
-                  <span className="text-[10px] text-foreground">Liga KSHB</span>
-                </div>
-              </div>
 
               <div className="divide-y divide-border/20">
                 {displayedMatches.map((match) => {
@@ -363,7 +355,7 @@ const Statistics = () => {
                     <div className={`p-2 hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 text-[9px] text-muted-foreground mb-1">
+                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground mb-1">
                             <span>{match.date}</span>
                             {match.time && <span>{match.time}</span>}
                             {!match.isUpcoming && <span className="text-muted-foreground/60">FT</span>}
@@ -372,13 +364,13 @@ const Statistics = () => {
                           {/* Home Team */}
                           <div className="flex items-center justify-between mb-0.5">
                             <div className="flex items-center gap-1.5">
-                              {homeLogo && <img src={homeLogo} alt="" className="w-3.5 h-3.5 object-contain" />}
-                              <span className={`text-[11px] ${match.homeTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
+                              {homeLogo && <img src={homeLogo} alt="" className="w-4 h-4 object-contain" />}
+                              <span className={`text-xs ${match.homeTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
                                 {match.homeTeam}
                               </span>
                             </div>
                             {!match.isUpcoming && (
-                              <span className={`text-[11px] font-medium ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                              <span className={`text-xs font-medium ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
                                 {match.homeScore}
                               </span>
                             )}
@@ -387,13 +379,13 @@ const Statistics = () => {
                           {/* Away Team */}
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-1.5">
-                              {awayLogo && <img src={awayLogo} alt="" className="w-3.5 h-3.5 object-contain" />}
-                              <span className={`text-[11px] ${match.awayTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
+                              {awayLogo && <img src={awayLogo} alt="" className="w-4 h-4 object-contain" />}
+                              <span className={`text-xs ${match.awayTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
                                 {match.awayTeam}
                               </span>
                             </div>
                             {!match.isUpcoming && (
-                              <span className={`text-[11px] font-medium ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                              <span className={`text-xs font-medium ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
                                 {match.awayScore}
                               </span>
                             )}
@@ -470,14 +462,14 @@ const Statistics = () => {
                     <Table>
                       <TableHeader>
                         <TableRow className="hover:bg-transparent border-border/30">
-                          <TableHead className="w-10 text-center text-xs">#</TableHead>
-                          <TableHead className="text-xs">Ekipa</TableHead>
-                          <TableHead className="text-center w-10 text-xs">UT</TableHead>
-                          <TableHead className="text-center w-10 text-xs">W</TableHead>
-                          <TableHead className="text-center w-10 text-xs">L</TableHead>
-                          <TableHead className="text-center w-14 text-xs">+/-</TableHead>
-                          <TableHead className="text-center w-28 text-xs">Zadnjih 5</TableHead>
-                          <TableHead className="text-center w-14 text-xs">BOD</TableHead>
+                          <TableHead className="w-10 text-center text-sm font-bold">#</TableHead>
+                          <TableHead className="text-sm font-bold">Ekipa</TableHead>
+                          <TableHead className="text-center w-10 text-sm font-bold">UT</TableHead>
+                          <TableHead className="text-center w-10 text-sm font-bold">W</TableHead>
+                          <TableHead className="text-center w-10 text-sm font-bold">L</TableHead>
+                          <TableHead className="text-center w-14 text-sm font-bold">+/-</TableHead>
+                          <TableHead className="text-center w-28 text-sm font-bold">Zadnjih 5</TableHead>
+                          <TableHead className="text-center w-14 text-sm font-bold">BOD</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -486,21 +478,21 @@ const Statistics = () => {
                             key={team.position} 
                             className={`border-border/20 transition-all duration-200 hover:bg-secondary/50 hover:shadow-md ${team.team === "KK Posušje" ? "bg-primary/10 hover:bg-primary/20" : ""}`}
                           >
-                            <TableCell className="text-center font-medium text-xs">{team.position}</TableCell>
+                            <TableCell className="text-center font-bold text-sm">{team.position}</TableCell>
                             <TableCell>
                               <div className="flex items-center gap-1.5">
                                 {getTeamLogo(team.team) && (
                                   <img src={getTeamLogo(team.team)!} alt="" className="w-5 h-5 object-contain" />
                                 )}
-                                <span className={`text-xs ${team.team === "KK Posušje" ? "text-primary font-medium" : ""}`}>
+                                <span className={`text-sm font-bold ${team.team === "KK Posušje" ? "text-primary" : ""}`}>
                                   {team.team}
                                 </span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-center text-xs">{team.played}</TableCell>
-                            <TableCell className="text-center text-xs">{team.won}</TableCell>
-                            <TableCell className="text-center text-xs">{team.lost}</TableCell>
-                            <TableCell className={`text-center text-xs ${team.diff > 0 ? "text-green-400" : team.diff < 0 ? "text-red-400" : ""}`}>
+                            <TableCell className="text-center text-sm font-bold">{team.played}</TableCell>
+                            <TableCell className="text-center text-sm font-bold">{team.won}</TableCell>
+                            <TableCell className="text-center text-sm font-bold">{team.lost}</TableCell>
+                            <TableCell className={`text-center text-sm font-bold ${team.diff > 0 ? "text-green-400" : team.diff < 0 ? "text-red-400" : ""}`}>
                               {team.diff > 0 ? `+${team.diff}` : team.diff}
                             </TableCell>
                             <TableCell className="text-center">
@@ -517,7 +509,7 @@ const Statistics = () => {
                                 ))}
                               </div>
                             </TableCell>
-                            <TableCell className="text-center font-bold text-xs">{team.points}</TableCell>
+                            <TableCell className="text-center font-bold text-sm">{team.points}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -526,9 +518,9 @@ const Statistics = () => {
                     <Table>
                       <TableHeader>
                         <TableRow className="hover:bg-transparent border-border/30">
-                          <TableHead className="w-10 text-center text-xs">#</TableHead>
-                          <TableHead className="text-xs">Ekipa</TableHead>
-                          <TableHead className="text-center w-14 text-xs">BOD</TableHead>
+                          <TableHead className="w-10 text-center text-sm font-bold">#</TableHead>
+                          <TableHead className="text-sm font-bold">Ekipa</TableHead>
+                          <TableHead className="text-center w-14 text-sm font-bold">BOD</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -537,18 +529,18 @@ const Statistics = () => {
                             key={team.position} 
                             className={`border-border/20 transition-all duration-200 hover:bg-secondary/50 hover:shadow-md ${team.team.includes("Posušje") ? "bg-primary/10 hover:bg-primary/20" : ""}`}
                           >
-                            <TableCell className="text-center font-medium text-xs">{team.position}</TableCell>
+                            <TableCell className="text-center font-bold text-sm">{team.position}</TableCell>
                             <TableCell>
                               <div className="flex items-center gap-1.5">
                                 {getTeamLogo(team.team) && (
                                   <img src={getTeamLogo(team.team)!} alt="" className="w-5 h-5 object-contain" />
                                 )}
-                                <span className={`text-xs ${team.team.includes("Posušje") ? "text-primary font-medium" : ""}`}>
+                                <span className={`text-sm font-bold ${team.team.includes("Posušje") ? "text-primary" : ""}`}>
                                   {team.team}
                                 </span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-center font-bold text-xs">{team.points}</TableCell>
+                            <TableCell className="text-center font-bold text-sm">{team.points}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -687,19 +679,19 @@ const Statistics = () => {
                     <Table>
                       <TableHeader>
                         <TableRow className="hover:bg-transparent border-border/30">
-                          <TableHead className="w-12 text-center text-xs">Broj</TableHead>
-                          <TableHead className="w-12 text-xs"></TableHead>
-                          <TableHead className="text-xs">Igrač</TableHead>
-                          <TableHead className="text-center text-xs">Nacionalnost</TableHead>
-                          <TableHead className="text-center text-xs">Visina</TableHead>
-                          <TableHead className="text-center text-xs">Datum rođenja</TableHead>
-                          <TableHead className="text-center text-xs">Dob</TableHead>
+                          <TableHead className="w-12 text-center text-sm font-bold">Broj</TableHead>
+                          <TableHead className="w-12 text-sm font-bold"></TableHead>
+                          <TableHead className="text-sm font-bold">Igrač</TableHead>
+                          <TableHead className="text-center text-sm font-bold">Nacionalnost</TableHead>
+                          <TableHead className="text-center text-sm font-bold">Visina</TableHead>
+                          <TableHead className="text-center text-sm font-bold">Datum rođenja</TableHead>
+                          <TableHead className="text-center text-sm font-bold">Dob</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {players.map((player, index) => (
                           <TableRow key={index} className="hover:bg-secondary/50 border-border/20 transition-all duration-200 hover:shadow-md group">
-                            <TableCell className="font-bold text-primary text-center text-xs">{player.number}</TableCell>
+                            <TableCell className="font-bold text-primary text-center text-sm">{player.number}</TableCell>
                             <TableCell>
                               {player.sofascoreLink ? (
                                 <a 
@@ -727,18 +719,18 @@ const Statistics = () => {
                                   )}
                                 </div>
                                 <div>
-                                  <p className="font-medium text-xs">{player.name}</p>
-                                  <p className="text-[10px] text-primary">{player.position}</p>
+                                  <p className="font-bold text-sm">{player.name}</p>
+                                  <p className="text-xs text-primary font-medium">{player.position}</p>
                                 </div>
                               </div>
                             </TableCell>
                             <TableCell className="text-center">
                               <span className="text-sm mr-0.5">{getFlagEmoji(player.nationality)}</span>
-                              <span className="text-xs">{player.nationality}</span>
+                              <span className="text-sm font-bold">{player.nationality}</span>
                             </TableCell>
-                            <TableCell className="text-center text-muted-foreground text-xs">{player.height || "-"}</TableCell>
-                            <TableCell className="text-center text-muted-foreground text-xs">{player.dateOfBirth || "-"}</TableCell>
-                            <TableCell className="text-center text-muted-foreground text-xs">{player.age ? `${player.age} god.` : "-"}</TableCell>
+                            <TableCell className="text-center text-muted-foreground text-sm font-bold">{player.height || "-"}</TableCell>
+                            <TableCell className="text-center text-muted-foreground text-sm font-bold">{player.dateOfBirth || "-"}</TableCell>
+                            <TableCell className="text-center text-muted-foreground text-sm font-bold">{player.age ? `${player.age} god.` : "-"}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
