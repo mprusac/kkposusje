@@ -351,7 +351,7 @@ const Statistics = () => {
                   const awayLogo = getTeamLogo(match.awayTeam);
                   
                   const matchContent = (
-                    <div className={`px-2 py-2 hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
+                    <div className={`px-2 py-[7px] hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
