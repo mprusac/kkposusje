@@ -122,21 +122,21 @@ const formData = [
 // All matches - upcoming first, then played from newest to oldest
 const matches: Match[] = [
   // Upcoming matches
-  { id: 8, date: "08.02.2026", time: "19:00", homeTeam: "HKK Tomislav", awayTeam: "KK Posušje", isUpcoming: true },
-  { id: 9, date: "15.02.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Mostar", isUpcoming: true },
-  { id: 10, date: "22.02.2026", time: "19:00", homeTeam: "HKK Široki II", awayTeam: "KK Posušje", isUpcoming: true },
-  { id: 11, date: "01.03.2026", time: "19:00", homeTeam: "HKK Rama", awayTeam: "KK Posušje", isUpcoming: true },
-  { id: 12, date: "08.03.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Grude", isUpcoming: true },
-  { id: 13, date: "15.03.2026", time: "19:00", homeTeam: "Čapljina", awayTeam: "KK Posušje", isUpcoming: true },
-  { id: 14, date: "22.03.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Ljubuški", isUpcoming: true },
+  { id: 8, date: "08.02.2026", time: "19:00", homeTeam: "HKK Tomislav", awayTeam: "KK Posušje", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:15014499" },
+  { id: 9, date: "15.02.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Mostar", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014506" },
+  { id: 10, date: "22.02.2026", time: "19:00", homeTeam: "HKK Široki II", awayTeam: "KK Posušje", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014507" },
+  { id: 11, date: "01.03.2026", time: "19:00", homeTeam: "HKK Rama", awayTeam: "KK Posušje", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014515" },
+  { id: 12, date: "08.03.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Grude", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517" },
+  { id: 13, date: "15.03.2026", time: "19:00", homeTeam: "Čapljina", awayTeam: "KK Posušje", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15014535" },
+  { id: 14, date: "22.03.2026", time: "19:00", homeTeam: "KK Posušje", awayTeam: "HKK Ljubuški", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542" },
   // Played matches (newest first)
-  { id: 1, date: "14.12.2025", homeTeam: "HKK Ljubuški", awayTeam: "KK Posušje", homeScore: 85, awayScore: 81, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hkk-ljubuski-kk-posusje/LdbsLdb#id:12927623" },
-  { id: 2, date: "07.12.2025", homeTeam: "Čapljina", awayTeam: "KK Posušje", homeScore: 33, awayScore: 107, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hkk-capljina-lasta-kk-posusje/EdbsEdb#id:12927578" },
-  { id: 3, date: "30.11.2025", homeTeam: "HKK Grude", awayTeam: "KK Posušje", homeScore: 60, awayScore: 56, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hkk-grude-kk-posusje/VdbsKdb#id:12927554" },
-  { id: 4, date: "23.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Rama", homeScore: 90, awayScore: 77, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/kk-posusje-hkk-rama/KdbsWdb#id:12927530" },
-  { id: 5, date: "15.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Široki II", homeScore: 79, awayScore: 72, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/kk-posusje-hkk-siroki-brijeg-ii/KdbsSdb#id:12925929" },
-  { id: 6, date: "09.11.2025", homeTeam: "HKK Mostar", awayTeam: "KK Posušje", homeScore: 92, awayScore: 78, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hkk-mostar-kk-posusje/UdbsKdb#id:12925870" },
-  { id: 7, date: "02.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Tomislav", homeScore: 81, awayScore: 85, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/kk-posusje-hkk-tomislav/KdbsTdb#id:12925845" },
+  { id: 1, date: "14.12.2025", homeTeam: "HKK Ljubuški", awayTeam: "KK Posušje", homeScore: 85, awayScore: 81, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014496" },
+  { id: 2, date: "07.12.2025", homeTeam: "Čapljina", awayTeam: "KK Posušje", homeScore: 33, awayScore: 107, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15185580" },
+  { id: 3, date: "30.11.2025", homeTeam: "HKK Grude", awayTeam: "KK Posušje", homeScore: 60, awayScore: 56, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014486" },
+  { id: 4, date: "23.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Rama", homeScore: 90, awayScore: 77, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014481" },
+  { id: 5, date: "15.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Široki II", homeScore: 79, awayScore: 72, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014461" },
+  { id: 6, date: "09.11.2025", homeTeam: "HKK Mostar", awayTeam: "KK Posušje", homeScore: 92, awayScore: 78, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014458" },
+  { id: 7, date: "02.11.2025", homeTeam: "KK Posušje", awayTeam: "HKK Tomislav", homeScore: 81, awayScore: 85, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:14973017" },
 ];
 
 // Standings data
@@ -243,7 +243,7 @@ const Statistics = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background" style={{ transform: "scale(0.85)", transformOrigin: "top center", minHeight: "117.6vh" }}>
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-secondary/50 border-b border-border/50 sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto px-4 py-3">
