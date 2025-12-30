@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
@@ -214,12 +215,13 @@ const Statistics = () => {
   const upcomingMatches = matches.filter(m => m.isUpcoming);
   const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  // First page: 1 upcoming + all played, second page: rest of upcoming
-  const firstPageMatches = [...upcomingMatches.slice(0, 1), ...playedMatches];
-  const secondPageMatches = upcomingMatches.slice(1);
+  // Combine all matches: 1 upcoming first, then played
+  const allMatchesOrdered = [...upcomingMatches.slice(0, 1), ...playedMatches, ...upcomingMatches.slice(1)];
   
-  const displayedMatches = matchPage === 0 ? firstPageMatches : secondPageMatches;
-  const totalPages = secondPageMatches.length > 0 ? 2 : 1;
+  // Paginate: 5 matches per page
+  const matchesPerPage = 5;
+  const totalPages = Math.ceil(allMatchesOrdered.length / matchesPerPage);
+  const displayedMatches = allMatchesOrdered.slice(matchPage * matchesPerPage, (matchPage + 1) * matchesPerPage);
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
@@ -265,7 +267,7 @@ const Statistics = () => {
                 </div>
               </div>
             </div>
-            <h2 className="font-display text-3xl text-primary hidden md:block mx-auto">STATISTIKA</h2>
+            <h2 className="font-display text-4xl text-primary hidden md:block absolute left-1/2 -translate-x-1/2">STATISTIKA</h2>
             <div className="w-20 hidden md:block"></div>
           </div>
         </div>
@@ -273,7 +275,7 @@ const Statistics = () => {
 
       <main className="container mx-auto px-4 py-6">
         {/* Mobile Title */}
-        <h2 className="font-display text-2xl text-primary text-center mb-6 md:hidden">STATISTIKA</h2>
+        <h2 className="font-display text-3xl text-primary text-center mb-6 md:hidden">STATISTIKA</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
           {/* Left Column - Form & Games */}
@@ -281,6 +283,7 @@ const Statistics = () => {
             {/* Recent Form */}
             <div className="bg-secondary/30 rounded-xl p-3 border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <h3 className="font-display text-base text-foreground mb-3">Nedavna forma</h3>
+              <p className="text-[10px] text-muted-foreground text-center mb-2">Prelazite iznad stupca za detalje</p>
               
               {/* Result display on hover */}
               <div className="h-5 mb-2 text-center">
@@ -323,30 +326,30 @@ const Statistics = () => {
 
             {/* Games */}
             <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-              <div className="p-3 border-b border-border/30">
+              <div className="p-2 border-b border-border/30">
                 <div className="flex items-center justify-between">
                   <button 
                     onClick={() => setMatchPage(p => Math.max(0, p - 1))}
                     disabled={matchPage === 0}
-                    className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                    className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
                   >
-                    <ChevronLeft size={16} />
+                    <ChevronLeft size={14} />
                   </button>
-                  <h3 className="font-display text-base text-foreground">Utakmice</h3>
+                  <h3 className="font-display text-sm text-foreground">Utakmice</h3>
                   <button 
                     onClick={() => setMatchPage(p => Math.min(totalPages - 1, p + 1))}
                     disabled={matchPage >= totalPages - 1}
-                    className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                    className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
                   >
-                    <ChevronRight size={16} />
+                    <ChevronRight size={14} />
                   </button>
                 </div>
               </div>
 
-              <div className="p-3 border-b border-border/30">
+              <div className="p-2 border-b border-border/30">
                 <div className="flex items-center gap-2">
-                  <img src={logoKSHB} alt="Liga" className="w-5 h-5 object-contain" />
-                  <span className="text-xs text-foreground">Liga KSHB</span>
+                  <img src={logoKSHB} alt="Liga" className="w-4 h-4 object-contain" />
+                  <span className="text-[10px] text-foreground">Liga KSHB</span>
                 </div>
               </div>
 
@@ -357,10 +360,10 @@ const Statistics = () => {
                   const awayLogo = getTeamLogo(match.awayTeam);
                   
                   const matchContent = (
-                    <div className={`p-2.5 hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
+                    <div className={`p-2 hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground mb-1.5">
+                          <div className="flex items-center gap-2 text-[9px] text-muted-foreground mb-1">
                             <span>{match.date}</span>
                             {match.time && <span>{match.time}</span>}
                             {!match.isUpcoming && <span className="text-muted-foreground/60">FT</span>}
@@ -369,13 +372,13 @@ const Statistics = () => {
                           {/* Home Team */}
                           <div className="flex items-center justify-between mb-0.5">
                             <div className="flex items-center gap-1.5">
-                              {homeLogo && <img src={homeLogo} alt="" className="w-4 h-4 object-contain" />}
-                              <span className={`text-xs ${match.homeTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
+                              {homeLogo && <img src={homeLogo} alt="" className="w-3.5 h-3.5 object-contain" />}
+                              <span className={`text-[11px] ${match.homeTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
                                 {match.homeTeam}
                               </span>
                             </div>
                             {!match.isUpcoming && (
-                              <span className={`text-xs font-medium ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                              <span className={`text-[11px] font-medium ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
                                 {match.homeScore}
                               </span>
                             )}
@@ -384,13 +387,13 @@ const Statistics = () => {
                           {/* Away Team */}
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-1.5">
-                              {awayLogo && <img src={awayLogo} alt="" className="w-4 h-4 object-contain" />}
-                              <span className={`text-xs ${match.awayTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
+                              {awayLogo && <img src={awayLogo} alt="" className="w-3.5 h-3.5 object-contain" />}
+                              <span className={`text-[11px] ${match.awayTeam.includes("Posušje") ? "text-primary font-medium" : "text-foreground"}`}>
                                 {match.awayTeam}
                               </span>
                             </div>
                             {!match.isUpcoming && (
-                              <span className={`text-xs font-medium ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                              <span className={`text-[11px] font-medium ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
                                 {match.awayScore}
                               </span>
                             )}
@@ -399,7 +402,7 @@ const Statistics = () => {
                         
                         {result && (
                           <div className="ml-2 flex items-center self-center">
-                            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white ${
+                            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-white ${
                               result === "W" ? "bg-green-500" : "bg-red-500"
                             }`}>
                               {result}
@@ -432,13 +435,13 @@ const Statistics = () => {
           <div className="lg:col-span-9">
             <Tabs value={activeMainTab} onValueChange={setActiveMainTab} className="w-full">
               <TabsList className="w-full bg-secondary/30 border border-border/30 rounded-xl p-1 mb-5 hover:shadow-lg transition-shadow duration-300">
-                <TabsTrigger value="standings" className="flex-1 font-display text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                <TabsTrigger value="standings" className="flex-1 font-display text-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Poredak
                 </TabsTrigger>
-                <TabsTrigger value="statistics" className="flex-1 font-display text-xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                <TabsTrigger value="statistics" className="flex-1 font-display text-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Statistika
                 </TabsTrigger>
-                <TabsTrigger value="players" className="flex-1 font-display text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                <TabsTrigger value="players" className="flex-1 font-display text-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Igrači
                 </TabsTrigger>
               </TabsList>
@@ -449,7 +452,7 @@ const Statistics = () => {
                   <div className="p-3 border-b border-border/30">
                     <div className="flex items-center gap-2">
                       <img src={logoKSHB} alt="" className="w-5 h-5 object-contain" />
-                      <span className="text-xs text-foreground">Liga KSHB</span>
+                      <span className="text-xs text-foreground">Liga Košarkaškog saveza Herceg Bosne</span>
                       <span className="text-[10px] text-muted-foreground bg-background/50 px-1.5 py-0.5 rounded">25/26</span>
                       <Select value={leagueCategory} onValueChange={(v) => setLeagueCategory(v as "seniori" | "seniorke")}>
                         <SelectTrigger className="w-24 h-7 text-xs bg-background/50 border-border/30 ml-1">
@@ -845,6 +848,7 @@ const Statistics = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
