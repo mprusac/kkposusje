@@ -30,6 +30,12 @@ import logoPosusje from "@/assets/logos/kk_posusje.png";
 import logoCapljina from "@/assets/logos/hkk_capljina.png";
 import logoKSHB from "@/assets/logos/kshb_logo.png";
 
+// Import ŽKK logos
+import logoZkkPosusje from "@/assets/logos/zkk_posusje.png";
+import logoZkkTomislav from "@/assets/logos/zkk_tomislav.png";
+import logoZkkZrinjski from "@/assets/logos/zkk_zrinjski.png";
+import logoZkkLivno from "@/assets/logos/zkk_livno.png";
+
 // Import player images
 import playerRamljak from "@/assets/player-ramljak.png";
 import playerKovac from "@/assets/player-kovac-new.png";
@@ -56,12 +62,12 @@ const teamLogos: Record<string, string> = {
   "KK Tomislavgrad": logoTomislav,
   "HKK Posušje": logoPosusje,
   "KK Posušje": logoPosusje,
-  "HŽKK Posušje": logoPosusje,
+  "HŽKK Posušje": logoZkkPosusje,
   "Čapljina": logoCapljina,
   "HKK Čapljina": logoCapljina,
-  "ŽKK Zrinjski 2010": logoMostar,
-  "ŽKK Livno": logoSiroki,
-  "HŽKK Tomislav": logoTomislav,
+  "ŽKK Zrinjski 2010": logoZkkZrinjski,
+  "ŽKK Livno": logoZkkLivno,
+  "HŽKK Tomislav": logoZkkTomislav,
 };
 
 interface Match {
@@ -164,30 +170,23 @@ const womenStandings: WomenStanding[] = [
   { position: 4, team: "HŽKK Tomislav", points: 1 },
 ];
 
-// Players roster - from Team.tsx with updated info from SofaScore
+// Players roster - based on Team.tsx players
 const players: Player[] = [
-  { number: "04", name: "Josip Ramljak", position: "Bek", nationality: "BIH", height: "190 cm", dateOfBirth: "18.08.2000", age: 25, image: playerRamljak, sofascoreLink: "https://www.sofascore.com/player/josip-ramljak/1112282" },
-  { number: "05", name: "Gabrijel Biško", position: "Bek", nationality: "BIH", height: "192 cm", dateOfBirth: "01.01.2003", age: 22, sofascoreLink: "https://www.sofascore.com/player/gabrijel-bisko/1278286" },
-  { number: "14", name: "Ante Ramljak", position: "Bek", nationality: "HRV", height: "189 cm", sofascoreLink: "https://www.sofascore.com/player/ante-ramljak/1278281" },
-  { number: "06", name: "Dominik Jukić", position: "Bek", nationality: "BIH", dateOfBirth: "25.07.1994", age: 31, sofascoreLink: "https://www.sofascore.com/player/dominik-jukic/1278284" },
-  { number: "11", name: "Triston Matthews", position: "Bek", nationality: "CAN", height: "195 cm", dateOfBirth: "16.09.1998", age: 27, sofascoreLink: "https://www.sofascore.com/player/triston-matthews/1278285" },
-  { number: "13", name: "Nemanja Simović", position: "Bek", nationality: "SRB", height: "192 cm", dateOfBirth: "19.11.1995", age: 30, sofascoreLink: "https://www.sofascore.com/player/nemanja-simovic/1278287" },
-  { number: "03", name: "Ian Krishnan", position: "Bek/Krilo", nationality: "USA", height: "187 cm", dateOfBirth: "16.11.1998", age: 27, sofascoreLink: "https://www.sofascore.com/player/ian-krishnan/1278283" },
-  { number: "17", name: "Marko Protrka", position: "Centar", nationality: "BIH", dateOfBirth: "21.01.2007", age: 18, image: playerProtrka, sofascoreLink: "https://www.sofascore.com/player/marko-protrka/1278282" },
-  { number: "13", name: "Mirko Đerek", position: "Centar", nationality: "HRV", dateOfBirth: "25.06.1990", age: 35, image: playerDerek, sofascoreLink: "https://www.sofascore.com/player/mirko-derek/242918" },
-  { number: "09", name: "Ante Kovač", position: "Krilo", nationality: "BIH", height: "190 cm", dateOfBirth: "30.05.2001", age: 24, image: playerKovac, sofascoreLink: "https://www.sofascore.com/player/ante-kovac/1112283" },
-  { number: "06", name: "David Dragoja", position: "Bek", nationality: "BIH", dateOfBirth: "05.09.2007", age: 18, sofascoreLink: "https://www.sofascore.com/player/david-dragoja/1278284" },
-  { number: "62", name: "Toni Ćutuk", position: "Krilo", nationality: "BIH", height: "201 cm", dateOfBirth: "23.08.1999", age: 26, sofascoreLink: "https://www.sofascore.com/player/toni-cutuk/1175655" },
-  { number: "14", name: "Ante Begić", position: "Krilo", nationality: "BIH", height: "197 cm", dateOfBirth: "08.09.1995", age: 30, image: playerBegic, sofascoreLink: "https://www.sofascore.com/player/ante-begic/1230556" },
-  { number: "10", name: "Luka Ramljak", position: "Bek", nationality: "HRV", sofascoreLink: "https://www.sofascore.com/player/luka-ramljak/1278285" },
-  { number: "08", name: "Luka Bašić", position: "Bek", nationality: "BIH", dateOfBirth: "15.07.2007", age: 18, image: playerBasicLuka, sofascoreLink: "https://www.sofascore.com/player/luka-basic/1230554" },
-  { number: "12", name: "Marko Ramljak", position: "Bek", nationality: "BIH", dateOfBirth: "19.10.2009", age: 16, sofascoreLink: "https://www.sofascore.com/player/marko-ramljak/1230558" },
-  { number: "05", name: "Stipe Bešlić", position: "Bek", nationality: "HRV", sofascoreLink: "https://www.sofascore.com/player/stipe-beslic/1278286" },
-  { number: "14", name: "Marko Petrović", position: "Krilo", nationality: "-", sofascoreLink: "https://www.sofascore.com/player/marko-petrovic/1278283" },
-  { number: "05", name: "Ante Bešlić", position: "Bek", nationality: "HRV", sofascoreLink: "https://www.sofascore.com/player/ante-beslic/1278288" },
-  { number: "15", name: "Ante Pišković", position: "Bek", nationality: "HRV", sofascoreLink: "https://www.sofascore.com/player/ante-piskovic/1278288" },
-  { number: "06", name: "Darryl Anthony Owens II", position: "Krilo", nationality: "USA", dateOfBirth: "04.06.1997", age: 28, sofascoreLink: "https://www.sofascore.com/player/darryl-owens/1278284" },
-  { number: "15", name: "Ivan Ramljak", position: "Bek", nationality: "HRV", sofascoreLink: "https://www.sofascore.com/player/ivan-ramljak/1278287" },
+  { number: "09", name: "Ante Kovač", position: "Krilo", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerKovac, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849" },
+  { number: "13", name: "Ante Begić", position: "Krilo", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerBegic, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150" },
+  { number: "04", name: "Josip Ramljak", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerRamljak, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845" },
+  { number: "13", name: "Mirko Đerek", position: "Centar", nationality: "HRV", height: "-", dateOfBirth: "25/06/1990", age: 34, image: playerDerek, sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853" },
+  { number: "18", name: "Marko Protrka", position: "Centar", nationality: "BIH", height: "-", dateOfBirth: "21/01/2007", age: 17, image: playerProtrka, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855" },
+  { number: "08", name: "Luka Bašić", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "15/07/2007", age: 17, image: playerBasicLuka, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464" },
+  { number: "12", name: "Josip Pavković", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerPavkovic, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527" },
+  { number: "06", name: "David Dragoja", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "05/09/2007", age: 17, sofascoreLink: "https://www.sofascore.com/basketball/player/david-dragoja/2078664" },
+  { number: "05", name: "Stipe Bešlić", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/stipe-beslic/2339336" },
+  { number: "10", name: "Luka Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289" },
+  { number: "07", name: "Jakov Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/jakov-ramljak/1578854" },
+  { number: "15", name: "Ivan Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ivan-ramljak/2339345" },
+  { number: "14", name: "Marko Petrović", position: "Krilo", nationality: "-", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-petrovic/2358568" },
+  { number: "15", name: "Ante Pišković", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-piskovic/2364287" },
+  { number: "14", name: "Ante Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-ramljak/2339280" },
 ];
 
 // Top players data
@@ -274,13 +273,13 @@ const Statistics = () => {
               <ArrowLeft size={18} />
               <span className="font-medium text-sm">Natrag</span>
             </Link>
-            <div className="flex items-center gap-3 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:ml-4">
-              <img src={logoPosusje} alt="KK Posušje" className="w-8 h-8" />
+            <div className="flex items-end gap-3 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:ml-4">
+              <img src={logoPosusje} alt="KK Posušje" className="w-12 h-12 object-contain" />
               <div>
-                <h1 className="font-display text-lg text-foreground">KK Posušje</h1>
-                <div className="flex items-center gap-1">
+                <h1 className="font-display text-lg text-foreground leading-none">KK Posušje</h1>
+                <div className="flex items-end gap-1 pb-0.5">
                   <img src={logoKSHB} alt="KSHB" className="w-3 h-3 object-contain" />
-                  <p className="text-[10px] text-muted-foreground">Liga KSHB</p>
+                  <p className="text-[10px] text-muted-foreground leading-none">Liga KSHB</p>
                 </div>
               </div>
             </div>
@@ -340,7 +339,7 @@ const Statistics = () => {
             </div>
 
             {/* Games */}
-            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 -mt-1">
+            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <div className="p-2 border-b border-border/30">
                 <div className="flex items-center justify-between">
                   <button 
@@ -743,10 +742,10 @@ const Statistics = () => {
                             <TableCell className="text-center">
                               <div className="flex items-center justify-center gap-1.5">
                                 {getFlagImage(player.nationality) ? (
-                                  <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-5 h-5 rounded-full object-cover" />
-                                ) : (
+                                  <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-6 h-6 rounded-full object-cover flex-shrink-0" />
+                                ) : player.nationality !== "-" ? (
                                   <span className="text-base">{getFlagEmoji(player.nationality)}</span>
-                                )}
+                                ) : null}
                                 <span className="text-base font-bold">{player.nationality}</span>
                               </div>
                             </TableCell>
