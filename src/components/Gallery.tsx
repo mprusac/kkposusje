@@ -8,16 +8,14 @@ import action3 from "@/assets/action-3.jpg";
 import action4 from "@/assets/action-4.png";
 import action5 from "@/assets/action-5.png";
 import action6 from "@/assets/action-6.png";
-import teamPhoto from "@/assets/team-photo.jpg";
 
 const images = [
-  { id: 1, src: action2, title: "Prodor mladog Davida Dragoje" },
-  { id: 2, src: action5, title: "Iskusni Mirko Đerek" },
-  { id: 3, src: action1, title: "Juniori na Telemach Sarajevo Cupu" },
-  { id: 4, src: action3, title: "Mladi centar Marko Protrka" },
-  { id: 5, src: action6, title: "Akcija na utakmici" },
-  { id: 6, src: action4, title: "Timeout" },
-  { id: 7, src: teamPhoto, title: "Timska fotografija" },
+  { id: 1, src: action2, title: "Prodor mladog Davida Dragoje", objectPosition: "center bottom" },
+  { id: 2, src: action5, title: "Iskusni Mirko Đerek", objectPosition: "center" },
+  { id: 3, src: action1, title: "Juniori na Telemach Sarajevo Cupu", objectPosition: "center" },
+  { id: 4, src: action3, title: "Mladi centar Marko Protrka", objectPosition: "center" },
+  { id: 5, src: action6, title: "Akcija na utakmici", objectPosition: "center" },
+  { id: 6, src: action4, title: "Timeout", objectPosition: "center top" },
 ];
 
 const Gallery = () => {
@@ -70,7 +68,7 @@ const Gallery = () => {
     }),
   };
 
-  const GalleryItem = ({ index, className, style }: { index: number; className: string; style?: React.CSSProperties }) => (
+  const GalleryItem = ({ index, className, style, objectPosition }: { index: number; className: string; style?: React.CSSProperties; objectPosition?: string }) => (
     <div 
       className={`group relative overflow-hidden rounded-lg cursor-pointer animate-fade-in-up hover-lift ${className}`}
       style={style}
@@ -80,6 +78,7 @@ const Gallery = () => {
         src={images[index].src}
         alt={images[index].title}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        style={{ objectPosition: objectPosition || images[index].objectPosition }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -96,28 +95,25 @@ const Gallery = () => {
           <span className="section-title-gold">AKCIJI</span>
         </h2>
 
-        {/* Bento Grid Layout - 3 columns like reference */}
-        <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto" style={{ gridAutoRows: "100px" }}>
-          {/* Left column - Tall (spans 2 rows) */}
+        {/* Bento Grid Layout - 3 columns */}
+        <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto" style={{ gridAutoRows: "90px" }}>
+          {/* Left column - Prodor (shorter, 2 rows) */}
           <GalleryItem index={0} className="row-span-2" />
           
-          {/* Middle top - Square */}
+          {/* Middle top - Iskusni Mirko (1 row) */}
           <GalleryItem index={1} className="row-span-1" style={{ animationDelay: "50ms" }} />
           
-          {/* Right top - Wide */}
+          {/* Right top - Juniori */}
           <GalleryItem index={2} className="row-span-1" style={{ animationDelay: "100ms" }} />
           
-          {/* Middle bottom - Square */}
+          {/* Middle bottom - Mladi centar Marko (1 row, equal to Mirko) */}
           <GalleryItem index={3} className="row-span-1" style={{ animationDelay: "150ms" }} />
           
-          {/* Right - Tall (spans 2 rows) */}
+          {/* Right - Akcija (spans 2 rows) */}
           <GalleryItem index={4} className="row-span-2" style={{ animationDelay: "200ms" }} />
           
-          {/* Bottom left - Wide */}
-          <GalleryItem index={5} className="row-span-1" style={{ animationDelay: "250ms" }} />
-          
-          {/* Bottom middle - Square (7th image) */}
-          <GalleryItem index={6} className="row-span-1" style={{ animationDelay: "300ms" }} />
+          {/* Bottom left - Timeout (taller, 2 rows) */}
+          <GalleryItem index={5} className="row-span-2 col-span-2" style={{ animationDelay: "250ms" }} />
         </div>
 
         <div className="text-center mt-10">
@@ -131,7 +127,7 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Animated Lightbox - no title */}
+      {/* Animated Lightbox */}
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div
@@ -144,7 +140,6 @@ const Gallery = () => {
             onKeyDown={handleKeyDown}
             tabIndex={0}
           >
-            {/* Close button */}
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -155,7 +150,6 @@ const Gallery = () => {
               <X className="w-6 h-6" />
             </motion.button>
 
-            {/* Previous button */}
             <motion.button
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -166,7 +160,6 @@ const Gallery = () => {
               <ChevronLeft className="w-8 h-8" />
             </motion.button>
 
-            {/* Animated Image */}
             <AnimatePresence mode="wait" custom={direction}>
               <motion.img
                 key={currentIndex}
@@ -183,7 +176,6 @@ const Gallery = () => {
               />
             </AnimatePresence>
 
-            {/* Next button */}
             <motion.button
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -194,7 +186,6 @@ const Gallery = () => {
               <ChevronRight className="w-8 h-8" />
             </motion.button>
 
-            {/* Image counter only */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
