@@ -293,12 +293,17 @@ const Statistics = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  // Sort matches: 1 upcoming first, then 5 past matches
+  // Sort matches: 1 upcoming first, then past matches with pagination
   const upcomingMatches = matches.filter(m => m.isUpcoming);
   const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  // Combine: 1 upcoming + 5 past = 6 matches total (no pagination needed)
-  const displayedMatches = [...upcomingMatches.slice(0, 1), ...playedMatches.slice(0, 5)];
+  // Pagination: 1 upcoming + 5 past per page
+  const matchesPerPage = 5;
+  const totalMatchPages = Math.ceil(playedMatches.length / matchesPerPage);
+  const displayedMatches = [
+    ...upcomingMatches.slice(0, 1),
+    ...playedMatches.slice(matchPage * matchesPerPage, (matchPage + 1) * matchesPerPage)
+  ];
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
@@ -407,8 +412,22 @@ const Statistics = () => {
 
             {/* Games */}
             <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col flex-1">
-              <div className="p-2 border-b border-border/30">
+              <div className="p-2 border-b border-border/30 flex items-center justify-between">
+                <button 
+                  onClick={() => setMatchPage(p => Math.max(0, p - 1))}
+                  disabled={matchPage === 0}
+                  className="p-1 rounded-full hover:bg-background/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronLeft size={16} />
+                </button>
                 <h3 className="font-display text-base text-foreground text-center">Utakmice</h3>
+                <button 
+                  onClick={() => setMatchPage(p => Math.min(totalMatchPages - 1, p + 1))}
+                  disabled={matchPage >= totalMatchPages - 1}
+                  className="p-1 rounded-full hover:bg-background/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                >
+                  <ChevronRight size={16} />
+                </button>
               </div>
 
               <div className="divide-y divide-border/20">
