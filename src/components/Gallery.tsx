@@ -95,25 +95,25 @@ const Gallery = () => {
           <span className="section-title-gold">AKCIJI</span>
         </h2>
 
-        {/* Bento Grid Layout - 3 columns, 20% larger */}
-        <div className="grid grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto" style={{ gridAutoRows: "84px" }}>
-          {/* Left column - Timeout (3 rows = 60%) */}
-          <GalleryItem index={0} className="row-span-3" />
+        {/* Bento Grid Layout - 3 columns, all equal height */}
+        <div className="grid grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto" style={{ gridAutoRows: "70px" }}>
+          {/* Left column - Timeout (3 rows = 50%) */}
+          <GalleryItem index={0} className="row-span-3" objectPosition="center center" />
           
-          {/* Middle top - Mladi centar (2.5 rows = 50%) */}
+          {/* Middle top - Mladi centar (3 rows = 50%) */}
           <GalleryItem index={1} className="row-span-3" style={{ animationDelay: "50ms" }} />
           
-          {/* Right top - Juniori (2 rows = 40%) */}
-          <GalleryItem index={2} className="row-span-2" style={{ animationDelay: "100ms" }} />
+          {/* Right top - Juniori (3 rows = 50%) */}
+          <GalleryItem index={2} className="row-span-3" style={{ animationDelay: "100ms" }} />
           
-          {/* Middle bottom - Prodor (2.5 rows = 50%) */}
-          <GalleryItem index={3} className="row-span-3" style={{ animationDelay: "150ms" }} />
+          {/* Left bottom - Prvi tim (3 rows = 50%) */}
+          <GalleryItem index={5} className="row-span-3" style={{ animationDelay: "150ms" }} objectPosition="center top" />
           
-          {/* Right - Iskusni Mirko (3 rows = 60%) */}
-          <GalleryItem index={4} className="row-span-3" style={{ animationDelay: "200ms" }} />
+          {/* Middle bottom - Prodor (3 rows = 50%) */}
+          <GalleryItem index={3} className="row-span-3" style={{ animationDelay: "200ms" }} />
           
-          {/* Bottom left - Prvi tim (2 rows = 40%) */}
-          <GalleryItem index={5} className="row-span-2" style={{ animationDelay: "250ms" }} />
+          {/* Right bottom - Iskusni Mirko (3 rows = 50%) */}
+          <GalleryItem index={4} className="row-span-3" style={{ animationDelay: "250ms" }} objectPosition="center top" />
         </div>
 
         <div className="text-center mt-10">
