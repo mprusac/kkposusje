@@ -333,7 +333,7 @@ const Statistics = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
       {/* Header */}
       <header className="bg-secondary/50 border-b border-border/50 sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto px-4 py-3">
@@ -411,7 +411,7 @@ const Statistics = () => {
             </div>
 
             {/* Games */}
-            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col" style={{ minHeight: leagueCategory === "seniori" ? "calc(100% - 140px)" : "auto" }}>
+            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <div className="p-2 border-b border-border/30">
                 <div className="flex items-center justify-between">
                   <button 
@@ -432,7 +432,7 @@ const Statistics = () => {
                 </div>
               </div>
 
-              <div className="divide-y divide-border/20 flex-1">
+              <div className="divide-y divide-border/20">
                 {displayedMatches.map((match) => {
                   const result = getMatchResult(match);
                   const homeLogo = getTeamLogo(match.homeTeam);
@@ -506,17 +506,6 @@ const Statistics = () => {
                     <div key={match.id}>{matchContent}</div>
                   );
                 })}
-              </div>
-
-              {/* Detaljnije button */}
-              <div className="p-2 border-t border-border/30">
-                <Link 
-                  to="/statistika"
-                  onClick={() => window.scrollTo(0, 0)}
-                  className="w-full py-2 rounded-lg bg-primary/20 text-primary text-sm font-medium text-center block hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                >
-                  Detaljnije
-                </Link>
               </div>
             </div>
           </div>
