@@ -293,16 +293,12 @@ const Statistics = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  // Sort matches: upcoming first, then played from newest to oldest
-  const sortedMatches = [...matches].sort((a, b) => {
-    if (a.isUpcoming && !b.isUpcoming) return -1;
-    if (!a.isUpcoming && b.isUpcoming) return 1;
-    return 0;
-  });
+  // Sort matches: 1 upcoming first, then 5 past matches
+  const upcomingMatches = matches.filter(m => m.isUpcoming);
+  const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  const matchesPerPage = 6;
-  const totalMatchPages = Math.ceil(sortedMatches.length / matchesPerPage);
-  const displayedMatches = sortedMatches.slice(matchPage * matchesPerPage, (matchPage + 1) * matchesPerPage);
+  // Combine: 1 upcoming + 5 past = 6 matches total (no pagination needed)
+  const displayedMatches = [...upcomingMatches.slice(0, 1), ...playedMatches.slice(0, 5)];
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
@@ -490,29 +486,6 @@ const Statistics = () => {
                   );
                 })}
               </div>
-              
-              {/* Pagination */}
-              {totalMatchPages > 1 && (
-                <div className="flex items-center justify-center gap-2 p-2 border-t border-border/30">
-                  <button
-                    onClick={() => setMatchPage(p => Math.max(0, p - 1))}
-                    disabled={matchPage === 0}
-                    className="p-1 rounded hover:bg-background/50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                  >
-                    <ChevronLeft size={16} />
-                  </button>
-                  <span className="text-xs text-muted-foreground">
-                    {matchPage + 1} / {totalMatchPages}
-                  </span>
-                  <button
-                    onClick={() => setMatchPage(p => Math.min(totalMatchPages - 1, p + 1))}
-                    disabled={matchPage === totalMatchPages - 1}
-                    className="p-1 rounded hover:bg-background/50 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-                  >
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-              )}
             </div>
           </div>
 
