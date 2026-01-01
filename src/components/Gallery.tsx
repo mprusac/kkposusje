@@ -8,14 +8,16 @@ import action3 from "@/assets/action-3.jpg";
 import action4 from "@/assets/action-4.png";
 import action5 from "@/assets/action-5.png";
 import action6 from "@/assets/action-6.png";
+import teamPhoto from "@/assets/team-photo.jpg";
 
 const images = [
-  { id: 1, src: action1, title: "Juniori na Telemach Sarajevo Cupu" },
-  { id: 2, src: action2, title: "Prodor mladog Davida Dragoje" },
-  { id: 3, src: action3, title: "Mladi centar Marko Protrka" },
-  { id: 4, src: action4, title: "Timeout" },
-  { id: 5, src: action5, title: "Iskusni Mirko Đerek" },
-  { id: 6, src: action6, title: "Akcija na utakmici" },
+  { id: 1, src: action2, title: "Prodor mladog Davida Dragoje" },
+  { id: 2, src: action5, title: "Iskusni Mirko Đerek" },
+  { id: 3, src: action1, title: "Juniori na Telemach Sarajevo Cupu" },
+  { id: 4, src: action3, title: "Mladi centar Marko Protrka" },
+  { id: 5, src: action6, title: "Akcija na utakmici" },
+  { id: 6, src: action4, title: "Timeout" },
+  { id: 7, src: teamPhoto, title: "Timska fotografija" },
 ];
 
 const Gallery = () => {
@@ -68,6 +70,24 @@ const Gallery = () => {
     }),
   };
 
+  const GalleryItem = ({ index, className, style }: { index: number; className: string; style?: React.CSSProperties }) => (
+    <div 
+      className={`group relative overflow-hidden rounded-lg cursor-pointer animate-fade-in-up hover-lift ${className}`}
+      style={style}
+      onClick={() => openLightbox(index)}
+    >
+      <img
+        src={images[index].src}
+        alt={images[index].title}
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+        <span className="text-primary font-bold text-xs md:text-sm uppercase tracking-wider drop-shadow-lg">{images[index].title}</span>
+      </div>
+    </div>
+  );
+
   return (
     <section id="galerija" className="py-20">
       <div className="container mx-auto px-4">
@@ -76,114 +96,28 @@ const Gallery = () => {
           <span className="section-title-gold">AKCIJI</span>
         </h2>
 
-        {/* Bento Grid Layout - 2 columns */}
-        <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-4xl mx-auto">
-          {/* Left Column */}
-          <div className="flex flex-col gap-3 md:gap-4">
-            {/* Prodor - tall */}
-            <div 
-              className="group relative overflow-hidden rounded-xl cursor-pointer animate-fade-in-up hover-lift aspect-[3/4]"
-              onClick={() => openLightbox(1)}
-            >
-              <img
-                src={action2}
-                alt={images[1].title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider drop-shadow-lg">{images[1].title}</span>
-              </div>
-            </div>
-
-            {/* Timeout - below Prodor */}
-            <div 
-              className="group relative overflow-hidden rounded-xl cursor-pointer animate-fade-in-up hover-lift aspect-[4/3]"
-              style={{ animationDelay: "150ms" }}
-              onClick={() => openLightbox(3)}
-            >
-              <img
-                src={action4}
-                alt={images[3].title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider drop-shadow-lg">{images[3].title}</span>
-              </div>
-            </div>
-
-            {/* Iskusni Mirko */}
-            <div 
-              className="group relative overflow-hidden rounded-xl cursor-pointer animate-fade-in-up hover-lift aspect-square"
-              style={{ animationDelay: "250ms" }}
-              onClick={() => openLightbox(4)}
-            >
-              <img
-                src={action5}
-                alt={images[4].title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider drop-shadow-lg">{images[4].title}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column */}
-          <div className="flex flex-col gap-3 md:gap-4">
-            {/* Juniori - wide */}
-            <div 
-              className="group relative overflow-hidden rounded-xl cursor-pointer animate-fade-in-up hover-lift aspect-[4/3]"
-              style={{ animationDelay: "50ms" }}
-              onClick={() => openLightbox(0)}
-            >
-              <img
-                src={action1}
-                alt={images[0].title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider drop-shadow-lg">{images[0].title}</span>
-              </div>
-            </div>
-
-            {/* Nova slika - below Juniori, tall */}
-            <div 
-              className="group relative overflow-hidden rounded-xl cursor-pointer animate-fade-in-up hover-lift aspect-[3/4]"
-              style={{ animationDelay: "100ms" }}
-              onClick={() => openLightbox(5)}
-            >
-              <img
-                src={action6}
-                alt={images[5].title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider drop-shadow-lg">{images[5].title}</span>
-              </div>
-            </div>
-
-            {/* Mladi centar Marko */}
-            <div 
-              className="group relative overflow-hidden rounded-xl cursor-pointer animate-fade-in-up hover-lift aspect-square"
-              style={{ animationDelay: "200ms" }}
-              onClick={() => openLightbox(2)}
-            >
-              <img
-                src={action3}
-                alt={images[2].title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-primary font-bold text-sm uppercase tracking-wider drop-shadow-lg">{images[2].title}</span>
-              </div>
-            </div>
-          </div>
+        {/* Bento Grid Layout - 3 columns like reference */}
+        <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto" style={{ gridAutoRows: "100px" }}>
+          {/* Left column - Tall (spans 2 rows) */}
+          <GalleryItem index={0} className="row-span-2" />
+          
+          {/* Middle top - Square */}
+          <GalleryItem index={1} className="row-span-1" style={{ animationDelay: "50ms" }} />
+          
+          {/* Right top - Wide */}
+          <GalleryItem index={2} className="row-span-1" style={{ animationDelay: "100ms" }} />
+          
+          {/* Middle bottom - Square */}
+          <GalleryItem index={3} className="row-span-1" style={{ animationDelay: "150ms" }} />
+          
+          {/* Right - Tall (spans 2 rows) */}
+          <GalleryItem index={4} className="row-span-2" style={{ animationDelay: "200ms" }} />
+          
+          {/* Bottom left - Wide */}
+          <GalleryItem index={5} className="row-span-1" style={{ animationDelay: "250ms" }} />
+          
+          {/* Bottom middle - Square (7th image) */}
+          <GalleryItem index={6} className="row-span-1" style={{ animationDelay: "300ms" }} />
         </div>
 
         <div className="text-center mt-10">
@@ -197,7 +131,7 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Animated Lightbox */}
+      {/* Animated Lightbox - no title */}
       <AnimatePresence>
         {lightboxOpen && (
           <motion.div
@@ -260,17 +194,14 @@ const Gallery = () => {
               <ChevronRight className="w-8 h-8" />
             </motion.button>
 
-            {/* Image counter & title */}
+            {/* Image counter only */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center"
+              className="absolute bottom-4 left-1/2 -translate-x-1/2 text-foreground/70 text-sm"
             >
-              <p className="text-primary font-bold mb-1">{images[currentIndex].title}</p>
-              <p className="text-foreground/70 text-sm">
-                {currentIndex + 1} / {images.length}
-              </p>
+              {currentIndex + 1} / {images.length}
             </motion.div>
           </motion.div>
         )}
