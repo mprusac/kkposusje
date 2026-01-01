@@ -175,10 +175,10 @@ const players: Player[] = [
   { number: "09", name: "Ante Kovač", position: "Krilo", nationality: "BIH", height: "190 cm", dateOfBirth: "30/05/2001", age: 24, image: playerKovac, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849" },
   { number: "13", name: "Ante Begić", position: "Krilo", nationality: "BIH", height: "197 cm", dateOfBirth: "08/09/1995", age: 30, image: playerBegic, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150" },
   { number: "04", name: "Josip Ramljak", position: "Bek", nationality: "BIH", height: "190 cm", dateOfBirth: "18/08/2000", age: 25, image: playerRamljak, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845" },
-  { number: "13", name: "Mirko Đerek", position: "Centar", nationality: "HRV", height: "-", dateOfBirth: "25/06/1990", age: 35, image: playerDerek, sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853" },
-  { number: "18", name: "Marko Protrka", position: "Centar", nationality: "BIH", height: "-", dateOfBirth: "21/01/2007", age: 18, image: playerProtrka, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855" },
-  { number: "08", name: "Luka Bašić", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "15/07/2007", age: 18, image: playerBasicLuka, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464" },
-  { number: "12", name: "Josip Pavković", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerPavkovic, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527" },
+  { number: "13", name: "Mirko Đerek", position: "Centar", nationality: "HRV", height: "201 cm", dateOfBirth: "25/06/1990", age: 35, image: playerDerek, sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853" },
+  { number: "18", name: "Marko Protrka", position: "Centar", nationality: "BIH", height: "200 cm", dateOfBirth: "21/01/2007", age: 18, image: playerProtrka, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855" },
+  { number: "08", name: "Luka Bašić", position: "Bek", nationality: "BIH", height: "193 cm", dateOfBirth: "15/07/2007", age: 18, image: playerBasicLuka, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464" },
+  { number: "12", name: "Josip Pavković", position: "Bek", nationality: "BIH", height: "196 cm", dateOfBirth: "29/05/2008", age: 17, image: playerPavkovic, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527" },
   { number: "06", name: "David Dragoja", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "05/09/2007", age: 18, sofascoreLink: "https://www.sofascore.com/basketball/player/david-dragoja/2078664" },
   { number: "05", name: "Stipe Bešlić", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/stipe-beslic/2339336" },
   { number: "10", name: "Luka Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289" },
@@ -293,17 +293,12 @@ const Statistics = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  // Sort matches: 1 upcoming first, then played from newest to oldest
+  // Sort matches: 1 upcoming first, then 5 past matches
   const upcomingMatches = matches.filter(m => m.isUpcoming);
   const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  // Combine all matches: 1 upcoming first, then played
-  const allMatchesOrdered = [...upcomingMatches.slice(0, 1), ...playedMatches, ...upcomingMatches.slice(1)];
-  
-  // Paginate: 5 matches per page
-  const matchesPerPage = 5;
-  const totalPages = Math.ceil(allMatchesOrdered.length / matchesPerPage);
-  const displayedMatches = allMatchesOrdered.slice(matchPage * matchesPerPage, (matchPage + 1) * matchesPerPage);
+  // Combine: 1 upcoming + 5 past = 6 matches total (no pagination needed)
+  const displayedMatches = [...upcomingMatches.slice(0, 1), ...playedMatches.slice(0, 5)];
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
@@ -367,13 +362,13 @@ const Statistics = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
           {/* Left Column - Form & Games */}
-          <div className="lg:col-span-3 space-y-5">
+          <div className="lg:col-span-3 flex flex-col gap-3">
             {/* Recent Form */}
-            <div className="bg-secondary/30 rounded-xl p-3 border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-              <h3 className="font-display text-base text-foreground mb-3 text-center">Nedavna forma</h3>
+            <div className="bg-secondary/30 rounded-xl p-2 border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <h3 className="font-display text-base text-foreground mb-1 text-center">Nedavna forma</h3>
               
               {/* Dynamic text - changes on hover */}
-              <p className="text-[10px] text-muted-foreground text-center mb-2 h-4 transition-all duration-200">
+              <p className="text-[10px] text-muted-foreground text-center mb-1 h-4 transition-all duration-200">
                 {hoveredFormIndex !== null 
                   ? `${formData[hoveredFormIndex].homeTeam} ${formData[hoveredFormIndex].homeScore} - ${formData[hoveredFormIndex].awayScore} ${formData[hoveredFormIndex].awayTeam}`
                   : "Pređite mišem iznad stupca za detalje"
@@ -381,7 +376,7 @@ const Statistics = () => {
               </p>
               
               {/* Team logos */}
-              <div className="flex gap-1 mb-2 justify-center">
+              <div className="flex gap-1 mb-1 justify-center">
                 {formData.map((game, index) => (
                   <div 
                     key={index} 
@@ -411,25 +406,9 @@ const Statistics = () => {
             </div>
 
             {/* Games */}
-            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col flex-1">
               <div className="p-2 border-b border-border/30">
-                <div className="flex items-center justify-between">
-                  <button 
-                    onClick={() => setMatchPage(p => Math.max(0, p - 1))}
-                    disabled={matchPage === 0}
-                    className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
-                  >
-                    <ChevronLeft size={14} />
-                  </button>
-                  <h3 className="font-display text-base text-foreground">Utakmice</h3>
-                  <button 
-                    onClick={() => setMatchPage(p => Math.min(totalPages - 1, p + 1))}
-                    disabled={matchPage >= totalPages - 1}
-                    className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
-                  >
-                    <ChevronRight size={14} />
-                  </button>
-                </div>
+                <h3 className="font-display text-base text-foreground text-center">Utakmice</h3>
               </div>
 
               <div className="divide-y divide-border/20">
