@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -172,21 +172,22 @@ const womenStandings: WomenStanding[] = [
 
 // Players roster - based on Team.tsx players
 const players: Player[] = [
-  { number: "09", name: "Ante Kovač", position: "Krilo", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerKovac, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849" },
-  { number: "13", name: "Ante Begić", position: "Krilo", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerBegic, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150" },
-  { number: "04", name: "Josip Ramljak", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerRamljak, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845" },
-  { number: "13", name: "Mirko Đerek", position: "Centar", nationality: "HRV", height: "-", dateOfBirth: "25/06/1990", age: 34, image: playerDerek, sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853" },
-  { number: "18", name: "Marko Protrka", position: "Centar", nationality: "BIH", height: "-", dateOfBirth: "21/01/2007", age: 17, image: playerProtrka, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855" },
-  { number: "08", name: "Luka Bašić", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "15/07/2007", age: 17, image: playerBasicLuka, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464" },
+  { number: "09", name: "Ante Kovač", position: "Krilo", nationality: "BIH", height: "190 cm", dateOfBirth: "30/05/2001", age: 24, image: playerKovac, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849" },
+  { number: "13", name: "Ante Begić", position: "Krilo", nationality: "BIH", height: "197 cm", dateOfBirth: "08/09/1995", age: 30, image: playerBegic, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150" },
+  { number: "04", name: "Josip Ramljak", position: "Bek", nationality: "BIH", height: "190 cm", dateOfBirth: "18/08/2000", age: 25, image: playerRamljak, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845" },
+  { number: "13", name: "Mirko Đerek", position: "Centar", nationality: "HRV", height: "-", dateOfBirth: "25/06/1990", age: 35, image: playerDerek, sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853" },
+  { number: "18", name: "Marko Protrka", position: "Centar", nationality: "BIH", height: "-", dateOfBirth: "21/01/2007", age: 18, image: playerProtrka, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855" },
+  { number: "08", name: "Luka Bašić", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "15/07/2007", age: 18, image: playerBasicLuka, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464" },
   { number: "12", name: "Josip Pavković", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "-", age: undefined, image: playerPavkovic, sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527" },
-  { number: "06", name: "David Dragoja", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "05/09/2007", age: 17, sofascoreLink: "https://www.sofascore.com/basketball/player/david-dragoja/2078664" },
+  { number: "06", name: "David Dragoja", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "05/09/2007", age: 18, sofascoreLink: "https://www.sofascore.com/basketball/player/david-dragoja/2078664" },
   { number: "05", name: "Stipe Bešlić", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/stipe-beslic/2339336" },
   { number: "10", name: "Luka Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289" },
   { number: "07", name: "Jakov Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/jakov-ramljak/1578854" },
   { number: "15", name: "Ivan Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ivan-ramljak/2339345" },
   { number: "14", name: "Marko Petrović", position: "Krilo", nationality: "-", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/marko-petrovic/2358568" },
   { number: "15", name: "Ante Pišković", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-piskovic/2364287" },
-  { number: "14", name: "Ante Ramljak", position: "Bek", nationality: "HRV", height: "-", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-ramljak/2339280" },
+  { number: "14", name: "Ante Ramljak", position: "Bek", nationality: "HRV", height: "189 cm", dateOfBirth: "-", age: undefined, sofascoreLink: "https://www.sofascore.com/basketball/player/ante-ramljak/2339280" },
+  { number: "-", name: "Marko Ramljak", position: "Bek", nationality: "BIH", height: "-", dateOfBirth: "19/10/2009", age: 16, sofascoreLink: "" },
 ];
 
 // Top players data
@@ -214,12 +215,83 @@ const topMinutes: TopPlayer[] = [
   { rank: 3, name: "Ante Begić", position: "Krilo", value: "26:00", image: playerBegic },
 ];
 
+const topSteals: TopPlayer[] = [
+  { rank: 1, name: "Josip Ramljak", position: "Bek", value: 2.1, image: playerRamljak },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 1.8, image: playerKovac },
+  { rank: 3, name: "Ante Begić", position: "Krilo", value: 1.2, image: playerBegic },
+];
+
+const topBlocks: TopPlayer[] = [
+  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.5, image: playerProtrka },
+  { rank: 2, name: "Ante Begić", position: "Krilo", value: 0.8, image: playerBegic },
+  { rank: 3, name: "Mirko Đerek", position: "Centar", value: 0.6, image: playerDerek },
+];
+
+const top2PPercentage: TopPlayer[] = [
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: "54%", image: playerBegic },
+  { rank: 2, name: "Mirko Đerek", position: "Centar", value: "52%", image: playerDerek },
+  { rank: 3, name: "Marko Protrka", position: "Centar", value: "48%", image: playerProtrka },
+];
+
+const top3PPercentage: TopPlayer[] = [
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: "42%", image: playerKovac },
+  { rank: 2, name: "Josip Ramljak", position: "Bek", value: "38%", image: playerRamljak },
+  { rank: 3, name: "Luka Bašić", position: "Bek", value: "35%", image: playerBasicLuka },
+];
+
+const topThrees: TopPlayer[] = [
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 18, image: playerKovac },
+  { rank: 2, name: "Josip Ramljak", position: "Bek", value: 14, image: playerRamljak },
+  { rank: 3, name: "Ante Begić", position: "Krilo", value: 11, image: playerBegic },
+];
+
+const topDefRebounds: TopPlayer[] = [
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 5.2, image: playerBegic },
+  { rank: 2, name: "Marko Protrka", position: "Centar", value: 4.1, image: playerProtrka },
+  { rank: 3, name: "Mirko Đerek", position: "Centar", value: 3.8, image: playerDerek },
+];
+
+const topOffRebounds: TopPlayer[] = [
+  { rank: 1, name: "Marko Protrka", position: "Centar", value: 2.3, image: playerProtrka },
+  { rank: 2, name: "Ante Begić", position: "Krilo", value: 1.8, image: playerBegic },
+  { rank: 3, name: "Mirko Đerek", position: "Centar", value: 1.5, image: playerDerek },
+];
+
+const topDoubleDoubles: TopPlayer[] = [
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 3, image: playerBegic },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 2, image: playerKovac },
+  { rank: 3, name: "Marko Protrka", position: "Centar", value: 1, image: playerProtrka },
+];
+
+// All top player categories
+const allTopCategories = [
+  { title: "Poeni", data: topScorers },
+  { title: "Skokovi", data: topRebounders },
+  { title: "Asistencije", data: topAssisters },
+  { title: "Ukradene lopte", data: topSteals },
+  { title: "Blokade", data: topBlocks },
+  { title: "Minute", data: topMinutes },
+  { title: "Šut za 2p %", data: top2PPercentage },
+  { title: "Šut za 3p %", data: top3PPercentage },
+  { title: "Trojke", data: topThrees },
+  { title: "Obrambeni skokovi", data: topDefRebounds },
+  { title: "Skokovi u napadu", data: topOffRebounds },
+  { title: "Double-double", data: topDoubleDoubles },
+];
+
 const Statistics = () => {
   const [activeMainTab, setActiveMainTab] = useState("standings");
   const [activePlayersTab, setActivePlayersTab] = useState("squad");
   const [matchPage, setMatchPage] = useState(0);
   const [hoveredFormIndex, setHoveredFormIndex] = useState<number | null>(null);
   const [leagueCategory, setLeagueCategory] = useState<"seniori" | "seniorke">("seniori");
+  const [topPlayersPage, setTopPlayersPage] = useState(0);
+  const navigate = useNavigate();
+
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   // Sort matches: 1 upcoming first, then played from newest to oldest
   const upcomingMatches = matches.filter(m => m.isUpcoming);
@@ -274,7 +346,7 @@ const Statistics = () => {
               <span className="font-medium text-sm">Natrag</span>
             </Link>
             <div className="flex items-end gap-3 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:ml-4">
-              <img src={logoPosusje} alt="KK Posušje" className="w-12 h-12 object-contain" />
+              <img src={logoPosusje} alt="KK Posušje" className="w-10 h-10 object-contain" />
               <div>
                 <h1 className="font-display text-lg text-foreground leading-none">KK Posušje</h1>
                 <div className="flex items-end gap-1 pb-0.5">
@@ -304,7 +376,7 @@ const Statistics = () => {
               <p className="text-[10px] text-muted-foreground text-center mb-2 h-4 transition-all duration-200">
                 {hoveredFormIndex !== null 
                   ? `${formData[hoveredFormIndex].homeTeam} ${formData[hoveredFormIndex].homeScore} - ${formData[hoveredFormIndex].awayScore} ${formData[hoveredFormIndex].awayTeam}`
-                  : "Prelazite iznad stupca za detalje"
+                  : "Pređite mišem iznad stupca za detalje"
                 }
               </p>
               
@@ -339,7 +411,7 @@ const Statistics = () => {
             </div>
 
             {/* Games */}
-            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col" style={{ minHeight: leagueCategory === "seniori" ? "calc(100% - 140px)" : "auto" }}>
               <div className="p-2 border-b border-border/30">
                 <div className="flex items-center justify-between">
                   <button 
@@ -360,7 +432,7 @@ const Statistics = () => {
                 </div>
               </div>
 
-              <div className="divide-y divide-border/20">
+              <div className="divide-y divide-border/20 flex-1">
                 {displayedMatches.map((match) => {
                   const result = getMatchResult(match);
                   const homeLogo = getTeamLogo(match.homeTeam);
@@ -434,6 +506,17 @@ const Statistics = () => {
                     <div key={match.id}>{matchContent}</div>
                   );
                 })}
+              </div>
+
+              {/* Detaljnije button */}
+              <div className="p-2 border-t border-border/30">
+                <Link 
+                  to="/statistika"
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="w-full py-2 rounded-lg bg-primary/20 text-primary text-sm font-medium text-center block hover:bg-primary hover:text-primary-foreground transition-all duration-200"
+                >
+                  Detaljnije
+                </Link>
               </div>
             </div>
           </div>
@@ -548,7 +631,7 @@ const Statistics = () => {
                             <TableCell>
                               <div className="flex items-center gap-2">
                                 {getTeamLogo(team.team) && (
-                                  <img src={getTeamLogo(team.team)!} alt="" className="w-7 h-7 object-contain" />
+                                  <img src={getTeamLogo(team.team)!} alt="" className={`object-contain ${team.team === "ŽKK Livno" ? "w-8 h-8" : "w-7 h-7"}`} />
                                 )}
                                 <span className={`text-sm font-bold ${team.team.includes("Posušje") ? "text-primary" : ""}`}>
                                   {team.team}
@@ -757,101 +840,53 @@ const Statistics = () => {
                       </TableBody>
                     </Table>
                   ) : (
-                    <div className="p-5 grid md:grid-cols-2 gap-5">
-                      {/* Points */}
-                      <div className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                        <h4 className="font-display text-sm text-center mb-3">Poeni</h4>
-                        <div className="space-y-2">
-                          {topScorers.map((player) => (
-                            <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                              <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
-                              <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
-                                {player.image ? (
-                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                ) : (
-                                  <div className="w-full h-full bg-muted" />
-                                )}
-                              </div>
-                              <div className="flex-1">
-                                <p className="font-medium text-xs">{player.name}</p>
-                                <p className="text-[10px] text-primary">{player.position}</p>
-                              </div>
-                              <span className="text-base font-display text-primary">{player.value}</span>
-                            </div>
-                          ))}
-                        </div>
+                    <div className="p-5">
+                      {/* Pagination controls */}
+                      <div className="flex items-center justify-center gap-4 mb-4">
+                        <button 
+                          onClick={() => setTopPlayersPage(0)}
+                          disabled={topPlayersPage === 0}
+                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                        >
+                          <ChevronLeft size={18} />
+                        </button>
+                        <span className="text-sm text-muted-foreground">
+                          {topPlayersPage === 0 ? "1 - 6" : "7 - 12"} od 12
+                        </span>
+                        <button 
+                          onClick={() => setTopPlayersPage(1)}
+                          disabled={topPlayersPage === 1}
+                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                        >
+                          <ChevronRight size={18} />
+                        </button>
                       </div>
 
-                      {/* Rebounds */}
-                      <div className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                        <h4 className="font-display text-sm text-center mb-3">Skokovi</h4>
-                        <div className="space-y-2">
-                          {topRebounders.map((player) => (
-                            <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                              <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
-                              <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
-                                {player.image ? (
-                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                ) : (
-                                  <div className="w-full h-full bg-muted" />
-                                )}
-                              </div>
-                              <div className="flex-1">
-                                <p className="font-medium text-xs">{player.name}</p>
-                                <p className="text-[10px] text-primary">{player.position}</p>
-                              </div>
-                              <span className="text-base font-display text-primary">{player.value}</span>
+                      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
+                          <div key={catIndex} className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                            <h4 className="font-display text-sm text-center mb-3">{category.title}</h4>
+                            <div className="space-y-2">
+                              {category.data.map((player) => (
+                                <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                                  <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
+                                  <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
+                                    {player.image ? (
+                                      <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
+                                    ) : (
+                                      <div className="w-full h-full bg-muted" />
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="font-medium text-xs truncate">{player.name}</p>
+                                    <p className="text-[10px] text-primary">{player.position}</p>
+                                  </div>
+                                  <span className="text-base font-display text-primary">{player.value}</span>
+                                </div>
+                              ))}
                             </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Assists */}
-                      <div className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                        <h4 className="font-display text-sm text-center mb-3">Asistencije</h4>
-                        <div className="space-y-2">
-                          {topAssisters.map((player) => (
-                            <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                              <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
-                              <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
-                                {player.image ? (
-                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                ) : (
-                                  <div className="w-full h-full bg-muted" />
-                                )}
-                              </div>
-                              <div className="flex-1">
-                                <p className="font-medium text-xs">{player.name}</p>
-                                <p className="text-[10px] text-primary">{player.position}</p>
-                              </div>
-                              <span className="text-base font-display text-primary">{player.value}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Minutes */}
-                      <div className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                        <h4 className="font-display text-sm text-center mb-3">Minute</h4>
-                        <div className="space-y-2">
-                          {topMinutes.map((player) => (
-                            <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                              <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
-                              <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
-                                {player.image ? (
-                                  <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                ) : (
-                                  <div className="w-full h-full bg-muted" />
-                                )}
-                              </div>
-                              <div className="flex-1">
-                                <p className="font-medium text-xs">{player.name}</p>
-                                <p className="text-[10px] text-primary">{player.position}</p>
-                              </div>
-                              <span className="text-base font-display text-primary">{player.value}</span>
-                            </div>
-                          ))}
-                        </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   )}
