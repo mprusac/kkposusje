@@ -294,18 +294,21 @@ const Statistics = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  // Sort matches: upcoming first, then past matches with pagination
+  // Sort matches: Page 0 = 1 upcoming + 5 past, Page 1+ = remaining past then remaining upcoming
   const upcomingMatches = matches.filter(m => m.isUpcoming);
   const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  // Pagination: Page 0 = 1 upcoming + 5 past, Page 1+ = remaining upcoming matches
+  // Page 0: 1 upcoming + 5 past
+  // Page 1+: remaining past (index 5+), then remaining upcoming (index 1+)
+  const firstPageMatches = [...upcomingMatches.slice(0, 1), ...playedMatches.slice(0, 5)];
+  const remainingMatches = [...playedMatches.slice(5), ...upcomingMatches.slice(1)];
+  
   const matchesPerPage = 6;
-  const allMatchesForPagination = [...upcomingMatches, ...playedMatches];
-  const totalMatchPages = Math.ceil(allMatchesForPagination.length / matchesPerPage);
-  const displayedMatches = allMatchesForPagination.slice(
-    matchPage * matchesPerPage, 
-    (matchPage + 1) * matchesPerPage
-  );
+  const totalMatchPages = 1 + Math.ceil(remainingMatches.length / matchesPerPage);
+  
+  const displayedMatches = matchPage === 0 
+    ? firstPageMatches 
+    : remainingMatches.slice((matchPage - 1) * matchesPerPage, matchPage * matchesPerPage);
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
