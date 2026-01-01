@@ -10,7 +10,7 @@ import action5 from "@/assets/action-5.png";
 import action6 from "@/assets/action-6.png";
 
 const images = [
-  { id: 1, src: action2, title: "Prodor mladog Davida Dragoje", objectPosition: "center bottom" },
+  { id: 1, src: action2, title: "Prodor mladog Davida Dragoje", objectPosition: "center center" },
   { id: 2, src: action5, title: "Iskusni Mirko Đerek", objectPosition: "center" },
   { id: 3, src: action1, title: "Juniori na Telemach Sarajevo Cupu", objectPosition: "center" },
   { id: 4, src: action3, title: "Mladi centar Marko Protrka", objectPosition: "center" },
@@ -96,24 +96,24 @@ const Gallery = () => {
         </h2>
 
         {/* Bento Grid Layout - 3 columns */}
-        <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto" style={{ gridAutoRows: "90px" }}>
-          {/* Left column - Prodor (shorter, 2 rows) */}
-          <GalleryItem index={0} className="row-span-2" />
+        <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-3xl mx-auto" style={{ gridAutoRows: "80px" }}>
+          {/* Left column - Prodor (3 rows) */}
+          <GalleryItem index={0} className="row-span-3" />
           
-          {/* Middle top - Iskusni Mirko (1 row) */}
-          <GalleryItem index={1} className="row-span-1" style={{ animationDelay: "50ms" }} />
+          {/* Middle top - Iskusni Mirko (2 rows) */}
+          <GalleryItem index={1} className="row-span-2" style={{ animationDelay: "50ms" }} />
           
-          {/* Right top - Juniori */}
-          <GalleryItem index={2} className="row-span-1" style={{ animationDelay: "100ms" }} />
+          {/* Right top - Juniori (2 rows) */}
+          <GalleryItem index={2} className="row-span-2" style={{ animationDelay: "100ms" }} />
           
-          {/* Middle bottom - Mladi centar Marko (1 row, equal to Mirko) */}
-          <GalleryItem index={3} className="row-span-1" style={{ animationDelay: "150ms" }} />
+          {/* Middle - Mladi centar Marko (2 rows) */}
+          <GalleryItem index={3} className="row-span-2" style={{ animationDelay: "150ms" }} />
           
-          {/* Right - Akcija (spans 2 rows) */}
+          {/* Right - Akcija (2 rows) */}
           <GalleryItem index={4} className="row-span-2" style={{ animationDelay: "200ms" }} />
           
-          {/* Bottom left - Timeout (taller, 2 rows) */}
-          <GalleryItem index={5} className="row-span-2 col-span-2" style={{ animationDelay: "250ms" }} />
+          {/* Bottom left - Timeout (1 row) */}
+          <GalleryItem index={5} className="row-span-1" style={{ animationDelay: "250ms" }} />
         </div>
 
         <div className="text-center mt-10">
