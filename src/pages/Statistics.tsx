@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -293,17 +294,18 @@ const Statistics = () => {
     window.scrollTo(0, 0);
   }, []);
   
-  // Sort matches: 1 upcoming first, then past matches with pagination
+  // Sort matches: upcoming first, then past matches with pagination
   const upcomingMatches = matches.filter(m => m.isUpcoming);
   const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  // Pagination: 1 upcoming + 5 past per page
-  const matchesPerPage = 5;
-  const totalMatchPages = Math.ceil(playedMatches.length / matchesPerPage);
-  const displayedMatches = [
-    ...upcomingMatches.slice(0, 1),
-    ...playedMatches.slice(matchPage * matchesPerPage, (matchPage + 1) * matchesPerPage)
-  ];
+  // Pagination: Page 0 = 1 upcoming + 5 past, Page 1+ = remaining upcoming matches
+  const matchesPerPage = 6;
+  const allMatchesForPagination = [...upcomingMatches, ...playedMatches];
+  const totalMatchPages = Math.ceil(allMatchesForPagination.length / matchesPerPage);
+  const displayedMatches = allMatchesForPagination.slice(
+    matchPage * matchesPerPage, 
+    (matchPage + 1) * matchesPerPage
+  );
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
@@ -416,95 +418,104 @@ const Statistics = () => {
                 <button 
                   onClick={() => setMatchPage(p => Math.max(0, p - 1))}
                   disabled={matchPage === 0}
-                  className="p-1 rounded-full hover:bg-background/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                  className="w-6 h-6 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center hover:bg-primary/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={14} className="text-primary" />
                 </button>
                 <h3 className="font-display text-base text-foreground text-center">Utakmice</h3>
                 <button 
                   onClick={() => setMatchPage(p => Math.min(totalMatchPages - 1, p + 1))}
                   disabled={matchPage >= totalMatchPages - 1}
-                  className="p-1 rounded-full hover:bg-background/50 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                  className="w-6 h-6 rounded-full bg-primary/20 border border-primary/50 flex items-center justify-center hover:bg-primary/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={14} className="text-primary" />
                 </button>
               </div>
 
-              <div className="divide-y divide-border/20">
-                {displayedMatches.map((match) => {
-                  const result = getMatchResult(match);
-                  const homeLogo = getTeamLogo(match.homeTeam);
-                  const awayLogo = getTeamLogo(match.awayTeam);
-                  
-                  const matchContent = (
-                    <div className={`px-2 py-[7px] hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
-                            <span>{match.date}</span>
-                            {match.time && <span>{match.time}</span>}
-                            {!match.isUpcoming && <span className="text-muted-foreground/60">FT</span>}
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={matchPage}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                  className="divide-y divide-border/20"
+                >
+                  {displayedMatches.map((match) => {
+                    const result = getMatchResult(match);
+                    const homeLogo = getTeamLogo(match.homeTeam);
+                    const awayLogo = getTeamLogo(match.awayTeam);
+                    
+                    const matchContent = (
+                      <div className={`px-2 py-[7px] hover:bg-secondary/50 transition-all duration-200 ${!match.isUpcoming ? 'cursor-pointer hover:shadow-md' : ''}`}>
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                              <span>{match.date}</span>
+                              {match.time && <span>{match.time}</span>}
+                              {!match.isUpcoming && <span className="text-muted-foreground/60">FT</span>}
+                            </div>
+                            
+                            {/* Home Team */}
+                            <div className="flex items-center justify-between mb-0.5">
+                              <div className="flex items-center gap-1.5">
+                                {homeLogo && <img src={homeLogo} alt="" className="w-4 h-4 object-contain" />}
+                                <span className={`text-sm font-medium ${match.homeTeam.includes("Posušje") ? "text-primary" : "text-foreground"}`}>
+                                  {match.homeTeam}
+                                </span>
+                              </div>
+                              {!match.isUpcoming && (
+                                <span className={`text-sm font-bold ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                                  {match.homeScore}
+                                </span>
+                              )}
+                            </div>
+                            
+                            {/* Away Team */}
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-1.5">
+                                {awayLogo && <img src={awayLogo} alt="" className="w-4 h-4 object-contain" />}
+                                <span className={`text-sm font-medium ${match.awayTeam.includes("Posušje") ? "text-primary" : "text-foreground"}`}>
+                                  {match.awayTeam}
+                                </span>
+                              </div>
+                              {!match.isUpcoming && (
+                                <span className={`text-sm font-bold ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
+                                  {match.awayScore}
+                                </span>
+                              )}
+                            </div>
                           </div>
                           
-                          {/* Home Team */}
-                          <div className="flex items-center justify-between mb-0.5">
-                            <div className="flex items-center gap-1.5">
-                              {homeLogo && <img src={homeLogo} alt="" className="w-4 h-4 object-contain" />}
-                              <span className={`text-sm font-medium ${match.homeTeam.includes("Posušje") ? "text-primary" : "text-foreground"}`}>
-                                {match.homeTeam}
+                          {result && (
+                            <div className="ml-2 flex items-center self-center">
+                              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-white ${
+                                result === "W" ? "bg-green-500" : "bg-red-500"
+                              }`}>
+                                {result}
                               </span>
                             </div>
-                            {!match.isUpcoming && (
-                              <span className={`text-sm font-bold ${match.homeScore! > match.awayScore! ? "text-foreground" : "text-muted-foreground"}`}>
-                                {match.homeScore}
-                              </span>
-                            )}
-                          </div>
-                          
-                          {/* Away Team */}
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-1.5">
-                              {awayLogo && <img src={awayLogo} alt="" className="w-4 h-4 object-contain" />}
-                              <span className={`text-sm font-medium ${match.awayTeam.includes("Posušje") ? "text-primary" : "text-foreground"}`}>
-                                {match.awayTeam}
-                              </span>
-                            </div>
-                            {!match.isUpcoming && (
-                              <span className={`text-sm font-bold ${match.awayScore! > match.homeScore! ? "text-foreground" : "text-muted-foreground"}`}>
-                                {match.awayScore}
-                              </span>
-                            )}
-                          </div>
+                          )}
                         </div>
-                        
-                        {result && (
-                          <div className="ml-2 flex items-center self-center">
-                            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold text-white ${
-                              result === "W" ? "bg-green-500" : "bg-red-500"
-                            }`}>
-                              {result}
-                            </span>
-                          </div>
-                        )}
                       </div>
-                    </div>
-                  );
-                  
-                  return match.sofascoreLink ? (
-                    <a 
-                      key={match.id} 
-                      href={match.sofascoreLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      {matchContent}
-                    </a>
-                  ) : (
-                    <div key={match.id}>{matchContent}</div>
-                  );
-                })}
-              </div>
+                    );
+                    
+                    return match.sofascoreLink ? (
+                      <a 
+                        key={match.id} 
+                        href={match.sofascoreLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        {matchContent}
+                      </a>
+                    ) : (
+                      <div key={match.id}>{matchContent}</div>
+                    );
+                  })}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
