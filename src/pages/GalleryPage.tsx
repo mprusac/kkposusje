@@ -8,13 +8,17 @@ import eventTomislav from "@/assets/event-tomislav.png";
 import eventSiroki from "@/assets/event-siroki.png";
 import eventRama from "@/assets/event-rama.png";
 
-// Import existing gallery images for album content
-import action1 from "@/assets/action-1.jpg";
-import action2 from "@/assets/action-2.jpg";
-import action3 from "@/assets/action-3.jpg";
-import action4 from "@/assets/action-4.png";
-import action5 from "@/assets/action-5.png";
-import action6 from "@/assets/action-6.png";
+// Import Tomislav images
+import tomislav1 from "@/assets/tomislav/tomislav-1.jpg";
+import tomislav2 from "@/assets/tomislav/tomislav-2.jpg";
+import tomislav3 from "@/assets/tomislav/tomislav-3.png";
+import tomislav4 from "@/assets/tomislav/tomislav-4.jpg";
+import tomislav5 from "@/assets/tomislav/tomislav-5.jpg";
+import tomislav6 from "@/assets/tomislav/tomislav-6.jpg";
+import tomislav7 from "@/assets/tomislav/tomislav-7.png";
+import tomislav8 from "@/assets/tomislav/tomislav-8.jpg";
+import tomislav9 from "@/assets/tomislav/tomislav-9.png";
+import tomislav10 from "@/assets/tomislav/tomislav-10.jpg";
 
 // Import Rama images
 import rama1 from "@/assets/rama/rama-1.png";
@@ -54,8 +58,19 @@ const events = [
     date: "02.11.2025.",
     description: "Galerija s utakmice Posušje - Tomislav",
     coverImage: eventTomislav,
-    images: [action1, action2, action3, action4, action5, action6] as string[],
-    imagesWithOrientation: null as ImageWithOrientation[] | null,
+    images: [] as string[],
+    imagesWithOrientation: [
+      { src: tomislav3, orientation: "horizontal" },   // high five - horizontal
+      { src: tomislav1, orientation: "vertical" },     // dribling - vertical
+      { src: tomislav2, orientation: "vertical" },     // lopta u ruci - vertical
+      { src: tomislav7, orientation: "horizontal" },   // slavlje - horizontal
+      { src: tomislav4, orientation: "vertical" },     // trener - vertical
+      { src: tomislav5, orientation: "vertical" },     // duel - vertical
+      { src: tomislav9, orientation: "horizontal" },   // igrači hodaju - horizontal
+      { src: tomislav6, orientation: "vertical" },     // zakucavanje - vertical
+      { src: tomislav8, orientation: "vertical" },     // klupa - vertical
+      { src: tomislav10, orientation: "vertical" },    // šut - vertical
+    ] as ImageWithOrientation[],
   },
   {
     id: "siroki",
@@ -85,8 +100,19 @@ const events = [
     date: "23.11.2025.",
     description: "Galerija s utakmice Posušje - Rama",
     coverImage: eventRama,
-    images: [rama9, rama7, rama1, rama10, rama4, rama2, rama3, rama8, rama5, rama6] as string[],
-    imagesWithOrientation: null as ImageWithOrientation[] | null,
+    images: [] as string[],
+    imagesWithOrientation: [
+      { src: rama9, orientation: "horizontal" },     // horizontal
+      { src: rama7, orientation: "vertical" },       // vertical
+      { src: rama1, orientation: "vertical" },       // vertical
+      { src: rama10, orientation: "horizontal" },    // horizontal
+      { src: rama4, orientation: "vertical" },       // vertical
+      { src: rama2, orientation: "vertical" },       // vertical
+      { src: rama3, orientation: "horizontal" },     // horizontal
+      { src: rama8, orientation: "vertical" },       // vertical
+      { src: rama5, orientation: "vertical" },       // vertical
+      { src: rama6, orientation: "horizontal" },     // horizontal
+    ] as ImageWithOrientation[],
   },
 ];
 
@@ -98,7 +124,7 @@ const EventCard = ({ event, index }: { event: typeof events[0]; index: number })
       transition={{ duration: 0.5, delay: index * 0.15 }}
     >
       <Link to={`/galerija/${event.id}`} className="group block">
-        <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+        <div className="relative overflow-hidden rounded-lg aspect-[4/3] shadow-[0_0_40px_rgba(234,179,8,0.3)] hover:shadow-[0_0_60px_rgba(234,179,8,0.5)] transition-shadow duration-300">
           <img
             src={event.coverImage}
             alt={`${event.homeTeam} - ${event.awayTeam}`}
@@ -161,31 +187,19 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
     setCurrentIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
   };
 
-  // Get span classes based on orientation
+  // Get span classes based on orientation - simplified for better layout
   const getSpanClasses = (index: number) => {
     if (event.imagesWithOrientation) {
       const img = event.imagesWithOrientation[index];
       // Horizontal images span 2 columns, 2 rows
-      // Vertical images span 1 column, 3 rows
+      // Vertical images span 1 column, 2 rows
       return img.orientation === "horizontal" 
         ? "col-span-2 row-span-2" 
-        : "col-span-1 row-span-3";
+        : "col-span-1 row-span-2";
     }
     
-    // Fallback for events without orientation data
-    const patterns = [
-      "row-span-3 col-span-1",
-      "row-span-2 col-span-1",
-      "row-span-2 col-span-1",
-      "row-span-2 col-span-1",
-      "row-span-3 col-span-1",
-      "row-span-2 col-span-1",
-      "row-span-2 col-span-1",
-      "row-span-3 col-span-1",
-      "row-span-2 col-span-1",
-      "row-span-2 col-span-1",
-    ];
-    return patterns[index % 10];
+    // Fallback
+    return "col-span-1 row-span-2";
   };
 
   return (
@@ -200,10 +214,10 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
           >
             <Link
               to="/galerija"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
+              className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mb-8 text-lg"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="font-display tracking-wider">Nazad na galeriju</span>
+              <ArrowLeft className="w-6 h-6" />
+              <span className="font-display tracking-wider text-xl">Nazad na galeriju</span>
             </Link>
           </motion.div>
 
@@ -222,8 +236,8 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
             <p className="text-muted-foreground mt-4">{event.description}</p>
           </motion.div>
 
-          {/* Bento Grid Album */}
-          <div className="grid grid-cols-3 gap-2 md:gap-4 max-w-5xl mx-auto" style={{ gridAutoRows: "100px" }}>
+          {/* Bento Grid Album - reduced gap for tighter layout */}
+          <div className="grid grid-cols-3 gap-1.5 md:gap-2 max-w-5xl mx-auto" style={{ gridAutoRows: "120px" }}>
             {allImages.map((img, index) => (
               <motion.div
                 key={index}
@@ -328,10 +342,10 @@ const GalleryPage = () => {
           >
             <Link
               to="/"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
+              className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mb-8 text-lg"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="font-display tracking-wider">Nazad</span>
+              <ArrowLeft className="w-6 h-6" />
+              <span className="font-display tracking-wider text-xl">Nazad</span>
             </Link>
           </motion.div>
 
