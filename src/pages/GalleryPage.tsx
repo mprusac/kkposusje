@@ -124,7 +124,7 @@ const EventCard = ({ event, index }: { event: typeof events[0]; index: number })
       transition={{ duration: 0.5, delay: index * 0.15 }}
     >
       <Link to={`/galerija/${event.id}`} className="group block">
-        <div className="relative overflow-hidden rounded-lg aspect-[4/3] shadow-[0_0_40px_rgba(234,179,8,0.3)] hover:shadow-[0_0_60px_rgba(234,179,8,0.5)] transition-shadow duration-300">
+        <div className="relative overflow-hidden rounded-lg aspect-[4/3] shadow-[0_0_20px_rgba(234,179,8,0.15)] hover:shadow-[0_0_30px_rgba(234,179,8,0.25)] transition-shadow duration-300">
           <img
             src={event.coverImage}
             alt={`${event.homeTeam} - ${event.awayTeam}`}
@@ -187,19 +187,19 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
     setCurrentIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
   };
 
-  // Get span classes based on orientation - simplified for better layout
+  // Get span classes based on orientation - compact layout
   const getSpanClasses = (index: number) => {
     if (event.imagesWithOrientation) {
       const img = event.imagesWithOrientation[index];
-      // Horizontal images span 2 columns, 2 rows
+      // Horizontal images span 2 columns, 1 row
       // Vertical images span 1 column, 2 rows
       return img.orientation === "horizontal" 
-        ? "col-span-2 row-span-2" 
+        ? "col-span-2 row-span-1" 
         : "col-span-1 row-span-2";
     }
     
     // Fallback
-    return "col-span-1 row-span-2";
+    return "col-span-1 row-span-1";
   };
 
   return (
@@ -236,25 +236,28 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
             <p className="text-muted-foreground mt-4">{event.description}</p>
           </motion.div>
 
-          {/* Bento Grid Album - reduced gap for tighter layout */}
-          <div className="grid grid-cols-3 gap-1.5 md:gap-2 max-w-5xl mx-auto" style={{ gridAutoRows: "120px" }}>
-            {allImages.map((img, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`group relative overflow-hidden rounded-lg cursor-pointer ${getSpanClasses(index)}`}
-                onClick={() => openLightbox(index)}
-              >
-                <img
-                  src={img}
-                  alt={`Slika ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
-              </motion.div>
-            ))}
+          {/* Bento Grid Album - compact layout */}
+          <div className="grid grid-cols-4 gap-1 max-w-5xl mx-auto" style={{ gridAutoRows: "80px" }}>
+            {allImages.map((img, index) => {
+              const isHorizontal = event.imagesWithOrientation?.[index]?.orientation === "horizontal";
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className={`group relative overflow-hidden rounded cursor-pointer ${isHorizontal ? "col-span-2 row-span-2" : "col-span-1 row-span-2"}`}
+                  onClick={() => openLightbox(index)}
+                >
+                  <img
+                    src={img}
+                    alt={`Slika ${index + 1}`}
+                    className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${isHorizontal ? "object-center" : ""}`}
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
