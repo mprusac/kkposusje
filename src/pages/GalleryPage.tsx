@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Camera, X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -28,6 +28,24 @@ import rama8 from "@/assets/rama/rama-8.png";
 import rama9 from "@/assets/rama/rama-9.png";
 import rama10 from "@/assets/rama/rama-10.jpg";
 
+// Import Široki images
+import siroki1 from "@/assets/siroki/siroki-1.jpg";
+import siroki2 from "@/assets/siroki/siroki-2.jpg";
+import siroki3 from "@/assets/siroki/siroki-3.jpg";
+import siroki4 from "@/assets/siroki/siroki-4.jpg";
+import siroki5 from "@/assets/siroki/siroki-5.jpg";
+import siroki6 from "@/assets/siroki/siroki-6.jpg";
+import siroki7 from "@/assets/siroki/siroki-7.png";
+import siroki8 from "@/assets/siroki/siroki-8.png";
+import siroki9 from "@/assets/siroki/siroki-9.png";
+import siroki10 from "@/assets/siroki/siroki-10.png";
+
+// Image orientation type - vertical or horizontal
+type ImageWithOrientation = {
+  src: string;
+  orientation: "vertical" | "horizontal";
+};
+
 const events = [
   {
     id: "tomislav",
@@ -36,7 +54,8 @@ const events = [
     date: "02.11.2025.",
     description: "Galerija s utakmice Posušje - Tomislav",
     coverImage: eventTomislav,
-    images: [action1, action2, action3, action4, action5, action6],
+    images: [action1, action2, action3, action4, action5, action6] as string[],
+    imagesWithOrientation: null as ImageWithOrientation[] | null,
   },
   {
     id: "siroki",
@@ -45,7 +64,19 @@ const events = [
     date: "15.11.2025.",
     description: "Galerija s utakmice Posušje - Široki II",
     coverImage: eventSiroki,
-    images: [action2, action3, action1, action5, action6, action4],
+    images: [] as string[],
+    imagesWithOrientation: [
+      { src: siroki7, orientation: "horizontal" },   // tri igraca - horizontal
+      { src: siroki1, orientation: "vertical" },     // duel - vertical
+      { src: siroki2, orientation: "vertical" },     // layup - vertical
+      { src: siroki8, orientation: "horizontal" },   // igrač s loptom - horizontal
+      { src: siroki5, orientation: "vertical" },     // timeout - vertical
+      { src: siroki3, orientation: "vertical" },     // dribling - vertical
+      { src: siroki9, orientation: "horizontal" },   // obrana - horizontal
+      { src: siroki4, orientation: "vertical" },     // šut - vertical
+      { src: siroki10, orientation: "horizontal" },  // prodor - horizontal
+      { src: siroki6, orientation: "vertical" },     // dribling - vertical
+    ] as ImageWithOrientation[],
   },
   {
     id: "rama",
@@ -54,7 +85,8 @@ const events = [
     date: "23.11.2025.",
     description: "Galerija s utakmice Posušje - Rama",
     coverImage: eventRama,
-    images: [rama9, rama7, rama1, rama10, rama4, rama2, rama3, rama8, rama5, rama6],
+    images: [rama9, rama7, rama1, rama10, rama4, rama2, rama3, rama8, rama5, rama6] as string[],
+    imagesWithOrientation: null as ImageWithOrientation[] | null,
   },
 ];
 
@@ -100,6 +132,16 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Get all images (either from imagesWithOrientation or regular images array)
+  const allImages = event.imagesWithOrientation 
+    ? event.imagesWithOrientation.map(img => img.src)
+    : event.images;
+
   const openLightbox = (index: number) => {
     setCurrentIndex(index);
     setLightboxOpen(true);
@@ -112,27 +154,25 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? event.images.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev === event.images.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
   };
 
-  // Dynamic span classes based on image count
-  const getSpanClasses = (index: number, totalImages: number) => {
-    if (totalImages <= 6) {
-      const patterns = [
-        "row-span-3 col-span-1",
-        "row-span-2 col-span-1",
-        "row-span-2 col-span-1",
-        "row-span-3 col-span-1",
-        "row-span-2 col-span-1",
-        "row-span-2 col-span-1",
-      ];
-      return patterns[index % 6];
+  // Get span classes based on orientation
+  const getSpanClasses = (index: number) => {
+    if (event.imagesWithOrientation) {
+      const img = event.imagesWithOrientation[index];
+      // Horizontal images span 2 columns, 2 rows
+      // Vertical images span 1 column, 3 rows
+      return img.orientation === "horizontal" 
+        ? "col-span-2 row-span-2" 
+        : "col-span-1 row-span-3";
     }
-    // For more images, create varied pattern
+    
+    // Fallback for events without orientation data
     const patterns = [
       "row-span-3 col-span-1",
       "row-span-2 col-span-1",
@@ -184,13 +224,13 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
 
           {/* Bento Grid Album */}
           <div className="grid grid-cols-3 gap-2 md:gap-4 max-w-5xl mx-auto" style={{ gridAutoRows: "100px" }}>
-            {event.images.map((img, index) => (
+            {allImages.map((img, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`group relative overflow-hidden rounded-lg cursor-pointer ${getSpanClasses(index, event.images.length)}`}
+                className={`group relative overflow-hidden rounded-lg cursor-pointer ${getSpanClasses(index)}`}
                 onClick={() => openLightbox(index)}
               >
                 <img
@@ -234,7 +274,7 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
             </button>
 
             <img
-              src={event.images[currentIndex]}
+              src={allImages[currentIndex]}
               alt={`Slika ${currentIndex + 1}`}
               className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
@@ -248,7 +288,7 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
             </button>
 
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-foreground/70 text-sm">
-              {currentIndex + 1} / {event.images.length}
+              {currentIndex + 1} / {allImages.length}
             </div>
           </motion.div>
         )}
@@ -261,6 +301,11 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
 
 const GalleryPage = () => {
   const { eventId } = useParams();
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // If eventId is provided, show the album
   if (eventId) {
@@ -302,7 +347,7 @@ const GalleryPage = () => {
               <span className="text-primary"> GALERIJA</span>
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Zabilježeni trenuci sa naših utakmica - svaka fotografija priča svoju priču
+              Zabilježeni trenuci sa naših utakmica
             </p>
           </motion.div>
 

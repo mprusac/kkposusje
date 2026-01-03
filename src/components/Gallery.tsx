@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -117,13 +118,15 @@ const Gallery = () => {
         </div>
 
         <div className="text-center mt-10">
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground uppercase tracking-wider"
-          >
-            Sva galerija
-          </Button>
+          <Link to="/galerija">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground uppercase tracking-wider"
+            >
+              Sva galerija
+            </Button>
+          </Link>
         </div>
       </div>
 
