@@ -57,7 +57,7 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
@@ -110,7 +110,7 @@ const NewsPage = () => {
   const filteredNews = activeCategory === "sve" ? allNews : allNews.filter(item => item.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>

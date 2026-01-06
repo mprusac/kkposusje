@@ -343,13 +343,13 @@ const Statistics = () => {
       <header className="bg-secondary/50 border-b border-border/50 sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center">
-            <Link 
-              to="/" 
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mr-auto"
+            <button 
+              onClick={() => navigate("/")} 
+              className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mr-auto text-lg"
             >
-              <ArrowLeft size={18} />
-              <span className="font-medium text-sm">Natrag</span>
-            </Link>
+              <ArrowLeft className="w-6 h-6" />
+              <span className="font-display tracking-wider text-xl">Nazad</span>
+            </button>
             <div className="flex items-end gap-3 absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 md:ml-4">
               <img src={logoPosusje} alt="KK Posušje" className="w-10 h-10 object-contain" />
               <div>
@@ -372,9 +372,9 @@ const Statistics = () => {
         {/* Mobile Title */}
         <h2 className="font-display text-3xl text-primary text-center mb-6 md:hidden">STATISTIKA</h2>
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5">
           {/* Left Column - Form & Games */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
+          <div className="lg:col-span-3 flex flex-col gap-3 order-2 lg:order-1">
             {/* Recent Form */}
             <div className="bg-secondary/30 rounded-xl p-2 border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <h3 className="font-display text-base text-foreground mb-1 text-center">Nedavna forma</h3>
@@ -525,16 +525,16 @@ const Statistics = () => {
           </div>
 
           {/* Right Column - Tabs */}
-          <div className="lg:col-span-9">
+          <div className="lg:col-span-9 order-1 lg:order-2">
             <Tabs value={activeMainTab} onValueChange={setActiveMainTab} className="w-full">
               <TabsList className="w-full bg-secondary/30 border border-border/30 rounded-xl p-1 mb-5 hover:shadow-lg transition-shadow duration-300">
-                <TabsTrigger value="standings" className="flex-1 font-display text-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                <TabsTrigger value="standings" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Poredak
                 </TabsTrigger>
-                <TabsTrigger value="statistics" className="flex-1 font-display text-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                <TabsTrigger value="statistics" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Statistika
                 </TabsTrigger>
-                <TabsTrigger value="players" className="flex-1 font-display text-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                <TabsTrigger value="players" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Igrači
                 </TabsTrigger>
               </TabsList>
@@ -562,61 +562,63 @@ const Statistics = () => {
                   </div>
                   
                   {leagueCategory === "seniori" ? (
-                    <Table>
-                      <TableHeader>
-                        <TableRow className="hover:bg-transparent border-border/30">
-                          <TableHead className="w-10 text-center text-sm font-bold">#</TableHead>
-                          <TableHead className="text-sm font-bold">Ekipa</TableHead>
-                          <TableHead className="text-center w-10 text-sm font-bold">UT</TableHead>
-                          <TableHead className="text-center w-10 text-sm font-bold">W</TableHead>
-                          <TableHead className="text-center w-10 text-sm font-bold">L</TableHead>
-                          <TableHead className="text-center w-14 text-sm font-bold">+/-</TableHead>
-                          <TableHead className="text-center w-28 text-sm font-bold">Zadnjih 5</TableHead>
-                          <TableHead className="text-center w-14 text-sm font-bold">BOD</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {standings.map((team) => (
-                          <TableRow 
-                            key={team.position} 
-                            className={`border-border/20 transition-all duration-200 hover:bg-secondary/50 hover:shadow-md ${team.team === "KK Posušje" ? "bg-primary/10 hover:bg-primary/20" : ""}`}
-                          >
-                            <TableCell className="text-center font-bold text-sm">{team.position}</TableCell>
-                            <TableCell>
-                              <div className="flex items-center gap-2">
-                                {getTeamLogo(team.team) && (
-                                  <img src={getTeamLogo(team.team)!} alt="" className="w-7 h-7 object-contain" />
-                                )}
-                                <span className={`text-sm font-bold ${team.team === "KK Posušje" ? "text-primary" : ""}`}>
-                                  {team.team}
-                                </span>
-                              </div>
-                            </TableCell>
-                            <TableCell className="text-center text-sm font-bold">{team.played}</TableCell>
-                            <TableCell className="text-center text-sm font-bold">{team.won}</TableCell>
-                            <TableCell className="text-center text-sm font-bold">{team.lost}</TableCell>
-                            <TableCell className={`text-center text-sm font-bold ${team.diff > 0 ? "text-green-400" : team.diff < 0 ? "text-red-400" : ""}`}>
-                              {team.diff > 0 ? `+${team.diff}` : team.diff}
-                            </TableCell>
-                            <TableCell className="text-center">
-                              <div className="flex gap-0.5 justify-center items-center">
-                                {team.last5.map((result, i) => (
-                                  <span 
-                                    key={i} 
-                                    className={`w-5 h-5 text-[10px] font-bold rounded flex items-center justify-center transition-transform duration-200 hover:scale-110 ${
-                                      result === "W" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
-                                    }`}
-                                  >
-                                    {result}
-                                  </span>
-                                ))}
-                              </div>
-                            </TableCell>
-                            <TableCell className="text-center font-bold text-sm">{team.points}</TableCell>
+                    <div className="overflow-x-auto">
+                      <Table className="min-w-[600px]">
+                        <TableHeader>
+                          <TableRow className="hover:bg-transparent border-border/30">
+                            <TableHead className="w-10 text-center text-sm font-bold">#</TableHead>
+                            <TableHead className="text-sm font-bold">Ekipa</TableHead>
+                            <TableHead className="text-center w-10 text-sm font-bold">UT</TableHead>
+                            <TableHead className="text-center w-10 text-sm font-bold">W</TableHead>
+                            <TableHead className="text-center w-10 text-sm font-bold">L</TableHead>
+                            <TableHead className="text-center w-14 text-sm font-bold">+/-</TableHead>
+                            <TableHead className="text-center w-28 text-sm font-bold hidden sm:table-cell">Zadnjih 5</TableHead>
+                            <TableHead className="text-center w-14 text-sm font-bold">BOD</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                        </TableHeader>
+                        <TableBody>
+                          {standings.map((team) => (
+                            <TableRow 
+                              key={team.position} 
+                              className={`border-border/20 transition-all duration-200 hover:bg-secondary/50 hover:shadow-md ${team.team === "KK Posušje" ? "bg-primary/10 hover:bg-primary/20" : ""}`}
+                            >
+                              <TableCell className="text-center font-bold text-sm">{team.position}</TableCell>
+                              <TableCell>
+                                <div className="flex items-center gap-2">
+                                  {getTeamLogo(team.team) && (
+                                    <img src={getTeamLogo(team.team)!} alt="" className="w-6 h-6 md:w-7 md:h-7 object-contain" />
+                                  )}
+                                  <span className={`text-xs md:text-sm font-bold ${team.team === "KK Posušje" ? "text-primary" : ""}`}>
+                                    {team.team}
+                                  </span>
+                                </div>
+                              </TableCell>
+                              <TableCell className="text-center text-sm font-bold">{team.played}</TableCell>
+                              <TableCell className="text-center text-sm font-bold">{team.won}</TableCell>
+                              <TableCell className="text-center text-sm font-bold">{team.lost}</TableCell>
+                              <TableCell className={`text-center text-sm font-bold ${team.diff > 0 ? "text-green-400" : team.diff < 0 ? "text-red-400" : ""}`}>
+                                {team.diff > 0 ? `+${team.diff}` : team.diff}
+                              </TableCell>
+                              <TableCell className="text-center hidden sm:table-cell">
+                                <div className="flex gap-0.5 justify-center items-center">
+                                  {team.last5.map((result, i) => (
+                                    <span 
+                                      key={i} 
+                                      className={`w-5 h-5 text-[10px] font-bold rounded flex items-center justify-center transition-transform duration-200 hover:scale-110 ${
+                                        result === "W" ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                                      }`}
+                                    >
+                                      {result}
+                                    </span>
+                                  ))}
+                                </div>
+                              </TableCell>
+                              <TableCell className="text-center font-bold text-sm">{team.points}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
                   ) : (
                     <Table>
                       <TableHeader>
@@ -779,71 +781,74 @@ const Statistics = () => {
                   </div>
 
                   {activePlayersTab === "squad" ? (
-                    <Table>
-                      <TableHeader>
-                        <TableRow className="hover:bg-transparent border-border/30">
-                          <TableHead className="w-14 text-center text-base font-bold">Broj</TableHead>
-                          <TableHead className="w-14 text-base font-bold"></TableHead>
-                          <TableHead className="text-base font-bold">Igrač</TableHead>
-                          <TableHead className="text-center text-base font-bold">Nacionalnost</TableHead>
-                          <TableHead className="text-center text-base font-bold">Visina</TableHead>
-                          <TableHead className="text-center text-base font-bold">Datum rođenja</TableHead>
-                          <TableHead className="text-center text-base font-bold">Dob</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {players.map((player, index) => (
-                          <TableRow key={index} className="hover:bg-secondary/50 border-border/20 transition-all duration-200 hover:shadow-md group">
-                            <TableCell className="font-bold text-primary text-center text-base">{player.number}</TableCell>
-                            <TableCell>
-                              {player.sofascoreLink ? (
-                                <a 
-                                  href={player.sofascoreLink} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
-                                  title="Pogledaj na SofaScore"
-                                >
-                                  <ExternalLink size={14} />
-                                </a>
-                              ) : (
-                                <div className="w-7 h-7" />
-                              )}
-                            </TableCell>
-                            <TableCell>
-                              <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-secondary overflow-hidden group-hover:ring-2 group-hover:ring-primary/30 transition-all duration-200">
-                                  {player.image ? (
-                                    <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                  ) : (
-                                    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
-                                      {player.name.charAt(0)}
-                                    </div>
-                                  )}
-                                </div>
-                                <div>
-                                  <p className="font-bold text-base">{player.name}</p>
-                                  <p className="text-sm text-primary font-medium">{player.position}</p>
-                                </div>
-                              </div>
-                            </TableCell>
-                            <TableCell className="text-center">
-                              <div className="flex items-center justify-center gap-1.5">
-                                {getFlagImage(player.nationality) ? (
-                                  <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-6 h-6 rounded-full object-cover flex-shrink-0" />
-                                ) : player.nationality !== "-" ? (
-                                  <span className="text-base">{getFlagEmoji(player.nationality)}</span>
-                                ) : null}
-                                <span className="text-base font-bold">{player.nationality}</span>
-                              </div>
-                            </TableCell>
-                            <TableCell className="text-center text-muted-foreground text-base font-bold">{player.height || "-"}</TableCell>
-                            <TableCell className="text-center text-muted-foreground text-base font-bold">{player.dateOfBirth || "-"}</TableCell>
-                            <TableCell className="text-center text-muted-foreground text-base font-bold">{player.age ? `${player.age} god.` : "-"}</TableCell>
+                    <div className="overflow-x-auto">
+                      <Table className="min-w-[600px]">
+                        <TableHeader>
+                          <TableRow className="hover:bg-transparent border-border/30">
+                            <TableHead className="w-14 text-center text-sm md:text-base font-bold">Broj</TableHead>
+                            <TableHead className="w-14 text-sm md:text-base font-bold"></TableHead>
+                            <TableHead className="text-sm md:text-base font-bold">Igrač</TableHead>
+                            <TableHead className="text-center text-sm md:text-base font-bold">Nacionalnost</TableHead>
+                            <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Visina</TableHead>
+                            <TableHead className="text-center text-sm md:text-base font-bold hidden lg:table-cell">Datum rođenja</TableHead>
+                            <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Dob</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
+                        </TableHeader>
+                        <TableBody>
+                          {players.map((player, index) => (
+                            <TableRow key={index} className="hover:bg-secondary/50 border-border/20 transition-all duration-200 hover:shadow-md group">
+                              <TableCell className="font-bold text-primary text-center text-sm md:text-base">{player.number}</TableCell>
+                              <TableCell>
+                                {player.sofascoreLink ? (
+                                  <a 
+                                    href={player.sofascoreLink} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
+                                    title="Pogledaj na SofaScore"
+                                  >
+                                    <ExternalLink size={12} className="md:hidden" />
+                                    <ExternalLink size={14} className="hidden md:block" />
+                                  </a>
+                                ) : (
+                                  <div className="w-6 h-6 md:w-7 md:h-7" />
+                                )}
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex items-center gap-2 md:gap-3">
+                                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-secondary overflow-hidden group-hover:ring-2 group-hover:ring-primary/30 transition-all duration-200 flex-shrink-0">
+                                    {player.image ? (
+                                      <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
+                                    ) : (
+                                      <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                                        {player.name.charAt(0)}
+                                      </div>
+                                    )}
+                                  </div>
+                                  <div>
+                                    <p className="font-bold text-sm md:text-base">{player.name}</p>
+                                    <p className="text-xs md:text-sm text-primary font-medium">{player.position}</p>
+                                  </div>
+                                </div>
+                              </TableCell>
+                              <TableCell className="text-center">
+                                <div className="flex items-center justify-center gap-1">
+                                  {getFlagImage(player.nationality) ? (
+                                    <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover flex-shrink-0" />
+                                  ) : player.nationality !== "-" ? (
+                                    <span className="text-sm md:text-base">{getFlagEmoji(player.nationality)}</span>
+                                  ) : null}
+                                  <span className="text-xs md:text-base font-bold hidden sm:inline">{player.nationality}</span>
+                                </div>
+                              </TableCell>
+                              <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.height || "-"}</TableCell>
+                              <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden lg:table-cell">{player.dateOfBirth || "-"}</TableCell>
+                              <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.age ? `${player.age} god.` : "-"}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
                   ) : (
                     <div className="p-5">
                       {/* Pagination controls */}
