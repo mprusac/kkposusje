@@ -124,20 +124,20 @@ const About = () => {
             aboutVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h2 className="section-title mb-12 text-center">
+          <h2 className="section-title mb-8 md:mb-12 text-center">
             <span className="section-title-white">O </span>
             <span className="section-title-gold">NAMA</span>
           </h2>
 
-          <div className="gold-border-left mb-16 text-center md:text-left mx-auto" style={{ maxWidth: "800px" }}>
-            <p className="text-lg md:text-xl text-muted-foreground mb-6 leading-relaxed">
+          <div className="gold-border-left mb-10 md:mb-16 text-center md:text-left mx-auto px-2 md:px-0" style={{ maxWidth: "800px" }}>
+            <p className="text-sm md:text-xl text-muted-foreground mb-4 md:mb-6 leading-relaxed">
               <span className="text-primary font-bold">HKK Posušje</span> je hrvatski košarkaški klub iz grada Posušja, osnovan{" "}
               <span className="text-primary font-semibold">1975. godine</span>.
             </p>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-xs md:text-base text-muted-foreground mb-3 md:mb-4 leading-relaxed">
               Klub njeguje više od <span className="text-primary font-semibold">pet desetljeća tradicije</span> rada s mladima i okuplja igrače iz cijele regije.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
               Kroz sustavan rad u omladinskim kategorijama i disciplinirane treninge razvijamo temelje za seniorski tim. Intenzivnim trudom gradimo <span className="text-primary font-semibold">zajedništvo, odgovornost i timski duh</span> kroz svaki trening. Zajedno težimo stvaranju novih sportskih uspjeha i pozitivnih vrijednosti u lokalnoj zajednici.
             </p>
           </div>
@@ -214,7 +214,7 @@ const About = () => {
             achVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h3 className="text-2xl md:text-4xl font-display text-foreground mb-6 md:mb-8 uppercase tracking-wider text-center">
+          <h3 className="text-xl md:text-4xl font-display text-foreground mb-6 md:mb-8 uppercase tracking-wider text-center">
             Postignuća
           </h3>
           <div className="space-y-3 md:space-y-4 max-w-2xl w-full">

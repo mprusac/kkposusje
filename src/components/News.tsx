@@ -64,19 +64,19 @@ const News = () => {
         </p>
 
         {/* News Slider */}
-        <div className="relative max-w-[1100px] mx-auto px-12 md:px-16">
-          <button onClick={() => scroll("left")} className="flex absolute -left-2 md:left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg">
-            <ChevronLeft size={20} className="md:hidden" />
+        <div className="relative max-w-[1100px] mx-auto px-14 md:px-16">
+          <button onClick={() => scroll("left")} className="flex absolute left-0 md:left-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg">
+            <ChevronLeft size={16} className="md:hidden" />
             <ChevronLeft size={24} className="hidden md:block" />
           </button>
-          <button onClick={() => scroll("right")} className="flex absolute -right-2 md:right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg">
-            <ChevronRight size={20} className="md:hidden" />
+          <button onClick={() => scroll("right")} className="flex absolute right-0 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg">
+            <ChevronRight size={16} className="md:hidden" />
             <ChevronRight size={24} className="hidden md:block" />
           </button>
 
-          <div ref={scrollRef} className="flex gap-3 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory justify-center md:justify-start" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <div ref={scrollRef} className="flex gap-3 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {allNews.map((item, index) => (
-              <article key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start" style={{ width: isMobile ? '85%' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '280px' : '260px', maxWidth: isMobile ? '320px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
+              <article key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start" style={{ width: isMobile ? '100%' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '260px' : '260px', maxWidth: isMobile ? '280px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
                 <div className="relative h-36 md:h-48 overflow-hidden">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
