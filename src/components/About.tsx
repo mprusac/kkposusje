@@ -129,7 +129,7 @@ const About = () => {
             <span className="section-title-gold">NAMA</span>
           </h2>
 
-          <div className="gold-border-left mb-10 md:mb-16 text-center md:text-left mx-auto px-2 md:px-0" style={{ maxWidth: "800px" }}>
+          <div className="gold-border-left mb-10 md:mb-16 text-center md:text-left mx-auto pl-4 md:pl-6 pr-2 md:pr-0" style={{ maxWidth: "800px" }}>
             <p className="text-sm md:text-xl text-muted-foreground mb-4 md:mb-6 leading-relaxed">
               <span className="text-primary font-bold">HKK Posušje</span> je hrvatski košarkaški klub iz grada Posušja, osnovan{" "}
               <span className="text-primary font-semibold">1975. godine</span>.
