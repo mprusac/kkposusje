@@ -685,7 +685,7 @@ const Statistics = () => {
                   <div className="grid md:grid-cols-2 gap-5">
                     {/* Offense */}
                     <div className="hover:scale-[1.02] transition-transform duration-300">
-                      <h4 className="font-display text-sm md:text-base text-center mb-3">Napad</h4>
+                      <h4 className="font-display text-base md:text-lg text-center mb-3">Napad</h4>
                       <div className="space-y-1.5">
                         {[
                           { label: "Pogođeni šutevi", value: "203", rank: 5 },
