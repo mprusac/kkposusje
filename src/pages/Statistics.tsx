@@ -875,12 +875,12 @@ const Statistics = () => {
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
                           <div key={catIndex} className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                            <h4 className="font-display text-sm text-center mb-3">{category.title}</h4>
+                            <h4 className="font-display text-base text-center mb-3">{category.title}</h4>
                             <div className="space-y-2">
                               {category.data.map((player) => (
                                 <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                                  <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
-                                  <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
+                                  <span className="text-primary font-bold w-4 text-sm">{player.rank}</span>
+                                  <div className="w-9 h-9 rounded-full bg-secondary overflow-hidden">
                                     {player.image ? (
                                       <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
                                     ) : (
@@ -888,10 +888,10 @@ const Statistics = () => {
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-xs truncate">{player.name}</p>
-                                    <p className="text-[10px] text-primary">{player.position}</p>
+                                    <p className="font-medium text-sm truncate">{player.name}</p>
+                                    <p className="text-xs text-primary">{player.position}</p>
                                   </div>
-                                  <span className="text-base font-display text-primary">{player.value}</span>
+                                  <span className="text-lg font-display text-primary">{player.value}</span>
                                 </div>
                               ))}
                             </div>
