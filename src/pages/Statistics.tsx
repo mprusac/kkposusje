@@ -377,7 +377,7 @@ const Statistics = () => {
           <div className="lg:col-span-3 flex flex-col gap-3 order-2 lg:order-1">
             {/* Recent Form */}
             <div className="bg-secondary/30 rounded-xl p-2 border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-              <h3 className="font-display text-base text-foreground mb-1 text-center">Nedavna forma</h3>
+              <h3 className="font-display text-lg text-foreground mb-1 text-center">Nedavna forma</h3>
               
               {/* Dynamic text - changes on hover */}
               <p className="text-[10px] text-muted-foreground text-center mb-1 h-4 transition-all duration-200">
@@ -427,7 +427,7 @@ const Statistics = () => {
                 >
                   <ChevronLeft size={14} className="text-primary" />
                 </button>
-                <h3 className="font-display text-base text-foreground text-center">Utakmice</h3>
+                <h3 className="font-display text-lg text-foreground text-center">Utakmice</h3>
                 <button 
                   onClick={() => setMatchPage(p => Math.min(totalMatchPages - 1, p + 1))}
                   disabled={matchPage >= totalMatchPages - 1}
@@ -656,9 +656,9 @@ const Statistics = () => {
 
               {/* Statistics Tab */}
               <TabsContent value="statistics" className="mt-0">
-                <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 min-h-[600px]">
                   {/* Summary */}
-                  <h3 className="font-display text-base md:text-lg text-center mb-5">Pregled</h3>
+                  <h3 className="font-display text-lg md:text-xl text-center mb-5">Pregled</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Poeni</p>
@@ -685,7 +685,7 @@ const Statistics = () => {
                   <div className="grid md:grid-cols-2 gap-5">
                     {/* Offense */}
                     <div className="hover:scale-[1.02] transition-transform duration-300">
-                      <h4 className="font-display text-sm md:text-base text-center mb-3">Napad</h4>
+                      <h4 className="font-display text-base md:text-lg text-center mb-3">Napad</h4>
                       <div className="space-y-1.5">
                         {[
                           { label: "Pogođeni šutevi", value: "203", rank: 5 },
@@ -710,7 +710,7 @@ const Statistics = () => {
 
                     {/* Defense & Rebounds */}
                     <div className="hover:scale-[1.02] transition-transform duration-300">
-                      <h4 className="font-display text-sm md:text-base text-center mb-3">Skokovi (po utakmici)</h4>
+                      <h4 className="font-display text-base md:text-lg text-center mb-3">Skokovi (po utakmici)</h4>
                       <div className="space-y-1.5 mb-5">
                         {[
                           { label: "Napadački", value: "28", rank: 4 },
@@ -729,7 +729,7 @@ const Statistics = () => {
                         ))}
                       </div>
 
-                      <h4 className="font-display text-sm md:text-base text-center mb-3">Obrana</h4>
+                      <h4 className="font-display text-base md:text-lg text-center mb-3">Obrana</h4>
                       <div className="space-y-1.5">
                         {[
                           { label: "Blokade", value: "14", rank: 5 },
@@ -875,12 +875,12 @@ const Statistics = () => {
                       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
                           <div key={catIndex} className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                            <h4 className="font-display text-sm text-center mb-3">{category.title}</h4>
+                            <h4 className="font-display text-base text-center mb-3">{category.title}</h4>
                             <div className="space-y-2">
                               {category.data.map((player) => (
                                 <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                                  <span className="text-primary font-bold w-3 text-xs">{player.rank}</span>
-                                  <div className="w-8 h-8 rounded-full bg-secondary overflow-hidden">
+                                  <span className="text-primary font-bold w-4 text-sm">{player.rank}</span>
+                                  <div className="w-9 h-9 rounded-full bg-secondary overflow-hidden">
                                     {player.image ? (
                                       <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
                                     ) : (
@@ -888,10 +888,10 @@ const Statistics = () => {
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-xs truncate">{player.name}</p>
-                                    <p className="text-[10px] text-primary">{player.position}</p>
+                                    <p className="font-medium text-sm truncate">{player.name}</p>
+                                    <p className="text-xs text-primary">{player.position}</p>
                                   </div>
-                                  <span className="text-base font-display text-primary">{player.value}</span>
+                                  <span className="text-lg font-display text-primary">{player.value}</span>
                                 </div>
                               ))}
                             </div>
