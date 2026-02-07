@@ -656,9 +656,9 @@ const Statistics = () => {
 
               {/* Statistics Tab */}
               <TabsContent value="statistics" className="mt-0">
-                <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 min-h-[600px]">
                   {/* Summary */}
-                  <h3 className="font-display text-base md:text-lg text-center mb-5">Pregled</h3>
+                  <h3 className="font-display text-lg md:text-xl text-center mb-5">Pregled</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Poeni</p>
