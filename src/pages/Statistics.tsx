@@ -599,7 +599,11 @@ const Statistics = () => {
                               <TableCell>
                                 <div className="flex items-center gap-2">
                                   {getTeamLogo(team.team) && (
-                                    <img src={getTeamLogo(team.team)!} alt="" className="w-6 h-6 md:w-7 md:h-7 object-contain" />
+                                    <img src={getTeamLogo(team.team)!} alt="" className={`object-contain ${
+                                      team.team === "HKK Grude" || team.team === "HKK Široki II" || team.team === "HKK Ljubuški"
+                                        ? "w-9 h-9 md:w-10 md:h-10 scale-[1.3]"
+                                        : "w-6 h-6 md:w-7 md:h-7"
+                                    }`} />
                                   )}
                                   <span className={`text-xs md:text-sm font-bold ${team.team === "HKK Posušje" ? "text-primary" : ""}`}>
                                     {team.team}
