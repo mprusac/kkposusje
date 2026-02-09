@@ -601,7 +601,7 @@ const Statistics = () => {
                                   {getTeamLogo(team.team) && (
                                     <img src={getTeamLogo(team.team)!} alt="" className="w-6 h-6 md:w-7 md:h-7 object-contain" />
                                   )}
-                                  <span className={`text-xs md:text-sm font-bold ${team.team === "KK Posušje" ? "text-primary" : ""}`}>
+                                  <span className={`text-xs md:text-sm font-bold ${team.team === "HKK Posušje" ? "text-primary" : ""}`}>
                                     {team.team}
                                   </span>
                                 </div>
