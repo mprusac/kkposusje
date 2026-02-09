@@ -157,7 +157,7 @@ const Results = () => {
   };
 
   const isLargeLogoTeam = (teamName: string) => {
-    return teamName.includes("Široki") && !teamName.includes("II");
+    return teamName.includes("Široki") || teamName.includes("Mostar") || teamName.includes("Rama") || teamName.includes("Grude") || teamName.includes("Ljubuš");
   };
 
   return (
