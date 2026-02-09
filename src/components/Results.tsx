@@ -242,16 +242,9 @@ const Results = () => {
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-col items-center gap-1.5">
-                      {match.competition && (
-                        <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full -mb-0.5">
-                          {match.competition}
-                        </span>
-                      )}
-                      <span className="text-[10px] md:text-xs font-medium text-muted-foreground bg-background/50 px-2 md:px-3 py-1 rounded-full">
+                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground bg-background/50 px-2 md:px-3 py-1 rounded-full">
                         {match.date}
                       </span>
-                    </div>
                     <div className="w-8 md:w-14 flex justify-center items-center">
                       <span title="SofaScore">
                         <ExternalLink
