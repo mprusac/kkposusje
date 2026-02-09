@@ -203,7 +203,7 @@ const Contact = () => {
             {/* Map */}
             <div className="rounded-lg md:rounded-xl overflow-hidden bg-secondary border border-border hover:border-primary/30 transition-all duration-300 flex-[2]">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11604.894831087447!2d17.318!3d43.467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134b1c3a0b0b0001%3A0x1000!2sPosušje%2C%20Bosnia%20and%20Herzegovina!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11604.894831087447!2d17.318!3d43.467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134b1c3a0b0b0001%3A0x1000!2sPosušje%2C%20Bosnia%20and%20Herzegovina!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus&maptype=roadmap&style=element:geometry%7Ccolor:0x212121&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x757575&style=element:labels.text.stroke%7Ccolor:0x212121&style=feature:administrative%7Celement:geometry%7Ccolor:0x757575&style=feature:road%7Celement:geometry.fill%7Ccolor:0x2c2c2c&style=feature:road%7Celement:labels.text.fill%7Ccolor:0x8a8a8a&style=feature:water%7Celement:geometry%7Ccolor:0x000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0, minHeight: '120px' }}
