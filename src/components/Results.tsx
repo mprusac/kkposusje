@@ -364,7 +364,7 @@ const Results = () => {
                         <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full flex items-center gap-1">
                           {match.competition}
                           {match.competition === "Liga KSHB" && (
-                            <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain" />
+                            <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain -translate-y-[1px]" />
                           )}
                         </span>
                       </div>
