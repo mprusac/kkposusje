@@ -399,7 +399,7 @@ const Statistics = () => {
                     onMouseEnter={() => setHoveredFormIndex(index)}
                     onMouseLeave={() => setHoveredFormIndex(null)}
                   >
-                    <img src={game.logo} alt={game.opponent} className="w-5 h-5 object-contain" />
+                    <img src={game.logo} alt={game.opponent} className="w-6 h-6 object-contain" />
                   </div>
                 ))}
               </div>
