@@ -400,8 +400,10 @@ const Statistics = () => {
                     onMouseLeave={() => setHoveredFormIndex(null)}
                   >
                     <img src={game.logo} alt={game.opponent} className={`object-contain ${
-                      game.opponent.includes("Široki") || game.opponent.includes("Grude")
-                        ? "w-24 h-24" 
+                      game.opponent.includes("Široki")
+                        ? "w-[30rem] h-[30rem]" 
+                        : game.opponent.includes("Grude")
+                        ? "w-24 h-24"
                         : game.opponent.includes("Rama") || game.opponent.includes("Ljubuš")
                           ? "w-12 h-12"
                           : "w-6 h-6"
@@ -604,8 +606,10 @@ const Statistics = () => {
                                         src={getTeamLogo(team.team)!} 
                                         alt="" 
                                         className={`object-contain ${
-                                          team.team === "HKK Grude" || team.team === "HKK Široki" || team.team === "HKK Široki II"
+                                          team.team === "HKK Široki" || team.team === "HKK Široki II"
                                             ? "w-[250%] h-[250%]"
+                                            : team.team === "HKK Grude"
+                                            ? "w-[300%] h-[300%]"
                                             : team.team === "HKK Ljubuški"
                                             ? "w-[130%] h-[130%]"
                                             : team.team === "HKK Rama"
