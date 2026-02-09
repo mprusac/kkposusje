@@ -123,14 +123,13 @@ interface TopPlayer {
 
 // Form data - based on actual results with scores
 const formData = [
-  { opponent: "KK Široki", logo: logoSiroki, result: "L" as const, homeTeam: "KK Posušje", awayTeam: "KK Široki", homeScore: 54, awayScore: 69, competition: "Kup KSHB 🏆" },
-  { opponent: "HKK Tomislav", logo: logoTomislav, result: "L" as const, homeTeam: "KK Posušje", awayTeam: "HKK Tomislav", homeScore: 81, awayScore: 85 },
   { opponent: "HKK Mostar", logo: logoMostar, result: "L" as const, homeTeam: "HKK Mostar", awayTeam: "KK Posušje", homeScore: 92, awayScore: 78 },
   { opponent: "HKK Široki II", logo: logoSiroki, result: "W" as const, homeTeam: "KK Posušje", awayTeam: "HKK Široki II", homeScore: 79, awayScore: 72 },
   { opponent: "HKK Rama", logo: logoRama, result: "W" as const, homeTeam: "KK Posušje", awayTeam: "HKK Rama", homeScore: 90, awayScore: 77 },
   { opponent: "HKK Grude", logo: logoGrude, result: "L" as const, homeTeam: "HKK Grude", awayTeam: "KK Posušje", homeScore: 60, awayScore: 56 },
   { opponent: "Čapljina", logo: logoCapljina, result: "W" as const, homeTeam: "Čapljina", awayTeam: "KK Posušje", homeScore: 33, awayScore: 107 },
   { opponent: "HKK Ljubuški", logo: logoLjubuski, result: "L" as const, homeTeam: "HKK Ljubuški", awayTeam: "KK Posušje", homeScore: 85, awayScore: 81 },
+  { opponent: "KK Široki", logo: logoSiroki, result: "L" as const, homeTeam: "KK Posušje", awayTeam: "KK Široki", homeScore: 54, awayScore: 69, competition: "Kup KSHB 🏆" },
 ];
 
 // All matches - upcoming first, then played from newest to oldest
