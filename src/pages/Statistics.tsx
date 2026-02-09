@@ -593,7 +593,7 @@ const Statistics = () => {
                           {standings.map((team) => (
                             <TableRow 
                               key={team.position} 
-                              className={`border-border/20 transition-all duration-200 hover:bg-secondary/50 hover:shadow-md ${team.team === "KK Posušje" ? "bg-primary/10 hover:bg-primary/20" : ""}`}
+                              className={`border-border/20 transition-all duration-200 hover:bg-secondary/50 hover:shadow-md ${team.team === "HKK Posušje" ? "bg-primary/10 hover:bg-primary/20" : ""}`}
                             >
                               <TableCell className="text-center font-bold text-sm">{team.position}</TableCell>
                               <TableCell>
