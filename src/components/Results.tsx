@@ -11,6 +11,7 @@ import logoSiroki from "@/assets/logos/hkk_siroki.png";
 import logoTomislav from "@/assets/logos/hkk_tomislav.png";
 import logoPosusje from "@/assets/logos/kk_posusje.png";
 import logoCapljina from "@/assets/logos/hkk_capljina.png";
+import logoKSHB from "@/assets/logos/kshb_logo.png";
 
 interface MatchResult {
   id: number;
