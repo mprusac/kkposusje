@@ -30,7 +30,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display text-lg text-foreground mb-4 uppercase tracking-wider">
+            <h4 className="font-display text-lg text-primary mb-4 uppercase tracking-wider">
               Kontakt
             </h4>
             <div className="space-y-2 text-sm text-muted-foreground">
@@ -47,7 +47,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg text-foreground mb-4 uppercase tracking-wider">
+            <h4 className="font-display text-lg text-primary mb-4 uppercase tracking-wider">
               Brzi linkovi
             </h4>
             <nav className="space-y-2">
@@ -65,7 +65,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-primary/30 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} HKK Posušje. Sva prava pridržana.
           </p>
