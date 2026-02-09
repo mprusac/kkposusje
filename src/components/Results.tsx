@@ -269,7 +269,7 @@ const Results = () => {
                             <img 
                               src={homeLogo} 
                               alt={match.homeTeam}
-                              className="w-8 h-8 md:w-11 md:h-11 object-contain flex-shrink-0"
+                              className="w-9 h-9 md:w-12 md:h-12 object-contain flex-shrink-0"
                             />
                           ) : (
                             <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
