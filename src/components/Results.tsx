@@ -223,7 +223,7 @@ const Results = () => {
                   {/* Header with date and link */}
                   <div className="flex items-center justify-between mb-3 md:mb-5">
                     <div className="w-8 md:w-14 flex justify-center items-center">
-                      {match.youtubeLink && (
+                      {match.youtubeLink ? (
                         <a
                           href={match.youtubeLink}
                           target="_blank"
@@ -235,11 +235,16 @@ const Results = () => {
                           <Youtube size={16} className="md:hidden" />
                           <Youtube size={18} className="hidden md:block" />
                         </a>
+                      ) : (
+                        <span className="text-muted-foreground/40">
+                          <Youtube size={16} className="md:hidden" />
+                          <Youtube size={18} className="hidden md:block" />
+                        </span>
                       )}
                     </div>
-                    <div className="flex flex-col items-center gap-0.5">
+                    <div className="flex flex-col items-center gap-1.5">
                       {match.competition && (
-                        <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                        <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full -mb-0.5">
                           {match.competition}
                         </span>
                       )}
