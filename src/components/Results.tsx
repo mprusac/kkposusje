@@ -89,7 +89,7 @@ const results: MatchResult[] = [
   {
     id: 4,
     date: "23.11.2025",
-    homeTeam: "KK Posušje",
+    homeTeam: "HKK Posušje",
     awayTeam: "HKK Rama",
     homeScore: 90,
     awayScore: 77,
