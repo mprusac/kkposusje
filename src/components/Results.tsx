@@ -368,7 +368,7 @@ const Results = () => {
           <div className="flex justify-center mt-8">
             <a 
               href="/statistika"
-              className="px-8 py-3 rounded-xl bg-primary/20 text-primary font-display text-lg tracking-wider hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
+              className="px-8 py-3 rounded-xl bg-primary/20 border border-primary text-primary font-display text-lg tracking-wider hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
             >
               Detaljnije
             </a>
