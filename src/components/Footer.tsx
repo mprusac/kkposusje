@@ -47,7 +47,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-lg text-foreground mb-4 uppercase tracking-wider">
+            <h4 className="font-display text-lg text-primary mb-4 uppercase tracking-wider">
               Brzi linkovi
             </h4>
             <nav className="space-y-2">
