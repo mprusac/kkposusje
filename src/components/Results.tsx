@@ -46,8 +46,8 @@ const results: MatchResult[] = [
   {
     id: 0,
     date: "20.01.2026",
-    homeTeam: "KK Posušje",
-    awayTeam: "KK Široki",
+    homeTeam: "HKK Posušje",
+    awayTeam: "HKK Široki II",
     homeScore: 54,
     awayScore: 69,
     isHome: true,
