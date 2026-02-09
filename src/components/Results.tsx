@@ -156,8 +156,16 @@ const Results = () => {
     return teamLogos[teamName] || null;
   };
 
-  const isLargeLogoTeam = (teamName: string) => {
-    return teamName.includes("Široki") || teamName.includes("Mostar") || teamName.includes("Rama") || teamName.includes("Grude") || teamName.includes("Ljubuš");
+  const getLogoScale = (teamName: string) => {
+    if (teamName.includes("Posušje")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.3]";
+    if (teamName.includes("Široki")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.6]";
+    if (teamName.includes("Ljubuš")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.3]";
+    if (teamName.includes("Mostar")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.35]";
+    if (teamName.includes("Rama")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.6]";
+    if (teamName.includes("Grude")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.6]";
+    if (teamName.includes("Tomislav")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.5]";
+    if (teamName.includes("Čapljina")) return "w-10 h-10 md:w-14 md:h-14 scale-[1.4]";
+    return "w-7 h-7 md:w-10 md:h-10";
   };
 
   return (
@@ -273,7 +281,7 @@ const Results = () => {
                             <img 
                               src={homeLogo} 
                               alt={match.homeTeam}
-                              className={`object-contain flex-shrink-0 ${isLargeLogoTeam(match.homeTeam) ? "w-10 h-10 md:w-14 md:h-14 scale-[1.6]" : "w-7 h-7 md:w-10 md:h-10"}`}
+                              className={`object-contain flex-shrink-0 ${getLogoScale(match.homeTeam)}`}
                             />
                           ) : (
                             <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
@@ -322,7 +330,7 @@ const Results = () => {
                             <img 
                               src={awayLogo} 
                               alt={match.awayTeam}
-                              className={`object-contain flex-shrink-0 ${isLargeLogoTeam(match.awayTeam) ? "w-10 h-10 md:w-14 md:h-14 scale-[1.6]" : "w-7 h-7 md:w-10 md:h-10"}`}
+                              className={`object-contain flex-shrink-0 ${getLogoScale(match.awayTeam)}`}
                             />
                           ) : (
                             <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
