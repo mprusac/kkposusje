@@ -401,10 +401,10 @@ const Statistics = () => {
                   >
                     <img src={game.logo} alt={game.opponent} className={`object-contain w-full h-full ${
                       game.opponent.includes("Široki") || game.opponent.includes("Grude")
-                        ? "scale-[2.5]" 
-                        : game.opponent.includes("Rama") || game.opponent.includes("Ljubuš")
-                          ? "scale-[1.8]"
-                          : "scale-100"
+                        ? "scale-[1.6]" 
+                        : game.opponent.includes("Rama") || game.opponent.includes("Mostar")
+                          ? "scale-[1.15]"
+                          : "scale-[0.85]"
                     }`} />
                   </div>
                 ))}
