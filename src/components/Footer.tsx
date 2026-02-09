@@ -30,7 +30,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-display text-lg text-foreground mb-4 uppercase tracking-wider">
+            <h4 className="font-display text-lg text-primary mb-4 uppercase tracking-wider">
               Kontakt
             </h4>
             <div className="space-y-2 text-sm text-muted-foreground">
