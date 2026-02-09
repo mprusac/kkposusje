@@ -168,7 +168,7 @@ const Results = () => {
           </button>
           <button
             onClick={() => scroll("right")}
-            className="flex absolute right-0 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronRight size={18} className="md:hidden" />
             <ChevronRight size={24} className="hidden md:block" />
