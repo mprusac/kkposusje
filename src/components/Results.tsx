@@ -281,7 +281,7 @@ const Results = () => {
                             <img 
                               src={homeLogo} 
                               alt={match.homeTeam}
-                              className={`object-contain flex-shrink-0 ${isLargeLogoTeam(match.homeTeam) ? "w-10 h-10 md:w-14 md:h-14 scale-[1.6]" : "w-7 h-7 md:w-10 md:h-10"}`}
+                              className={`object-contain flex-shrink-0 ${getLogoScale(match.homeTeam)}`}
                             />
                           ) : (
                             <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
