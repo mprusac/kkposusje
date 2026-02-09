@@ -11,6 +11,7 @@ import logoSiroki from "@/assets/logos/hkk_siroki.png";
 import logoTomislav from "@/assets/logos/hkk_tomislav.png";
 import logoPosusje from "@/assets/logos/kk_posusje.png";
 import logoCapljina from "@/assets/logos/hkk_capljina.png";
+import logoKSHB from "@/assets/logos/kshb_logo.png";
 
 interface MatchResult {
   id: number;
@@ -64,6 +65,7 @@ const results: MatchResult[] = [
     isHome: false,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014496",
     youtubeLink: "https://www.youtube.com/live/X2TcwA2sgH0?si=qE7iKg4f61kOe0Ap",
+    competition: "Liga KSHB",
   },
   {
     id: 2,
@@ -74,6 +76,7 @@ const results: MatchResult[] = [
     awayScore: 107,
     isHome: false,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15185580",
+    competition: "Liga KSHB",
   },
   {
     id: 3,
@@ -85,6 +88,7 @@ const results: MatchResult[] = [
     isHome: false,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014486",
     youtubeLink: "https://www.youtube.com/live/1PvUKvtkBkQ?si=he8SIzhogLNQcjw3",
+    competition: "Liga KSHB",
   },
   {
     id: 4,
@@ -96,6 +100,7 @@ const results: MatchResult[] = [
     isHome: true,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014481",
     youtubeLink: "https://www.youtube.com/live/7k5R_SHgrEE?si=GGB5YTpvDl_TG0Bt",
+    competition: "Liga KSHB",
   },
   {
     id: 5,
@@ -107,6 +112,7 @@ const results: MatchResult[] = [
     isHome: true,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014461",
     youtubeLink: "https://www.youtube.com/live/M4P4ciZs5Cw?si=jP7sKatpeSwoIt46",
+    competition: "Liga KSHB",
   },
   {
     id: 6,
@@ -117,6 +123,7 @@ const results: MatchResult[] = [
     awayScore: 78,
     isHome: false,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014458",
+    competition: "Liga KSHB",
   },
   {
     id: 7,
@@ -127,6 +134,7 @@ const results: MatchResult[] = [
     awayScore: 85,
     isHome: true,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:14973017",
+    competition: "Liga KSHB",
   },
 ];
 
@@ -352,7 +360,10 @@ const Results = () => {
 
                     {/* Competition label below teams/score */}
                     {match.competition && (
-                      <div className="flex justify-center -mt-1">
+                      <div className="flex justify-center items-center gap-1 -mt-1">
+                        {match.competition === "Liga KSHB" && (
+                          <img src={logoKSHB} alt="KSHB" className="w-4 h-4 object-contain" />
+                        )}
                         <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
                           {match.competition}
                         </span>
