@@ -264,12 +264,12 @@ const Results = () => {
                     <div className="flex items-start justify-between gap-2 md:gap-4">
                       {/* Home Team */}
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-0.5 md:p-1 border border-border/50 overflow-hidden">
+                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center border border-border/50 overflow-hidden">
                           {homeLogo ? (
                             <img 
                               src={homeLogo} 
                               alt={match.homeTeam}
-                              className="w-8 h-8 md:w-11 md:h-11 object-contain flex-shrink-0"
+                              className="w-9 h-9 md:w-12 md:h-12 object-contain flex-shrink-0"
                             />
                           ) : (
                             <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
@@ -313,12 +313,12 @@ const Results = () => {
 
                       {/* Away Team */}
                       <div className="flex-1 flex flex-col items-center">
-                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-0.5 md:p-1 border border-border/50 overflow-hidden">
+                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center border border-border/50 overflow-hidden">
                           {awayLogo ? (
                             <img 
                               src={awayLogo} 
                               alt={match.awayTeam}
-                              className="w-8 h-8 md:w-11 md:h-11 object-contain flex-shrink-0"
+                              className="w-9 h-9 md:w-12 md:h-12 object-contain flex-shrink-0"
                             />
                           ) : (
                             <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
@@ -340,7 +340,7 @@ const Results = () => {
 
                     {/* Competition label below teams/score */}
                     {match.competition && (
-                      <div className="flex justify-center mt-2">
+                      <div className="flex justify-center -mt-1">
                         <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
                           {match.competition}
                         </span>
