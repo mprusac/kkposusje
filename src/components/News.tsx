@@ -1,4 +1,4 @@
-import { Calendar, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Trophy, Users, Megaphone, Newspaper } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -14,6 +14,13 @@ interface NewsItem {
   category: "utakmica" | "transfer" | "najava" | "klub";
   image: string;
 }
+
+const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
+  utakmica: { label: "Utakmice", icon: Trophy },
+  transfer: { label: "Transferi", icon: Users },
+  najava: { label: "Najave", icon: Megaphone },
+  klub: { label: "Klub", icon: Newspaper },
+};
 
 const allNews: NewsItem[] = [
   { id: 1, title: "HKK Posušje pobijedio HKK Grude na domaćem terenu", excerpt: "HKK Posušje ostvario je uvjerljivu pobjedu protiv HKK Grude rezultatom 85:72. Ian Krishnan predvodio je ekipu s 24 poena...", date: "14. 12. 2024.", category: "utakmica", image: news1 },
@@ -76,11 +83,15 @@ const News = () => {
 
           <div ref={scrollRef} className="flex gap-3 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
             {allNews.map((item, index) => (
-              <article key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start" style={{ width: isMobile ? '100%' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '260px' : '260px', maxWidth: isMobile ? '280px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
+              <Link to={`/vijesti/${item.id}`} key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start flex flex-col" style={{ width: isMobile ? '100%' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '260px' : '260px', maxWidth: isMobile ? '280px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
                 <div className="relative h-36 md:h-48 overflow-hidden">
                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-[10px] md:text-xs rounded flex items-center gap-1">
+                    {(() => { const cfg = categoryConfig[item.category]; const Icon = cfg.icon; return <><Icon size={12} />{cfg.label}</>; })()}
+                  </span>
                 </div>
-                <div className="p-4 md:p-6">
+                <div className="p-4 md:p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 text-muted-foreground text-xs md:text-sm mb-2 md:mb-3">
                     <Calendar size={12} className="md:hidden" />
                     <Calendar size={14} className="hidden md:block" />
@@ -88,13 +99,13 @@ const News = () => {
                   </div>
                   <h3 className="text-base md:text-lg font-bold text-foreground mb-2 md:mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-muted-foreground text-xs md:text-sm mb-3 md:mb-4 line-clamp-2 md:line-clamp-3">{item.excerpt}</p>
-                  <Link to={`/vijesti/${item.id}`} className="inline-flex items-center gap-2 text-primary text-xs md:text-sm font-medium hover:gap-3 transition-all">
+                  <div className="mt-auto inline-flex items-center gap-2 text-primary text-xs md:text-sm font-medium group-hover:gap-3 transition-all">
                     Pročitaj više
                     <ArrowRight size={14} className="md:hidden" />
                     <ArrowRight size={16} className="hidden md:block" />
-                  </Link>
+                  </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
