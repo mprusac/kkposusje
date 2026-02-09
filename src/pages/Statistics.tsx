@@ -604,8 +604,10 @@ const Statistics = () => {
                                         src={getTeamLogo(team.team)!} 
                                         alt="" 
                                         className={`object-contain ${
-                                          team.team === "HKK Grude" || team.team === "HKK Široki" || team.team === "HKK Široki II"
+                                          team.team === "HKK Široki" || team.team === "HKK Široki II"
                                             ? "w-[250%] h-[250%]"
+                                            : team.team === "HKK Grude"
+                                            ? "w-[300%] h-[300%]"
                                             : team.team === "HKK Ljubuški"
                                             ? "w-[130%] h-[130%]"
                                             : team.team === "HKK Rama"
