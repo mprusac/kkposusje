@@ -161,7 +161,7 @@ const Results = () => {
           {/* Scroll Buttons - Visible on all devices */}
           <button
             onClick={() => scroll("left")}
-            className="flex absolute left-0 md:left-0 top-[45%] md:top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="flex absolute left-0 md:left-0 top-[35%] md:top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronLeft size={18} className="md:hidden" />
             <ChevronLeft size={24} className="hidden md:block" />
