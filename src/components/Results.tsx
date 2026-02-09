@@ -260,57 +260,85 @@ const Results = () => {
                   </div>
 
                   {/* Match content - Teams with logos */}
-                  <div className="flex items-start justify-between gap-2 md:gap-4">
-                    {/* Home Team */}
-                    <div className="flex-1 flex flex-col items-center">
-                      <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-1 md:p-1.5 border border-border/50 overflow-hidden">
-                        {homeLogo ? (
-                          <img 
-                            src={homeLogo} 
-                            alt={match.homeTeam}
-                            className="w-7 h-7 md:w-10 md:h-10 object-contain flex-shrink-0"
-                          />
-                        ) : (
-                          <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                            <span className="text-[10px] md:text-xs font-bold text-muted-foreground">
-                              {match.homeTeam.substring(0, 2).toUpperCase()}
-                            </span>
-                          </div>
-                        )}
+                  <div>
+                    <div className="flex items-start justify-between gap-2 md:gap-4">
+                      {/* Home Team */}
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-0.5 md:p-1 border border-border/50 overflow-hidden">
+                          {homeLogo ? (
+                            <img 
+                              src={homeLogo} 
+                              alt={match.homeTeam}
+                              className="w-8 h-8 md:w-11 md:h-11 object-contain flex-shrink-0"
+                            />
+                          ) : (
+                            <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                              <span className="text-[10px] md:text-xs font-bold text-muted-foreground">
+                                {match.homeTeam.substring(0, 2).toUpperCase()}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        <span
+                          className={`text-[10px] md:text-xs font-semibold text-center leading-tight mt-1.5 md:mt-2 ${
+                            match.isHome ? "text-primary" : "text-foreground"
+                          }`}
+                        >
+                          {match.homeTeam}
+                        </span>
                       </div>
-                      <span
-                        className={`text-[10px] md:text-xs font-semibold text-center leading-tight mt-1.5 md:mt-2 ${
-                          match.isHome ? "text-primary" : "text-foreground"
-                        }`}
-                      >
-                        {match.homeTeam}
-                      </span>
+
+                      {/* Score */}
+                      <div className="flex items-center gap-1.5 md:gap-3 bg-background/40 px-2 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl border border-border/30 h-10 md:h-14">
+                        <span
+                          className={`text-xl md:text-3xl font-display font-bold ${
+                            match.homeScore > match.awayScore
+                              ? "text-primary"
+                              : "text-foreground/70"
+                          }`}
+                        >
+                          {match.homeScore}
+                        </span>
+                        <span className="text-muted-foreground text-base md:text-xl font-light">:</span>
+                        <span
+                          className={`text-xl md:text-3xl font-display font-bold ${
+                            match.awayScore > match.homeScore
+                              ? "text-primary"
+                              : "text-foreground/70"
+                          }`}
+                        >
+                          {match.awayScore}
+                        </span>
+                      </div>
+
+                      {/* Away Team */}
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-0.5 md:p-1 border border-border/50 overflow-hidden">
+                          {awayLogo ? (
+                            <img 
+                              src={awayLogo} 
+                              alt={match.awayTeam}
+                              className="w-8 h-8 md:w-11 md:h-11 object-contain flex-shrink-0"
+                            />
+                          ) : (
+                            <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
+                              <span className="text-[10px] md:text-xs font-bold text-muted-foreground">
+                                {match.awayTeam.substring(0, 2).toUpperCase()}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        <span
+                          className={`text-[10px] md:text-xs font-semibold text-center leading-tight mt-1.5 md:mt-2 ${
+                            !match.isHome ? "text-primary" : "text-foreground"
+                          }`}
+                        >
+                          {match.awayTeam}
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Score */}
-                    <div className="flex items-center gap-1.5 md:gap-3 bg-background/40 px-2 md:px-4 py-1.5 md:py-2 rounded-lg md:rounded-xl border border-border/30 h-10 md:h-14">
-                      <span
-                        className={`text-xl md:text-3xl font-display font-bold ${
-                          match.homeScore > match.awayScore
-                            ? "text-primary"
-                            : "text-foreground/70"
-                        }`}
-                      >
-                        {match.homeScore}
-                      </span>
-                      <span className="text-muted-foreground text-base md:text-xl font-light">:</span>
-                      <span
-                        className={`text-xl md:text-3xl font-display font-bold ${
-                          match.awayScore > match.homeScore
-                            ? "text-primary"
-                            : "text-foreground/70"
-                        }`}
-                      >
-                        {match.awayScore}
-                      </span>
-                    </div>
-
-                    {/* Competition label below score */}
+                    {/* Competition label below teams/score */}
                     {match.competition && (
                       <div className="flex justify-center mt-2">
                         <span className="text-[8px] md:text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
@@ -318,32 +346,6 @@ const Results = () => {
                         </span>
                       </div>
                     )}
-
-                    {/* Away Team */}
-                    <div className="flex-1 flex flex-col items-center">
-                      <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-background/60 flex items-center justify-center p-1 md:p-1.5 border border-border/50 overflow-hidden">
-                        {awayLogo ? (
-                          <img 
-                            src={awayLogo} 
-                            alt={match.awayTeam}
-                            className="w-7 h-7 md:w-10 md:h-10 object-contain flex-shrink-0"
-                          />
-                        ) : (
-                          <div className="w-full h-full rounded-full bg-muted flex items-center justify-center">
-                            <span className="text-[10px] md:text-xs font-bold text-muted-foreground">
-                              {match.awayTeam.substring(0, 2).toUpperCase()}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <span
-                        className={`text-[10px] md:text-xs font-semibold text-center leading-tight mt-1.5 md:mt-2 ${
-                          !match.isHome ? "text-primary" : "text-foreground"
-                        }`}
-                      >
-                        {match.awayTeam}
-                      </span>
-                    </div>
                   </div>
                 </a>
               );

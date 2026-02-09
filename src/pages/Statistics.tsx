@@ -482,7 +482,7 @@ const Statistics = () => {
                             {/* Away Team */}
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-1.5">
-                                {awayLogo && <img src={awayLogo} alt="" className="w-4 h-4 object-contain" />}
+                                {awayLogo && <img src={awayLogo} alt="" className="w-5 h-5 object-contain" />}
                                 <span className={`text-sm font-medium ${match.awayTeam.includes("Posušje") ? "text-primary" : "text-foreground"}`}>
                                   {match.awayTeam}
                                 </span>
