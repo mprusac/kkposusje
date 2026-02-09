@@ -679,7 +679,6 @@ const Statistics = () => {
                                     <img src={getTeamLogo(team.team)!} alt="" className={`object-contain ${team.team === "ŽKK Livno" ? "w-9 h-9" : "w-7 h-7"}`} />
                                   </div>
                                 )}
-                                )}
                                 <span className={`text-sm font-bold ${team.team.includes("Posušje") ? "text-primary" : ""}`}>
                                   {team.team}
                                 </span>
