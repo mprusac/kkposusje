@@ -72,7 +72,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Vaše ime"
-                      className="bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all duration-300"
+className="bg-background/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300"
                     />
                   </div>
                   <div className="group">
@@ -90,7 +90,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="vas@email.com"
-                      className="bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all duration-300"
+                      className="bg-background/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300"
                     />
                   </div>
                 </div>
@@ -110,7 +110,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="Tema vaše poruke"
-                    className="bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all duration-300"
+className="bg-background/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300"
                   />
                 </div>
 
@@ -129,7 +129,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Vaša poruka..."
                     rows={4}
-                    className="bg-background/50 border-border focus:border-primary focus:ring-primary/20 resize-none transition-all duration-300 min-h-[120px]"
+                    className="bg-background/50 border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 resize-none transition-all duration-300 min-h-[120px]"
                   />
                 </div>
 
