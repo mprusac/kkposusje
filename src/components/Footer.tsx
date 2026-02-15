@@ -3,6 +3,7 @@ import logo from "@/assets/logo.png";
 
 const footerLinks = [
   { label: "O klubu", href: "#o-klubu" },
+  { label: "Statistika", href: "/statistika" },
   { label: "Vijesti", href: "#vijesti" },
   { label: "Galerija", href: "#galerija" },
   { label: "Kontakt", href: "#kontakt" },
