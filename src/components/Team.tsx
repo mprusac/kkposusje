@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import playerIan from "@/assets/player-ian.png";
@@ -188,6 +188,18 @@ const Team = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
+  const [tilt, setTilt] = useState<{ id: number; rotateX: number; rotateY: number } | null>(null);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>, playerId: number) => {
+    if (isMobile) return;
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setTilt({ id: playerId, rotateX: (0.5 - y) * 16, rotateY: (x - 0.5) * 16 });
+  }, [isMobile]);
+
+  const handleMouseLeave = useCallback(() => setTilt(null), []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -253,15 +265,26 @@ const Team = () => {
             className="flex gap-3 md:gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {players.map((player, index) => (
+            {players.map((player, index) => {
+              const isThisCard = tilt?.id === player.id;
+              const cardStyle: React.CSSProperties = {
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible
+                  ? isThisCard
+                    ? `perspective(600px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) scale(1.04)`
+                    : "perspective(600px) rotateX(0deg) rotateY(0deg)"
+                  : "translateX(30px)",
+                transition: isThisCard
+                  ? `transform 0.1s ease-out, opacity 0.5s ease ${index * 0.05}s`
+                  : `all 0.5s ease ${index * 0.05}s`,
+              };
+              return (
               <div
                 key={player.id}
-                className={`group flex-shrink-0 relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 md:hover:scale-[1.03] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start ${isMobile ? 'w-[85%] max-w-[260px]' : 'w-[calc((100%-5rem)/5)] min-w-[220px]'}`}
-                style={{
-                  opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateX(0)" : "translateX(30px)",
-                  transition: `all 0.5s ease ${index * 0.05}s`,
-                }}
+                onMouseMove={(e) => handleMouseMove(e, player.id)}
+                onMouseLeave={handleMouseLeave}
+                className={`group flex-shrink-0 relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start ${isMobile ? 'w-[85%] max-w-[260px]' : 'w-[calc((100%-5rem)/5)] min-w-[220px]'}`}
+                style={cardStyle}
               >
               {/* Player Number Watermark - Behind image for players with photos, visible for silhouettes */}
                 <span className={`player-number font-display ${player.image ? 'opacity-10 -z-10' : 'opacity-30 z-10'}`}>{player.number}</span>
@@ -367,7 +390,8 @@ const Team = () => {
                   <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
