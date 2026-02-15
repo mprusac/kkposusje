@@ -1,7 +1,43 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import teamPhoto from "@/assets/team-photo.jpg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
+
+const GoldenParticles = () => {
+  const particles = useMemo(() => 
+    Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 8,
+      duration: 4 + Math.random() * 6,
+      size: 2 + Math.random() * 4,
+      opacity: 0.2 + Math.random() * 0.5,
+      drift: -20 + Math.random() * 40,
+    })),
+  []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          className="absolute rounded-full animate-golden-float"
+          style={{
+            left: `${p.left}%`,
+            bottom: `-${p.size}px`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            backgroundColor: `hsl(var(--primary))`,
+            opacity: p.opacity,
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
+            '--drift': `${p.drift}px`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+};
 
 const TYPEWRITER_TEXT = "Više od igre";
 
@@ -60,6 +96,9 @@ const Hero = () => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
+
+      {/* Golden Particles */}
+      <GoldenParticles />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
