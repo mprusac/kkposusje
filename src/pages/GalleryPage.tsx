@@ -236,43 +236,25 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
             <p className="text-muted-foreground mt-4">{event.description}</p>
           </motion.div>
 
-          {/* Bento Grid Album - collage layout like reference image */}
-          <div className="grid grid-cols-6 gap-0.5 max-w-5xl mx-auto" style={{ gridAutoRows: "90px" }}>
-            {allImages.map((img, index) => {
-              const isHorizontal = event.imagesWithOrientation?.[index]?.orientation === "horizontal";
-              // Create varied layout pattern for collage effect
-              const getLayoutClass = () => {
-                // Alternating sizes for visual variety
-                if (isHorizontal) {
-                  // Horizontal images: vary between different sizes
-                  if (index % 4 === 0) return "col-span-3 row-span-2";
-                  if (index % 4 === 1) return "col-span-2 row-span-2";
-                  return "col-span-4 row-span-2";
-                } else {
-                  // Vertical images: smaller columns, taller
-                  if (index % 3 === 0) return "col-span-2 row-span-3";
-                  if (index % 3 === 1) return "col-span-2 row-span-3";
-                  return "col-span-2 row-span-3";
-                }
-              };
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className={`group relative overflow-hidden cursor-pointer ${getLayoutClass()}`}
-                  onClick={() => openLightbox(index)}
-                >
-                  <img
-                    src={img}
-                    alt={`Slika ${index + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
-                </motion.div>
-              );
-            })}
+          {/* Masonry Gallery - clean columns layout */}
+          <div className="columns-2 md:columns-3 gap-1.5 max-w-5xl mx-auto">
+            {allImages.map((img, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="group relative overflow-hidden cursor-pointer mb-1.5 break-inside-avoid"
+                onClick={() => openLightbox(index)}
+              >
+                <img
+                  src={img}
+                  alt={`Slika ${index + 1}`}
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300" />
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
