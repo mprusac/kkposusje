@@ -245,7 +245,7 @@ const About = () => {
                       </h4>
                       {achievement.emoji === "flags" ? (
                         <span className="flex items-center gap-1">
-                          <img src={bihFlag} alt="BiH" className="w-5 h-5 object-contain rounded-full" />
+                          <img src={bihFlag} alt="BiH" className="h-[18px] w-[18px] object-contain rounded-full" />
                           <img src={croFlag} alt="Hrvatska" className="w-5 h-5 object-contain" />
                         </span>
                       ) : (
