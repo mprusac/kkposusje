@@ -23,8 +23,8 @@ const Footer = () => {
           {/* Logo & Description */}
           <div>
             <img src={logo} alt="HKK Posušje" className="h-20 w-auto mb-4" />
-            <p className="text-muted-foreground text-sm">
-              Ajmo žuti!
+            <p className="text-muted-foreground text-sm whitespace-nowrap">
+              „Tamo gdje dres postaje čast, a klub emocija – tu igra Posušje."
             </p>
           </div>
 
