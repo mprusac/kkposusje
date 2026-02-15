@@ -10,9 +10,9 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "https://www.facebook.com/kosarkaposusje", label: "Facebook" },
+  { icon: Facebook, href: "https://www.facebook.com/kosarkaposusje/", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/kkposusje/", label: "Instagram" },
-  { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+  { icon: Youtube, href: "https://www.youtube.com/@kosarkaskisavezhercegbosne", label: "YouTube" },
 ];
 
 const Footer = () => {
