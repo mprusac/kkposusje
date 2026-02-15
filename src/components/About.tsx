@@ -1,6 +1,8 @@
 import { useCountUp } from "@/hooks/useCountUp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Trophy, Medal, Users, Star } from "lucide-react";
+import bihFlag from "@/assets/flags/bih-flag.png";
+import croFlag from "@/assets/flags/cro-flag.png";
 
 interface StatItem {
   value: number;
@@ -70,7 +72,7 @@ const achievements = [
     subtitle: "Talenti iz Posušja redovito nose dresove državnih selekcija",
     description: "Više desetaka igrača u reprezentacijama BiH i Hrvatske",
     icon: Users,
-    emoji: "🇧🇦 🇭🇷",
+    emoji: "flags",
   },
   {
     title: "Osnivanje ženskog omladinskog pogona (2002.)",
@@ -241,7 +243,14 @@ const About = () => {
                       <h4 className="font-display text-base md:text-xl text-foreground tracking-wide leading-tight">
                         {achievement.title}
                       </h4>
-                      <span className="text-base md:text-lg">{achievement.emoji}</span>
+                      {achievement.emoji === "flags" ? (
+                        <span className="flex items-center gap-1">
+                          <img src={bihFlag} alt="BiH" className="w-5 h-4 object-cover rounded-sm" />
+                          <img src={croFlag} alt="Hrvatska" className="w-5 h-4 object-cover rounded-sm" />
+                        </span>
+                      ) : (
+                        <span className="text-base md:text-lg">{achievement.emoji}</span>
+                      )}
                     </div>
                     <p className="text-primary font-medium text-xs md:text-sm mb-1">
                       {achievement.subtitle}
