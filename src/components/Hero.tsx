@@ -1,11 +1,16 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import teamPhoto from "@/assets/team-photo.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+
+const TYPEWRITER_TEXT = "Više od igre";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  const typewriterStarted = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -18,6 +23,22 @@ const Hero = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
+  }, []);
+
+  useEffect(() => {
+    if (typewriterStarted.current) return;
+    typewriterStarted.current = true;
+    
+    let i = 0;
+    const timer = setInterval(() => {
+      i++;
+      setDisplayedText(TYPEWRITER_TEXT.slice(0, i));
+      if (i >= TYPEWRITER_TEXT.length) {
+        clearInterval(timer);
+        setTimeout(() => setShowCursor(false), 1500);
+      }
+    }, 100);
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -49,7 +70,8 @@ const Hero = () => {
           </h1>
           
           <p className="text-sm sm:text-lg md:text-xl text-muted-foreground uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8 animate-fade-in-up delay-200">
-            Više od igre
+            {displayedText}
+            {showCursor && <span className="inline-block w-[2px] h-[1em] bg-primary ml-1 animate-pulse align-middle" />}
           </p>
 
           <div className="animate-fade-in-up delay-400">

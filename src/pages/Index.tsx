@@ -8,10 +8,12 @@ import Gallery from "@/components/Gallery";
 import Sponsors from "@/components/Sponsors";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary/20 to-background">
+      <ScrollProgressBar />
       <Navbar />
       <main>
         <Hero />
