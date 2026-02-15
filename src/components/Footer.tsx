@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer className="bg-card py-16 border-t border-border">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 w-fit mx-auto">
           {/* Logo & Description */}
           <div>
             <img src={logo} alt="HKK Posušje" className="h-20 w-auto mb-4" />
