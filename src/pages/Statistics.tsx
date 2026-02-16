@@ -406,7 +406,7 @@ const Statistics = () => {
                           ? "scale-[1.3]"
                         : game.opponent.includes("Čapljina") || game.opponent === "Čapljina"
                           ? "scale-[1.15]"
-                        : game.opponent.includes("Mostar")
+                        : game.opponent.includes("Mostar") || game.opponent.includes("Tomislav")
                           ? "scale-[1.1]"
                           : "scale-[0.85]"
                     }`} />
