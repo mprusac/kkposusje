@@ -57,6 +57,17 @@ const results: MatchResult[] = [
     competition: "Liga KSHB",
   },
   {
+    id: 17,
+    date: "08.02.2026",
+    homeTeam: "HKK Tomislav",
+    awayTeam: "HKK Posušje",
+    homeScore: 60,
+    awayScore: 55,
+    isHome: false,
+    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:15014499",
+    competition: "Liga KSHB",
+  },
+  {
     id: 0,
     date: "20.01.2026",
     homeTeam: "HKK Posušje",
