@@ -78,7 +78,7 @@ const Sponsors = () => {
         </p>
 
         {/* Sponsor Logos */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 max-w-4xl mx-auto mb-8 md:mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 max-w-4xl mx-auto mb-8 md:mb-16 [&>div]:aspect-video">
           {sponsors.map((sponsor, index) => (
             <div
               key={sponsor.name}
