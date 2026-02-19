@@ -53,13 +53,13 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", imgClass: "" },
-  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "scale-[0.75]" },
-  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]", imgClass: "scale-[0.7]" },
-  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "" },
-  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(48,96%,53%)]", imgClass: "scale-[0.75]" },
-  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(0,0%,70%)]" },
 ];
 
 const Sponsors = () => {
@@ -78,17 +78,17 @@ const Sponsors = () => {
         </p>
 
         {/* Sponsor Logos */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 max-w-4xl mx-auto mb-8 md:mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mb-8 md:mb-16">
           {sponsors.map((sponsor, index) => (
             <div
               key={sponsor.name}
-              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-2xl overflow-hidden hover:scale-[1.03] transition-all duration-300 animate-fade-in-up flex items-center justify-center p-3`}
+              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-xl p-6 md:p-8 flex items-center justify-center hover:scale-[1.03] transition-all duration-300 animate-fade-in-up aspect-[16/9]`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <img 
                 src={sponsor.image} 
                 alt={sponsor.name} 
-                className={`w-full h-auto object-contain ${sponsor.imgClass}`}
+                className="max-w-[80%] max-h-[80%] object-contain"
               />
             </div>
           ))}
