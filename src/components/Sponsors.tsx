@@ -8,6 +8,7 @@ import mrveljiLogo from "@/assets/sponsors/mrvelji-logo.png";
 import weltplastLogo from "@/assets/sponsors/weltplast-logo.png";
 import ktmBrinaLogo from "@/assets/sponsors/ktm-brina-logo.png";
 import lagunaLogo from "@/assets/sponsors/laguna-logo.png";
+import binvestLogo from "@/assets/sponsors/binvest-logo.png";
 
 interface SponsorTier {
   name: string;
