@@ -88,7 +88,7 @@ const Sponsors = () => {
               <img 
                 src={sponsor.image} 
                 alt={sponsor.name} 
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover ${sponsor.imgClass}`}
               />
             </div>
           ))}
