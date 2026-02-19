@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown, Crown, Medal, Award, Heart } from "lucide-react";
 
-import vokelImg from "@/assets/sponsors/vokel.jpg";
-import planetImg from "@/assets/sponsors/planet.jpg";
-import mivikoImg from "@/assets/sponsors/miviko.jpg";
-import mrveljiImg from "@/assets/sponsors/mrvelji.jpg";
-import weltplastImg from "@/assets/sponsors/weltplast.jpg";
-import ktmBrinaImg from "@/assets/sponsors/ktm-brina.jpg";
-import lagunaImg from "@/assets/sponsors/laguna.jpg";
+import vokelLogo from "@/assets/sponsors/vokel-logo.png";
+import planetLogo from "@/assets/sponsors/planet-logo.png";
+import mivikoLogo from "@/assets/sponsors/miviko-logo.png";
+import mrveljiLogo from "@/assets/sponsors/mrvelji-logo.png";
+import weltplastLogo from "@/assets/sponsors/weltplast-logo.png";
+import ktmBrinaLogo from "@/assets/sponsors/ktm-brina-logo.png";
+import lagunaLogo from "@/assets/sponsors/laguna-logo.png";
 
 interface SponsorTier {
   name: string;
