@@ -216,7 +216,7 @@ const About = () => {
             achVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <h3 className="text-xl md:text-4xl font-display text-foreground mb-6 md:mb-8 uppercase tracking-wider text-center">
+          <h3 className="section-title font-display text-foreground mb-6 md:mb-8 uppercase tracking-wider text-center">
             Postignuća
           </h3>
           <div className="space-y-3 md:space-y-4 max-w-2xl w-full">

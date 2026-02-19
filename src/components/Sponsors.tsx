@@ -69,8 +69,8 @@ const Sponsors = () => {
     <section className="py-12 md:py-20">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-center mb-3 md:mb-4">
-          <span className="section-title-white text-2xl md:text-4xl">NAŠI </span>
-          <span className="section-title-gold text-2xl md:text-4xl">SPONZORI</span>
+          <span className="section-title-white">NAŠI </span>
+          <span className="section-title-gold">SPONZORI</span>
         </h2>
 
         <p className="text-muted-foreground text-center mb-8 md:mb-16 max-w-2xl mx-auto text-sm md:text-base">
