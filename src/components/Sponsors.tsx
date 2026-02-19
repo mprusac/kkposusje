@@ -53,13 +53,13 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", imgClass: "" },
+  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "scale-[0.75]" },
+  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]", imgClass: "scale-[0.7]" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(48,96%,53%)]", imgClass: "scale-[0.75]" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(0,0%,70%)]", imgClass: "" },
 ];
 
 const Sponsors = () => {
