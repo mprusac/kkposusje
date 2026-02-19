@@ -78,16 +78,18 @@ const Sponsors = () => {
         </p>
 
         {/* Sponsor Logos */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-4xl mx-auto mb-8 md:mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mb-8 md:mb-16">
           {sponsors.map((sponsor, index) => (
             <div
               key={sponsor.name}
-              className="bg-secondary/50 border border-border rounded-lg p-4 md:p-8 flex items-center justify-center hover:border-primary transition-colors animate-fade-in-up"
+              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-xl overflow-hidden hover:scale-[1.03] transition-all duration-300 animate-fade-in-up`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <span className="text-foreground font-semibold text-center text-sm md:text-base">
-                {sponsor.name}
-              </span>
+              <img 
+                src={sponsor.image} 
+                alt={sponsor.name} 
+                className="w-full h-auto object-cover"
+              />
             </div>
           ))}
         </div>
