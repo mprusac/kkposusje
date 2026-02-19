@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown, Crown, Medal, Award, Heart } from "lucide-react";
 
+import vokelImg from "@/assets/sponsors/vokel.jpg";
+import planetImg from "@/assets/sponsors/planet.jpg";
+import mivikoImg from "@/assets/sponsors/miviko.jpg";
+import mrveljiImg from "@/assets/sponsors/mrvelji.jpg";
+import weltplastImg from "@/assets/sponsors/weltplast.jpg";
+import ktmBrinaImg from "@/assets/sponsors/ktm-brina.jpg";
+import lagunaImg from "@/assets/sponsors/laguna.jpg";
+
 interface SponsorTier {
   name: string;
   price: string;
@@ -45,10 +53,13 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold" },
-  { name: "Planet", tier: "Silver" },
-  { name: "Miviko", tier: "Silver" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelImg, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Planet", tier: "Silver", image: planetImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Miviko", tier: "Silver", image: mivikoImg, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiImg, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastImg, borderColor: "border-[hsl(0,0%,70%)]" },
 ];
 
 const Sponsors = () => {
