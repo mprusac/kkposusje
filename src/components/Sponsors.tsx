@@ -78,35 +78,23 @@ const Sponsors = () => {
         </p>
 
         {/* Sponsor Logos */}
-        <div className="max-w-4xl mx-auto mb-8 md:mb-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 mb-3 md:mb-5">
-            {sponsors.slice(0, 4).map((sponsor, index) => (
-              <a
-                key={sponsor.name}
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`aspect-[2/1] bg-secondary/50 border-2 ${sponsor.borderColor} rounded-2xl overflow-hidden hover:scale-[1.05] ${sponsor.glowColor} transition-all duration-300 animate-fade-in-up`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <img src={sponsor.image} alt={sponsor.name} className={`w-full h-full object-cover ${sponsor.imgClass}`} />
-              </a>
-            ))}
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
-            {sponsors.slice(4).map((sponsor, index) => (
-              <a
-                key={sponsor.name}
-                href={sponsor.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`aspect-video bg-secondary/50 border-2 ${sponsor.borderColor} rounded-2xl overflow-hidden hover:scale-[1.05] ${sponsor.glowColor} transition-all duration-300 animate-fade-in-up`}
-                style={{ animationDelay: `${(index + 4) * 100}ms` }}
-              >
-                <img src={sponsor.image} alt={sponsor.name} className={`w-full h-full object-cover ${sponsor.imgClass}`} />
-              </a>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 max-w-4xl mx-auto mb-8 md:mb-16 [&>div]:aspect-video">
+          {sponsors.map((sponsor, index) => (
+            <a
+              key={sponsor.name}
+              href={sponsor.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-2xl overflow-hidden hover:scale-[1.05] ${sponsor.glowColor} transition-all duration-300 animate-fade-in-up`}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <img 
+                src={sponsor.image} 
+                alt={sponsor.name} 
+                className={`w-full h-full object-cover ${sponsor.imgClass}`}
+              />
+            </a>
+          ))}
         </div>
 
         {/* Become a Sponsor */}
