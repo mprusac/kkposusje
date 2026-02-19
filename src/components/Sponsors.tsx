@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown, Crown, Medal, Award, Heart } from "lucide-react";
 
-import vokelImg from "@/assets/sponsors/vokel.jpg";
-import planetImg from "@/assets/sponsors/planet.jpg";
-import mivikoImg from "@/assets/sponsors/miviko.jpg";
-import mrveljiImg from "@/assets/sponsors/mrvelji.jpg";
-import weltplastImg from "@/assets/sponsors/weltplast.jpg";
-import ktmBrinaImg from "@/assets/sponsors/ktm-brina.jpg";
-import lagunaImg from "@/assets/sponsors/laguna.jpg";
+import vokelLogo from "@/assets/sponsors/vokel-logo.png";
+import planetLogo from "@/assets/sponsors/planet-logo.png";
+import mivikoLogo from "@/assets/sponsors/miviko-logo.png";
+import mrveljiLogo from "@/assets/sponsors/mrvelji-logo.png";
+import weltplastLogo from "@/assets/sponsors/weltplast-logo.png";
+import ktmBrinaLogo from "@/assets/sponsors/ktm-brina-logo.png";
+import lagunaLogo from "@/assets/sponsors/laguna-logo.png";
 
 interface SponsorTier {
   name: string;
@@ -53,13 +53,13 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold", image: vokelImg, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "Planet", tier: "Silver", image: planetImg, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Miviko", tier: "Silver", image: mivikoImg, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "KTM Brina", tier: "Silver", image: ktmBrinaImg, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Agencija Laguna", tier: "Silver", image: lagunaImg, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiImg, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "Weltplast", tier: "Bronze", image: weltplastImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(0,0%,70%)]" },
 ];
 
 const Sponsors = () => {
@@ -82,13 +82,13 @@ const Sponsors = () => {
           {sponsors.map((sponsor, index) => (
             <div
               key={sponsor.name}
-              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-xl overflow-hidden hover:scale-[1.03] transition-all duration-300 animate-fade-in-up`}
+              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-xl p-6 md:p-8 flex items-center justify-center hover:scale-[1.03] transition-all duration-300 animate-fade-in-up aspect-[16/9]`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <img 
                 src={sponsor.image} 
                 alt={sponsor.name} 
-                className="w-full h-auto object-cover"
+                className="max-w-[80%] max-h-[80%] object-contain"
               />
             </div>
           ))}
