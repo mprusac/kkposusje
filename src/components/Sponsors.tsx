@@ -57,7 +57,7 @@ const sponsors = [
   { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "" },
   { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "" },
   { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "" },
-  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "!object-contain p-2 bg-[hsl(0,0%,12%)]" },
   { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "" },
   { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "" },
 ];
