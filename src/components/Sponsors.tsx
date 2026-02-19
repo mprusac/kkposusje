@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown, Crown, Medal, Award, Heart } from "lucide-react";
 
+import vokelImg from "@/assets/sponsors/vokel.jpg";
+import planetImg from "@/assets/sponsors/planet.jpg";
+import mivikoImg from "@/assets/sponsors/miviko.jpg";
+import mrveljiImg from "@/assets/sponsors/mrvelji.jpg";
+import weltplastImg from "@/assets/sponsors/weltplast.jpg";
+import ktmBrinaImg from "@/assets/sponsors/ktm-brina.jpg";
+import lagunaImg from "@/assets/sponsors/laguna.jpg";
+
 interface SponsorTier {
   name: string;
   price: string;
@@ -45,10 +53,13 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold" },
-  { name: "Planet", tier: "Silver" },
-  { name: "Miviko", tier: "Silver" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelImg, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Planet", tier: "Silver", image: planetImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Miviko", tier: "Silver", image: mivikoImg, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaImg, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiImg, borderColor: "border-[hsl(48,96%,53%)]" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastImg, borderColor: "border-[hsl(0,0%,70%)]" },
 ];
 
 const Sponsors = () => {
@@ -67,16 +78,18 @@ const Sponsors = () => {
         </p>
 
         {/* Sponsor Logos */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-4xl mx-auto mb-8 md:mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto mb-8 md:mb-16">
           {sponsors.map((sponsor, index) => (
             <div
               key={sponsor.name}
-              className="bg-secondary/50 border border-border rounded-lg p-4 md:p-8 flex items-center justify-center hover:border-primary transition-colors animate-fade-in-up"
+              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-xl overflow-hidden hover:scale-[1.03] transition-all duration-300 animate-fade-in-up`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <span className="text-foreground font-semibold text-center text-sm md:text-base">
-                {sponsor.name}
-              </span>
+              <img 
+                src={sponsor.image} 
+                alt={sponsor.name} 
+                className="w-full h-auto object-cover"
+              />
             </div>
           ))}
         </div>
