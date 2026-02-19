@@ -53,13 +53,13 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,70%)]" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(48,96%,53%)]" },
-  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(0,0%,70%)]" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]" },
+  { name: "Miviko", tier: "Gold", image: mivikoLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]" },
+  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]" },
 ];
 
 const Sponsors = () => {
@@ -82,7 +82,7 @@ const Sponsors = () => {
           {sponsors.map((sponsor, index) => (
             <div
               key={sponsor.name}
-              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-2xl overflow-hidden hover:scale-[1.03] transition-all duration-300 animate-fade-in-up`}
+              className={`bg-secondary/50 border-2 ${sponsor.borderColor} rounded-2xl overflow-hidden hover:scale-[1.05] ${sponsor.glowColor} transition-all duration-300 animate-fade-in-up`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <img 
