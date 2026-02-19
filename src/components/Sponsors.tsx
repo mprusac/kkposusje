@@ -8,6 +8,7 @@ import mrveljiLogo from "@/assets/sponsors/mrvelji-logo.png";
 import weltplastLogo from "@/assets/sponsors/weltplast-logo.png";
 import ktmBrinaLogo from "@/assets/sponsors/ktm-brina-logo.png";
 import lagunaLogo from "@/assets/sponsors/laguna-logo.png";
+import binvestLogo from "@/assets/sponsors/binvest-logo.png";
 
 interface SponsorTier {
   name: string;
@@ -54,6 +55,7 @@ const sponsorTiers: SponsorTier[] = [
 
 const sponsors = [
   { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "", url: "https://vokel.com/" },
+  { name: "Bin Vest", tier: "Gold", image: binvestLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[0.75]", url: "#" },
   { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "", url: "https://www.miviko-cables.com/" },
   { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "!object-contain scale-[1.1]", url: "https://www.facebook.com/planetbih/" },
   { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "", url: "https://ktm-brina.com/" },
