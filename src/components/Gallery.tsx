@@ -97,7 +97,7 @@ const Gallery = () => {
         </h2>
 
         {/* Bento Grid Layout - 3 columns, 20% larger */}
-        <div className="grid grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto" style={{ gridAutoRows: "84px" }}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto" style={{ gridAutoRows: window.innerWidth < 768 ? "70px" : "84px" }}>
           {/* Left column - Timeout (3 rows = 50%) */}
           <GalleryItem index={0} className="row-span-3" objectPosition="center center" />
           

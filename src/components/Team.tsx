@@ -256,7 +256,7 @@ const Team = () => {
             {players.map((player, index) => (
               <div
                 key={player.id}
-                className={`group flex-shrink-0 relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 md:hover:scale-[1.03] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start ${isMobile ? 'w-[85%] max-w-[260px]' : 'w-[calc((100%-5rem)/5)] min-w-[220px]'}`}
+                className={`group flex-shrink-0 relative bg-gradient-card rounded-lg overflow-hidden transition-all duration-300 md:hover:scale-[1.03] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start ${isMobile ? 'w-[calc(100vw-7rem)] max-w-[280px]' : 'w-[calc((100%-5rem)/5)] min-w-[220px]'}`}
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateX(0)" : "translateX(30px)",

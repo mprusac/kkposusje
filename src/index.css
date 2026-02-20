@@ -121,7 +121,7 @@
 
 @layer components {
   .section-title {
-    @apply text-5xl md:text-6xl lg:text-7xl font-display tracking-wide;
+    @apply text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display tracking-wide;
   }
 
   .section-title-white {

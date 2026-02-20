@@ -253,9 +253,9 @@ const Results = () => {
                       : "bg-gradient-to-br from-secondary/80 via-secondary/60 to-red-500/10 border-red-500/20 hover:border-red-500/40"
                   }`}
                   style={{ 
-                    width: isMobile ? '100%' : 'calc((100% - 2.5rem) / 3)',
-                    minWidth: isMobile ? '260px' : '260px',
-                    maxWidth: isMobile ? '280px' : 'none',
+                    width: isMobile ? 'calc(100vw - 7rem)' : 'calc((100% - 2.5rem) / 3)',
+                    minWidth: isMobile ? '240px' : '260px',
+                    maxWidth: isMobile ? '320px' : 'none',
                     flexShrink: 0,
                     animationDelay: `${index * 100}ms`,
                     opacity: isVisible ? 1 : 0,
