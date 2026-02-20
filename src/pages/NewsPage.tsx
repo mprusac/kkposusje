@@ -117,6 +117,14 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
                 <p key={i} className="text-foreground/90 text-lg leading-relaxed mb-4">{paragraph}</p>
               ))}
             </div>
+
+            {article.galleryImages && article.galleryImages.length > 0 && (
+              <div className="mt-8 columns-2 md:columns-3 gap-3">
+                {article.galleryImages.map((img, i) => (
+                  <img key={i} src={img} alt={`${article.title} - slika ${i + 1}`} className="w-full rounded-lg mb-3 break-inside-avoid" />
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>
