@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, Trophy, Users, Megaphone, Newspaper, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowLeft, Calendar, Trophy, Users, Megaphone, Newspaper, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import newsLaguna from "@/assets/news-laguna.jpg";
 import newsLagunaCard from "@/assets/news-laguna-card.jpg";
