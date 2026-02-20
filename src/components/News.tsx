@@ -24,6 +24,7 @@ import cardNajavaLjubuski from "@/assets/card-najava-ljubuski.png";
 import newsPorazLjubuski from "@/assets/news-poraz-ljubuski.png";
 import newsPorazLjubuskiCard from "@/assets/news-poraz-ljubuski-card.jpg";
 import xmasCard from "@/assets/xmas/xmas-card.png";
+import sponzorMiviko from "@/assets/news-sponzor-miviko.jpg";
 
 interface NewsItem {
   id: number;
