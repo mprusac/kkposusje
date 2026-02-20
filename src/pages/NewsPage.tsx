@@ -146,7 +146,7 @@ const NewsPage = () => {
             {filteredNews.map((item, index) => (
               <motion.article key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} className="group bg-secondary/30 rounded-lg overflow-hidden border border-border/30 hover:border-primary/30 transition-all duration-300">
                 <div className="relative h-48 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover object-bottom transition-transform duration-500 group-hover:scale-110" />
                   <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-xs rounded">{getCategoryLabel(item.category)}</span>
                 </div>
                 <div className="p-5">
