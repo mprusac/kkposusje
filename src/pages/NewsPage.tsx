@@ -79,8 +79,8 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
               <span>{getCategoryLabel(article.category)}</span>
             </div>
             
-            <div className="relative aspect-video overflow-hidden rounded-lg mb-8">
-              <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+            <div className="relative aspect-video overflow-hidden rounded-lg mb-8 bg-black flex items-center justify-center">
+              <img src={article.image} alt={article.title} className="max-w-full max-h-full object-contain" />
             </div>
 
             <div className="prose prose-invert max-w-none">
