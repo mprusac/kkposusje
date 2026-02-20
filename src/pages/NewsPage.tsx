@@ -154,7 +154,7 @@ const NewsPage = () => {
                     <Calendar size={14} />
                     {item.date}
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <h3 className="text-lg font-display text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{item.excerpt}</p>
                   <Link to={`/vijesti/${item.id}`} className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all">
                     Pročitaj više <ArrowRight size={16} />
