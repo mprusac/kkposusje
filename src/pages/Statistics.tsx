@@ -469,7 +469,14 @@ const Statistics = () => {
                           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                             <span>{match.date}</span>
                             {match.time && <span>{match.time}</span>}
-                            {match.competition && <span className="text-xs font-bold text-foreground">{match.competition}</span>}
+                            {match.competition ? (
+                              <span className="text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded">{match.competition}</span>
+                            ) : (
+                              <span className="text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
+                                Liga KSHB
+                                <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain -mt-0.5" />
+                              </span>
+                            )}
                             {!match.isUpcoming && !match.competition && <span className="text-muted-foreground/60">FT</span>}
                           </div>
                           
