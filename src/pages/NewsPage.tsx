@@ -27,6 +27,15 @@ import cardJunioriSarajevo from "@/assets/card-juniori-sarajevo.png";
 import cardNajavaLjubuski from "@/assets/card-najava-ljubuski.png";
 import newsPorazLjubuski from "@/assets/news-poraz-ljubuski.png";
 import newsPorazLjubuskiCard from "@/assets/news-poraz-ljubuski-card.jpg";
+import xmas1 from "@/assets/xmas/xmas-1.jpg";
+import xmas2 from "@/assets/xmas/xmas-2.jpg";
+import xmas3 from "@/assets/xmas/xmas-3.jpg";
+import xmas4 from "@/assets/xmas/xmas-4.jpg";
+import xmas5 from "@/assets/xmas/xmas-5.jpg";
+import xmas6 from "@/assets/xmas/xmas-6.jpg";
+import xmas7 from "@/assets/xmas/xmas-7.jpg";
+import xmas8 from "@/assets/xmas/xmas-8.jpg";
+import xmasCard from "@/assets/xmas/xmas-card.png";
 
 interface NewsItem {
   id: number;
@@ -38,6 +47,7 @@ interface NewsItem {
   image: string;
   cardImage?: string;
   cardImagePosition?: string;
+  galleryImages?: string[];
 }
 
 const allNews: NewsItem[] = [
