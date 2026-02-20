@@ -15,11 +15,15 @@ import najavaKupSiroki from "@/assets/news-najava-kup-siroki.jpg";
 import najavaLjubuskiGameday from "@/assets/news-najava-ljubuski-gameday.jpg";
 import najavaLjubuski from "@/assets/news-najava-ljubuski.jpg";
 import najavaMostar from "@/assets/news-najava-mostar.jpg";
-import najavaMostarCard from "@/assets/news-najava-mostar-card.jpg";
 import sponzorKtmBrina from "@/assets/news-sponzor-ktm-brina.jpg";
 import junioriSarajevo from "@/assets/news-juniori-sarajevo.jpg";
 import sponzorVokel from "@/assets/news-sponzor-vokel.jpg";
 import sponzorMrvelji from "@/assets/news-sponzor-mrvelji.jpg";
+import cardNajavaMostar from "@/assets/card-najava-mostar.png";
+import cardNajavaTomislav from "@/assets/card-najava-tomislav.png";
+import cardNajavaKupSiroki from "@/assets/card-najava-kup-siroki.png";
+import cardJunioriSarajevo from "@/assets/card-juniori-sarajevo.png";
+import cardNajavaLjubuski from "@/assets/card-najava-ljubuski.png";
 
 interface NewsItem {
   id: number;
