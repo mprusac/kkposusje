@@ -2,12 +2,7 @@ import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Trophy, Users, Megapho
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import news1 from "@/assets/news-1.jpg";
-import news2 from "@/assets/news-2.jpg";
-import news3 from "@/assets/news-3.jpg";
-import newsLaguna from "@/assets/news-laguna.jpg";
 import newsLagunaCard from "@/assets/news-laguna-card.jpg";
-import newsMostarCard from "@/assets/news-mostar-card.jpg";
 import newsMostarAction from "@/assets/news-mostar-action.png";
 import tomislavCard from "@/assets/tomislav/tomislav-7.png";
 import newsWeltplastCard from "@/assets/news-weltplast-card.jpg";
@@ -35,21 +30,15 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
-  { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna!", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
-  { id: 18, title: "Pobjeda Posušja nakon produžetaka protiv Mostara!", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
-  { id: 19, title: "Poraz Posušja na gostovanju u Tomislavgradu!", excerpt: "Košarkaši Posušja poraženi su rezultatom 60:55 na gostovanju kod HKK Tomislav u tijesnoj i borbenoj utakmici.", date: "11. 02. 2026.", category: "utakmica", image: tomislavCard },
-  { id: 20, title: "Sponzorska suradnja s Weltplastom!", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Weltplast novi brončani sponzor našeg kluba!", date: "08. 02. 2026.", category: "klub", image: newsWeltplastCard },
-  { id: 21, title: "Danas igra Posušje! 🏀🔥", excerpt: "Žuti danas od 16 sati protiv Tomislava u SD Tomislavgrad! Ajmo Žuti! 💪🟡", date: "08. 02. 2026.", category: "najava", image: najavaTomislavGameday },
-  { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 🏀📢", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu! ⏰🔥", date: "04. 02. 2026.", category: "najava", image: najavaTomislav },
-  { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆🔥", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki! 💪🏀", date: "19. 01. 2026.", category: "najava", image: najavaKupSiroki },
-  { id: 24, title: "Danas igra Posušje! 🏀🔥", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina! 💪🟡", date: "14. 12. 2025.", category: "najava", image: najavaLjubuskiGameday },
-  { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 🏀📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog! ⏰🔥", date: "11. 12. 2025.", category: "najava", image: najavaLjubuski },
-  { id: 1, title: "HKK Posušje pobijedio HKK Grude na domaćem terenu", excerpt: "HKK Posušje ostvario je uvjerljivu pobjedu protiv HKK Grude rezultatom 85:72. Ian Krishnan predvodio je ekipu s 24 poena...", date: "14. 12. 2024.", category: "utakmica", image: news1 },
-  { id: 2, title: "Pobjeda protiv KK Čapljina u gostima", excerpt: "Naši igrači ostvarili su važnu pobjedu na gostovanju kod KK Čapljina rezultatom 82:78...", date: "07. 12. 2024.", category: "utakmica", image: news2 },
-  { id: 3, title: "Poraz od HKK Mostar u napetoj utakmici", excerpt: "Unatoč velikom trudu, HKK Posušje izgubio je od HKK Mostar rezultatom 68:75...", date: "30. 11. 2024.", category: "utakmica", image: news3 },
-  { id: 5, title: "Novo pojačanje stiglo u HKK Posušje", excerpt: "HKK Posušje s ponosom objavljuje dolazak novog igrača koji će pojačati našu seniorsku ekipu za ostatak sezone...", date: "10. 12. 2024.", category: "transfer", image: news2 },
-  { id: 9, title: "Posušje dočekuje Čapljinu u sljedećem kolu", excerpt: "Nakon pobjede na gostovanju, naši momci dočekuju ekipu Čapljine u važnoj utakmici za plasman...", date: "08. 12. 2024.", category: "najava", image: news3 },
-  { id: 13, title: "Završeni radovi na dvorani", excerpt: "S ponosom objavljujemo završetak renovacije Gradske sportske dvorane Posušje...", date: "12. 12. 2024.", category: "klub", image: news1 },
+  { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
+  { id: 18, title: "Pobjeda Posušja nakon produžetaka protiv Mostara! 🔥", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
+  { id: 19, title: "Poraz Posušja na gostovanju u Tomislavgradu! 🏀", excerpt: "Košarkaši Posušja poraženi su rezultatom 60:55 na gostovanju kod HKK Tomislav u tijesnoj i borbenoj utakmici.", date: "11. 02. 2026.", category: "utakmica", image: tomislavCard },
+  { id: 20, title: "Sponzorska suradnja s Weltplastom! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Weltplast novi brončani sponzor našeg kluba!", date: "08. 02. 2026.", category: "klub", image: newsWeltplastCard },
+  { id: 21, title: "Danas igra Posušje! 📣", excerpt: "Žuti danas od 16 sati protiv Tomislava u SD Tomislavgrad! Ajmo Žuti! 💪🟡", date: "08. 02. 2026.", category: "najava", image: najavaTomislavGameday, imagePosition: "lower" },
+  { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 📣", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu!", date: "04. 02. 2026.", category: "najava", image: najavaTomislav, imagePosition: "lower" },
+  { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki!", date: "19. 01. 2026.", category: "najava", image: najavaKupSiroki, imagePosition: "lower" },
+  { id: 24, title: "Danas igra Posušje! 📣", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina!", date: "14. 12. 2025.", category: "najava", image: najavaLjubuskiGameday, imagePosition: "lower" },
+  { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📣", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: najavaLjubuski, imagePosition: "lower" },
 ];
 
 const News = () => {
