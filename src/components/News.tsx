@@ -6,12 +6,12 @@ import newsLagunaCard from "@/assets/news-laguna-card.jpg";
 import newsMostarAction from "@/assets/news-mostar-action.png";
 import tomislavCard from "@/assets/tomislav/tomislav-7.png";
 import newsWeltplastCard from "@/assets/news-weltplast-card.jpg";
-import najavaTomislavGameday from "@/assets/news-najava-tomislav-gameday.jpg";
 import najavaTomislav from "@/assets/news-najava-tomislav.jpg";
 import najavaKupSiroki from "@/assets/news-najava-kup-siroki.jpg";
 import najavaLjubuskiGameday from "@/assets/news-najava-ljubuski-gameday.jpg";
 import najavaLjubuski from "@/assets/news-najava-ljubuski.jpg";
 import najavaMostar from "@/assets/news-najava-mostar.jpg";
+import najavaMostarCard from "@/assets/news-najava-mostar-card.jpg";
 import sponzorKtmBrina from "@/assets/news-sponzor-ktm-brina.jpg";
 import junioriSarajevo from "@/assets/news-juniori-sarajevo.jpg";
 import sponzorVokel from "@/assets/news-sponzor-vokel.jpg";
@@ -22,14 +22,13 @@ interface NewsItem {
   title: string;
   excerpt: string;
   date: string;
-  category: "utakmica" | "transfer" | "najava" | "klub";
+  category: "utakmica" | "najava" | "klub";
   image: string;
   imagePosition?: string;
 }
 
 const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
   utakmica: { label: "Utakmice", icon: Trophy },
-  transfer: { label: "Transferi", icon: Users },
   najava: { label: "Najave", icon: Megaphone },
   klub: { label: "Klub", icon: Newspaper },
 };
@@ -37,18 +36,17 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 const allNews: NewsItem[] = [
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
   { id: 18, title: "Pobjeda Posušja nakon produžetaka protiv Mostara! 🔥", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
-  { id: 26, title: "Žuti u nedjelju protiv Mostara! 📣", excerpt: "KK Posušje u nedjelju igra važnu domaću utakmicu protiv ekipe HKK Mostar u GSD Posušje!", date: "13. 02. 2026.", category: "najava", image: najavaMostar, imagePosition: "lower" },
+  { id: 26, title: "Žuti u nedjelju protiv Mostara! 📢", excerpt: "KK Posušje u nedjelju igra važnu domaću utakmicu protiv ekipe HKK Mostar u GSD Posušje!", date: "13. 02. 2026.", category: "najava", image: najavaMostarCard, imagePosition: "lower" },
   { id: 19, title: "Poraz Posušja na gostovanju u Tomislavgradu! 🏀", excerpt: "Košarkaši Posušja poraženi su rezultatom 60:55 na gostovanju kod HKK Tomislav u tijesnoj i borbenoj utakmici.", date: "11. 02. 2026.", category: "utakmica", image: tomislavCard },
   { id: 20, title: "Sponzorska suradnja s Weltplastom! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Weltplast novi brončani sponzor našeg kluba!", date: "08. 02. 2026.", category: "klub", image: newsWeltplastCard },
-  { id: 21, title: "Danas igra Posušje! 📣", excerpt: "Žuti danas od 16 sati protiv Tomislava u SD Tomislavgrad! Ajmo Žuti! 💪🟡", date: "08. 02. 2026.", category: "najava", image: najavaTomislavGameday, imagePosition: "lower" },
-  { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 📣", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu!", date: "04. 02. 2026.", category: "najava", image: najavaTomislav, imagePosition: "lower" },
+  { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 📢", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu!", date: "04. 02. 2026.", category: "najava", image: najavaTomislav, imagePosition: "top" },
   { id: 27, title: "Sponzorska suradnja s KTM Brinom! 🤝", excerpt: "S velikim ponosom objavljujemo da je poduzeće KTM Brina novi srebreni sponzor našeg kluba!", date: "22. 01. 2026.", category: "klub", image: sponzorKtmBrina },
-  { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki!", date: "19. 01. 2026.", category: "najava", image: najavaKupSiroki, imagePosition: "lower" },
-  { id: 28, title: "Juniori KK Posušje turnir u Sarajevu otvorili pobjedom! 🔥", excerpt: "Juniori KK Posušje započeli nastup na međunarodnom košarkaškom turniru u Sarajevu pobjedom nad Šentvidom!", date: "03. 01. 2026.", category: "utakmica", image: junioriSarajevo },
+  { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki!", date: "19. 01. 2026.", category: "najava", image: najavaKupSiroki, imagePosition: "top" },
+  { id: 28, title: "Juniori KK Posušje turnir u Sarajevu otvorili pobjedom! ⛹️", excerpt: "Juniori KK Posušje započeli nastup na međunarodnom košarkaškom turniru u Sarajevu pobjedom nad Šentvidom!", date: "03. 01. 2026.", category: "utakmica", image: junioriSarajevo, imagePosition: "top" },
   { id: 29, title: "Vokel zlatni sponzor našeg kluba! 🤝", excerpt: "S velikim ponosom objavljujemo da je Vokel postao zlatni sponzor našeg kluba!", date: "18. 12. 2025.", category: "klub", image: sponzorVokel },
   { id: 30, title: "Sponzorska suradnja s Mrvelji! 🤝", excerpt: "S ponosom objavljujemo da je tvrtka Mrvelji postala brončani sponzor našeg kluba!", date: "15. 12. 2025.", category: "klub", image: sponzorMrvelji },
-  { id: 24, title: "Danas igra Posušje! 📣", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina!", date: "14. 12. 2025.", category: "najava", image: najavaLjubuskiGameday, imagePosition: "lower" },
-  { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📣", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: najavaLjubuski, imagePosition: "lower" },
+  { id: 24, title: "Danas igra Posušje! 📢", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina!", date: "14. 12. 2025.", category: "najava", image: najavaLjubuskiGameday, imagePosition: "top" },
+  { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: najavaLjubuski, imagePosition: "top" },
 ];
 
 const News = () => {
@@ -105,7 +103,7 @@ const News = () => {
             {allNews.map((item, index) => (
               <Link to={`/vijesti/${item.id}`} key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start flex flex-col" style={{ width: isMobile ? 'calc(100vw - 7rem)' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '240px' : '260px', maxWidth: isMobile ? '320px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
                 <div className="relative h-36 md:h-48 overflow-hidden">
-                  <img src={item.image} alt={item.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${item.imagePosition === 'lower' ? 'object-[center_35%]' : item.imagePosition === 'bottom' ? 'object-bottom' : 'object-[center_25%]'}`} />
+                  <img src={item.image} alt={item.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${item.imagePosition === 'top' ? 'object-top' : item.imagePosition === 'lower' ? 'object-[center_35%]' : item.imagePosition === 'bottom' ? 'object-bottom' : 'object-[center_25%]'}`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-[10px] md:text-xs rounded flex items-center gap-1 font-bold">
                     {(() => { const cfg = categoryConfig[item.category]; const Icon = cfg.icon; return <><Icon size={12} strokeWidth={3} />{cfg.label}</>; })()}
