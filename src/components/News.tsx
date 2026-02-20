@@ -88,7 +88,7 @@ const News = () => {
             {allNews.map((item, index) => (
               <Link to={`/vijesti/${item.id}`} key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start flex flex-col" style={{ width: isMobile ? 'calc(100vw - 7rem)' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '240px' : '260px', maxWidth: isMobile ? '320px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
                 <div className="relative h-36 md:h-48 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover object-[center_30%] transition-transform duration-500 group-hover:scale-110" />
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover object-[center_25%] transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-[10px] md:text-xs rounded flex items-center gap-1 font-bold">
                     {(() => { const cfg = categoryConfig[item.category]; const Icon = cfg.icon; return <><Icon size={12} strokeWidth={3} />{cfg.label}</>; })()}
