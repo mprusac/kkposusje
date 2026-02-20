@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Camera, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer";
@@ -349,6 +349,7 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
 
 const GalleryPage = () => {
   const { eventId } = useParams();
+  const navigate = useNavigate();
 
   // Scroll to top on mount
   useEffect(() => {
@@ -374,13 +375,13 @@ const GalleryPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <Link
-              to="/"
+            <button
+              onClick={() => { sessionStorage.setItem("restoreHomeScroll", "true"); navigate("/"); }}
               className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mb-8 text-lg"
             >
               <ArrowLeft className="w-6 h-6" />
               <span className="font-display tracking-wider text-xl">Nazad</span>
-            </Link>
+            </button>
           </motion.div>
 
           {/* Header */}

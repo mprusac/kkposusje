@@ -190,6 +190,7 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
 
 const NewsPage = () => {
   const { articleId } = useParams();
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>("sve");
 
   useEffect(() => {
@@ -208,10 +209,10 @@ const NewsPage = () => {
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
-            <Link to="/" className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mb-8 text-lg">
+            <button onClick={() => { sessionStorage.setItem("restoreHomeScroll", "true"); navigate("/"); }} className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mb-8 text-lg">
               <ArrowLeft className="w-6 h-6" />
               <span className="font-display tracking-wider text-xl">Nazad</span>
-            </Link>
+            </button>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center mb-12">

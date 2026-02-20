@@ -346,7 +346,10 @@ const Statistics = () => {
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center">
             <button 
-              onClick={() => navigate("/")} 
+              onClick={() => {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+                navigate("/");
+              }} 
               className="inline-flex items-center gap-3 text-primary hover:text-primary/80 transition-colors mr-auto text-lg"
             >
               <ArrowLeft className="w-6 h-6" />
@@ -469,7 +472,14 @@ const Statistics = () => {
                           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                             <span>{match.date}</span>
                             {match.time && <span>{match.time}</span>}
-                            {match.competition && <span className="text-xs font-bold text-foreground">{match.competition}</span>}
+                            {match.competition ? (
+                              <span className="text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded">{match.competition}</span>
+                            ) : (
+                              <span className="text-xs font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
+                                Liga KSHB
+                                <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain -mt-0.5" />
+                              </span>
+                            )}
                             {!match.isUpcoming && !match.competition && <span className="text-muted-foreground/60">FT</span>}
                           </div>
                           
