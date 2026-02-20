@@ -30,7 +30,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 
 const allNews: NewsItem[] = [
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna!", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
-  { id: 18, title: "Pobjeda Posušja nakon produžetaka!", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
+  { id: 18, title: "Pobjeda Posušja nakon produžetaka protiv Mostara!", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
   { id: 19, title: "Poraz Posušja na gostovanju u Tomislavgradu!", excerpt: "Košarkaši Posušja poraženi su rezultatom 60:55 na gostovanju kod HKK Tomislav u tijesnoj i borbenoj utakmici.", date: "08. 02. 2026.", category: "utakmica", image: tomislavCard },
   { id: 1, title: "HKK Posušje pobijedio HKK Grude na domaćem terenu", excerpt: "HKK Posušje ostvario je uvjerljivu pobjedu protiv HKK Grude rezultatom 85:72. Ian Krishnan predvodio je ekipu s 24 poena...", date: "14. 12. 2024.", category: "utakmica", image: news1 },
   { id: 2, title: "Pobjeda protiv KK Čapljina u gostima", excerpt: "Naši igrači ostvarili su važnu pobjedu na gostovanju kod KK Čapljina rezultatom 82:78...", date: "07. 12. 2024.", category: "utakmica", image: news2 },
