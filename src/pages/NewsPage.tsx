@@ -79,8 +79,8 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
               <span>{getCategoryLabel(article.category)}</span>
             </div>
             
-            <div className="relative aspect-video overflow-hidden rounded-lg mb-8">
-              <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+            <div className="relative aspect-video overflow-hidden rounded-lg mb-8 bg-black flex items-center justify-center">
+              <img src={article.image} alt={article.title} className="max-w-full max-h-full object-contain" />
             </div>
 
             <div className="prose prose-invert max-w-none">
@@ -146,7 +146,7 @@ const NewsPage = () => {
             {filteredNews.map((item, index) => (
               <motion.article key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }} className="group bg-secondary/30 rounded-lg overflow-hidden border border-border/30 hover:border-primary/30 transition-all duration-300">
                 <div className="relative h-48 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover object-bottom transition-transform duration-500 group-hover:scale-110" />
                   <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-xs rounded">{getCategoryLabel(item.category)}</span>
                 </div>
                 <div className="p-5">
@@ -154,7 +154,7 @@ const NewsPage = () => {
                     <Calendar size={14} />
                     {item.date}
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                  <h3 className="text-lg font-display text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{item.excerpt}</p>
                   <Link to={`/vijesti/${item.id}`} className="inline-flex items-center gap-2 text-primary text-sm font-medium hover:gap-3 transition-all">
                     Pročitaj više <ArrowRight size={16} />
