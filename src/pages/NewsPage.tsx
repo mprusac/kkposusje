@@ -27,6 +27,15 @@ import cardJunioriSarajevo from "@/assets/card-juniori-sarajevo.png";
 import cardNajavaLjubuski from "@/assets/card-najava-ljubuski.png";
 import newsPorazLjubuski from "@/assets/news-poraz-ljubuski.png";
 import newsPorazLjubuskiCard from "@/assets/news-poraz-ljubuski-card.jpg";
+import xmas1 from "@/assets/xmas/xmas-1.jpg";
+import xmas2 from "@/assets/xmas/xmas-2.jpg";
+import xmas3 from "@/assets/xmas/xmas-3.jpg";
+import xmas4 from "@/assets/xmas/xmas-4.jpg";
+import xmas5 from "@/assets/xmas/xmas-5.jpg";
+import xmas6 from "@/assets/xmas/xmas-6.jpg";
+import xmas7 from "@/assets/xmas/xmas-7.jpg";
+import xmas8 from "@/assets/xmas/xmas-8.jpg";
+import xmasCard from "@/assets/xmas/xmas-card.png";
 
 interface NewsItem {
   id: number;
@@ -38,6 +47,7 @@ interface NewsItem {
   image: string;
   cardImage?: string;
   cardImagePosition?: string;
+  galleryImages?: string[];
 }
 
 const allNews: NewsItem[] = [
@@ -55,6 +65,7 @@ const allNews: NewsItem[] = [
   { id: 31, title: "Poraz Posušja u Ljubuškom! 🏀", excerpt: "Košarkaši Posušja nakon infarktne završnice poraženi su od Ljubuškog rezultatom 85:81 u vjerojatno najboljoj utakmici sezone.", content: "Poraz Posušja u Ljubuškom! 🏀\n\nKošarkaši Posušja nakon infarktne završnice poraženi su od Ljubuškog, trenutno vodeće momčadi Prvenstva, rezultatom 85:81, u vjerovatno najboljoj utakmici dosadašnjeg dijela sezone.\n\nU redovima Posušja posebno se istakao Ante Kovač, koji je odigrao utakmicu života i postigao čak 36 poena. Nakon slabijeg prvog poluvremena, Kovač je u trećoj četvrtini sam ubacio 19 poena i vratio našu ekipu u potpunosti u utakmicu. Nažalost, u samoj završnici nedostajalo je malo sportske sreće za veliku pobjedu.\n\nAjmo žuti! 🟡💪\n\n#ajmozuti #kkposusje #kshercegbosne #ljubuski", date: "14. 12. 2025.", category: "utakmica", image: newsPorazLjubuski, cardImage: newsPorazLjubuskiCard, cardImagePosition: "center" },
   { id: 24, title: "Danas igra Posušje! 📢", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina!", content: "Danas igra Posušje! 🏀📢\n\nŽuti večeras od 19 sati protiv Ljubuškog! ⏰\n\n📍 SD Ljubuški\n📺 Prijenos utakmice na YouTube kanalu Sport Hercegovina\n\nAjmo Žuti! 💪🟡\n\n#ajmozuti #kkposusje #kshercegbosne #ljubuski", date: "14. 12. 2025.", category: "najava", image: najavaLjubuskiGameday, cardImage: cardNajavaLjubuskiGameday, cardImagePosition: "lower" },
   { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", content: "Žuti u nedjelju protiv Ljubuškog! 🏀📢\n\nKošarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva Košarkaškog saveza Herceg-Bosne protiv ekipe Ljubuškog! 🔥\n\nŽuti do sada u odigranih 6 kola imaju 3 pobjede i 3 poraza, dok ekipa Ljubuškog ima 5 pobjeda i 1 poraz. 📊\n\n📍 SD Ljubuški\n⏰ 19h\n📺 YouTube: SportHercegovina\n\nAjmo žuti! 🟡💪\n\n#kkposusje #kkljubuski #kshercegbosne #ajmozuti", date: "11. 12. 2025.", category: "najava", image: najavaLjubuski, cardImage: cardNajavaLjubuski, cardImagePosition: "center" },
+  { id: 32, title: "Službena oprema – Božićno darivanje HKK Posušje! 🎄", excerpt: "Naruči svoj ili pokloni dragoj osobi pravi klupski Božićni dar! Košarkaški klub Posušje pripremio je nagradnu igru i naručivanje službene opreme!", content: "🎄 SLUŽBENA OPREMA – BOŽIČNO DARIVANJE HKK POSUŠJE 🎄\n\nNaruči svoj ili pokloni dragoj osobi pravi klupski Božićni dar. 🎁👏\n\n🏀 Košarkaški klub Posušje pripremio je nagradnu igru i omogućio je svim članovima i navijačima naručivanje službene opreme za sezonu 2025./26., savršene kao Božićni poklon za sebe ili dragu osobu. 🎁👏\n\nPripremili smo i Božićno darivanje u kojem darujemo:\n1. Službenu Trenerku KK Posušje, sezona 2025/26 (komplet),\n2. Duks KK Posušje, sezona 2025/26\n3. Majica kratkih rukava KK Posušje, sezona 2025/26\n\n*Nagradna igra vrijedi samo za instagram\n\nZa sudjelovanje je potrebno:\n1. Zapratiti stranicu KK Posušje i stranicu @josipvranjkovic.studio,\n2. Lajkati objavu i u komentaru označiti dvije osobe (moguće je sudjelovati više puta uz označavanje novih osoba).\n3. Za povećanje šanse u nagradnoj igri možete podijeliti objavu na svoj story (nije obavezno).\n\n📸 Veliko hvala Josipu Vranjkoviću na vrhunskim fotografijama! @josipvranjkovic.studio\n\nDobitnike izvlačimo 24. prosinca, dok narudžbe službene opreme primamo do 20.12. (subota).\n\nSretno svima! 🎄 🤍💛\n\n#kkposusje #ajmozuti", date: "12. 12. 2025.", category: "klub", image: xmas1, cardImage: xmasCard, galleryImages: [xmas1, xmas2, xmas3, xmas4, xmas5, xmas6, xmas7, xmas8] },
 ];
 
 const categories = [
@@ -106,6 +117,14 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
                 <p key={i} className="text-foreground/90 text-lg leading-relaxed mb-4">{paragraph}</p>
               ))}
             </div>
+
+            {article.galleryImages && article.galleryImages.length > 0 && (
+              <div className="mt-8 columns-2 md:columns-3 gap-3">
+                {article.galleryImages.map((img, i) => (
+                  <img key={i} src={img} alt={`${article.title} - slika ${i + 1}`} className="w-full rounded-lg mb-3 break-inside-avoid" />
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

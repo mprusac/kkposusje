@@ -23,6 +23,7 @@ import cardJunioriSarajevo from "@/assets/card-juniori-sarajevo.png";
 import cardNajavaLjubuski from "@/assets/card-najava-ljubuski.png";
 import newsPorazLjubuski from "@/assets/news-poraz-ljubuski.png";
 import newsPorazLjubuskiCard from "@/assets/news-poraz-ljubuski-card.jpg";
+import xmasCard from "@/assets/xmas/xmas-card.png";
 
 interface NewsItem {
   id: number;
@@ -55,6 +56,7 @@ const allNews: NewsItem[] = [
   { id: 31, title: "Poraz Posušja u Ljubuškom! 🏀", excerpt: "Košarkaši Posušja nakon infarktne završnice poraženi su od Ljubuškog rezultatom 85:81 u vjerojatno najboljoj utakmici sezone.", date: "14. 12. 2025.", category: "utakmica", image: newsPorazLjubuskiCard, imagePosition: "center" },
   { id: 24, title: "Danas igra Posušje! 📢", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina!", date: "14. 12. 2025.", category: "najava", image: cardNajavaLjubuskiGameday, imagePosition: "lower" },
   { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: cardNajavaLjubuski, imagePosition: "center" },
+  { id: 32, title: "Službena oprema – Božićno darivanje HKK Posušje! 🎄", excerpt: "Naruči svoj ili pokloni dragoj osobi pravi klupski Božićni dar! Košarkaški klub Posušje pripremio je nagradnu igru i naručivanje službene opreme!", date: "12. 12. 2025.", category: "klub", image: xmasCard },
 ];
 
 const News = () => {
