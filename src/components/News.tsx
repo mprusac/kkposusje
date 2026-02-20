@@ -23,6 +23,7 @@ import cardJunioriSarajevo from "@/assets/card-juniori-sarajevo.png";
 import cardNajavaLjubuski from "@/assets/card-najava-ljubuski.png";
 import newsPorazLjubuski from "@/assets/news-poraz-ljubuski.png";
 import newsPorazLjubuskiCard from "@/assets/news-poraz-ljubuski-card.jpg";
+import xmasCard from "@/assets/xmas/xmas-card.png";
 
 interface NewsItem {
   id: number;
