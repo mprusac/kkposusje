@@ -10,6 +10,7 @@ import newsLagunaCard from "@/assets/news-laguna-card.jpg";
 import newsMostarCard from "@/assets/news-mostar-card.jpg";
 import newsMostarAction from "@/assets/news-mostar-action.png";
 import tomislavCard from "@/assets/tomislav/tomislav-7.png";
+import newsWeltplastCard from "@/assets/news-weltplast-card.jpg";
 
 interface NewsItem {
   id: number;
@@ -29,6 +30,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 20, title: "Sponzorska suradnja s Weltplastom!", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Weltplast novi brončani sponzor našeg kluba!", date: "11. 02. 2026.", category: "klub", image: newsWeltplastCard },
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna!", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
   { id: 18, title: "Pobjeda Posušja nakon produžetaka protiv Mostara!", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
   { id: 19, title: "Poraz Posušja na gostovanju u Tomislavgradu!", excerpt: "Košarkaši Posušja poraženi su rezultatom 60:55 na gostovanju kod HKK Tomislav u tijesnoj i borbenoj utakmici.", date: "08. 02. 2026.", category: "utakmica", image: tomislavCard },
