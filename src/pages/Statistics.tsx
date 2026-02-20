@@ -472,13 +472,13 @@ const Statistics = () => {
                           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                             <span>{match.date}</span>
                             {match.time && <span>{match.time}</span>}
-                            {match.competition ? (
+                            {match.competition?.includes("Kup") ? (
                               <span className="text-xs font-bold text-foreground bg-primary/10 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
                                 {match.competition}
                               </span>
                             ) : (
                               <span className="text-xs font-bold text-foreground bg-primary/10 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
-                                Liga KSHB
+                                {match.competition || "Liga KSHB"}
                                 <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain -mt-0.5" />
                               </span>
                             )}
