@@ -145,10 +145,10 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
               ))}
             </div>
 
-            {article.galleryImages && article.galleryImages.length > 0 && (
+            {galleryImages.length > 0 && (
               <div className="mt-8 columns-2 md:columns-3 gap-3">
-                {article.galleryImages.map((img, i) => (
-                  <img key={i} src={img} alt={`${article.title} - slika ${i + 1}`} className="w-full rounded-lg mb-3 break-inside-avoid" />
+                {galleryImages.map((img, i) => (
+                  <img key={i} src={img} alt={`${article.title} - slika ${i + 1}`} className="w-full rounded-lg mb-3 break-inside-avoid cursor-pointer hover:opacity-90 transition-opacity" onClick={() => openLightbox(i)} />
                 ))}
               </div>
             )}
