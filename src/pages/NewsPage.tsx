@@ -37,6 +37,7 @@ import xmas7 from "@/assets/xmas/xmas-7.jpg";
 import xmas8 from "@/assets/xmas/xmas-8.jpg";
 import xmasCard from "@/assets/xmas/xmas-card.png";
 import sponzorMiviko from "@/assets/news-sponzor-miviko.jpg";
+import sponzorPlanet from "@/assets/news-sponzor-planet.jpg";
 
 interface NewsItem {
   id: number;
