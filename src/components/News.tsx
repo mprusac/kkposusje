@@ -43,14 +43,14 @@ const allNews: NewsItem[] = [
   { id: 26, title: "Žuti u nedjelju protiv Mostara! 📢", excerpt: "KK Posušje u nedjelju igra važnu domaću utakmicu protiv ekipe HKK Mostar u GSD Posušje!", date: "13. 02. 2026.", category: "najava", image: cardNajavaMostar, imagePosition: "lower" },
   { id: 19, title: "Poraz Posušja na gostovanju u Tomislavgradu! 🏀", excerpt: "Košarkaši Posušja poraženi su rezultatom 60:55 na gostovanju kod HKK Tomislav u tijesnoj i borbenoj utakmici.", date: "11. 02. 2026.", category: "utakmica", image: tomislavCard },
   { id: 20, title: "Sponzorska suradnja s Weltplastom! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Weltplast novi brončani sponzor našeg kluba!", date: "08. 02. 2026.", category: "klub", image: newsWeltplastCard },
-  { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 📢", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu!", date: "04. 02. 2026.", category: "najava", image: cardNajavaTomislav, imagePosition: "lower" },
+  { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 📢", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu!", date: "04. 02. 2026.", category: "najava", image: cardNajavaTomislav },
   { id: 27, title: "Sponzorska suradnja s KTM Brinom! 🤝", excerpt: "S velikim ponosom objavljujemo da je poduzeće KTM Brina novi srebreni sponzor našeg kluba!", date: "22. 01. 2026.", category: "klub", image: sponzorKtmBrina },
-  { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki!", date: "19. 01. 2026.", category: "najava", image: cardNajavaKupSiroki, imagePosition: "lower" },
+  { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki!", date: "19. 01. 2026.", category: "najava", image: cardNajavaKupSiroki },
   { id: 28, title: "Juniori KK Posušje turnir u Sarajevu otvorili pobjedom! ⛹️", excerpt: "Juniori KK Posušje započeli nastup na međunarodnom košarkaškom turniru u Sarajevu pobjedom nad Šentvidom!", date: "03. 01. 2026.", category: "utakmica", image: cardJunioriSarajevo },
   { id: 29, title: "Vokel zlatni sponzor našeg kluba! 🤝", excerpt: "S velikim ponosom objavljujemo da je Vokel postao zlatni sponzor našeg kluba!", date: "18. 12. 2025.", category: "klub", image: sponzorVokel },
   { id: 30, title: "Sponzorska suradnja s Mrvelji! 🤝", excerpt: "S ponosom objavljujemo da je tvrtka Mrvelji postala brončani sponzor našeg kluba!", date: "15. 12. 2025.", category: "klub", image: sponzorMrvelji },
   { id: 24, title: "Danas igra Posušje! 📢", excerpt: "Žuti večeras od 19 sati protiv Ljubuškog u SD Ljubuški! 📺 Prijenos na YouTube kanalu Sport Hercegovina!", date: "14. 12. 2025.", category: "najava", image: najavaLjubuskiGameday, imagePosition: "top" },
-  { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: cardNajavaLjubuski, imagePosition: "lower" },
+  { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: cardNajavaLjubuski },
 ];
 
 const News = () => {
