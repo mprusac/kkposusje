@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto pl-0 lg:pl-36 text-center md:text-left">
           {/* Logo & Description */}
           <div>
-            <img src={logo} alt="HKK Posušje" className="h-20 w-auto mb-4" />
+            <img src={logo} alt="HKK Posušje" className="h-20 w-auto mb-4 mx-auto md:mx-0" />
             <p className="text-muted-foreground text-sm">
               „Tamo gdje dres postaje čast, a klub emocija – tu igra Posušje."
             </p>
