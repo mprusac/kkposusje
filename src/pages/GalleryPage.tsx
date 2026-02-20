@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import eventTomislav from "@/assets/event-tomislav.png";
 import eventSiroki from "@/assets/event-siroki.png";
 import eventRama from "@/assets/event-rama.png";
+import eventLjubuski from "@/assets/event-ljubuski.jpg";
 
 // Import Tomislav images
 import tomislav1 from "@/assets/tomislav/tomislav-1.jpg";
@@ -43,6 +44,18 @@ import siroki7 from "@/assets/siroki/siroki-7.png";
 import siroki8 from "@/assets/siroki/siroki-8.png";
 import siroki9 from "@/assets/siroki/siroki-9.png";
 import siroki10 from "@/assets/siroki/siroki-10.png";
+
+// Import Ljubuški images
+import ljubuski1 from "@/assets/ljubuski/ljubuski-1.jpg";
+import ljubuski2 from "@/assets/ljubuski/ljubuski-2.jpg";
+import ljubuski3 from "@/assets/ljubuski/ljubuski-3.jpg";
+import ljubuski4 from "@/assets/ljubuski/ljubuski-4.jpg";
+import ljubuski5 from "@/assets/ljubuski/ljubuski-5.jpg";
+import ljubuski6 from "@/assets/ljubuski/ljubuski-6.jpg";
+import ljubuski7 from "@/assets/ljubuski/ljubuski-7.png";
+import ljubuski8 from "@/assets/ljubuski/ljubuski-8.png";
+import ljubuski9 from "@/assets/ljubuski/ljubuski-9.png";
+import ljubuski10 from "@/assets/ljubuski/ljubuski-10.jpg";
 
 // Image orientation type - vertical or horizontal
 type ImageWithOrientation = {
@@ -112,6 +125,27 @@ const events = [
       { src: rama8, orientation: "vertical" },       // vertical
       { src: rama5, orientation: "vertical" },       // vertical
       { src: rama6, orientation: "horizontal" },     // horizontal
+    ] as ImageWithOrientation[],
+  },
+  {
+    id: "ljubuski",
+    homeTeam: "HKK Posušje",
+    awayTeam: "HKK Ljubuški",
+    date: "14.12.2025.",
+    description: "Galerija s utakmice Posušje - Ljubuški",
+    coverImage: eventLjubuski,
+    images: [] as string[],
+    imagesWithOrientation: [
+      { src: ljubuski10, orientation: "horizontal" },   // slavlje - horizontal
+      { src: ljubuski1, orientation: "horizontal" },    // dribling - horizontal
+      { src: ljubuski7, orientation: "vertical" },      // igrač sudac - vertical
+      { src: ljubuski2, orientation: "horizontal" },    // borba za loptu - horizontal
+      { src: ljubuski8, orientation: "vertical" },      // 1na1 - vertical
+      { src: ljubuski3, orientation: "vertical" },      // igrač dribling - vertical
+      { src: ljubuski4, orientation: "horizontal" },    // prodor - horizontal
+      { src: ljubuski9, orientation: "vertical" },      // crossover - vertical
+      { src: ljubuski5, orientation: "horizontal" },    // obrana - horizontal
+      { src: ljubuski6, orientation: "horizontal" },    // navijači - horizontal
     ] as ImageWithOrientation[],
   },
 ];
