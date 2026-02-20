@@ -65,45 +65,24 @@ type ImageWithOrientation = {
 
 const events = [
   {
-    id: "tomislav",
+    id: "ljubuski",
     homeTeam: "HKK Posušje",
-    awayTeam: "HKK Tomislav",
-    date: "02.11.2025.",
-    description: "Galerija s utakmice Posušje - Tomislav",
-    coverImage: eventTomislav,
+    awayTeam: "HKK Ljubuški",
+    date: "14.12.2025.",
+    description: "Galerija s utakmice Posušje - Ljubuški",
+    coverImage: eventLjubuski,
     images: [] as string[],
     imagesWithOrientation: [
-      { src: tomislav3, orientation: "horizontal" },   // high five - horizontal
-      { src: tomislav1, orientation: "vertical" },     // dribling - vertical
-      { src: tomislav2, orientation: "vertical" },     // lopta u ruci - vertical
-      { src: tomislav7, orientation: "horizontal" },   // slavlje - horizontal
-      { src: tomislav4, orientation: "vertical" },     // trener - vertical
-      { src: tomislav5, orientation: "vertical" },     // duel - vertical
-      { src: tomislav9, orientation: "horizontal" },   // igrači hodaju - horizontal
-      { src: tomislav6, orientation: "vertical" },     // zakucavanje - vertical
-      { src: tomislav8, orientation: "vertical" },     // klupa - vertical
-      { src: tomislav10, orientation: "vertical" },    // šut - vertical
-    ] as ImageWithOrientation[],
-  },
-  {
-    id: "siroki",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Široki II",
-    date: "15.11.2025.",
-    description: "Galerija s utakmice Posušje - Široki II",
-    coverImage: eventSiroki,
-    images: [] as string[],
-    imagesWithOrientation: [
-      { src: siroki7, orientation: "horizontal" },   // tri igraca - horizontal
-      { src: siroki1, orientation: "vertical" },     // duel - vertical
-      { src: siroki2, orientation: "vertical" },     // layup - vertical
-      { src: siroki8, orientation: "horizontal" },   // igrač s loptom - horizontal
-      { src: siroki5, orientation: "vertical" },     // timeout - vertical
-      { src: siroki3, orientation: "vertical" },     // dribling - vertical
-      { src: siroki9, orientation: "horizontal" },   // obrana - horizontal
-      { src: siroki4, orientation: "vertical" },     // šut - vertical
-      { src: siroki10, orientation: "horizontal" },  // prodor - horizontal
-      { src: siroki6, orientation: "vertical" },     // dribling - vertical
+      { src: ljubuski10, orientation: "horizontal" },
+      { src: ljubuski1, orientation: "horizontal" },
+      { src: ljubuski7, orientation: "vertical" },
+      { src: ljubuski2, orientation: "horizontal" },
+      { src: ljubuski8, orientation: "vertical" },
+      { src: ljubuski3, orientation: "vertical" },
+      { src: ljubuski4, orientation: "horizontal" },
+      { src: ljubuski9, orientation: "vertical" },
+      { src: ljubuski5, orientation: "horizontal" },
+      { src: ljubuski6, orientation: "horizontal" },
     ] as ImageWithOrientation[],
   },
   {
@@ -115,37 +94,58 @@ const events = [
     coverImage: eventRama,
     images: [] as string[],
     imagesWithOrientation: [
-      { src: rama9, orientation: "horizontal" },     // horizontal
-      { src: rama7, orientation: "vertical" },       // vertical
-      { src: rama1, orientation: "vertical" },       // vertical
-      { src: rama10, orientation: "horizontal" },    // horizontal
-      { src: rama4, orientation: "vertical" },       // vertical
-      { src: rama2, orientation: "vertical" },       // vertical
-      { src: rama3, orientation: "horizontal" },     // horizontal
-      { src: rama8, orientation: "vertical" },       // vertical
-      { src: rama5, orientation: "vertical" },       // vertical
-      { src: rama6, orientation: "horizontal" },     // horizontal
+      { src: rama9, orientation: "horizontal" },
+      { src: rama7, orientation: "vertical" },
+      { src: rama1, orientation: "vertical" },
+      { src: rama10, orientation: "horizontal" },
+      { src: rama4, orientation: "vertical" },
+      { src: rama2, orientation: "vertical" },
+      { src: rama3, orientation: "horizontal" },
+      { src: rama8, orientation: "vertical" },
+      { src: rama5, orientation: "vertical" },
+      { src: rama6, orientation: "horizontal" },
     ] as ImageWithOrientation[],
   },
   {
-    id: "ljubuski",
+    id: "siroki",
     homeTeam: "HKK Posušje",
-    awayTeam: "HKK Ljubuški",
-    date: "14.12.2025.",
-    description: "Galerija s utakmice Posušje - Ljubuški",
-    coverImage: eventLjubuski,
+    awayTeam: "HKK Široki II",
+    date: "15.11.2025.",
+    description: "Galerija s utakmice Posušje - Široki II",
+    coverImage: eventSiroki,
     images: [] as string[],
     imagesWithOrientation: [
-      { src: ljubuski10, orientation: "horizontal" },   // slavlje - horizontal
-      { src: ljubuski1, orientation: "horizontal" },    // dribling - horizontal
-      { src: ljubuski7, orientation: "vertical" },      // igrač sudac - vertical
-      { src: ljubuski2, orientation: "horizontal" },    // borba za loptu - horizontal
-      { src: ljubuski8, orientation: "vertical" },      // 1na1 - vertical
-      { src: ljubuski3, orientation: "vertical" },      // igrač dribling - vertical
-      { src: ljubuski4, orientation: "horizontal" },    // prodor - horizontal
-      { src: ljubuski9, orientation: "vertical" },      // crossover - vertical
-      { src: ljubuski5, orientation: "horizontal" },    // obrana - horizontal
-      { src: ljubuski6, orientation: "horizontal" },    // navijači - horizontal
+      { src: siroki7, orientation: "horizontal" },
+      { src: siroki1, orientation: "vertical" },
+      { src: siroki2, orientation: "vertical" },
+      { src: siroki8, orientation: "horizontal" },
+      { src: siroki5, orientation: "vertical" },
+      { src: siroki3, orientation: "vertical" },
+      { src: siroki9, orientation: "horizontal" },
+      { src: siroki4, orientation: "vertical" },
+      { src: siroki10, orientation: "horizontal" },
+      { src: siroki6, orientation: "vertical" },
+    ] as ImageWithOrientation[],
+  },
+  {
+    id: "tomislav",
+    homeTeam: "HKK Posušje",
+    awayTeam: "HKK Tomislav",
+    date: "02.11.2025.",
+    description: "Galerija s utakmice Posušje - Tomislav",
+    coverImage: eventTomislav,
+    images: [] as string[],
+    imagesWithOrientation: [
+      { src: tomislav3, orientation: "horizontal" },
+      { src: tomislav1, orientation: "vertical" },
+      { src: tomislav2, orientation: "vertical" },
+      { src: tomislav7, orientation: "horizontal" },
+      { src: tomislav4, orientation: "vertical" },
+      { src: tomislav5, orientation: "vertical" },
+      { src: tomislav9, orientation: "horizontal" },
+      { src: tomislav6, orientation: "vertical" },
+      { src: tomislav8, orientation: "vertical" },
+      { src: tomislav10, orientation: "vertical" },
     ] as ImageWithOrientation[],
   },
 ];
