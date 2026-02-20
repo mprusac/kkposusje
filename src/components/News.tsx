@@ -25,6 +25,7 @@ import newsPorazLjubuski from "@/assets/news-poraz-ljubuski.png";
 import newsPorazLjubuskiCard from "@/assets/news-poraz-ljubuski-card.jpg";
 import xmasCard from "@/assets/xmas/xmas-card.png";
 import sponzorMiviko from "@/assets/news-sponzor-miviko.jpg";
+import sponzorPlanet from "@/assets/news-sponzor-planet.jpg";
 
 interface NewsItem {
   id: number;
@@ -59,6 +60,7 @@ const allNews: NewsItem[] = [
   { id: 25, title: "Žuti u nedjelju protiv Ljubuškog! 📢", excerpt: "Košarkaši Posušja u nedjelju igraju 7. utakmicu Prvenstva KS Herceg-Bosne protiv ekipe Ljubuškog!", date: "11. 12. 2025.", category: "najava", image: cardNajavaLjubuski, imagePosition: "center" },
   { id: 32, title: "Službena oprema – Božićno darivanje HKK Posušje! 🎄", excerpt: "Naruči svoj ili pokloni dragoj osobi pravi klupski Božićni dar! Košarkaški klub Posušje pripremio je nagradnu igru i naručivanje službene opreme!", date: "12. 12. 2025.", category: "klub", image: xmasCard },
   { id: 33, title: "Sponzorska suradnja s Mivikom! 🤝", excerpt: "S velikim ponosom objavljujemo da je Miviko novi srebreni sponzor našeg kluba!", date: "06. 12. 2025.", category: "klub", image: sponzorMiviko },
+  { id: 34, title: "Sponzorska suradnja s Planetom! 🤝", excerpt: "S ponosom objavljujemo da je Planet novi srebreni sponzor našeg kluba!", date: "29. 11. 2025.", category: "klub", image: sponzorPlanet },
 ];
 
 const News = () => {
