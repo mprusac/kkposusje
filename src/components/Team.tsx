@@ -60,7 +60,7 @@ const players: Player[] = [
     image: playerRamljak,
     sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845",
     description: "Energični krilni igrač i jedan od nositelja igre, svestran i često najefikasniji na terenu.",
-    stats: { ppg: 14, rpg: 5, apg: 5, mpg: "" },
+    stats: { ppg: 15, rpg: 5, apg: 5, mpg: "" },
   },
   {
     id: 4,
