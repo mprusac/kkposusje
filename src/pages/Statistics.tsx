@@ -237,9 +237,9 @@ const top2PPercentage: TopPlayer[] = [
 ];
 
 const top3PPercentage: TopPlayer[] = [
-  { rank: 1, name: "Mirko Đerek", position: "Centar", value: "67%", image: playerDerek },
-  { rank: 2, name: "Luka Ramljak", position: "Bek", value: "40%" },
-  { rank: 3, name: "Ante Begić", position: "Krilo", value: "39%", image: playerBegic },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: "38.7%", image: playerBegic },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: "37.8%", image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: "31.2%", image: playerRamljak },
 ];
 
 const topThrees: TopPlayer[] = [
