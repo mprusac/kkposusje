@@ -84,16 +84,6 @@ const players: Player[] = [
   },
   {
     id: 6,
-    name: "Luka Bašić",
-    position: "Guard",
-    number: "08",
-    image: playerBasicLuka,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464",
-    description: "Talentirani 18-godišnjak posuškog omladinskog pogona koji vrijedno gradi svoj košarkaški put.",
-    stats: { ppg: 4, rpg: 4, apg: 1, mpg: "" },
-  },
-  {
-    id: 7,
     name: "Josip Pavković",
     position: "Guard",
     number: "12",
@@ -101,6 +91,16 @@ const players: Player[] = [
     sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527",
     description: "Perspektivan i nadaren mladi igrač koji se svojim doprinosom timu razvija u prvoligaškog košarkaša.",
     stats: { ppg: 5, rpg: 3, apg: 0, mpg: "" },
+  },
+  {
+    id: 7,
+    name: "Luka Bašić",
+    position: "Guard",
+    number: "08",
+    image: playerBasicLuka,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/luka-basic/1965464",
+    description: "Talentirani 18-godišnjak posuškog omladinskog pogona koji vrijedno gradi svoj košarkaški put.",
+    stats: { ppg: 4, rpg: 4, apg: 1, mpg: "" },
   },
   {
     id: 8,
