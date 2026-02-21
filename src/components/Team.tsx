@@ -114,16 +114,6 @@ const players: Player[] = [
   },
   {
     id: 9,
-    name: "Luka Ramljak",
-    position: "Guard",
-    number: "10",
-    image: "",
-    sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289",
-    description: "16-godišnji bek šuter i posuški talent s pozivom u kadetsku reprezentaciju BiH.",
-    stats: { ppg: 4, rpg: 3, apg: 1, mpg: "" },
-  },
-  {
-    id: 10,
     name: "Jakov Ramljak",
     position: "Guard",
     number: "07",
@@ -131,6 +121,16 @@ const players: Player[] = [
     sofascoreLink: "https://www.sofascore.com/basketball/player/jakov-ramljak/1578854",
     description: "Mladi bek koji marljivo gradi svoju ulogu u ekipi, borben na parketu i sve zapaženiji u rotaciji.",
     stats: { ppg: 2, rpg: 1, apg: 0, mpg: "" },
+  },
+  {
+    id: 10,
+    name: "Luka Ramljak",
+    position: "Guard",
+    number: "10",
+    image: "",
+    sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289",
+    description: "16-godišnji bek šuter i posuški talent s pozivom u kadetsku reprezentaciju BiH.",
+    stats: { ppg: 4, rpg: 3, apg: 1, mpg: "" },
   },
   {
     id: 11,
