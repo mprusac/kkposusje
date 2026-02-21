@@ -482,7 +482,7 @@ const Statistics = () => {
                                 <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain -mt-0.5" />
                               </span>
                             )}
-                            {!match.isUpcoming && !match.competition && <span className="text-muted-foreground/60">FT</span>}
+                            
                           </div>
                           
                           <div className="flex items-center">
