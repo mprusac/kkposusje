@@ -739,7 +739,7 @@ const Statistics = () => {
                   <div className="grid md:grid-cols-2 gap-5">
                     {/* Shooting */}
                     <div className="hover:scale-[1.02] transition-transform duration-300">
-                      <h4 className="font-display text-base md:text-lg text-center mb-3">Šut</h4>
+                      <h4 className="font-display text-lg md:text-2xl text-center mb-3">Šut</h4>
                       <div className="space-y-1.5">
                         {[
                           { label: "Iz igre (FG)", value: "306 / 671", avg: "30.6 / 67.1", pct: "45.6%" },
@@ -761,24 +761,12 @@ const Statistics = () => {
                           </div>
                         ))}
                       </div>
-
-                      {/* Advanced shooting */}
-                      <div className="mt-4 flex gap-2 justify-center">
-                        <div className="bg-background/30 rounded-lg px-4 py-2 text-center border border-border/20">
-                          <p className="text-[10px] md:text-xs text-muted-foreground uppercase">eFG%</p>
-                          <p className="text-lg md:text-xl font-display text-primary">52.8%</p>
-                        </div>
-                        <div className="bg-background/30 rounded-lg px-4 py-2 text-center border border-border/20">
-                          <p className="text-[10px] md:text-xs text-muted-foreground uppercase">TS%</p>
-                          <p className="text-lg md:text-xl font-display text-primary">52.3%</p>
-                        </div>
-                      </div>
                     </div>
 
-                    {/* Rebounds, Defense & Other */}
+                    {/* Rebounds & Other combined */}
                     <div className="hover:scale-[1.02] transition-transform duration-300">
-                      <h4 className="font-display text-base md:text-lg text-center mb-3">Skokovi</h4>
-                      <div className="space-y-1.5 mb-5">
+                      <h4 className="font-display text-lg md:text-2xl text-center mb-3">Skokovi</h4>
+                      <div className="space-y-1.5">
                         {[
                           { label: "Obrambeni (DR)", total: "303", avg: "30.3" },
                           { label: "Napadački (OR)", total: "85", avg: "8.5" },
@@ -794,7 +782,7 @@ const Statistics = () => {
                         ))}
                       </div>
 
-                      <h4 className="font-display text-base md:text-lg text-center mb-3">Ostalo</h4>
+                      <h4 className="font-display text-lg md:text-2xl text-center mb-3 mt-4">Ostalo</h4>
                       <div className="space-y-1.5">
                         {[
                           { label: "Ukradene lopte", total: "88", avg: "8.8" },
@@ -811,6 +799,18 @@ const Statistics = () => {
                           </div>
                         ))}
                       </div>
+                    </div>
+                  </div>
+
+                  {/* eFG% and TS% centered below both columns */}
+                  <div className="mt-5 flex gap-3 justify-center">
+                    <div className="bg-background/30 rounded-lg px-5 py-2.5 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
+                      <p className="text-[10px] md:text-xs text-muted-foreground uppercase">eFG%</p>
+                      <p className="text-xl md:text-2xl font-display text-primary">52.8%</p>
+                    </div>
+                    <div className="bg-background/30 rounded-lg px-5 py-2.5 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
+                      <p className="text-[10px] md:text-xs text-muted-foreground uppercase">TS%</p>
+                      <p className="text-xl md:text-2xl font-display text-primary">52.3%</p>
                     </div>
                   </div>
                 </div>
