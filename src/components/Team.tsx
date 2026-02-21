@@ -80,7 +80,7 @@ const players: Player[] = [
     image: playerProtrka,
     sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855",
     description: "Mladi centar svijetle budućnosti koji već prikazuje zrelost na parketu, veliki klupski talent.",
-    stats: { ppg: 8, rpg: 7, apg: 2, bpg: 1, mpg: "" },
+    stats: { ppg: 8, rpg: 7, apg: 0, bpg: 1, mpg: "" },
   },
   {
     id: 6,
