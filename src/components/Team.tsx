@@ -150,7 +150,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/ivan-ramljak/2339345",
     description: "Najiskusnije ime u sastavu, povratnik iz europskih liga koji pridonosi znanjem i autoritetom.",
-    stats: { ppg: 1, rpg: 0, apg: 0, mpg: "" },
+    stats: { ppg: 6, rpg: 3, apg: 1, mpg: "" },
   },
   {
     id: 13,
