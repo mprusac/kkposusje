@@ -130,7 +130,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/jakov-ramljak/1578854",
     description: "Mladi bek koji marljivo gradi svoju ulogu u ekipi, borben na parketu i sve zapaženiji u rotaciji.",
-    stats: { ppg: 1, rpg: 1, apg: 0, mpg: "" },
+    stats: { ppg: 2, rpg: 1, apg: 0, mpg: "" },
   },
   {
     id: 11,
@@ -140,7 +140,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/stipe-beslic/2339336",
     description: "Mladi igrač iz juniorskog pogona, odlikuje ga velika želja za napretkom i požrtvovnost za tim.",
-    stats: { ppg: 1, rpg: 0, apg: 0, mpg: "" },
+    stats: { ppg: 5, rpg: 1, apg: 0, mpg: "" },
   },
   {
     id: 12,
