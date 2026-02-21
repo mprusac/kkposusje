@@ -710,7 +710,7 @@ const Statistics = () => {
               {/* Statistics Tab */}
               <TabsContent value="statistics" className="mt-0">
                 <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 min-h-[600px]">
-                  <h3 className="font-display text-lg md:text-xl text-center mb-5">Timska statistika — 10 utakmica</h3>
+                  <h3 className="font-display text-2xl md:text-3xl text-center mb-5">PREGLED</h3>
 
                   {/* Summary cards */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
