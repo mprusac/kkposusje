@@ -40,7 +40,7 @@ const players: Player[] = [
     image: playerKovac,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
     description: "Klupsko dijete i najbolji strijelac tima koji svojim iskustvom i eksplozivnošću predvodi ekipu.",
-    stats: { ppg: 21, rpg: 6, apg: 2, mpg: "" },
+    stats: { ppg: 18, rpg: 6, apg: 2, mpg: "" },
   },
   {
     id: 2,
