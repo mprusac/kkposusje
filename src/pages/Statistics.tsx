@@ -763,7 +763,7 @@ const Statistics = () => {
                       </div>
                     </div>
 
-                    {/* Rebounds & Other combined */}
+                    {/* Rebounds only */}
                     <div className="hover:scale-[1.02] transition-transform duration-300">
                       <h4 className="font-display text-lg md:text-2xl text-center mb-3">Skokovi</h4>
                       <div className="space-y-1.5">
@@ -781,28 +781,31 @@ const Statistics = () => {
                           </div>
                         ))}
                       </div>
-
-                      <h4 className="font-display text-lg md:text-2xl text-center mb-3 mt-4">Ostalo</h4>
-                      <div className="space-y-1.5">
-                        {[
-                          { label: "Ukradene lopte", total: "88", avg: "8.8" },
-                          { label: "Blokade", total: "30", avg: "3.0" },
-                          { label: "Izgubljene lopte", total: "135", avg: "13.5" },
-                          { label: "Osobne pogreške", total: "211", avg: "21.1" },
-                        ].map((stat, i) => (
-                          <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
-                            <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
-                            <div className="flex flex-col items-end">
-                              <span className="text-sm md:text-base font-medium">{stat.total}</span>
-                              <span className="text-[10px] md:text-xs text-muted-foreground">{stat.avg} /utk.</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   </div>
 
-                  {/* eFG% and TS% centered below both columns */}
+                  {/* Ostalo - centered below both columns */}
+                  <div className="max-w-md mx-auto mt-5 hover:scale-[1.02] transition-transform duration-300">
+                    <h4 className="font-display text-lg md:text-2xl text-center mb-3">Ostalo</h4>
+                    <div className="space-y-1.5">
+                      {[
+                        { label: "Ukradene lopte", total: "88", avg: "8.8" },
+                        { label: "Blokade", total: "30", avg: "3.0" },
+                        { label: "Izgubljene lopte", total: "135", avg: "13.5" },
+                        { label: "Osobne pogreške", total: "211", avg: "21.1" },
+                      ].map((stat, i) => (
+                        <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
+                          <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
+                          <div className="flex flex-col items-end">
+                            <span className="text-sm md:text-base font-medium">{stat.total}</span>
+                            <span className="text-[10px] md:text-xs text-muted-foreground">{stat.avg} /utk.</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* eFG% and TS% centered below */}
                   <div className="mt-5 flex gap-3 justify-center">
                     <div className="bg-background/30 rounded-lg px-5 py-2.5 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-[10px] md:text-xs text-muted-foreground uppercase">eFG%</p>
