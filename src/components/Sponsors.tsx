@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronUp, ChevronDown, Crown, Medal, Award, Heart } from "lucide-react";
+import { ChevronUp, ChevronDown, Crown, Medal, Award, Heart, Star, Trophy } from "lucide-react";
 
 import vokelLogo from "@/assets/sponsors/vokel-logo.png";
 import planetLogo from "@/assets/sponsors/planet-logo.png";
@@ -25,26 +25,28 @@ interface SponsorTier {
 
 const sponsorTiers: SponsorTier[] = [
   {
-    name: "GENERALNO",
-    price: "20.000 EUR",
+    name: "PREMIUM",
+    price: "10.000 BAM",
     benefits: [
-      "Prefiks imena u svim oblicima oglašavanja",
-      "Mjesto u upravi kluba",
-      "Snimanje reklame",
+      "Natpis na prednjem dijelu dresa",
+      "Objava na svim kanalima",
+      "Logo na dresu i parketu",
+      "VIP ulaznice",
+      "Ekskluzivni sadržaj",
     ],
-    icon: <Crown size={20} />,
+    icon: <Star className="w-4 h-4 md:w-8 md:h-8" />,
     color: "text-primary",
   },
   {
     name: "GOLD",
-    price: "10.000 EUR",
+    price: "5.000 BAM",
     benefits: ["Natpis na prednjem dijelu dresa", "Objava na svim kanalima"],
-    icon: <Medal size={20} />,
-    color: "text-primary",
+    icon: <Trophy className="w-4 h-4 md:w-8 md:h-8" />,
+    color: "text-[hsl(48,96%,53%)]",
   },
   {
     name: "SILVER",
-    price: "5.000 EUR",
+    price: "2.500 BAM",
     benefits: ["Natpis na donjem dijelu dresa", "Objava na svim kanalima"],
     icon: <Award size={20} />,
     color: "text-muted-foreground",
@@ -146,7 +148,7 @@ const Sponsors = () => {
               <div className="p-4 md:p-6 pt-2 md:pt-4">
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-4 md:mb-6 mt-2 md:mt-4">
                   {sponsorTiers.map((tier, index) => {
-                    const shadowColor = tier.name === "GENERALNO" 
+                    const shadowColor = tier.name === "PREMIUM" 
                       ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]" 
                       : tier.name === "GOLD" 
                       ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.3)]" 
