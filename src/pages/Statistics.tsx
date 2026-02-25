@@ -155,14 +155,14 @@ const matches: Match[] = [
 
 // Standings data
 const standings: Standing[] = [
-  { position: 1, team: "HKK Grude", played: 9, won: 7, lost: 2, diff: 95, last5: ["W", "W", "W", "W", "L"], points: 16 },
-  { position: 2, team: "HKK Mostar", played: 9, won: 6, lost: 3, diff: 98, last5: ["W", "W", "W", "W", "L"], points: 15 },
-  { position: 3, team: "HKK Ljubuški", played: 8, won: 7, lost: 1, diff: 90, last5: ["W", "W", "L", "W", "W"], points: 15 },
-  { position: 4, team: "HKK Tomislav", played: 9, won: 5, lost: 4, diff: 4, last5: ["L", "L", "L", "W", "W"], points: 14 },
-  { position: 5, team: "HKK Posušje", played: 10, won: 4, lost: 6, diff: 61, last5: ["W", "L", "L", "W", "L"], points: 14 },
-  { position: 6, team: "HKK Rama", played: 8, won: 3, lost: 5, diff: 10, last5: ["L", "W", "L", "W", "L"], points: 11 },
-  { position: 7, team: "HKK Široki II", played: 9, won: 3, lost: 6, diff: -1, last5: ["L", "L", "W", "W", "L"], points: 12 },
-  { position: 8, team: "Čapljina", played: 8, won: 0, lost: 8, diff: -357, last5: ["L", "L", "L", "L", "L"], points: 8 },
+  { position: 1, team: "HKK Ljubuški", played: 10, won: 9, lost: 1, diff: 128, last5: ["L", "W", "W", "W", "W"], points: 19 },
+  { position: 2, team: "HKK Grude", played: 10, won: 8, lost: 2, diff: 108, last5: ["W", "W", "W", "L", "W"], points: 18 },
+  { position: 3, team: "HKK Mostar", played: 10, won: 7, lost: 3, diff: 141, last5: ["W", "W", "W", "L", "W"], points: 17 },
+  { position: 4, team: "HKK Tomislav", played: 10, won: 5, lost: 5, diff: -9, last5: ["L", "L", "W", "W", "L"], points: 15 },
+  { position: 5, team: "HKK Široki II", played: 10, won: 4, lost: 6, diff: 68, last5: ["W", "W", "L", "W", "W"], points: 14 },
+  { position: 6, team: "HKK Posušje", played: 10, won: 4, lost: 6, diff: 61, last5: ["W", "L", "L", "W", "L"], points: 14 },
+  { position: 7, team: "HKK Rama", played: 10, won: 3, lost: 7, diff: -40, last5: ["L", "W", "L", "L", "L"], points: 13 },
+  { position: 8, team: "Čapljina", played: 10, won: 0, lost: 10, diff: -457, last5: ["L", "L", "L", "L", "L"], points: 10 },
 ];
 
 // Women standings data
