@@ -9,6 +9,18 @@ import eventSiroki from "@/assets/event-siroki.png";
 import eventRama from "@/assets/event-rama.png";
 import eventLjubuski from "@/assets/event-ljubuski.jpg";
 
+// Import Berlin images
+import berlinG1 from "@/assets/berlin/berlin-g1.jpg";
+import berlinG2 from "@/assets/berlin/berlin-g2.jpg";
+import berlinG3 from "@/assets/berlin/berlin-g3.jpg";
+import berlinG4 from "@/assets/berlin/berlin-g4.jpg";
+import berlinG5 from "@/assets/berlin/berlin-g5.jpg";
+import berlinG6 from "@/assets/berlin/berlin-g6.jpg";
+import berlinG7 from "@/assets/berlin/berlin-g7.jpg";
+import berlinG8 from "@/assets/berlin/berlin-g8.jpg";
+import berlinG9 from "@/assets/berlin/berlin-g9.jpg";
+import berlin9 from "@/assets/berlin/berlin-9.jpg";
+
 // Import Tomislav images
 import tomislav1 from "@/assets/tomislav/tomislav-1.jpg";
 import tomislav2 from "@/assets/tomislav/tomislav-2.jpg";
@@ -64,6 +76,27 @@ type ImageWithOrientation = {
 };
 
 const events = [
+  {
+    id: "berlin",
+    homeTeam: "ALBA Berlin",
+    awayTeam: "Winterturnier 2026",
+    date: "05.01.2026.",
+    description: "Galerija sa ALBA Berlin turnira",
+    coverImage: berlin9,
+    images: [] as string[],
+    imagesWithOrientation: [
+      { src: berlinG1, orientation: "horizontal" },
+      { src: berlinG2, orientation: "horizontal" },
+      { src: berlinG3, orientation: "horizontal" },
+      { src: berlinG9, orientation: "horizontal" },
+      { src: berlinG5, orientation: "horizontal" },
+      { src: berlinG6, orientation: "horizontal" },
+      { src: berlinG7, orientation: "horizontal" },
+      { src: berlinG8, orientation: "horizontal" },
+      { src: berlinG4, orientation: "horizontal" },
+      { src: berlin9, orientation: "horizontal" },
+    ] as ImageWithOrientation[],
+  },
   {
     id: "ljubuski",
     homeTeam: "HKK Posušje",
