@@ -25,37 +25,37 @@ interface SponsorTier {
 
 const sponsorTiers: SponsorTier[] = [
   {
-    name: "PREMIUM",
+    name: "ZLATNI",
     price: "10.000 BAM",
     benefits: [
       "Natpis na prednjem dijelu dresa",
       "Objava na svim kanalima",
       "Logo na dresu i parketu",
-      "VIP ulaznice",
+      "Sezonske ulaznice",
       "Ekskluzivni sadržaj",
     ],
-    icon: <Star className="w-4 h-4 md:w-8 md:h-8" />,
+    icon: <Crown className="w-4 h-4 md:w-8 md:h-8" />,
     color: "text-primary",
   },
   {
-    name: "GOLD",
+    name: "SREBRENI",
     price: "5.000 BAM",
     benefits: ["Natpis na prednjem dijelu dresa", "Objava na svim kanalima"],
-    icon: <Trophy className="w-4 h-4 md:w-8 md:h-8" />,
-    color: "text-[hsl(48,96%,53%)]",
+    icon: <Medal className="w-4 h-4 md:w-8 md:h-8" />,
+    color: "text-[hsl(0,0%,75%)]",
   },
   {
-    name: "SILVER",
+    name: "BRONČANI",
     price: "2.500 BAM",
     benefits: ["Natpis na donjem dijelu dresa", "Objava na svim kanalima"],
-    icon: <Award size={20} />,
-    color: "text-muted-foreground",
+    icon: <Award className="w-4 h-4 md:w-8 md:h-8" />,
+    color: "text-[hsl(30,60%,45%)]",
   },
   {
     name: "DONACIJA",
     price: "Bilo koji iznos",
     benefits: ["Objava na svim kanalima"],
-    icon: <Heart size={20} />,
+    icon: <Heart className="w-4 h-4 md:w-8 md:h-8" />,
     color: "text-primary",
   },
 ];
@@ -125,12 +125,12 @@ const Sponsors = () => {
               onClick={() => setIsExpanded(!isExpanded)}
               className="w-full p-6 flex items-center justify-between transition-all duration-300"
             >
-              <div>
-                <h3 className="text-2xl md:text-3xl font-display text-left">
+              <div className="text-center flex-1">
+                <h3 className="text-2xl md:text-3xl font-display">
                   <span className="text-foreground">POSTANI </span>
                   <span className="text-primary">SPONZOR</span>
                 </h3>
-                <p className="text-muted-foreground text-base text-left mt-1">
+                <p className="text-muted-foreground text-base mt-1">
                   Pogledaj sponzorske pakete i podrži klub
                 </p>
               </div>
@@ -148,12 +148,12 @@ const Sponsors = () => {
               <div className="p-4 md:p-6 pt-2 md:pt-4">
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-4 md:mb-6 mt-2 md:mt-4">
                   {sponsorTiers.map((tier, index) => {
-                    const shadowColor = tier.name === "PREMIUM" 
+                    const shadowColor = tier.name === "ZLATNI" 
                       ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]" 
-                      : tier.name === "GOLD" 
-                      ? "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.3)]" 
-                      : tier.name === "SILVER" 
+                      : tier.name === "SREBRENI" 
                       ? "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,70%,0.25)]" 
+                      : tier.name === "BRONČANI" 
+                      ? "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.25)]" 
                       : "hover:[box-shadow:0_0_25px_8px_hsl(0,80%,60%,0.25)]";
                     
                     return (
