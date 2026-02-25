@@ -63,7 +63,7 @@ const sponsors = [
   { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "", url: "https://agencija-laguna.com/index.php/about" },
   { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "!object-contain scale-[1.15]", url: "https://www.mrvelji.com/" },
   { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "", url: "https://weltplast.com/hr/" },
-  { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[2.3]", url: "" },
+  { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[2.5]", url: "" },
 ];
 
 const Sponsors = () => {
