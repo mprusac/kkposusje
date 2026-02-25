@@ -36,6 +36,7 @@ interface NewsItem {
   category: "utakmica" | "najava" | "klub";
   image: string;
   imagePosition?: string;
+  imageScale?: number;
 }
 
 const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
@@ -45,7 +46,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
-  { id: 35, title: "Žuti sutra protiv Širokog II na Pecari! 📢", excerpt: "Pred našim košarkašima je novi prvenstveni izazov. Sutra momčad putuje na gostovanje kod ekipe Širokog II.", date: "21. 02. 2026.", category: "najava", image: najavasirokiAway, imagePosition: "bottom" },
+  { id: 35, title: "Žuti sutra protiv Širokog II na Pecari! 📢", excerpt: "Pred našim košarkašima je novi prvenstveni izazov. Sutra momčad putuje na gostovanje kod ekipe Širokog II.", date: "21. 02. 2026.", category: "najava", image: najavasirokiAway, imagePosition: "bottom", imageScale: 1.1 },
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
   { id: 18, title: "Pobjeda Posušja nakon produžetaka protiv Mostara! 🔥", excerpt: "Rezultatom 90:84 košarkaši Posušja ostvarili su važnu pobjedu na domaćem terenu protiv ekipe Mostara.", date: "15. 02. 2026.", category: "utakmica", image: newsMostarAction },
   { id: 26, title: "Žuti u nedjelju protiv Mostara! 📢", excerpt: "KK Posušje u nedjelju igra važnu domaću utakmicu protiv ekipe HKK Mostar u GSD Posušje!", date: "13. 02. 2026.", category: "najava", image: cardNajavaMostar, imagePosition: "center" },
@@ -119,7 +120,7 @@ const News = () => {
             {allNews.map((item, index) => (
               <Link to={`/vijesti/${item.id}`} key={item.id} className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-center md:snap-start flex flex-col" style={{ width: isMobile ? 'calc(100vw - 7rem)' : 'calc((100% - 3rem) / 3)', minWidth: isMobile ? '240px' : '260px', maxWidth: isMobile ? '320px' : 'none', opacity: isVisible ? 1 : 0, transform: isVisible ? "translateX(0)" : "translateX(30px)", transition: `all 0.5s ease ${index * 0.1}s` }}>
                 <div className="relative h-36 md:h-48 overflow-hidden">
-                  <img src={item.image} alt={item.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${item.imagePosition === 'center' ? 'object-center' : item.imagePosition === 'upper' ? 'object-[center_5%]' : item.imagePosition === 'top' ? 'object-top' : item.imagePosition === 'lower' ? 'object-[center_35%]' : item.imagePosition === 'bottom' ? 'object-bottom' : 'object-[center_25%]'}`} />
+                  <img src={item.image} alt={item.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${item.imagePosition === 'center' ? 'object-center' : item.imagePosition === 'upper' ? 'object-[center_5%]' : item.imagePosition === 'top' ? 'object-top' : item.imagePosition === 'lower' ? 'object-[center_35%]' : item.imagePosition === 'bottom' ? 'object-bottom' : 'object-[center_25%]'}`} style={item.imageScale ? { transform: `scale(${item.imageScale})` } : undefined} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <span className="absolute top-3 left-3 px-2 py-1 bg-primary/90 text-primary-foreground text-[10px] md:text-xs rounded flex items-center gap-1 font-bold">
                     {(() => { const cfg = categoryConfig[item.category]; const Icon = cfg.icon; return <><Icon size={12} strokeWidth={3} />{cfg.label}</>; })()}
