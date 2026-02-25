@@ -55,7 +55,7 @@ const sponsorTiers: SponsorTier[] = [
 ];
 
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "", url: "https://vokel.com/" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "scale-[0.9]", url: "https://vokel.com/" },
   { name: "Bin Vest", tier: "Gold", image: binvestLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[1.6]", url: "https://binvest-po.com/" },
   { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "scale-[1.10]", url: "https://www.miviko-cables.com/" },
   { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "!object-contain scale-[1.1]", url: "https://www.facebook.com/planetbih/" },
@@ -63,7 +63,7 @@ const sponsors = [
   { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "", url: "https://agencija-laguna.com/index.php/about" },
   { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "!object-contain scale-[1.15]", url: "https://www.mrvelji.com/" },
   { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "", url: "https://weltplast.com/hr/" },
-  { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[2.2]", url: "" },
+  { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[2.3]", url: "" },
 ];
 
 const Sponsors = () => {
