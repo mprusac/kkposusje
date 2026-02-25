@@ -58,19 +58,22 @@ const sponsorTiers: SponsorTier[] = [
   },
 ];
 
+const goldBorder = "border-[hsl(48,96%,53%)]";
+const goldGlow = "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]";
+
 const sponsors = [
-  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "scale-[1.3]", url: "https://vokel.com/" },
-  { name: "Bin Vest", tier: "Gold", image: binvestLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[1.6]", url: "https://binvest-po.com/" },
-  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "scale-[1.6]", url: "https://www.miviko-cables.com/" },
-  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "scale-[1.6]", url: "https://www.facebook.com/planetbih/" },
-  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "", url: "https://ktm-brina.com/" },
-  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: "border-[hsl(0,0%,75%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(0,0%,75%,0.3)]", imgClass: "scale-[1.3]", url: "https://agencija-laguna.com/index.php/about" },
-  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "!object-contain scale-[1.15]", url: "https://www.mrvelji.com/" },
-  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: "border-[hsl(30,60%,45%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(30,60%,45%,0.3)]", imgClass: "scale-[1.2]", url: "https://weltplast.com/hr/" },
-  { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[2.5]", url: "" },
-  { name: "Leda", tier: "Gold", image: ledaLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "", url: "" },
-  { name: "Croatia Osiguranje", tier: "Gold", image: croatiaOsiguranjeLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "scale-[1.25]", url: "https://www.crosig.hr/" },
-  { name: "Ljekarna Blanka", tier: "Gold", image: ljekarnaBlanka, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "", url: "" },
+  { name: "Vokel d.o.o.", tier: "Gold", image: vokelLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.3]", url: "https://vokel.com/" },
+  { name: "Bin Vest", tier: "Gold", image: binvestLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.6]", url: "https://binvest-po.com/" },
+  { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.6]", url: "https://www.miviko-cables.com/" },
+  { name: "Planet", tier: "Silver", image: planetLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.6]", url: "https://www.facebook.com/planetbih/" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[0.9]", url: "https://ktm-brina.com/" },
+  { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.4]", url: "https://agencija-laguna.com/index.php/about" },
+  { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.15]", url: "https://www.mrvelji.com/" },
+  { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[2.5]", url: "" },
+  { name: "Weltplast", tier: "Bronze", image: weltplastLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.2]", url: "https://weltplast.com/hr/" },
+  { name: "Leda", tier: "Gold", image: ledaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "", url: "" },
+  { name: "Croatia Osiguranje", tier: "Gold", image: croatiaOsiguranjeLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.25]", url: "https://www.crosig.hr/" },
+  { name: "Ljekarna Blanka", tier: "Gold", image: ljekarnaBlanka, borderColor: goldBorder, glowColor: goldGlow, imgClass: "", url: "" },
 ];
 
 const Sponsors = () => {
