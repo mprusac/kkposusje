@@ -13,6 +13,8 @@ import sisovicLogo from "@/assets/sponsors/sisovic.png";
 import ledaLogo from "@/assets/sponsors/leda-logo.png";
 import croatiaOsiguranjeLogo from "@/assets/sponsors/croatia-osiguranje-logo.png";
 
+import ljekarnaBlanka from "@/assets/sponsors/ljekarna-blanka-logo.png";
+
 interface SponsorTier {
   name: string;
   price: string;
@@ -68,6 +70,7 @@ const sponsors = [
   { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "!object-contain scale-[2.5]", url: "" },
   { name: "Leda", tier: "Gold", image: ledaLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "", url: "" },
   { name: "Croatia Osiguranje", tier: "Gold", image: croatiaOsiguranjeLogo, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "scale-[1.25]", url: "https://www.crosig.hr/" },
+  { name: "Ljekarna Blanka", tier: "Gold", image: ljekarnaBlanka, borderColor: "border-[hsl(48,96%,53%)]", glowColor: "hover:[box-shadow:0_0_25px_8px_hsl(48,96%,53%,0.35)]", imgClass: "", url: "" },
 ];
 
 const Sponsors = () => {
