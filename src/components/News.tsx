@@ -49,7 +49,6 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
-  { id: 37, title: "ALBA Berlin Winterturnier 2026! 🇩🇪⛹️", excerpt: "Škola košarke KK Posušje sretno se vratila kući nakon 4 dana boravka u Berlinu, gdje su selekcije U-14 i U-16 sudjelovale na prestižnom ALBA Berlin Winterturnieru 2026!", date: "05. 01. 2026.", category: "klub", image: berlinCard },
   { id: 36, title: "Poraz na gostovanju u Širokom! 🏀", excerpt: "Košarkaši Posušja upisali su poraz rezultatom 70:62 na gostovanju kod ekipe Širokog u 10. kolu Prvenstva.", date: "23. 02. 2026.", category: "utakmica", image: porazSirokiCard, imagePosition: "center" },
   { id: 35, title: "Žuti sutra protiv Širokog II na Pecari! 📢", excerpt: "Pred našim košarkašima je novi prvenstveni izazov. Sutra momčad putuje na gostovanje kod ekipe Širokog II.", date: "21. 02. 2026.", category: "najava", image: najavasirokiAway, imagePosition: "bottom", imageScale: 1.1 },
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
@@ -60,6 +59,7 @@ const allNews: NewsItem[] = [
   { id: 22, title: "Nastavlja se prvenstvo KS Herceg-Bosne! 📢", excerpt: "Nakon zimske pauze, košarkaši KK Posušje vraćaju se prvenstvenim obvezama gostovanjem u Tomislavgradu!", date: "04. 02. 2026.", category: "najava", image: cardNajavaTomislav, imagePosition: "center" },
   { id: 27, title: "Sponzorska suradnja s KTM Brinom! 🤝", excerpt: "S velikim ponosom objavljujemo da je poduzeće KTM Brina novi srebreni sponzor našeg kluba!", date: "22. 01. 2026.", category: "klub", image: sponzorKtmBrina },
   { id: 23, title: "Polufinale Kupa KS Herceg-Bosne! 🏆", excerpt: "Košarkaši KK Posušje sutra izlaze na parket u borbi za finale protiv HKK Široki!", date: "19. 01. 2026.", category: "najava", image: cardNajavaKupSiroki, imagePosition: "center" },
+  { id: 37, title: "ALBA Berlin Winterturnier 2026! 🇩🇪", excerpt: "Škola košarke KK Posušje sretno se vratila kući nakon 4 dana boravka u Berlinu, gdje su selekcije U-14 i U-16 sudjelovale na prestižnom ALBA Berlin Winterturnieru 2026!", date: "05. 01. 2026.", category: "klub", image: berlinCard },
   { id: 28, title: "Juniori KK Posušje turnir u Sarajevu otvorili pobjedom! ⛹️", excerpt: "Juniori KK Posušje započeli nastup na međunarodnom košarkaškom turniru u Sarajevu pobjedom nad Šentvidom!", date: "03. 01. 2026.", category: "utakmica", image: cardJunioriSarajevo },
   { id: 29, title: "Vokel zlatni sponzor našeg kluba! 🤝", excerpt: "S velikim ponosom objavljujemo da je Vokel postao zlatni sponzor našeg kluba!", date: "18. 12. 2025.", category: "klub", image: sponzorVokel },
   { id: 30, title: "Sponzorska suradnja s Mrvelji! 🤝", excerpt: "S ponosom objavljujemo da je tvrtka Mrvelji postala brončani sponzor našeg kluba!", date: "15. 12. 2025.", category: "klub", image: sponzorMrvelji },
