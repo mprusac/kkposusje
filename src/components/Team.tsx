@@ -40,7 +40,7 @@ const players: Player[] = [
     image: playerKovac,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-kovac/1578849",
     description: "Klupsko dijete i najbolji strijelac tima koji svojim iskustvom i eksplozivnošću predvodi ekipu.",
-    stats: { ppg: 18, rpg: 6, apg: 2, mpg: "" },
+    stats: { ppg: 17, rpg: 6, apg: 2, mpg: "" },
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ const players: Player[] = [
     image: playerRamljak,
     sofascoreLink: "https://www.sofascore.com/basketball/player/josip-ramljak/1578845",
     description: "Energični krilni igrač i jedan od nositelja igre, svestran i često najefikasniji na terenu.",
-    stats: { ppg: 15, rpg: 5, apg: 5, mpg: "" },
+    stats: { ppg: 14, rpg: 5, apg: 5, mpg: "" },
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ const players: Player[] = [
     image: playerBegic,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150",
     description: "Iskusni Posušanin i pouzdano krilo koji preuzima odgovornost i zabija kad je najpotrebnije.",
-    stats: { ppg: 13, rpg: 7, apg: 3, mpg: "" },
+    stats: { ppg: 12, rpg: 7, apg: 3, mpg: "" },
   },
   {
     id: 4,
