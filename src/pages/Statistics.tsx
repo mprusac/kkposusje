@@ -717,17 +717,17 @@ const Statistics = () => {
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Poeni</p>
                       <p className="text-2xl md:text-3xl font-display text-primary">776</p>
-                      <p className="text-xs text-muted-foreground">77.6 / utk.</p>
+                      <p className="text-xs text-muted-foreground">70.5 / utk.</p>
                     </div>
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Skokovi</p>
                       <p className="text-2xl md:text-3xl font-display text-foreground">388</p>
-                      <p className="text-xs text-muted-foreground">38.8 / utk.</p>
+                      <p className="text-xs text-muted-foreground">35.3 / utk.</p>
                     </div>
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Asistencije</p>
                       <p className="text-2xl md:text-3xl font-display text-foreground">174</p>
-                      <p className="text-xs text-muted-foreground">17.4 / utk.</p>
+                      <p className="text-xs text-muted-foreground">15.8 / utk.</p>
                     </div>
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">AST / TO</p>
@@ -742,10 +742,10 @@ const Statistics = () => {
                       <h4 className="font-display text-lg md:text-2xl text-center mb-3">Šut</h4>
                       <div className="space-y-1.5">
                         {[
-                          { label: "Iz igre (FG)", value: "306 / 671", avg: "30.6 / 67.1", pct: "45.6%" },
-                          { label: "Za 2 poena", value: "215 / 375", avg: "21.5 / 37.5", pct: "57.3%" },
-                          { label: "Za 3 poena", value: "97 / 293", avg: "9.7 / 29.3", pct: "33.1%" },
-                          { label: "Slobodna bacanja", value: "84 / 162", avg: "8.4 / 16.2", pct: "51.9%" },
+                          { label: "Iz igre (FG)", value: "306 / 671", avg: "27.8 / 61.0", pct: "45.6%" },
+                          { label: "Za 2 poena", value: "215 / 375", avg: "19.5 / 34.1", pct: "57.3%" },
+                          { label: "Za 3 poena", value: "97 / 293", avg: "8.8 / 26.6", pct: "33.1%" },
+                          { label: "Slobodna bacanja", value: "84 / 162", avg: "7.6 / 14.7", pct: "51.9%" },
                         ].map((stat, i) => (
                           <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
                             <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
@@ -768,9 +768,9 @@ const Statistics = () => {
                       <h4 className="font-display text-lg md:text-2xl text-center mb-3">Skokovi</h4>
                       <div className="space-y-1.5">
                         {[
-                          { label: "Obrambeni (DR)", total: "303", avg: "30.3" },
-                          { label: "Napadački (OR)", total: "85", avg: "8.5" },
-                          { label: "Ukupno", total: "388", avg: "38.8" },
+                          { label: "Obrambeni (DR)", total: "303", avg: "27.5" },
+                          { label: "Napadački (OR)", total: "85", avg: "7.7" },
+                          { label: "Ukupno", total: "388", avg: "35.3" },
                         ].map((stat, i) => (
                           <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
                             <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
@@ -789,10 +789,10 @@ const Statistics = () => {
                     <h4 className="font-display text-lg md:text-2xl text-center mb-3">Ostalo</h4>
                     <div className="space-y-1.5">
                       {[
-                        { label: "Ukradene lopte", total: "88", avg: "8.8" },
-                        { label: "Blokade", total: "30", avg: "3.0" },
-                        { label: "Izgubljene lopte", total: "135", avg: "13.5" },
-                        { label: "Osobne pogreške", total: "211", avg: "21.1" },
+                        { label: "Ukradene lopte", total: "88", avg: "8.0" },
+                        { label: "Blokade", total: "30", avg: "2.7" },
+                        { label: "Izgubljene lopte", total: "135", avg: "12.3" },
+                        { label: "Osobne pogreške", total: "211", avg: "19.2" },
                       ].map((stat, i) => (
                         <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
                           <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
