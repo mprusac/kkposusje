@@ -132,8 +132,8 @@ const events = [
   },
   {
     id: "bozicno-darivanje",
-    homeTeam: "Božićno darivanje",
-    awayTeam: "službene opreme HKK Posušje",
+    homeTeam: "Božićno darivanje službene opreme HKK Posušje",
+    awayTeam: "",
     date: "12.12.2025.",
     description: "Božićno darivanje službene opreme HKK Posušje",
     coverImage: xmasGearCover,
@@ -242,7 +242,7 @@ const EventCard = ({ event, index }: { event: typeof events[0]; index: number })
         </div>
         <div className="mt-4">
           <h3 className="font-display text-xl text-foreground group-hover:text-primary transition-colors">
-            {event.homeTeam} - {event.awayTeam}
+            {event.awayTeam ? `${event.homeTeam} - ${event.awayTeam}` : event.homeTeam}
           </h3>
           <p className="text-primary font-bold mt-1">{event.date}</p>
           <p className="text-muted-foreground text-sm mt-1">{event.description}</p>
