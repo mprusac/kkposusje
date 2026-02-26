@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Download, FileSpreadsheet, X } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Download, FileSpreadsheet, X, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -779,10 +779,10 @@ const Statistics = () => {
                         className="fixed bottom-6 right-6 z-50 w-[360px] bg-secondary border border-border/30 rounded-xl shadow-2xl shadow-black/40 overflow-hidden"
                       >
                         <div className="p-5">
-                          <div className="flex items-start justify-between mb-1">
-                            <div className="flex items-start gap-2 flex-1 min-w-0">
-                              <FileSpreadsheet className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                              <h3 className="font-display text-base uppercase tracking-wider leading-tight">Preuzmi kompletnu statistiku</h3>
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                              <FileSpreadsheet className="w-5 h-5 text-primary shrink-0" />
+                              <h3 className="font-display text-sm uppercase tracking-wider">Preuzmi kompletnu statistiku</h3>
                             </div>
                             <button
                               onClick={() => setShowDownloadDialog(false)}
@@ -792,40 +792,40 @@ const Statistics = () => {
                             </button>
                           </div>
                           <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                            Generiraj i preuzmi Excel datoteku sa svim dostupnim podacima o timu.
+                            Kompletna statistika sezone 2025/26 dostupna za preuzimanje — individualni i timski podaci.
                           </p>
-                          <div className="space-y-2.5 mb-5">
-                            <div className="flex items-center gap-3 p-3 rounded-xl bg-background/30 border border-primary/20">
-                              <div className="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
-                                <FileSpreadsheet className="w-4 h-4 text-primary" />
+                          <div className="space-y-2 mb-5">
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-background/40 hover:bg-background/60 hover:shadow-[0_0_12px_rgba(234,179,8,0.08)] transition-all duration-300">
+                              <div className="w-7 h-7 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
+                                <CheckCircle className="w-4 h-4 text-primary" />
                               </div>
                               <div>
                                 <p className="text-sm font-semibold">Individualna statistika igrača</p>
                                 <p className="text-[11px] text-muted-foreground">PPG, RPG, APG, šut %, minute, blokade...</p>
                               </div>
                             </div>
-                            <div className="flex items-center gap-3 p-3 rounded-xl bg-background/30 border border-primary/20">
-                              <div className="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
-                                <FileSpreadsheet className="w-4 h-4 text-primary" />
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-background/40 hover:bg-background/60 hover:shadow-[0_0_12px_rgba(234,179,8,0.08)] transition-all duration-300">
+                              <div className="w-7 h-7 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
+                                <CheckCircle className="w-4 h-4 text-primary" />
                               </div>
                               <div>
                                 <p className="text-sm font-semibold">Timski prosjeci</p>
                                 <p className="text-[11px] text-muted-foreground">eFG%, TS%, poeni, skokovi, asistencije...</p>
                               </div>
                             </div>
-                            <div className="flex items-center gap-3 p-3 rounded-xl bg-background/30 border border-primary/20">
-                              <div className="w-8 h-8 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
-                                <FileSpreadsheet className="w-4 h-4 text-primary" />
+                            <div className="flex items-center gap-3 p-3 rounded-lg bg-background/40 hover:bg-background/60 hover:shadow-[0_0_12px_rgba(234,179,8,0.08)] transition-all duration-300">
+                              <div className="w-7 h-7 rounded-full border-2 border-primary flex items-center justify-center shrink-0">
+                                <CheckCircle className="w-4 h-4 text-primary" />
                               </div>
                               <div>
                                 <p className="text-sm font-semibold">Rezultati utakmica</p>
-                                <p className="text-[11px] text-muted-foreground">Sve utakmice s datumima i rezultatima</p>
+                                <p className="text-[11px] text-muted-foreground">Svih 15 utakmica s datumima i rezultatima</p>
                               </div>
                             </div>
                           </div>
                           <button
                             onClick={handleDownloadStats}
-                            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-[0_0_25px_rgba(234,179,8,0.4)] hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20 transition-all duration-300 font-display text-xs uppercase tracking-wider"
+                            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-xs uppercase tracking-wider"
                           >
                             <Download className="w-3.5 h-3.5" />
                             Preuzmi XLSX
