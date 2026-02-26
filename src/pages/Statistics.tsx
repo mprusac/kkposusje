@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Download, FileSpreadsheet, CheckCircle2 } from "lucide-react";
+import * as XLSX from "xlsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -289,7 +297,81 @@ const Statistics = () => {
   const [hoveredFormIndex, setHoveredFormIndex] = useState<number | null>(null);
   const [leagueCategory, setLeagueCategory] = useState<"seniori" | "seniorke">("seniori");
   const [topPlayersPage, setTopPlayersPage] = useState(0);
+  const [showDownloadDialog, setShowDownloadDialog] = useState(false);
   const navigate = useNavigate();
+
+  const handleDownloadStats = () => {
+    const wb = XLSX.utils.book_new();
+
+    // Sheet 1: Igrači - merge roster with stats
+    const playerStats = players.map(p => {
+      const scorer = topScorers.find(t => t.name === p.name);
+      const rebounder = topRebounders.find(t => t.name === p.name);
+      const assister = topAssisters.find(t => t.name === p.name);
+      const stealer = topSteals.find(t => t.name === p.name);
+      const blocker = topBlocks.find(t => t.name === p.name);
+      const minutes = topMinutes.find(t => t.name === p.name);
+      const twoP = top2PPercentage.find(t => t.name === p.name);
+      const threeP = top3PPercentage.find(t => t.name === p.name);
+      const threes = topThrees.find(t => t.name === p.name);
+      const defReb = topDefRebounds.find(t => t.name === p.name);
+      const offReb = topOffRebounds.find(t => t.name === p.name);
+      const dd = topDoubleDoubles.find(t => t.name === p.name);
+      return {
+        "Broj": p.number,
+        "Ime": p.name,
+        "Pozicija": p.position,
+        "Visina": p.height || "-",
+        "Datum rođenja": p.dateOfBirth || "-",
+        "PPG": scorer?.value ?? "-",
+        "RPG": rebounder?.value ?? "-",
+        "APG": assister?.value ?? "-",
+        "SPG": stealer?.value ?? "-",
+        "BPG": blocker?.value ?? "-",
+        "MIN": minutes?.value ?? "-",
+        "2P%": twoP?.value ?? "-",
+        "3P%": threeP?.value ?? "-",
+        "Trojke (ukupno)": threes?.value ?? "-",
+        "Def. skokovi": defReb?.value ?? "-",
+        "Off. skokovi": offReb?.value ?? "-",
+        "Double-double": dd?.value ?? "-",
+      };
+    });
+    const ws1 = XLSX.utils.json_to_sheet(playerStats);
+    XLSX.utils.book_append_sheet(wb, ws1, "Igrači");
+
+    // Sheet 2: Timska statistika
+    const teamStats = [
+      { "Kategorija": "Poeni", "Ukupno": "797", "Prosjek": "72.5" },
+      { "Kategorija": "Skokovi", "Ukupno": "390", "Prosjek": "35.5" },
+      { "Kategorija": "Asistencije", "Ukupno": "144", "Prosjek": "13.1" },
+      { "Kategorija": "Ukradene lopte", "Ukupno": "87", "Prosjek": "7.9" },
+      { "Kategorija": "Blokade", "Ukupno": "29", "Prosjek": "2.6" },
+      { "Kategorija": "Izgubljene lopte", "Ukupno": "144", "Prosjek": "13.1" },
+      { "Kategorija": "Osobne pogreške", "Ukupno": "227", "Prosjek": "20.6" },
+      { "Kategorija": "Šut za 2p", "Ukupno": "43.5%", "Prosjek": "-" },
+      { "Kategorija": "Šut za 3p", "Ukupno": "30.3%", "Prosjek": "-" },
+      { "Kategorija": "Slobodna bacanja", "Ukupno": "66.1%", "Prosjek": "-" },
+      { "Kategorija": "eFG%", "Ukupno": "51.3%", "Prosjek": "-" },
+      { "Kategorija": "TS%", "Ukupno": "52.4%", "Prosjek": "-" },
+    ];
+    const ws2 = XLSX.utils.json_to_sheet(teamStats);
+    XLSX.utils.book_append_sheet(wb, ws2, "Timska statistika");
+
+    // Sheet 3: Utakmice
+    const matchData = matches.map(m => ({
+      "Datum": m.date,
+      "Domaćin": m.homeTeam,
+      "Gost": m.awayTeam,
+      "Rezultat": m.isUpcoming ? "Nadolazeća" : `${m.homeScore} - ${m.awayScore}`,
+      "Natjecanje": m.competition || "Liga KSHB",
+    }));
+    const ws3 = XLSX.utils.json_to_sheet(matchData);
+    XLSX.utils.book_append_sheet(wb, ws3, "Utakmice");
+
+    XLSX.writeFile(wb, "HKK_Posusje_Statistika.xlsx");
+    setShowDownloadDialog(false);
+  };
 
   // Scroll to top on page load
   useEffect(() => {
@@ -744,7 +826,63 @@ const Statistics = () => {
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">AST / TO</p>
                       <p className="text-2xl md:text-3xl font-display text-foreground">1.25</p>
                       <p className="text-xs text-muted-foreground">180 / 144</p>
-                    </div>
+                  </div>
+
+                  {/* Download button */}
+                  <div className="flex justify-center mb-6">
+                    <button
+                      onClick={() => setShowDownloadDialog(true)}
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 border border-primary/20 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300 font-display text-sm"
+                    >
+                      <Download className="w-4 h-4" />
+                      Preuzmi statistiku
+                    </button>
+                  </div>
+
+                  {/* Download Dialog */}
+                  <Dialog open={showDownloadDialog} onOpenChange={setShowDownloadDialog}>
+                    <DialogContent className="bg-secondary border-border/30 max-w-md">
+                      <DialogHeader>
+                        <DialogTitle className="font-display text-xl flex items-center gap-2">
+                          <FileSpreadsheet className="w-5 h-5 text-primary" />
+                          Preuzmi kompletnu statistiku
+                        </DialogTitle>
+                        <DialogDescription className="text-muted-foreground text-sm">
+                          Generiraj i preuzmi Excel datoteku sa svim dostupnim podacima o timu.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-3 mt-2">
+                        <div className="flex items-center gap-3 p-3 rounded-lg bg-background/30 border border-border/20">
+                          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                          <div>
+                            <p className="text-sm font-medium">Individualna statistika igrača</p>
+                            <p className="text-xs text-muted-foreground">PPG, RPG, APG, šut %, minute, blokade...</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 rounded-lg bg-background/30 border border-border/20">
+                          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                          <div>
+                            <p className="text-sm font-medium">Timski prosjeci</p>
+                            <p className="text-xs text-muted-foreground">eFG%, TS%, poeni, skokovi, asistencije...</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 p-3 rounded-lg bg-background/30 border border-border/20">
+                          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                          <div>
+                            <p className="text-sm font-medium">Rezultati utakmica</p>
+                            <p className="text-xs text-muted-foreground">Svih {matches.length} utakmica s datumima i rezultatima</p>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={handleDownloadStats}
+                        className="w-full mt-4 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-display text-sm"
+                      >
+                        <Download className="w-4 h-4" />
+                        Preuzmi XLSX
+                      </button>
+                    </DialogContent>
+                  </Dialog>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-5">
