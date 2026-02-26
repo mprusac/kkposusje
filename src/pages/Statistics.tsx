@@ -825,7 +825,7 @@ const Statistics = () => {
                           </div>
                           <button
                             onClick={handleDownloadStats}
-                            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-display text-xs uppercase tracking-wider"
+                            className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/80 hover:shadow-[0_0_25px_rgba(234,179,8,0.4)] hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20 transition-all duration-300 font-display text-xs uppercase tracking-wider"
                           >
                             <Download className="w-3.5 h-3.5" />
                             Preuzmi XLSX
