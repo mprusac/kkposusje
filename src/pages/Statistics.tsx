@@ -298,8 +298,8 @@ const Statistics = () => {
 
   // Calculate extra matches based on active tab
   const getExtraMatches = () => {
-    if (activeMainTab === "statistics") return 5;
-    if (activeMainTab === "players" && activePlayersTab === "squad") return 7;
+    if (activeMainTab === "statistics") return 4;
+    if (activeMainTab === "players" && activePlayersTab === "squad") return 9;
     return 0;
   };
   const extraMatches = matchPage === 0 ? getExtraMatches() : 0;
