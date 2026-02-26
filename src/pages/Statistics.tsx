@@ -1022,8 +1022,8 @@ const Statistics = () => {
             <div className="p-5">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2.5 flex-1 min-w-0">
-                  <FileSpreadsheet className="w-5 h-5 text-primary shrink-0" />
-                  <h3 className="font-display text-sm uppercase tracking-wider">Preuzmi kompletnu statistiku</h3>
+                  <FileSpreadsheet className="w-6 h-6 text-primary shrink-0" />
+                  <h3 className="font-display text-base uppercase tracking-wider">Preuzmi kompletnu statistiku</h3>
                 </div>
                 <button
                   onClick={() => setShowDownloadDialog(false)}
@@ -1060,9 +1060,9 @@ const Statistics = () => {
               </div>
               <button
                 onClick={handleDownloadStats}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-sm uppercase tracking-wider"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-base uppercase tracking-wider"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4.5 h-4.5" />
                 Preuzmi datoteku
               </button>
             </div>
