@@ -815,7 +815,7 @@ const Statistics = () => {
                   </div>
 
                   {/* eFG% and TS% centered below */}
-                  <div className="mt-5 mb-6 flex gap-3 justify-center">
+                  <div className="mt-10 mb-6 flex gap-3 justify-center">
                     <div className="bg-background/30 rounded-lg px-5 py-2.5 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-[10px] md:text-xs text-muted-foreground uppercase">eFG%</p>
                        <p className="text-xl md:text-2xl font-display text-primary">51.3%</p>
