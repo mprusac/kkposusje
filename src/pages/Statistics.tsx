@@ -314,12 +314,14 @@ const Statistics = () => {
   // On page 0, append extra matches from the remaining pool
   const firstPageMatches = [...baseFirstPageMatches, ...remainingMatchesPool.slice(0, extraMatches)];
   
+  // Remaining matches for pages 1+ (skip those already shown on page 0)
+  const remainingAfterPage0 = remainingMatchesPool.slice(extraMatches);
   const matchesPerPage = 6;
-  const totalMatchPages = 1 + Math.ceil(remainingMatchesPool.length / matchesPerPage);
+  const totalMatchPages = remainingAfterPage0.length > 0 ? 1 + Math.ceil(remainingAfterPage0.length / matchesPerPage) : 1;
   
   const displayedMatches = matchPage === 0 
     ? firstPageMatches 
-    : remainingMatchesPool.slice((matchPage - 1) * matchesPerPage, matchPage * matchesPerPage);
+    : remainingAfterPage0.slice((matchPage - 1) * matchesPerPage, matchPage * matchesPerPage);
 
   const getTeamLogo = (teamName: string) => teamLogos[teamName] || null;
 
