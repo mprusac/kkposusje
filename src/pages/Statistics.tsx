@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Download, FileSpreadsheet, CheckCircle2 } from "lucide-react";
 import * as XLSX from "xlsx";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -839,50 +839,50 @@ const Statistics = () => {
                     </button>
                   </div>
 
-                  {/* Download Dialog */}
-                  <Dialog open={showDownloadDialog} onOpenChange={setShowDownloadDialog}>
-                    <DialogContent className="bg-secondary border-border/30 max-w-md">
-                      <DialogHeader>
-                        <DialogTitle className="font-display text-xl flex items-center gap-2">
-                          <FileSpreadsheet className="w-5 h-5 text-primary" />
+                  {/* Download Sheet */}
+                  <Sheet open={showDownloadDialog} onOpenChange={setShowDownloadDialog}>
+                    <SheetContent side="right" className="bg-secondary border-border/30 w-[380px] sm:w-[420px] flex flex-col">
+                      <SheetHeader className="text-center">
+                        <SheetTitle className="font-display text-2xl flex items-center justify-center gap-2 uppercase tracking-wider">
+                          <FileSpreadsheet className="w-6 h-6 text-primary" />
                           Preuzmi kompletnu statistiku
-                        </DialogTitle>
-                        <DialogDescription className="text-muted-foreground text-sm">
-                          Generiraj i preuzmi Excel datoteku sa svim dostupnim podacima o timu.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <div className="space-y-3 mt-2">
+                        </SheetTitle>
+                        <SheetDescription className="text-muted-foreground text-sm leading-relaxed">
+                          Generiraj i preuzmi Excel datoteku sa svim dostupnim podacima o timu i igračima.
+                        </SheetDescription>
+                      </SheetHeader>
+                      <div className="space-y-3 mt-4 flex-1">
                         <div className="flex items-center gap-3 p-3 rounded-lg bg-background/30 border border-border/20">
                           <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                           <div>
-                            <p className="text-sm font-medium">Individualna statistika igrača</p>
+                            <p className="text-sm font-normal">Individualna statistika igrača</p>
                             <p className="text-xs text-muted-foreground">PPG, RPG, APG, šut %, minute, blokade...</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-3 rounded-lg bg-background/30 border border-border/20">
                           <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                           <div>
-                            <p className="text-sm font-medium">Timski prosjeci</p>
+                            <p className="text-sm font-normal">Timski prosjeci</p>
                             <p className="text-xs text-muted-foreground">eFG%, TS%, poeni, skokovi, asistencije...</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 p-3 rounded-lg bg-background/30 border border-border/20">
                           <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                           <div>
-                            <p className="text-sm font-medium">Rezultati utakmica</p>
+                            <p className="text-sm font-normal">Rezultati utakmica</p>
                             <p className="text-xs text-muted-foreground">Svih {matches.length} utakmica s datumima i rezultatima</p>
                           </div>
                         </div>
                       </div>
                       <button
                         onClick={handleDownloadStats}
-                        className="w-full mt-4 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-display text-sm"
+                        className="w-full mt-4 flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-display text-sm uppercase tracking-wider"
                       >
                         <Download className="w-4 h-4" />
-                        Preuzmi XLSX
+                        Preuzmi Excel datoteku
                       </button>
-                    </DialogContent>
-                  </Dialog>
+                    </SheetContent>
+                  </Sheet>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-5">
