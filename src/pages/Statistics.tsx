@@ -776,13 +776,13 @@ const Statistics = () => {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 40, scale: 0.95 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        className="fixed bottom-6 right-6 z-50 w-[340px] bg-secondary border border-border/30 rounded-xl shadow-2xl shadow-black/40 overflow-hidden"
+                        className="fixed bottom-6 right-6 z-50 w-[360px] bg-secondary border border-border/30 rounded-xl shadow-2xl shadow-black/40 overflow-hidden"
                       >
-                        <div className="p-4">
-                          <div className="flex items-center justify-between mb-2">
+                        <div className="p-5">
+                          <div className="flex items-center justify-between mb-1">
                             <div className="flex items-center gap-2">
                               <FileSpreadsheet className="w-5 h-5 text-primary" />
-                              <h3 className="font-display text-sm uppercase tracking-wider">Statistika dostupna</h3>
+                              <h3 className="font-display text-sm uppercase tracking-wider">Preuzmi kompletnu statistiku</h3>
                             </div>
                             <button
                               onClick={() => setShowDownloadDialog(false)}
@@ -791,16 +791,41 @@ const Statistics = () => {
                               <X className="w-4 h-4" />
                             </button>
                           </div>
-                          <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                            Kompletna statistika sezone 2025/26 dostupna za preuzimanje — individualni i timski podaci, rezultati svih utakmica.
+                          <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                            Kompletna statistika sezone 2025/26 dostupna za preuzimanje — individualni i timski podaci.
                           </p>
-                          <button
-                            onClick={handleDownloadStats}
-                            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-display text-xs uppercase tracking-wider"
-                          >
-                            <Download className="w-3.5 h-3.5" />
-                            Preuzmi Excel datoteku
-                          </button>
+                          <div className="space-y-2 mb-4">
+                            <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-background/30 border border-border/20">
+                              <FileSpreadsheet className="w-4 h-4 text-primary shrink-0" />
+                              <div>
+                                <p className="text-xs font-normal">Individualna statistika igrača</p>
+                                <p className="text-[10px] text-muted-foreground">PPG, RPG, APG, šut %, minute, blokade...</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-background/30 border border-border/20">
+                              <FileSpreadsheet className="w-4 h-4 text-primary shrink-0" />
+                              <div>
+                                <p className="text-xs font-normal">Timski prosjeci</p>
+                                <p className="text-[10px] text-muted-foreground">eFG%, TS%, poeni, skokovi, asistencije...</p>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2.5 p-2.5 rounded-lg bg-background/30 border border-border/20">
+                              <FileSpreadsheet className="w-4 h-4 text-primary shrink-0" />
+                              <div>
+                                <p className="text-xs font-normal">Rezultati utakmica</p>
+                                <p className="text-[10px] text-muted-foreground">Sve utakmice s datumima i rezultatima</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex justify-center">
+                            <button
+                              onClick={handleDownloadStats}
+                              className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 font-display text-xs uppercase tracking-wider"
+                            >
+                              <Download className="w-3.5 h-3.5" />
+                              Preuzmi Excel datoteku
+                            </button>
+                          </div>
                         </div>
                       </motion.div>
                     )}
