@@ -100,8 +100,8 @@ const Gallery = () => {
     <section id="galerija" className="py-20">
       <div className="container mx-auto px-4">
         <h2 className="section-title text-center mb-12">
-          <span className="section-title-white">U </span>
-          <span className="section-title-gold">AKCIJI</span>
+          <span className="section-title-white">NA </span>
+          <span className="section-title-gold">PARKETU</span>
         </h2>
 
         {/* Bento Grid Layout - 3 columns, 20% larger */}

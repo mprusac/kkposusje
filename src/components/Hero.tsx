@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import teamPhoto from "@/assets/team-photo.jpg";
 import { useEffect, useState, useRef } from "react";
 
-const TYPEWRITER_TEXT = "Više od igre";
+const TYPEWRITER_TEXT = "Igra koja spaja";
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
