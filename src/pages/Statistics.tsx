@@ -302,7 +302,7 @@ const Statistics = () => {
     if (activeMainTab === "players" && activePlayersTab === "squad") return 9;
     return 0;
   };
-  const extraMatches = matchPage === 0 ? getExtraMatches() : 0;
+  const extraMatchesCount = getExtraMatches();
   
   // Sort matches: Page 0 = 1 upcoming + 5 past, Page 1+ = remaining past then remaining upcoming
   const upcomingMatches = matches.filter(m => m.isUpcoming);
@@ -312,10 +312,10 @@ const Statistics = () => {
   const remainingMatchesPool = [...playedMatches.slice(5), ...upcomingMatches.slice(1)];
   
   // On page 0, append extra matches from the remaining pool
-  const firstPageMatches = [...baseFirstPageMatches, ...remainingMatchesPool.slice(0, extraMatches)];
+  const firstPageMatches = [...baseFirstPageMatches, ...remainingMatchesPool.slice(0, extraMatchesCount)];
   
-  // Remaining matches for pages 1+ (skip those already shown on page 0)
-  const remainingAfterPage0 = remainingMatchesPool.slice(extraMatches);
+  // Remaining matches for pages 1+ (always skip those shown on page 0)
+  const remainingAfterPage0 = remainingMatchesPool.slice(extraMatchesCount);
   const matchesPerPage = 6;
   const totalMatchPages = remainingAfterPage0.length > 0 ? 1 + Math.ceil(remainingAfterPage0.length / matchesPerPage) : 1;
   
