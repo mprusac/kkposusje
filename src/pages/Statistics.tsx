@@ -718,7 +718,7 @@ const Statistics = () => {
 
               {/* Statistics Tab */}
               <TabsContent value="statistics" className="mt-0">
-                <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 min-h-[900px]">
+                <div className="bg-secondary/30 rounded-xl border border-border/30 p-5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 min-h-[930px]">
                   <h3 className="font-display text-2xl md:text-3xl text-center mb-5">PREGLED</h3>
 
                   {/* Summary cards */}
