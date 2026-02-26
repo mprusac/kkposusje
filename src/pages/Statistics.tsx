@@ -1021,52 +1021,52 @@ const Statistics = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed bottom-6 right-6 z-50 w-[360px] bg-secondary border border-border/30 rounded-xl shadow-2xl shadow-black/40 overflow-hidden cursor-default"
+            className="fixed bottom-5 right-5 z-50 w-[324px] bg-secondary border border-border/30 rounded-lg shadow-2xl shadow-black/40 overflow-hidden cursor-default"
           >
-            <div className="p-5">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-2.5 flex-1 min-w-0">
-                  <FileSpreadsheet className="w-6 h-6 text-primary shrink-0" />
-                  <h3 className="font-display text-lg uppercase tracking-wider leading-none">Preuzmi kompletnu statistiku</h3>
+            <div className="p-4">
+              <div className="flex items-center justify-between mb-2.5">
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                  <FileSpreadsheet className="w-5 h-5 text-primary shrink-0" />
+                  <h3 className="font-display text-[15px] uppercase tracking-wider leading-none">Preuzmi kompletnu statistiku</h3>
                 </div>
                 <button
                   onClick={() => setShowDownloadDialog(false)}
                   className="text-muted-foreground hover:text-foreground transition-colors shrink-0 ml-2 cursor-pointer"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+              <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">
                 Kompletna statistika sezone 2025/26 dostupna za preuzimanje — individualni i timski podaci.
               </p>
-              <div className="space-y-2 mb-5">
-                <div className="flex items-center gap-3 p-3 rounded-lg bg-background/40 hover:bg-background/60 hover:shadow-[0_0_18px_rgba(234,179,8,0.12)] border border-transparent hover:border-primary/15 transition-all duration-300">
-                  <CheckCircle className="w-6 h-6 text-primary shrink-0" />
+              <div className="space-y-1.5 mb-4">
+                <div className="flex items-center gap-2.5 p-2.5 rounded-md bg-background/40 hover:bg-background/60 hover:shadow-[0_0_18px_rgba(234,179,8,0.12)] border border-transparent hover:border-primary/15 transition-all duration-300">
+                  <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                   <div>
-                    <p className="text-[13px] font-bold leading-tight">Individualna statistika igrača</p>
-                    <p className="text-[11px] text-muted-foreground">PPG, RPG, APG, % šuta, minute, blokade...</p>
+                    <p className="text-xs font-bold leading-tight">Individualna statistika igrača</p>
+                    <p className="text-[10px] text-muted-foreground">PPG, RPG, APG, % šuta, minute, blokade...</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-lg bg-background/40 hover:bg-background/60 hover:shadow-[0_0_18px_rgba(234,179,8,0.12)] border border-transparent hover:border-primary/15 transition-all duration-300">
-                  <CheckCircle className="w-6 h-6 text-primary shrink-0" />
+                <div className="flex items-center gap-2.5 p-2.5 rounded-md bg-background/40 hover:bg-background/60 hover:shadow-[0_0_18px_rgba(234,179,8,0.12)] border border-transparent hover:border-primary/15 transition-all duration-300">
+                  <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                   <div>
-                    <p className="text-[13px] font-bold leading-tight">Timski prosjeci</p>
-                    <p className="text-[11px] text-muted-foreground">eFG%, TS%, poeni, skokovi, asistencije...</p>
+                    <p className="text-xs font-bold leading-tight">Timski prosjeci</p>
+                    <p className="text-[10px] text-muted-foreground">eFG%, TS%, poeni, skokovi, asistencije...</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 p-3 rounded-lg bg-background/40 hover:bg-background/60 hover:shadow-[0_0_18px_rgba(234,179,8,0.12)] border border-transparent hover:border-primary/15 transition-all duration-300">
-                  <CheckCircle className="w-6 h-6 text-primary shrink-0" />
+                <div className="flex items-center gap-2.5 p-2.5 rounded-md bg-background/40 hover:bg-background/60 hover:shadow-[0_0_18px_rgba(234,179,8,0.12)] border border-transparent hover:border-primary/15 transition-all duration-300">
+                  <CheckCircle className="w-5 h-5 text-primary shrink-0" />
                   <div>
-                    <p className="text-[13px] font-bold leading-tight">Rezultati utakmica</p>
-                    <p className="text-[11px] text-muted-foreground">Svih {playedMatches.length} utakmica s datumima i rezultatima</p>
+                    <p className="text-xs font-bold leading-tight">Rezultati utakmica</p>
+                    <p className="text-[10px] text-muted-foreground">Svih {playedMatches.length} utakmica s datumima i rezultatima</p>
                   </div>
                 </div>
               </div>
               <button
                 onClick={handleDownloadStats}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-lg bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-base uppercase tracking-wider cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 px-3.5 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-sm uppercase tracking-wider cursor-pointer"
               >
-                <Download className="w-4.5 h-4.5" />
+                <Download className="w-4 h-4" />
                 Preuzmi datoteku
               </button>
             </div>
