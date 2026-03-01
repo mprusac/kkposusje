@@ -460,7 +460,7 @@ const Statistics = () => {
             </div>
 
             {/* Games */}
-            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col">
+            <div className="bg-secondary/30 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col min-h-[750px]">
               <div className="p-2 border-b border-border/30 flex items-center justify-between">
                 <button 
                   onClick={() => setMatchPage(p => Math.max(0, p - 1))}
