@@ -28,23 +28,32 @@ const Index = () => {
     // Restore scroll position if coming back from a sub-page
     const restoreScroll = sessionStorage.getItem("restoreHomeScroll");
     const savedY = sessionStorage.getItem("homeScrollY");
-    
+    const returnTarget = sessionStorage.getItem("homeReturnTarget");
+
     if (restoreScroll === "true") {
       sessionStorage.removeItem("restoreHomeScroll");
-      if (savedY) {
-        const targetY = parseInt(savedY, 10);
-        // Multiple attempts to ensure scroll restoration after PageTransition animation
-        const attempts = [50, 150, 350, 500, 700];
-        const timers = attempts.map(delay =>
-          setTimeout(() => {
-            window.scrollTo({ top: targetY, left: 0, behavior: "instant" });
-          }, delay)
-        );
-        return () => timers.forEach(t => clearTimeout(t));
-      }
-    } else {
-      window.scrollTo(0, 0);
+      const attempts = [80, 200, 350, 550, 800];
+
+      const restoreToTarget = () => {
+        if (returnTarget) {
+          const targetEl = document.getElementById(returnTarget);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: "auto", block: "center" });
+            return;
+          }
+        }
+
+        if (savedY) {
+          window.scrollTo(0, parseInt(savedY, 10));
+        }
+      };
+
+      const timers = attempts.map((delay) => setTimeout(restoreToTarget, delay));
+      sessionStorage.removeItem("homeReturnTarget");
+      return () => timers.forEach((timer) => clearTimeout(timer));
     }
+
+    window.scrollTo(0, 0);
   }, [location]);
 
   return (
