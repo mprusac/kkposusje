@@ -278,7 +278,7 @@ const Results = () => {
                 >
                   {/* Header with date and link */}
                   <div className="flex items-center justify-between mb-3 md:mb-5">
-                    <div className="flex-1 flex justify-center items-center">
+                    <div className="flex-1 flex justify-center items-center -translate-x-1 md:-translate-x-2">
                       {match.youtubeLink ? (
                         <a
                           href={match.youtubeLink}
@@ -303,7 +303,7 @@ const Results = () => {
                         {match.date}
                       </span>
                     </div>
-                    <div className="flex-1 flex justify-center items-center">
+                    <div className="flex-1 flex justify-center items-center translate-x-1 md:translate-x-2">
                       <span title="SofaScore">
                         <ExternalLink
                           size={14}
