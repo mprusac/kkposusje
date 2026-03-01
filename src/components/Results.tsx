@@ -278,7 +278,7 @@ const Results = () => {
                 >
                   {/* Header with date and link */}
                   <div className="flex items-center justify-between mb-3 md:mb-5">
-                    <div className="w-8 md:w-14 flex justify-center items-center">
+                    <div className="flex-1 flex justify-center items-center">
                       {match.youtubeLink ? (
                         <a
                           href={match.youtubeLink}
@@ -298,10 +298,12 @@ const Results = () => {
                         </span>
                       )}
                     </div>
-                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground bg-background/50 px-2 md:px-3 py-1 rounded-full">
+                    <div className="flex-shrink-0 px-2 md:px-4">
+                      <span className="text-[10px] md:text-xs font-medium text-muted-foreground bg-background/50 px-2 md:px-3 py-1 rounded-full">
                         {match.date}
                       </span>
-                    <div className="w-8 md:w-14 flex justify-center items-center">
+                    </div>
+                    <div className="flex-1 flex justify-center items-center">
                       <span title="SofaScore">
                         <ExternalLink
                           size={14}
