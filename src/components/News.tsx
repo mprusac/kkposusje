@@ -153,10 +153,13 @@ const News = () => {
         </div>
 
         {/* Sve vijesti button */}
-        <div className="flex justify-center mt-10">
+        <div id="home-return-news-btn" className="flex justify-center mt-10">
           <Link 
             to="/vijesti"
-            onClick={() => sessionStorage.setItem("homeScrollY", String(window.scrollY))}
+            onClick={() => {
+              sessionStorage.setItem("homeScrollY", String(window.scrollY));
+              sessionStorage.setItem("homeReturnTarget", "home-return-news-btn");
+            }}
             className="px-8 py-3 rounded-xl bg-primary/20 border border-primary text-primary font-display text-lg tracking-wider hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
           >
             Sve vijesti
