@@ -31,6 +31,7 @@ import porazSirokiAway from "@/assets/news-poraz-siroki-away.jpg";
 import porazSirokiCard from "@/assets/news-poraz-siroki-card.jpg";
 import berlinCardNew from "@/assets/berlin/berlin-card-new.jpg";
 import deFlag from "@/assets/flags/de-flag.png";
+import pobjeda_RamaCard from "@/assets/news-pobjeda-rama-card.jpg";
 
 interface NewsItem {
   id: number;
@@ -51,6 +52,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 38, title: "Pobjeda Žutih u Rami! 🏀🔥", excerpt: "Košarkaši Posušja ostvarili su uvjerljivu pobjedu rezultatom 60:94 na gostovanju u Rami u 11. kolu Prvenstva.", date: "01. 03. 2026.", category: "utakmica", image: pobjeda_RamaCard, imagePosition: "top" },
   { id: 36, title: "Poraz na gostovanju u Širokom! 🏀", excerpt: "Košarkaši Posušja upisali su poraz rezultatom 70:62 na gostovanju kod ekipe Širokog u 10. kolu Prvenstva.", date: "23. 02. 2026.", category: "utakmica", image: porazSirokiCard, imagePosition: "center" },
   { id: 35, title: "Žuti sutra protiv Širokog II na Pecari! 📢", excerpt: "Pred našim košarkašima je novi prvenstveni izazov. Sutra momčad putuje na gostovanje kod ekipe Širokog II.", date: "21. 02. 2026.", category: "najava", image: najavasirokiAway, imagePosition: "bottom", imageScale: 1.1 },
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", date: "18. 02. 2026.", category: "klub", image: newsLagunaCard },
