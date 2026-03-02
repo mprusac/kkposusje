@@ -53,6 +53,7 @@ import berlin7 from "@/assets/berlin/berlin-7.jpg";
 import berlin8 from "@/assets/berlin/berlin-8.jpg";
 import berlin9 from "@/assets/berlin/berlin-9.jpg";
 import deFlag from "@/assets/flags/de-flag.png";
+import pobjeda_RamaCard from "@/assets/news-pobjeda-rama-card.jpg";
 interface NewsItem {
   id: number;
   title: string;
@@ -68,6 +69,7 @@ interface NewsItem {
 }
 
 const allNews: NewsItem[] = [
+  { id: 37, title: "Pobjeda Žutih u Rami! 🏀🔥", excerpt: "Košarkaši Posušja ostvarili su uvjerljivu pobjedu rezultatom 60:94 na gostovanju u Rami u 11. kolu Prvenstva.", content: "Pobjeda Žutih u Rami! 🏀🔥\n\nKošarkaši Posušja danas su na gostovanju u Rami odigrali utakmicu 11. kola Prvenstva KS Herceg-Bosne, te ostvarili uvjerljivu pobjedu rezultatom 60:94.\n\nOvom pobjedom Košarkaši Posušja ostali su u igri za Play-Off koji nam se polako približava! 🔥\n\nAjmo žuti! 🟡💪\n\n#kkposusje #ajmozuti", date: "01. 03. 2026.", category: "utakmica", image: pobjeda_RamaCard, cardImagePosition: "top" },
   { id: 36, title: "Poraz na gostovanju u Širokom! 🏀", excerpt: "Košarkaši Posušja upisali su poraz rezultatom 70:62 na gostovanju kod ekipe Širokog u 10. kolu Prvenstva.", content: "Poraz na gostovanju u Širokom. 🏀🌙\n\nKošarkaši Posušja jučer su igrali utakmicu 10. kola Prvenstva Herceg-Bosne protiv ekipe Širokog.\n\nKošarkaši Posušja su upisali poraz rezultatom 70:62, te se trenutno nalaze na 5. mjesto tablice. U 10. odigranih utakmica Žuti su ostvarili 4 pobjede i 6 poraza.\n\nAjmo žuti! 🟡💪\n\n#kkposusje #ajmozuti", date: "23. 02. 2026.", category: "utakmica", image: porazSirokiAway, cardImage: porazSirokiCard, cardImagePosition: "center" },
   { id: 35, title: "Žuti sutra protiv Širokog II na Pecari! 📢", excerpt: "Pred našim košarkašima je novi prvenstveni izazov. Sutra momčad putuje na gostovanje kod ekipe Širokog II.", content: "Žuti sutra protiv Širokog II na Pecari! 🔥💪\n\nPred našim košarkašima je novi prvenstveni izazov. Sutra (nedjelja) momčad putuje na gostovanje kod ekipe Širokog II.\n\nUtakmica se igra s početkom u 17:00 sati u dvorani Pecara u Širokom Brijegu.\n\nPozivamo sve naše navijače koji su u mogućnosti da dođu podržati ekipu na ovom gostovanju. 🏀🏟️\n\nAjmo žuti! 🟡💪\n\n#kkposusje #ajmozuti", date: "21. 02. 2026.", category: "najava", image: najavasirokiAway, cardImagePosition: "bottom" },
   { id: 17, title: "Sponzorska suradnja sa Agencijom Laguna! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba!", content: "Sponzorska suradnja! 🤝✨\n\nS velikim zadovoljstvom objavljujemo da je poduzeće Agencija Laguna novi srebreni sponzor našeg kluba! 🏆\n\nHvala na ukazanom povjerenju, podršci i prepoznavanju važnosti sporta u našoj zajednici. Vaša podrška dodatni je vjetar u leđa našim igračima i motivacija za nove pobjede!\n\nRadujemo se zajedničkim projektima, napretku i svim uspjesima koje ćemo zajedno ostvariti.\n\nAjmo žuti! 🟡💪\n\n#kkposusje #ajmozuti", date: "18. 02. 2026.", category: "klub", image: newsLaguna, cardImage: newsLagunaCard },
