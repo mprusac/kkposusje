@@ -195,69 +195,69 @@ const players: Player[] = [
 
 // Top players data
 const topScorers: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 17.1, image: playerKovac },
-  { rank: 2, name: "Josip Ramljak", position: "Bek", value: 14.4, image: playerRamljak },
-  { rank: 3, name: "Ante Begić", position: "Krilo", value: 12.0, image: playerBegic },
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 16.2, image: playerKovac },
+  { rank: 2, name: "Josip Ramljak", position: "Bek", value: 14.8, image: playerRamljak },
+  { rank: 3, name: "Ante Begić", position: "Krilo", value: 12.2, image: playerBegic },
 ];
 
 const topRebounders: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: 7.0, image: playerBegic },
-  { rank: 2, name: "Marko Protrka", position: "Centar", value: 6.7, image: playerProtrka },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 7.2, image: playerBegic },
+  { rank: 2, name: "Marko Protrka", position: "Centar", value: 6.5, image: playerProtrka },
   { rank: 3, name: "Ante Kovač", position: "Krilo", value: 5.8, image: playerKovac },
 ];
 
 const topAssisters: TopPlayer[] = [
-  { rank: 1, name: "Josip Ramljak", position: "Bek", value: 5.2, image: playerRamljak },
-  { rank: 2, name: "Ante Begić", position: "Krilo", value: 3.0, image: playerBegic },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 2.4, image: playerKovac },
+  { rank: 1, name: "Josip Ramljak", position: "Bek", value: 5.0, image: playerRamljak },
+  { rank: 2, name: "Ante Begić", position: "Krilo", value: 2.8, image: playerBegic },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 2.3, image: playerKovac },
 ];
 
 const topMinutes: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: "32:46", image: playerBegic },
-  { rank: 2, name: "Josip Ramljak", position: "Bek", value: "31:05", image: playerRamljak },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: "30:40", image: playerKovac },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: "32:02", image: playerBegic },
+  { rank: 2, name: "Josip Ramljak", position: "Bek", value: "29:59", image: playerRamljak },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: "29:42", image: playerKovac },
 ];
 
 const topSteals: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 1.9, image: playerKovac },
-  { rank: 2, name: "Ante Begić", position: "Krilo", value: 1.6, image: playerBegic },
-  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 1.3, image: playerRamljak },
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 1.8, image: playerKovac },
+  { rank: 2, name: "Ante Begić", position: "Krilo", value: 1.5, image: playerBegic },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 1.2, image: playerRamljak },
 ];
 
 const topBlocks: TopPlayer[] = [
-  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.4, image: playerProtrka },
-  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 0.5, image: playerKovac },
-  { rank: 3, name: "Josip Pavković", position: "Bek", value: 0.5, image: playerPavkovic },
+  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.3, image: playerProtrka },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 0.4, image: playerKovac },
+  { rank: 3, name: "Josip Pavković", position: "Bek", value: 0.4, image: playerPavkovic },
 ];
 
 const top2PPercentage: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: "55.3%", image: playerKovac },
-  { rank: 2, name: "Josip Ramljak", position: "Bek", value: "50.0%", image: playerRamljak },
-  { rank: 3, name: "Mirko Đerek", position: "Centar", value: "48.1%", image: playerDerek },
+  { rank: 1, name: "Marko Protrka", position: "Centar", value: "62.1%", image: playerProtrka },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: "56.1%", image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: "52.4%", image: playerRamljak },
 ];
 
 const top3PPercentage: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: "36.4%", image: playerKovac },
-  { rank: 2, name: "Ante Begić", position: "Krilo", value: "36.4%", image: playerBegic },
-  { rank: 3, name: "Josip Ramljak", position: "Bek", value: "27.3%", image: playerRamljak },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: "38.5%", image: playerBegic },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: "35.6%", image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: "33.3%", image: playerRamljak },
 ];
 
 const topThrees: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 36, image: playerKovac },
-  { rank: 2, name: "Ante Begić", position: "Krilo", value: 36, image: playerBegic },
-  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 18, image: playerRamljak },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 40, image: playerBegic },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 36, image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 22, image: playerRamljak },
 ];
 
 const topDefRebounds: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: 5.7, image: playerBegic },
-  { rank: 2, name: "Marko Protrka", position: "Centar", value: 5.3, image: playerProtrka },
-  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 4.5, image: playerRamljak },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 6.0, image: playerBegic },
+  { rank: 2, name: "Marko Protrka", position: "Centar", value: 5.2, image: playerProtrka },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 4.3, image: playerKovac },
 ];
 
 const topOffRebounds: TopPlayer[] = [
   { rank: 1, name: "Luka Bašić", position: "Bek", value: 1.7, image: playerBasicLuka },
-  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 1.6, image: playerKovac },
-  { rank: 3, name: "Mirko Đerek", position: "Centar", value: 1.6, image: playerDerek },
+  { rank: 2, name: "Mirko Đerek", position: "Centar", value: 1.5, image: playerDerek },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 1.5, image: playerKovac },
 ];
 
 const topDoubleDoubles: TopPlayer[] = [
