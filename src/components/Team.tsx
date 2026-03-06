@@ -110,7 +110,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/david-dragoja/2078664",
     description: "18-godišnji krilni igrač koji stječe seniorsko iskustvo, ističe se trudom i potencijalom za prvi tim.",
-    stats: { ppg: 4, rpg: 1, apg: 1, mpg: "" },
+    stats: { ppg: 3, rpg: 1, apg: 1, mpg: "" },
   },
   {
     id: 9,
