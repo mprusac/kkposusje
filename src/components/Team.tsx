@@ -120,7 +120,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/jakov-ramljak/1578854",
     description: "Mladi bek koji marljivo gradi svoju ulogu u ekipi, borben na parketu i sve zapaženiji u rotaciji.",
-    stats: { ppg: 2, rpg: 1, apg: 0, mpg: "" },
+    stats: { ppg: 3, rpg: 1, apg: 0, mpg: "" },
   },
   {
     id: 10,
