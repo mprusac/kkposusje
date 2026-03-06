@@ -140,7 +140,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/stipe-beslic/2339336",
     description: "Mladi igrač iz juniorskog pogona, odlikuje ga velika želja za napretkom i požrtvovnost za tim.",
-    stats: { ppg: 5, rpg: 1, apg: 0, mpg: "" },
+    stats: { ppg: 3, rpg: 0, apg: 0, mpg: "" },
   },
   {
     id: 12,
