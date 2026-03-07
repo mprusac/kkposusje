@@ -286,6 +286,7 @@ const Team = () => {
                     <img
                       src={player.image}
                       alt={player.name}
+                      loading="lazy"
                       className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
                         player.image === playerDerek ? "object-[center_15%]" : 
                         player.image === playerBegic ? "object-[center_8%]" : 
