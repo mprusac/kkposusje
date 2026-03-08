@@ -296,14 +296,24 @@ const Results = () => {
           {/* Scroll Buttons - Visible on all devices */}
           <button
             onClick={() => scroll("left")}
-            className="flex absolute -left-2 md:left-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            disabled={activeIndex === 0}
+            className={`flex absolute -left-2 md:left-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
+              activeIndex === 0
+                ? "opacity-40 cursor-not-allowed"
+                : "hover:bg-primary/90 hover:scale-110"
+            }`}
           >
             <ChevronLeft size={18} className="md:hidden" />
             <ChevronLeft size={24} className="hidden md:block" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="flex absolute -right-2 md:right-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            disabled={activeIndex === results.length - 1}
+            className={`flex absolute -right-2 md:right-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
+              activeIndex === results.length - 1
+                ? "opacity-40 cursor-not-allowed"
+                : "hover:bg-primary/90 hover:scale-110"
+            }`}
           >
             <ChevronRight size={18} className="md:hidden" />
             <ChevronRight size={24} className="hidden md:block" />
@@ -312,7 +322,7 @@ const Results = () => {
           {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-3 md:gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start"
+            className="flex gap-0 md:gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {results.map((match, index) => {
