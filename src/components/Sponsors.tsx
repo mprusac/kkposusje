@@ -72,7 +72,7 @@ const sponsors = [
   { name: "Bin Vest", tier: "Gold", image: binvestLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.6]", url: "https://binvest-po.com/" },
   { name: "Miviko", tier: "Silver", image: mivikoLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.6]", url: "https://www.miviko-cables.com/" },
   { name: "Planet", tier: "Silver", image: planetLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.6]", url: "https://www.facebook.com/planetbih/" },
-  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.35]", url: "https://ktm-brina.com/" },
+  { name: "WWin", tier: "Bronze", image: wwinLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.65]", url: "https://wwin.ba/" },
   { name: "Agencija Laguna", tier: "Silver", image: lagunaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.4]", url: "https://agencija-laguna.com/index.php/about" },
   { name: "Mrvelji d.o.o.", tier: "Bronze", image: mrveljiLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.15]", url: "https://www.mrvelji.com/" },
   { name: "Šišović Rakitno", tier: "Gold", image: sisovicLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[2.5]", url: "https://www.sisovic.com/" },
@@ -82,7 +82,7 @@ const sponsors = [
   { name: "Ljekarna Blanka", tier: "Gold", image: ljekarnaBlanka, borderColor: goldBorder, glowColor: goldGlow, imgClass: "", url: "https://www.facebook.com/ljekarna.blanka/" },
   { name: "Winners", tier: "Bronze", image: winnersLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.65]", url: "https://www.facebook.com/pages/Caffe%20Winners%20Posusje/235220287284078/" },
   { name: "Restoran Bosiljna", tier: "Bronze", image: bosiljnaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.4]", url: "https://www.facebook.com/p/Restoran-Bosiljna-100088386104760/" },
-  { name: "WWin", tier: "Bronze", image: wwinLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.65]", url: "https://wwin.ba/" },
+  { name: "KTM Brina", tier: "Silver", image: ktmBrinaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.35]", url: "https://ktm-brina.com/" },
   { name: "Ardu", tier: "Bronze", image: arduLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.3]", url: "https://www.ardusport.com/" },
 ];
 
