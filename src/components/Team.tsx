@@ -312,11 +312,11 @@ const Team = () => {
                     href={player.sofascoreLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute top-2 right-2 md:top-3 md:right-3 z-20 w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/80 hover:scale-110 transition-all duration-300 shadow-lg"
+                    className="absolute top-2 right-2 md:top-3 md:right-3 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:bg-primary/80 hover:scale-110 transition-all duration-300 shadow-lg"
                     title="Pogledaj na SofaScore"
                   >
-                    <ExternalLink size={14} className="md:hidden" />
-                    <ExternalLink size={16} className="hidden md:block" />
+                    <ExternalLink size={20} className="md:hidden" />
+                    <ExternalLink size={24} className="hidden md:block" />
                   </a>
                 )}
 
@@ -326,7 +326,7 @@ const Team = () => {
                     <img
                       src={player.image}
                       alt={player.name}
-                      className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                      className={`w-full h-full object-cover scale-[1.03] transition-transform duration-500 group-hover:scale-110 ${
                         player.image === playerDerek ? "object-[center_15%]" : 
                         player.image === playerBegic ? "object-[center_8%]" : 
                         player.image === playerProtrka ? "object-[center_8%]" : 
