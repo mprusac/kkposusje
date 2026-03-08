@@ -292,7 +292,7 @@ const Results = () => {
           <span className="section-title-gold">UTAKMICE</span>
         </h2>
 
-        <div className="relative max-w-[1200px] mx-auto px-8 md:px-20">
+        <div className="relative max-w-[1200px] mx-auto px-12 md:px-20">
           {/* Scroll Buttons - Visible on all devices */}
           <button
             onClick={() => scroll("left")}
