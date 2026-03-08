@@ -53,7 +53,8 @@ const results: MatchResult[] = [
     homeScore: 80,
     awayScore: 67,
     isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517",
+    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517",
+    youtubeLink: "https://www.youtube.com/watch?v=xKw2LGbjTXo",
     competition: "Liga KSHB",
   },
   {
