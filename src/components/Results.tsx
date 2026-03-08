@@ -200,8 +200,10 @@ const results: MatchResult[] = [
 
 const Results = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -210,14 +212,28 @@ const Results = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = isMobile ? 300 : 340;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+  const scrollToIndex = (index: number) => {
+    const boundedIndex = Math.max(0, Math.min(index, results.length - 1));
+    const targetCard = cardRefs.current[boundedIndex];
+    const container = scrollRef.current;
+
+    if (targetCard && container) {
+      container.scrollTo({
+        left: targetCard.offsetLeft,
         behavior: "smooth",
       });
     }
+
+    setActiveIndex(boundedIndex);
+  };
+
+  const scroll = (direction: "left" | "right") => {
+    if (direction === "left") {
+      scrollToIndex(activeIndex - 1);
+      return;
+    }
+
+    scrollToIndex(activeIndex + 1);
   };
 
   const getTeamLogo = (teamName: string) => {
