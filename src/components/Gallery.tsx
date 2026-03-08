@@ -104,26 +104,26 @@ const Gallery = () => {
           <span className="section-title-gold">PARKETU</span>
         </h2>
 
-        {/* Bento Grid Layout - 3 columns, 20% larger */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto" style={{ gridAutoRows: isMobile ? "100px" : "84px" }}>
-          {/* Left column - Timeout (3 rows = 50%) */}
-          <GalleryItem index={0} className="row-span-3" objectPosition="center center" />
-          
-          {/* Middle top - Mladi centar (3 rows = 50%) */}
-          <GalleryItem index={1} className="row-span-3" style={{ animationDelay: "50ms" }} />
-          
-          {/* Right top - Juniori (3 rows = 50%) */}
-          <GalleryItem index={2} className="row-span-3" style={{ animationDelay: "100ms" }} />
-          
-          {/* Middle bottom - Prodor (3 rows = 50%) */}
-          <GalleryItem index={3} className="row-span-3" style={{ animationDelay: "150ms" }} />
-          
-          {/* Right - Iskusni Mirko (3 rows = 50%) */}
-          <GalleryItem index={4} className="row-span-3" style={{ animationDelay: "200ms" }} objectPosition="center top" />
-          
-          {/* Bottom left - Prvi tim (3 rows = 50%) */}
-          <GalleryItem index={5} className="row-span-3" style={{ animationDelay: "250ms" }} />
-        </div>
+        {/* Mobile: Masonry Layout */}
+        {isMobile ? (
+          <div className="columns-2 gap-2 max-w-4xl mx-auto">
+            {images.map((_, index) => (
+              <div key={index} className="break-inside-avoid mb-2">
+                <GalleryItem index={index} className="" style={{ animationDelay: `${index * 50}ms` }} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Desktop: Original Bento Grid Layout */
+          <div className="grid grid-cols-3 gap-4 max-w-4xl mx-auto" style={{ gridAutoRows: "84px" }}>
+            <GalleryItem index={0} className="row-span-3" objectPosition="center center" />
+            <GalleryItem index={1} className="row-span-3" style={{ animationDelay: "50ms" }} />
+            <GalleryItem index={2} className="row-span-3" style={{ animationDelay: "100ms" }} />
+            <GalleryItem index={3} className="row-span-3" style={{ animationDelay: "150ms" }} />
+            <GalleryItem index={4} className="row-span-3" style={{ animationDelay: "200ms" }} objectPosition="center top" />
+            <GalleryItem index={5} className="row-span-3" style={{ animationDelay: "250ms" }} />
+          </div>
+        )}
 
         <div id="home-return-gallery-btn" className="flex justify-center mt-10">
           <Link 
