@@ -249,18 +249,18 @@ const Results = () => {
           <span className="section-title-gold">UTAKMICE</span>
         </h2>
 
-        <div className="relative max-w-[1200px] mx-auto px-12 md:px-20">
+        <div className="relative max-w-[1200px] mx-auto px-8 md:px-20">
           {/* Scroll Buttons - Visible on all devices */}
           <button
             onClick={() => scroll("left")}
-            className="flex absolute left-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="flex absolute -left-2 md:left-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronLeft size={18} className="md:hidden" />
             <ChevronLeft size={24} className="hidden md:block" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="flex absolute right-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            className="flex absolute -right-2 md:right-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
           >
             <ChevronRight size={18} className="md:hidden" />
             <ChevronRight size={24} className="hidden md:block" />
@@ -290,9 +290,9 @@ const Results = () => {
                       : "bg-gradient-to-br from-secondary/80 via-secondary/60 to-red-500/10 border-red-500/20 hover:border-red-500/40"
                   }`}
                   style={{ 
-                    width: isMobile ? 'calc(100vw - 6rem)' : 'calc((100% - 2.5rem) / 3)',
-                    minWidth: isMobile ? '260px' : '260px',
-                    maxWidth: isMobile ? '360px' : 'none',
+                    width: isMobile ? '100%' : 'calc((100% - 2.5rem) / 3)',
+                    minWidth: isMobile ? '100%' : '260px',
+                    maxWidth: isMobile ? '100%' : 'none',
                     flexShrink: 0,
                     animationDelay: `${index * 100}ms`,
                     opacity: isVisible ? 1 : 0,
