@@ -14,6 +14,10 @@ import ledaLogo from "@/assets/sponsors/leda-logo.png";
 import croatiaOsiguranjeLogo from "@/assets/sponsors/croatia-osiguranje-logo.png";
 
 import ljekarnaBlanka from "@/assets/sponsors/ljekarna-blanka-logo.png";
+import winnersLogo from "@/assets/sponsors/winners-logo.png";
+import bosiljnaLogo from "@/assets/sponsors/bosiljna-logo.png";
+import wwinLogo from "@/assets/sponsors/wwin-logo.png";
+import arduLogo from "@/assets/sponsors/ardu-logo.png";
 
 interface SponsorTier {
   name: string;
