@@ -135,10 +135,10 @@ const formData = [
 // All matches - upcoming first, then played from newest to oldest
 const matches: Match[] = [
   // Upcoming matches
-  { id: 12, date: "08.03.2026", time: "19:00", homeTeam: "HKK Posušje", awayTeam: "HKK Grude", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517" },
   { id: 13, date: "15.03.2026", time: "19:00", homeTeam: "Čapljina", awayTeam: "HKK Posušje", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15014535" },
   { id: 14, date: "22.03.2026", time: "19:00", homeTeam: "HKK Posušje", awayTeam: "HKK Ljubuški", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542" },
   // Played matches (newest first)
+  { id: 20, date: "08.03.2026", homeTeam: "HKK Posušje", awayTeam: "HKK Grude", homeScore: 80, awayScore: 67, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517", competition: "Liga KSHB" },
   { id: 19, date: "01.03.2026", homeTeam: "HKK Rama", awayTeam: "HKK Posušje", homeScore: 60, awayScore: 94, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014515", competition: "Liga KSHB" },
   { id: 18, date: "22.02.2026", homeTeam: "HKK Široki II", awayTeam: "HKK Posušje", homeScore: 70, awayScore: 62, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014507", competition: "Liga KSHB" },
   { id: 16, date: "15.02.2026", homeTeam: "HKK Posušje", awayTeam: "HKK Mostar", homeScore: 90, awayScore: 84, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014506", competition: "Liga KSHB" },
