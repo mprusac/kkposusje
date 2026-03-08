@@ -80,10 +80,10 @@ const sponsors = [
   { name: "Leda", tier: "Gold", image: ledaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "", url: "http://www.leda.ba/" },
   { name: "Croatia Osiguranje", tier: "Gold", image: croatiaOsiguranjeLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "scale-[1.25]", url: "https://crosig.ba/" },
   { name: "Ljekarna Blanka", tier: "Gold", image: ljekarnaBlanka, borderColor: goldBorder, glowColor: goldGlow, imgClass: "", url: "https://www.facebook.com/ljekarna.blanka/" },
-  { name: "Winners", tier: "Bronze", image: winnersLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.3]", url: "https://www.instagram.com/winners_posusje/" },
-  { name: "Restoran Bosiljna", tier: "Bronze", image: bosiljnaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.2]", url: "https://www.instagram.com/restoran_bosiljna/" },
-  { name: "WWin", tier: "Bronze", image: wwinLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.3]", url: "https://www.wwin.com/" },
-  { name: "Ardu", tier: "Bronze", image: arduLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.2]", url: "https://www.instagram.com/ardu.posusje/" },
+  { name: "Winners", tier: "Bronze", image: winnersLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.5]", url: "https://www.instagram.com/winners_posusje/" },
+  { name: "Restoran Bosiljna", tier: "Bronze", image: bosiljnaLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.3]", url: "https://www.instagram.com/restoran_bosiljna/" },
+  { name: "WWin", tier: "Bronze", image: wwinLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.5]", url: "https://www.wwin.com/" },
+  { name: "Ardu", tier: "Bronze", image: arduLogo, borderColor: goldBorder, glowColor: goldGlow, imgClass: "!object-contain scale-[1.3]", url: "https://www.instagram.com/ardu.posusje/" },
 ];
 
 const Sponsors = () => {
