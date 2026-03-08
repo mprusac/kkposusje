@@ -46,6 +46,17 @@ const teamLogos: Record<string, string> = {
 
 const results: MatchResult[] = [
   {
+    id: 20,
+    date: "08.03.2026",
+    homeTeam: "HKK Posušje",
+    awayTeam: "HKK Grude",
+    homeScore: 80,
+    awayScore: 67,
+    isHome: true,
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517",
+    competition: "Liga KSHB",
+  },
+  {
     id: 19,
     date: "01.03.2026",
     homeTeam: "HKK Rama",

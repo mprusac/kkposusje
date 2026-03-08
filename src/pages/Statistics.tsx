@@ -157,9 +157,9 @@ const matches: Match[] = [
 const standings: Standing[] = [
   { position: 1, team: "HKK Ljubuški", played: 11, won: 9, lost: 2, diff: 108, last5: ["W", "W", "W", "W", "L"], points: 20 },
   { position: 2, team: "HKK Mostar", played: 11, won: 8, lost: 3, diff: 181, last5: ["W", "W", "L", "W", "W"], points: 19 },
-  { position: 3, team: "HKK Grude", played: 11, won: 8, lost: 3, diff: 68, last5: ["W", "W", "L", "W", "L"], points: 19 },
+  { position: 3, team: "HKK Grude", played: 12, won: 8, lost: 4, diff: 55, last5: ["W", "L", "W", "L", "L"], points: 19 },
   { position: 4, team: "HKK Tomislav", played: 11, won: 6, lost: 5, diff: 2, last5: ["L", "W", "W", "L", "W"], points: 17 },
-  { position: 5, team: "HKK Posušje", played: 11, won: 5, lost: 6, diff: 95, last5: ["L", "L", "W", "L", "L", "W"], points: 16 },
+  { position: 5, team: "HKK Posušje", played: 12, won: 6, lost: 6, diff: 108, last5: ["W", "L", "L", "W", "W"], points: 17 },
   { position: 6, team: "HKK Široki II", played: 11, won: 5, lost: 6, diff: 88, last5: ["W", "L", "W", "W", "W"], points: 16 },
   { position: 7, team: "HKK Rama", played: 11, won: 3, lost: 8, diff: -74, last5: ["W", "L", "L", "L", "L"], points: 14 },
   { position: 8, team: "Čapljina", played: 11, won: 0, lost: 11, diff: -468, last5: ["L", "L", "L", "L", "L"], points: 11 },
