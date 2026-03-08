@@ -200,8 +200,10 @@ const results: MatchResult[] = [
 
 const Results = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -210,15 +212,56 @@ const Results = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = isMobile ? 300 : 340;
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
+  const scrollToIndex = (index: number) => {
+    const boundedIndex = Math.max(0, Math.min(index, results.length - 1));
+    const targetCard = cardRefs.current[boundedIndex];
+    const container = scrollRef.current;
+
+    if (targetCard && container) {
+      container.scrollTo({
+        left: targetCard.offsetLeft,
         behavior: "smooth",
       });
     }
+
+    setActiveIndex(boundedIndex);
   };
+
+  const scroll = (direction: "left" | "right") => {
+    if (direction === "left") {
+      scrollToIndex(activeIndex - 1);
+      return;
+    }
+
+    scrollToIndex(activeIndex + 1);
+  };
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const currentLeft = container.scrollLeft;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const distance = Math.abs(card.offsetLeft - currentLeft);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    handleScroll();
+    container.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const getTeamLogo = (teamName: string) => {
     return teamLogos[teamName] || null;
@@ -253,14 +296,24 @@ const Results = () => {
           {/* Scroll Buttons - Visible on all devices */}
           <button
             onClick={() => scroll("left")}
-            className="flex absolute -left-2 md:left-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            disabled={activeIndex === 0}
+            className={`flex absolute -left-2 md:left-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
+              activeIndex === 0
+                ? "opacity-40 cursor-not-allowed"
+                : "hover:bg-primary/90 hover:scale-110"
+            }`}
           >
             <ChevronLeft size={18} className="md:hidden" />
             <ChevronLeft size={24} className="hidden md:block" />
           </button>
           <button
             onClick={() => scroll("right")}
-            className="flex absolute -right-2 md:right-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg"
+            disabled={activeIndex === results.length - 1}
+            className={`flex absolute -right-2 md:right-0 top-[35%] -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
+              activeIndex === results.length - 1
+                ? "opacity-40 cursor-not-allowed"
+                : "hover:bg-primary/90 hover:scale-110"
+            }`}
           >
             <ChevronRight size={18} className="md:hidden" />
             <ChevronRight size={24} className="hidden md:block" />
@@ -269,7 +322,7 @@ const Results = () => {
           {/* Scrollable Container */}
           <div
             ref={scrollRef}
-            className="flex gap-3 md:gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start"
+            className="flex gap-0 md:gap-5 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {results.map((match, index) => {
@@ -281,10 +334,13 @@ const Results = () => {
               return (
                 <a
                   key={match.id}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
                   href={match.sofaScoreLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-center md:snap-start ${
+                  className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-start ${
                     isWin 
                       ? "bg-gradient-to-br from-secondary/80 via-secondary/60 to-primary/10 border-primary/30 hover:border-primary/60" 
                       : "bg-gradient-to-br from-secondary/80 via-secondary/60 to-red-500/10 border-red-500/20 hover:border-red-500/40"
