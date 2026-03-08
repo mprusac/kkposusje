@@ -236,6 +236,33 @@ const Results = () => {
     scrollToIndex(activeIndex + 1);
   };
 
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const currentLeft = container.scrollLeft;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const distance = Math.abs(card.offsetLeft - currentLeft);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    handleScroll();
+    container.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const getTeamLogo = (teamName: string) => {
     return teamLogos[teamName] || null;
   };
