@@ -321,7 +321,7 @@ const Team = () => {
                 )}
 
                 {/* Player Image */}
-                <div className="relative h-48 md:h-64 overflow-hidden">
+                <div className="relative h-[380px] md:h-64 overflow-hidden">
                   {player.image ? (
                     <img
                       src={player.image}
@@ -362,11 +362,11 @@ const Team = () => {
                 </div>
 
                 {/* Player Info */}
-                <div className="p-3 md:p-4 relative z-10">
-                  <span className="text-[10px] md:text-xs uppercase tracking-wider text-primary">
+                <div className="p-4 md:p-4 relative z-10">
+                  <span className="text-sm md:text-xs uppercase tracking-wider text-primary">
                     {player.position}
                   </span>
-                  <h3 className="text-base md:text-xl font-display text-foreground mt-1">
+                  <h3 className="text-2xl md:text-xl font-display text-foreground mt-1">
                     {player.name}
                   </h3>
 
@@ -379,24 +379,24 @@ const Team = () => {
 
                   {/* Stats */}
                   {(player.stats.ppg >= 1 || player.stats.rpg >= 1 || player.stats.apg >= 1 || (player.stats.bpg && player.stats.bpg >= 1)) && (
-                    <div className={`flex flex-wrap gap-1 md:gap-2 ${player.description ? 'md:mt-2' : 'md:mt-4'} mt-2`}>
+                    <div className={`flex flex-wrap gap-2 ${player.description ? 'md:mt-2' : 'md:mt-4'} mt-3`}>
                       {player.stats.ppg >= 1 && (
-                        <span className="px-1.5 md:px-2 py-0.5 md:py-1 bg-primary/20 text-primary text-[10px] md:text-xs rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-sm md:text-xs rounded whitespace-nowrap">
                           {player.stats.ppg} PPG
                         </span>
                       )}
                       {player.stats.rpg >= 1 && (
-                        <span className="px-1.5 md:px-2 py-0.5 md:py-1 bg-primary/20 text-primary text-[10px] md:text-xs rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-sm md:text-xs rounded whitespace-nowrap">
                           {player.stats.rpg} RPG
                         </span>
                       )}
                       {player.stats.apg >= 1 && (
-                        <span className="px-1.5 md:px-2 py-0.5 md:py-1 bg-primary/20 text-primary text-[10px] md:text-xs rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-sm md:text-xs rounded whitespace-nowrap">
                           {player.stats.apg} APG
                         </span>
                       )}
                       {player.stats.bpg && player.stats.bpg >= 1 && (
-                        <span className="px-1.5 md:px-2 py-0.5 md:py-1 bg-primary/20 text-primary text-[10px] md:text-xs rounded whitespace-nowrap">
+                        <span className="px-2 py-1 bg-primary/20 text-primary text-sm md:text-xs rounded whitespace-nowrap">
                           {player.stats.bpg} BPG
                         </span>
                       )}
