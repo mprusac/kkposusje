@@ -245,7 +245,7 @@ const EventCard = ({ event, index }: { event: typeof events[0]; index: number })
             {event.awayTeam ? `${event.homeTeam} - ${event.awayTeam}` : event.homeTeam}
           </h3>
           <p className="text-primary font-bold mt-1">{event.date}</p>
-          <p className="text-muted-foreground text-sm mt-1">{event.description}</p>
+          <p className="text-muted-foreground text-sm mt-1 hidden md:block">{event.description}</p>
         </div>
       </Link>
     </motion.div>
