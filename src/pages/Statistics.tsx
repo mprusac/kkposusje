@@ -225,7 +225,7 @@ const topSteals: TopPlayer[] = [
 ];
 
 const topBlocks: TopPlayer[] = [
-  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.3, image: playerProtrka },
+  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.2, image: playerProtrka },
   { rank: 2, name: "Ante Kovač", position: "Krilo", value: 0.4, image: playerKovac },
   { rank: 3, name: "Josip Pavković", position: "Bek", value: 0.4, image: playerPavkovic },
 ];
