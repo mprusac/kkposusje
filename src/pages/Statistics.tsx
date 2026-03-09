@@ -621,17 +621,17 @@ const Statistics = () => {
                   
                   {leagueCategory === "seniori" ? (
                     <div className="overflow-x-auto">
-                      <Table className="min-w-[600px]">
+                      <Table>
                         <TableHeader>
                           <TableRow className="hover:bg-transparent border-border/30">
-                            <TableHead className="w-10 text-center text-sm font-bold">#</TableHead>
-                            <TableHead className="text-sm font-bold">Ekipa</TableHead>
-                            <TableHead className="text-center w-10 text-sm font-bold">UT</TableHead>
-                            <TableHead className="text-center w-10 text-sm font-bold">W</TableHead>
-                            <TableHead className="text-center w-10 text-sm font-bold">L</TableHead>
-                            <TableHead className="text-center w-14 text-sm font-bold">+/-</TableHead>
+                            <TableHead className="w-6 md:w-10 text-center text-[10px] md:text-sm font-bold px-1 md:px-4">#</TableHead>
+                            <TableHead className="text-[10px] md:text-sm font-bold px-1 md:px-4">Ekipa</TableHead>
+                            <TableHead className="text-center w-6 md:w-10 text-[10px] md:text-sm font-bold px-1 md:px-4">UT</TableHead>
+                            <TableHead className="text-center w-6 md:w-10 text-[10px] md:text-sm font-bold px-1 md:px-4">W</TableHead>
+                            <TableHead className="text-center w-6 md:w-10 text-[10px] md:text-sm font-bold px-1 md:px-4">L</TableHead>
+                            <TableHead className="text-center w-8 md:w-14 text-[10px] md:text-sm font-bold px-1 md:px-4">+/-</TableHead>
                             <TableHead className="text-center w-28 text-sm font-bold hidden sm:table-cell">Zadnjih 5</TableHead>
-                            <TableHead className="text-center w-14 text-sm font-bold">BOD</TableHead>
+                            <TableHead className="text-center w-8 md:w-14 text-[10px] md:text-sm font-bold px-1 md:px-4">BOD</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
