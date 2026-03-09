@@ -589,11 +589,11 @@ const Statistics = () => {
                 <TabsTrigger value="standings" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Poredak
                 </TabsTrigger>
-                <TabsTrigger value="statistics" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
-                  Statistika
-                </TabsTrigger>
                 <TabsTrigger value="players" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
                   Igrači
+                </TabsTrigger>
+                <TabsTrigger value="statistics" className="flex-1 font-display text-xl md:text-2xl data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-200">
+                  Tim
                 </TabsTrigger>
               </TabsList>
 
