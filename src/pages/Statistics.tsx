@@ -859,138 +859,149 @@ const Statistics = () => {
 
               {/* Players Tab */}
               <TabsContent value="players" className="mt-0">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  {/* Left - Top igrači */}
-                  <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-                    <div className="p-3 border-b border-border/30">
-                      <h3 className="font-display text-lg md:text-xl text-center">Top igrači</h3>
-                    </div>
-                    <div className="p-3 md:p-5">
-                      {/* Pagination controls */}
-                      <div className="flex items-center justify-center gap-4 mb-4">
-                        <button 
-                          onClick={() => setTopPlayersPage(0)}
-                          disabled={topPlayersPage === 0}
-                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
-                        >
-                          <ChevronLeft size={18} />
-                        </button>
-                        <span className="text-sm text-muted-foreground">
-                          {topPlayersPage === 0 ? "1 - 6" : "7 - 12"} od 12
-                        </span>
-                        <button 
-                          onClick={() => setTopPlayersPage(1)}
-                          disabled={topPlayersPage === 1}
-                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
-                        >
-                          <ChevronRight size={18} />
-                        </button>
-                      </div>
+                <Tabs defaultValue="top-players" className="w-full">
+                  <TabsList className="w-full bg-secondary/50 border border-border/30 mb-4">
+                    <TabsTrigger value="top-players" className="flex-1 text-sm md:text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                      Igrači
+                    </TabsTrigger>
+                    <TabsTrigger value="roster" className="flex-1 text-sm md:text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                      Roster
+                    </TabsTrigger>
+                  </TabsList>
 
-                      <div className="grid grid-cols-2 gap-2 md:gap-4">
-                        {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
-                          <div key={catIndex} className="bg-background/20 rounded-lg p-2 md:p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                            <h4 className="font-display text-xs md:text-base text-center mb-2 md:mb-3 uppercase tracking-wider">{category.title}</h4>
-                            <div className="space-y-1 md:space-y-2">
-                              {category.data.map((player) => (
-                                <div key={player.rank} className="flex items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                                  <span className="text-primary font-bold w-3 md:w-4 text-xs md:text-sm">{player.rank}</span>
-                                  <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-secondary overflow-hidden flex-shrink-0">
-                                    {player.image ? (
-                                      <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                    ) : (
-                                      <div className="w-full h-full bg-muted" />
-                                    )}
+                  <TabsContent value="top-players" className="mt-0">
+                    <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                      <div className="p-3 border-b border-border/30">
+                        <h3 className="font-display text-lg md:text-xl text-center">Top igrači</h3>
+                      </div>
+                      <div className="p-3 md:p-5">
+                        {/* Pagination controls */}
+                        <div className="flex items-center justify-center gap-4 mb-4">
+                          <button 
+                            onClick={() => setTopPlayersPage(0)}
+                            disabled={topPlayersPage === 0}
+                            className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                          >
+                            <ChevronLeft size={18} />
+                          </button>
+                          <span className="text-sm text-muted-foreground">
+                            {topPlayersPage === 0 ? "1 - 6" : "7 - 12"} od 12
+                          </span>
+                          <button 
+                            onClick={() => setTopPlayersPage(1)}
+                            disabled={topPlayersPage === 1}
+                            className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                          >
+                            <ChevronRight size={18} />
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 md:gap-4">
+                          {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
+                            <div key={catIndex} className="bg-background/20 rounded-lg p-2 md:p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                              <h4 className="font-display text-xs md:text-base text-center mb-2 md:mb-3 uppercase tracking-wider">{category.title}</h4>
+                              <div className="space-y-1 md:space-y-2">
+                                {category.data.map((player) => (
+                                  <div key={player.rank} className="flex items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                                    <span className="text-primary font-bold w-3 md:w-4 text-xs md:text-sm">{player.rank}</span>
+                                    <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-secondary overflow-hidden flex-shrink-0">
+                                      {player.image ? (
+                                        <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
+                                      ) : (
+                                        <div className="w-full h-full bg-muted" />
+                                      )}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
+                                      <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
+                                    </div>
+                                    <span className="text-sm md:text-lg font-display text-primary">{player.value}</span>
                                   </div>
-                                  <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
-                                    <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
-                                  </div>
-                                  <span className="text-sm md:text-lg font-display text-primary">{player.value}</span>
-                                </div>
-                              ))}
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </TabsContent>
 
-                  {/* Right - Roster */}
-                  <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-                    <div className="p-3 border-b border-border/30">
-                      <h3 className="font-display text-lg md:text-xl text-center">Roster</h3>
-                    </div>
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="hover:bg-transparent border-border/30">
-                            <TableHead className="w-10 md:w-14 text-center text-xs md:text-base font-bold">Broj</TableHead>
-                            <TableHead className="w-8 md:w-14 text-xs md:text-base font-bold"></TableHead>
-                            <TableHead className="text-xs md:text-base font-bold">Igrač</TableHead>
-                            <TableHead className="text-center text-xs md:text-base font-bold">Nac.</TableHead>
-                            <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Visina</TableHead>
-                            <TableHead className="text-center text-sm md:text-base font-bold hidden lg:table-cell">Datum rođenja</TableHead>
-                            <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Dob</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {players.map((player, index) => (
-                            <TableRow key={index} className="hover:bg-secondary/50 border-border/20 transition-all duration-200 hover:shadow-md group">
-                              <TableCell className="font-bold text-primary text-center text-sm md:text-base">{player.number}</TableCell>
-                              <TableCell>
-                                {player.sofascoreLink ? (
-                                  <a 
-                                    href={player.sofascoreLink} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
-                                    title="Pogledaj na SofaScore"
-                                  >
-                                    <ExternalLink size={12} className="md:hidden" />
-                                    <ExternalLink size={14} className="hidden md:block" />
-                                  </a>
-                                ) : (
-                                  <div className="w-6 h-6 md:w-7 md:h-7" />
-                                )}
-                              </TableCell>
-                              <TableCell>
-                                <div className="flex items-center gap-2 md:gap-3">
-                                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-secondary overflow-hidden group-hover:ring-2 group-hover:ring-primary/30 transition-all duration-200 flex-shrink-0">
-                                    {player.image ? (
-                                      <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                    ) : (
-                                      <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
-                                        {player.name.charAt(0)}
-                                      </div>
-                                    )}
-                                  </div>
-                                  <div>
-                                    <p className="font-bold text-sm md:text-base">{player.name}</p>
-                                    <p className="text-xs md:text-sm text-primary font-medium">{player.position}</p>
-                                  </div>
-                                </div>
-                              </TableCell>
-                              <TableCell className="text-center px-1 md:px-4">
-                                <div className="flex items-center justify-center gap-0.5 md:gap-1">
-                                  {getFlagImage(player.nationality) ? (
-                                    <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-4 h-4 md:w-6 md:h-6 rounded-full object-cover flex-shrink-0" />
-                                  ) : player.nationality !== "-" ? (
-                                    <span className="text-xs md:text-base">{getFlagEmoji(player.nationality)}</span>
-                                  ) : null}
-                                  <span className="text-[10px] md:text-base font-bold hidden sm:inline">{player.nationality}</span>
-                                </div>
-                              </TableCell>
-                              <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.height || "-"}</TableCell>
-                              <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden lg:table-cell">{player.dateOfBirth || "-"}</TableCell>
-                              <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.age ? `${player.age} god.` : "-"}</TableCell>
+                  <TabsContent value="roster" className="mt-0">
+                    <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                      <div className="p-3 border-b border-border/30">
+                        <h3 className="font-display text-lg md:text-xl text-center">Roster</h3>
+                      </div>
+                      <div className="overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow className="hover:bg-transparent border-border/30">
+                              <TableHead className="w-10 md:w-14 text-center text-xs md:text-base font-bold">Broj</TableHead>
+                              <TableHead className="w-8 md:w-14 text-xs md:text-base font-bold"></TableHead>
+                              <TableHead className="text-xs md:text-base font-bold">Igrač</TableHead>
+                              <TableHead className="text-center text-xs md:text-base font-bold">Nac.</TableHead>
+                              <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Visina</TableHead>
+                              <TableHead className="text-center text-sm md:text-base font-bold hidden lg:table-cell">Datum rođenja</TableHead>
+                              <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Dob</TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
+                          </TableHeader>
+                          <TableBody>
+                            {players.map((player, index) => (
+                              <TableRow key={index} className="hover:bg-secondary/50 border-border/20 transition-all duration-200 hover:shadow-md group">
+                                <TableCell className="font-bold text-primary text-center text-sm md:text-base">{player.number}</TableCell>
+                                <TableCell>
+                                  {player.sofascoreLink ? (
+                                    <a 
+                                      href={player.sofascoreLink} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 hover:scale-110"
+                                      title="Pogledaj na SofaScore"
+                                    >
+                                      <ExternalLink size={12} className="md:hidden" />
+                                      <ExternalLink size={14} className="hidden md:block" />
+                                    </a>
+                                  ) : (
+                                    <div className="w-6 h-6 md:w-7 md:h-7" />
+                                  )}
+                                </TableCell>
+                                <TableCell>
+                                  <div className="flex items-center gap-2 md:gap-3">
+                                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-secondary overflow-hidden group-hover:ring-2 group-hover:ring-primary/30 transition-all duration-200 flex-shrink-0">
+                                      {player.image ? (
+                                        <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
+                                      ) : (
+                                        <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                                          {player.name.charAt(0)}
+                                        </div>
+                                      )}
+                                    </div>
+                                    <div>
+                                      <p className="font-bold text-sm md:text-base">{player.name}</p>
+                                      <p className="text-xs md:text-sm text-primary font-medium">{player.position}</p>
+                                    </div>
+                                  </div>
+                                </TableCell>
+                                <TableCell className="text-center px-1 md:px-4">
+                                  <div className="flex items-center justify-center gap-0.5 md:gap-1">
+                                    {getFlagImage(player.nationality) ? (
+                                      <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-4 h-4 md:w-6 md:h-6 rounded-full object-cover flex-shrink-0" />
+                                    ) : player.nationality !== "-" ? (
+                                      <span className="text-xs md:text-base">{getFlagEmoji(player.nationality)}</span>
+                                    ) : null}
+                                    <span className="text-[10px] md:text-base font-bold hidden sm:inline">{player.nationality}</span>
+                                  </div>
+                                </TableCell>
+                                <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.height || "-"}</TableCell>
+                                <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden lg:table-cell">{player.dateOfBirth || "-"}</TableCell>
+                                <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.age ? `${player.age} god.` : "-"}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </TabsContent>
+                </Tabs>
               </TabsContent>
             </Tabs>
           </div>
