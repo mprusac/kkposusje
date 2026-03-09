@@ -859,34 +859,68 @@ const Statistics = () => {
 
               {/* Players Tab */}
               <TabsContent value="players" className="mt-0">
-                <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-                  {/* Sub-tabs */}
-                  <div className="p-3 border-b border-border/30">
-                    <div className="flex gap-2 justify-center">
-                      <button
-                        onClick={() => setActivePlayersTab("squad")}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 ${
-                          activePlayersTab === "squad" 
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
-                            : "bg-background/30 text-muted-foreground hover:text-foreground hover:bg-background/50"
-                        }`}
-                      >
-                        Roster
-                      </button>
-                      <button
-                        onClick={() => setActivePlayersTab("top")}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 ${
-                          activePlayersTab === "top" 
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
-                            : "bg-background/30 text-muted-foreground hover:text-foreground hover:bg-background/50"
-                        }`}
-                      >
-                        Top igrači
-                      </button>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  {/* Left - Top igrači */}
+                  <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                    <div className="p-3 border-b border-border/30">
+                      <h3 className="font-display text-lg md:text-xl text-center">Top igrači</h3>
+                    </div>
+                    <div className="p-3 md:p-5">
+                      {/* Pagination controls */}
+                      <div className="flex items-center justify-center gap-4 mb-4">
+                        <button 
+                          onClick={() => setTopPlayersPage(0)}
+                          disabled={topPlayersPage === 0}
+                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                        >
+                          <ChevronLeft size={18} />
+                        </button>
+                        <span className="text-sm text-muted-foreground">
+                          {topPlayersPage === 0 ? "1 - 6" : "7 - 12"} od 12
+                        </span>
+                        <button 
+                          onClick={() => setTopPlayersPage(1)}
+                          disabled={topPlayersPage === 1}
+                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
+                        >
+                          <ChevronRight size={18} />
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2 md:gap-4">
+                        {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
+                          <div key={catIndex} className="bg-background/20 rounded-lg p-2 md:p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                            <h4 className="font-display text-xs md:text-base text-center mb-2 md:mb-3 uppercase tracking-wider">{category.title}</h4>
+                            <div className="space-y-1 md:space-y-2">
+                              {category.data.map((player) => (
+                                <div key={player.rank} className="flex items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                                  <span className="text-primary font-bold w-3 md:w-4 text-xs md:text-sm">{player.rank}</span>
+                                  <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-secondary overflow-hidden flex-shrink-0">
+                                    {player.image ? (
+                                      <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
+                                    ) : (
+                                      <div className="w-full h-full bg-muted" />
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
+                                    <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
+                                  </div>
+                                  <span className="text-sm md:text-lg font-display text-primary">{player.value}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
-                  {activePlayersTab === "squad" ? (
+                  {/* Right - Roster */}
+                  <div className="bg-secondary/30 rounded-xl border border-border/30 overflow-hidden hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
+                    <div className="p-3 border-b border-border/30">
+                      <h3 className="font-display text-lg md:text-xl text-center">Roster</h3>
+                    </div>
                     <div className="overflow-x-auto">
                       <Table>
                         <TableHeader>
@@ -955,57 +989,7 @@ const Statistics = () => {
                         </TableBody>
                       </Table>
                     </div>
-                  ) : (
-                    <div className="p-5">
-                      {/* Pagination controls */}
-                      <div className="flex items-center justify-center gap-4 mb-4">
-                        <button 
-                          onClick={() => setTopPlayersPage(0)}
-                          disabled={topPlayersPage === 0}
-                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
-                        >
-                          <ChevronLeft size={18} />
-                        </button>
-                        <span className="text-sm text-muted-foreground">
-                          {topPlayersPage === 0 ? "1 - 6" : "7 - 12"} od 12
-                        </span>
-                        <button 
-                          onClick={() => setTopPlayersPage(1)}
-                          disabled={topPlayersPage === 1}
-                          className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/30 hover:scale-110 transition-all duration-200"
-                        >
-                          <ChevronRight size={18} />
-                        </button>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-2 md:gap-4">
-                        {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
-                          <div key={catIndex} className="bg-background/20 rounded-lg p-2 md:p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                            <h4 className="font-display text-xs md:text-base text-center mb-2 md:mb-3 uppercase tracking-wider">{category.title}</h4>
-                            <div className="space-y-1 md:space-y-2">
-                              {category.data.map((player) => (
-                                <div key={player.rank} className="flex items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                                  <span className="text-primary font-bold w-3 md:w-4 text-xs md:text-sm">{player.rank}</span>
-                                  <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-secondary overflow-hidden flex-shrink-0">
-                                    {player.image ? (
-                                      <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
-                                    ) : (
-                                      <div className="w-full h-full bg-muted" />
-                                    )}
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
-                                    <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
-                                  </div>
-                                  <span className="text-sm md:text-lg font-display text-primary">{player.value}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  </div>
                 </div>
               </TabsContent>
             </Tabs>
