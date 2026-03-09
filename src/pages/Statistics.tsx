@@ -249,9 +249,9 @@ const topThrees: TopPlayer[] = [
 ];
 
 const topDefRebounds: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: 6.0, image: playerBegic },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 5.7, image: playerBegic },
   { rank: 2, name: "Marko Protrka", position: "Centar", value: 5.2, image: playerProtrka },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 4.3, image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 4.4, image: playerRamljak },
 ];
 
 const topOffRebounds: TopPlayer[] = [
