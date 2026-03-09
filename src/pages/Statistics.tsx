@@ -944,7 +944,7 @@ const Statistics = () => {
                                   ) : player.nationality !== "-" ? (
                                     <span className="text-sm md:text-base">{getFlagEmoji(player.nationality)}</span>
                                   ) : null}
-                                  <span className="text-xs md:text-base font-bold hidden sm:inline">{player.nationality}</span>
+                                  <span className="text-xs md:text-base font-bold">{player.nationality}</span>
                                 </div>
                               </TableCell>
                               <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.height || "-"}</TableCell>
