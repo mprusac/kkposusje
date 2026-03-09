@@ -666,7 +666,7 @@ const Statistics = () => {
                                       />
                                     </div>
                                   )}
-                                  <span className={`text-xs md:text-sm font-bold ${team.team === "HKK Posušje" ? "text-primary" : ""}`}>
+                                  <span className={`text-[10px] md:text-sm font-bold ${team.team === "HKK Posušje" ? "text-primary" : ""}`}>
                                     {team.team}
                                   </span>
                                 </div>
