@@ -258,7 +258,9 @@ const EventAlbum = ({ event }: { event: typeof events[0] }) => {
 
   // Scroll to top on mount
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   // Get all images (either from imagesWithOrientation or regular images array)
