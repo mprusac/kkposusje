@@ -90,7 +90,7 @@ const players: Player[] = [
     image: playerPavkovic,
     sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527",
     description: "Perspektivan i nadaren mladi igrač koji se svojim doprinosom timu razvija u prvoligaškog košarkaša.",
-    stats: { ppg: 5, rpg: 4, apg: 1, mpg: "" },
+    stats: { ppg: 4, rpg: 4, apg: 1, mpg: "" },
   },
   {
     id: 7,
