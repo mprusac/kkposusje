@@ -1036,7 +1036,7 @@ const Statistics = () => {
                   <X className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">
+              <p className="text-[9px] md:text-[11px] text-muted-foreground leading-relaxed mb-2 md:mb-3">
                 Kompletna statistika sezone 2025/26 dostupna za preuzimanje — individualni i timski podaci.
               </p>
               <div className="space-y-1.5 mb-4">
