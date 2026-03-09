@@ -996,7 +996,7 @@ const Statistics = () => {
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
+                                    <p className="font-medium text-[10px] md:text-sm md:truncate leading-tight">{player.name}</p>
                                     <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
                                   </div>
                                   <span className="self-end text-sm md:text-lg font-display text-primary leading-none pb-0.5 md:pb-0">{player.value}</span>
