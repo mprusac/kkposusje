@@ -888,13 +888,13 @@ const Statistics = () => {
 
                   {activePlayersTab === "squad" ? (
                     <div className="overflow-x-auto">
-                      <Table className="min-w-[600px]">
+                      <Table>
                         <TableHeader>
                           <TableRow className="hover:bg-transparent border-border/30">
-                            <TableHead className="w-14 text-center text-sm md:text-base font-bold">Broj</TableHead>
-                            <TableHead className="w-14 text-sm md:text-base font-bold"></TableHead>
-                            <TableHead className="text-sm md:text-base font-bold">Igrač</TableHead>
-                            <TableHead className="text-center text-sm md:text-base font-bold">Nacionalnost</TableHead>
+                            <TableHead className="w-10 md:w-14 text-center text-xs md:text-base font-bold">Broj</TableHead>
+                            <TableHead className="w-8 md:w-14 text-xs md:text-base font-bold"></TableHead>
+                            <TableHead className="text-xs md:text-base font-bold">Igrač</TableHead>
+                            <TableHead className="text-center text-xs md:text-base font-bold">Nac.</TableHead>
                             <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Visina</TableHead>
                             <TableHead className="text-center text-sm md:text-base font-bold hidden lg:table-cell">Datum rođenja</TableHead>
                             <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Dob</TableHead>
@@ -937,14 +937,14 @@ const Statistics = () => {
                                   </div>
                                 </div>
                               </TableCell>
-                              <TableCell className="text-center">
-                                <div className="flex items-center justify-center gap-1">
+                              <TableCell className="text-center px-1 md:px-4">
+                                <div className="flex items-center justify-center gap-0.5 md:gap-1">
                                   {getFlagImage(player.nationality) ? (
-                                    <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover flex-shrink-0" />
+                                    <img src={getFlagImage(player.nationality)!} alt={player.nationality} className="w-4 h-4 md:w-6 md:h-6 rounded-full object-cover flex-shrink-0" />
                                   ) : player.nationality !== "-" ? (
-                                    <span className="text-sm md:text-base">{getFlagEmoji(player.nationality)}</span>
+                                    <span className="text-xs md:text-base">{getFlagEmoji(player.nationality)}</span>
                                   ) : null}
-                                  <span className="text-xs md:text-base font-bold">{player.nationality}</span>
+                                  <span className="text-[10px] md:text-base font-bold hidden sm:inline">{player.nationality}</span>
                                 </div>
                               </TableCell>
                               <TableCell className="text-center text-muted-foreground text-sm md:text-base font-bold hidden md:table-cell">{player.height || "-"}</TableCell>
@@ -978,15 +978,15 @@ const Statistics = () => {
                         </button>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-2 md:gap-4">
                         {allTopCategories.slice(topPlayersPage * 6, (topPlayersPage + 1) * 6).map((category, catIndex) => (
-                          <div key={catIndex} className="bg-background/20 rounded-lg p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                            <h4 className="font-display text-base text-center mb-3">{category.title}</h4>
-                            <div className="space-y-2">
+                          <div key={catIndex} className="bg-background/20 rounded-lg p-2 md:p-3 border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                            <h4 className="font-display text-xs md:text-base text-center mb-2 md:mb-3 uppercase tracking-wider">{category.title}</h4>
+                            <div className="space-y-1 md:space-y-2">
                               {category.data.map((player) => (
-                                <div key={player.rank} className="flex items-center gap-2 hover:bg-background/30 p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
-                                  <span className="text-primary font-bold w-4 text-sm">{player.rank}</span>
-                                  <div className="w-9 h-9 rounded-full bg-secondary overflow-hidden">
+                                <div key={player.rank} className="flex items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                                  <span className="text-primary font-bold w-3 md:w-4 text-xs md:text-sm">{player.rank}</span>
+                                  <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-secondary overflow-hidden flex-shrink-0">
                                     {player.image ? (
                                       <img src={player.image} alt={player.name} className="w-full h-full object-cover object-top" />
                                     ) : (
@@ -994,10 +994,10 @@ const Statistics = () => {
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <p className="font-medium text-sm truncate">{player.name}</p>
-                                    <p className="text-xs text-primary">{player.position}</p>
+                                    <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
+                                    <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
                                   </div>
-                                  <span className="text-lg font-display text-primary">{player.value}</span>
+                                  <span className="text-sm md:text-lg font-display text-primary">{player.value}</span>
                                 </div>
                               ))}
                             </div>
