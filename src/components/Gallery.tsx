@@ -104,13 +104,11 @@ const Gallery = () => {
           <span className="section-title-gold">PARKETU</span>
         </h2>
 
-        {/* Mobile: Masonry Layout */}
+        {/* Mobile: Compact Grid Layout */}
         {isMobile ? (
-          <div className="columns-2 gap-2 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 gap-1 max-w-4xl mx-auto rounded-lg overflow-hidden">
             {images.map((_, index) => (
-              <div key={index} className="break-inside-avoid mb-2">
-                <GalleryItem index={index} className="" style={{ animationDelay: `${index * 50}ms` }} />
-              </div>
+              <GalleryItem key={index} index={index} className="aspect-square rounded-none" style={{ animationDelay: `${index * 50}ms` }} />
             ))}
           </div>
         ) : (
