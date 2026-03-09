@@ -131,15 +131,15 @@ const About = () => {
             <span className="section-title-gold">NAMA</span>
           </h2>
 
-          <div className="gold-border-left mb-10 md:mb-16 text-center md:text-left mx-auto pl-4 md:pl-6 pr-2 md:pr-0" style={{ maxWidth: "800px" }}>
-            <p className="text-sm md:text-xl text-muted-foreground mb-4 md:mb-6 leading-relaxed">
+          <div className="gold-border-left mb-10 md:mb-16 text-left mx-auto pl-4 md:pl-6 pr-2 md:pr-0" style={{ maxWidth: "800px" }}>
+            <p className="text-sm md:text-xl text-muted-foreground mb-3 md:mb-6 leading-relaxed">
               <span className="text-primary font-bold">HKK Posušje</span> je hrvatski košarkaški klub iz grada Posušja, osnovan{" "}
               <span className="text-primary font-semibold">1975. godine</span>.
             </p>
-            <p className="text-xs md:text-base text-muted-foreground mb-3 md:mb-4 leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4 leading-relaxed">
               Klub njeguje više od <span className="text-primary font-semibold">pet desetljeća tradicije</span> rada s mladima i okuplja igrače iz cijele regije.
             </p>
-            <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
               Kroz sustavan rad u omladinskim kategorijama i disciplinirane treninge razvijamo temelje za seniorski tim. Intenzivnim trudom gradimo <span className="text-primary font-semibold">zajedništvo, odgovornost i timski duh</span> kroz svaki trening. Zajedno težimo stvaranju novih sportskih uspjeha i pozitivnih vrijednosti u lokalnoj zajednici.
             </p>
           </div>
