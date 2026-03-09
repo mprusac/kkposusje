@@ -691,7 +691,7 @@ const Statistics = () => {
                                   ))}
                                 </div>
                               </TableCell>
-                              <TableCell className="text-center font-bold text-[10px] md:text-sm px-1 md:px-4">{team.points}</TableCell>
+                              <TableCell className="text-center font-bold text-[10px] md:text-sm px-0 md:px-4 py-0.5 md:py-4">{team.points}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
