@@ -219,7 +219,7 @@ const topMinutes: TopPlayer[] = [
 ];
 
 const topSteals: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 1.8, image: playerKovac },
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 1.7, image: playerKovac },
   { rank: 2, name: "Ante Begić", position: "Krilo", value: 1.5, image: playerBegic },
   { rank: 3, name: "Josip Ramljak", position: "Bek", value: 1.2, image: playerRamljak },
 ];
