@@ -60,7 +60,7 @@ const players: Player[] = [
     image: playerBegic,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150",
     description: "Iskusni Posušanin i pouzdano krilo koji preuzima odgovornost i zabija kad je najpotrebnije.",
-    stats: { ppg: 12, rpg: 7, apg: 3, mpg: "" },
+    stats: { ppg: 13, rpg: 7, apg: 3, mpg: "" },
   },
   {
     id: 4,
