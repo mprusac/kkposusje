@@ -157,9 +157,9 @@ const matches: Match[] = [
 const standings: Standing[] = [
   { position: 1, team: "HKK Mostar", played: 12, won: 9, lost: 3, diff: 212, last5: ["W", "W", "W", "W", "W"], points: 21 },
   { position: 2, team: "HKK Ljubuški", played: 12, won: 9, lost: 3, diff: 107, last5: ["W", "W", "W", "L", "L"], points: 21 },
-  { position: 3, team: "HKK Grude", played: 12, won: 8, lost: 4, diff: 55, last5: ["W", "L", "W", "L", "L"], points: 20 },
+  { position: 3, team: "HKK Grude", played: 13, won: 8, lost: 5, diff: 42, last5: ["L", "W", "L", "L", "L"], points: 21 },
   { position: 4, team: "HKK Tomislav", played: 12, won: 7, lost: 5, diff: 3, last5: ["W", "W", "L", "W", "W"], points: 19 },
-  { position: 5, team: "HKK Posušje", played: 12, won: 6, lost: 6, diff: 108, last5: ["L", "W", "L", "W", "W"], points: 18 },
+  { position: 5, team: "HKK Posušje", played: 13, won: 7, lost: 6, diff: 121, last5: ["L", "W", "L", "W", "W"], points: 20 },
   { position: 6, team: "HKK Široki II", played: 12, won: 6, lost: 6, diff: 102, last5: ["L", "W", "W", "W", "W"], points: 18 },
   { position: 7, team: "HKK Rama", played: 12, won: 3, lost: 9, diff: -88, last5: ["L", "L", "L", "L", "L"], points: 15 },
   { position: 8, team: "Čapljina", played: 12, won: 0, lost: 12, diff: -499, last5: ["L", "L", "L", "L", "L"], points: 12 },
@@ -195,37 +195,37 @@ const players: Player[] = [
 
 // Top players data
 const topScorers: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 16.2, image: playerKovac },
-  { rank: 2, name: "Josip Ramljak", position: "Bek", value: 14.8, image: playerRamljak },
-  { rank: 3, name: "Ante Begić", position: "Krilo", value: 12.2, image: playerBegic },
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 15.5, image: playerKovac },
+  { rank: 2, name: "Josip Ramljak", position: "Bek", value: 15.3, image: playerRamljak },
+  { rank: 3, name: "Ante Begić", position: "Krilo", value: 13.0, image: playerBegic },
 ];
 
 const topRebounders: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: 7.2, image: playerBegic },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 6.9, image: playerBegic },
   { rank: 2, name: "Marko Protrka", position: "Centar", value: 6.5, image: playerProtrka },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 5.8, image: playerKovac },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 5.6, image: playerKovac },
 ];
 
 const topAssisters: TopPlayer[] = [
-  { rank: 1, name: "Josip Ramljak", position: "Bek", value: 5.0, image: playerRamljak },
+  { rank: 1, name: "Josip Ramljak", position: "Bek", value: 5.2, image: playerRamljak },
   { rank: 2, name: "Ante Begić", position: "Krilo", value: 2.8, image: playerBegic },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 2.3, image: playerKovac },
+  { rank: 3, name: "Mirko Đerek", position: "Centar", value: 2.4, image: playerDerek },
 ];
 
 const topMinutes: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: "32:02", image: playerBegic },
-  { rank: 2, name: "Josip Ramljak", position: "Bek", value: "29:59", image: playerRamljak },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: "29:42", image: playerKovac },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: "29:34", image: playerBegic },
+  { rank: 2, name: "Josip Ramljak", position: "Bek", value: "27:29", image: playerRamljak },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: "27:25", image: playerKovac },
 ];
 
 const topSteals: TopPlayer[] = [
-  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 1.8, image: playerKovac },
+  { rank: 1, name: "Ante Kovač", position: "Krilo", value: 1.7, image: playerKovac },
   { rank: 2, name: "Ante Begić", position: "Krilo", value: 1.5, image: playerBegic },
   { rank: 3, name: "Josip Ramljak", position: "Bek", value: 1.2, image: playerRamljak },
 ];
 
 const topBlocks: TopPlayer[] = [
-  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.3, image: playerProtrka },
+  { rank: 1, name: "Marko Protrka", position: "Centar", value: 1.2, image: playerProtrka },
   { rank: 2, name: "Ante Kovač", position: "Krilo", value: 0.4, image: playerKovac },
   { rank: 3, name: "Josip Pavković", position: "Bek", value: 0.4, image: playerPavkovic },
 ];
@@ -237,27 +237,27 @@ const top2PPercentage: TopPlayer[] = [
 ];
 
 const top3PPercentage: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: "38.5%", image: playerBegic },
-  { rank: 2, name: "Ante Kovač", position: "Krilo", value: "35.6%", image: playerKovac },
-  { rank: 3, name: "Josip Ramljak", position: "Bek", value: "33.3%", image: playerRamljak },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: "40.2%", image: playerBegic },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: "35.5%", image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: "30.7%", image: playerRamljak },
 ];
 
 const topThrees: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: 40, image: playerBegic },
-  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 36, image: playerKovac },
-  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 22, image: playerRamljak },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 47, image: playerBegic },
+  { rank: 2, name: "Ante Kovač", position: "Krilo", value: 38, image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 23, image: playerRamljak },
 ];
 
 const topDefRebounds: TopPlayer[] = [
-  { rank: 1, name: "Ante Begić", position: "Krilo", value: 6.0, image: playerBegic },
+  { rank: 1, name: "Ante Begić", position: "Krilo", value: 5.7, image: playerBegic },
   { rank: 2, name: "Marko Protrka", position: "Centar", value: 5.2, image: playerProtrka },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 4.3, image: playerKovac },
+  { rank: 3, name: "Josip Ramljak", position: "Bek", value: 4.4, image: playerRamljak },
 ];
 
 const topOffRebounds: TopPlayer[] = [
-  { rank: 1, name: "Luka Bašić", position: "Bek", value: 1.7, image: playerBasicLuka },
-  { rank: 2, name: "Mirko Đerek", position: "Centar", value: 1.5, image: playerDerek },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 1.5, image: playerKovac },
+  { rank: 1, name: "Luka Bašić", position: "Bek", value: 1.8, image: playerBasicLuka },
+  { rank: 2, name: "Mirko Đerek", position: "Centar", value: 1.7, image: playerDerek },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 1.4, image: playerKovac },
 ];
 
 const topDoubleDoubles: TopPlayer[] = [
@@ -743,23 +743,23 @@ const Statistics = () => {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Poeni</p>
-                      <p className="text-2xl md:text-3xl font-display text-primary">927</p>
-                      <p className="text-xs text-muted-foreground">77.3 / utk.</p>
+                      <p className="text-2xl md:text-3xl font-display text-primary">1007</p>
+                      <p className="text-xs text-muted-foreground">77.5 / utk.</p>
                     </div>
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Skokovi</p>
-                      <p className="text-2xl md:text-3xl font-display text-foreground">459</p>
-                      <p className="text-xs text-muted-foreground">38.3 / utk.</p>
+                      <p className="text-2xl md:text-3xl font-display text-foreground">491</p>
+                      <p className="text-xs text-muted-foreground">37.8 / utk.</p>
                     </div>
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">Asistencije</p>
-                      <p className="text-2xl md:text-3xl font-display text-foreground">190</p>
-                      <p className="text-xs text-muted-foreground">15.8 / utk.</p>
+                      <p className="text-2xl md:text-3xl font-display text-foreground">210</p>
+                      <p className="text-xs text-muted-foreground">16.2 / utk.</p>
                     </div>
                     <div className="bg-background/30 rounded-lg p-3 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-xs md:text-sm text-muted-foreground uppercase mb-0.5">AST / TO</p>
-                      <p className="text-2xl md:text-3xl font-display text-foreground">1.19</p>
-                      <p className="text-xs text-muted-foreground">190 / 159</p>
+                      <p className="text-2xl md:text-3xl font-display text-foreground">1.30</p>
+                      <p className="text-xs text-muted-foreground">210 / 162</p>
                     </div>
                   </div>
 
@@ -780,10 +780,10 @@ const Statistics = () => {
                       <h4 className="font-display text-lg md:text-2xl text-center mb-3">Šut</h4>
                       <div className="space-y-1.5">
                         {[
-                          { label: "Iz igre (FG)", value: "355 / 784", avg: "29.6 / 65.3", pct: "45.3%" },
-                          { label: "Za 2 poena", value: "242 / 436", avg: "20.2 / 36.3", pct: "55.5%" },
-                          { label: "Za 3 poena", value: "113 / 346", avg: "9.4 / 28.8", pct: "32.7%" },
-                          { label: "Slobodna bacanja", value: "107 / 186", avg: "8.9 / 15.5", pct: "57.5%" },
+                          { label: "Iz igre (FG)", value: "386 / 851", avg: "29.7 / 65.5", pct: "45.4%" },
+                          { label: "Za 2 poena", value: "262 / 468", avg: "20.2 / 36.0", pct: "56.0%" },
+                          { label: "Za 3 poena", value: "124 / 383", avg: "9.5 / 29.5", pct: "32.4%" },
+                          { label: "Slobodna bacanja", value: "114 / 197", avg: "8.8 / 15.2", pct: "57.9%" },
                         ].map((stat, i) => (
                           <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
                             <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
@@ -806,9 +806,9 @@ const Statistics = () => {
                       <h4 className="font-display text-lg md:text-2xl text-center mb-3">Skokovi</h4>
                       <div className="space-y-1.5">
                         {[
-                          { label: "Obrambeni (DR)", total: "342", avg: "28.5" },
-                          { label: "Napadački (OR)", total: "117", avg: "9.8" },
-                          { label: "Ukupno", total: "459", avg: "38.3" },
+                          { label: "Obrambeni (DR)", total: "365", avg: "28.1" },
+                          { label: "Napadački (OR)", total: "126", avg: "9.7" },
+                          { label: "Ukupno", total: "491", avg: "37.8" },
                         ].map((stat, i) => (
                           <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
                             <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
@@ -826,10 +826,10 @@ const Statistics = () => {
                       <h4 className="font-display text-lg md:text-2xl text-center mb-3">Ostalo</h4>
                       <div className="space-y-1.5">
                         {[
-                          { label: "Ukradene lopte", total: "88", avg: "7.3" },
-                          { label: "Blokade", total: "29", avg: "2.4" },
-                          { label: "Izgubljene lopte", total: "159", avg: "13.3" },
-                          { label: "Osobne pogreške", total: "244", avg: "20.3" },
+                          { label: "Ukradene lopte", total: "95", avg: "7.3" },
+                          { label: "Blokade", total: "30", avg: "2.3" },
+                          { label: "Izgubljene lopte", total: "162", avg: "12.5" },
+                          { label: "Osobne pogreške", total: "265", avg: "20.4" },
                         ].map((stat, i) => (
                           <div key={i} className="flex items-center justify-between py-1.5 border-b border-border/10 hover:bg-background/20 hover:px-1.5 transition-all duration-200 rounded">
                             <span className="text-sm md:text-base text-muted-foreground">{stat.label}</span>
@@ -847,11 +847,11 @@ const Statistics = () => {
                   <div className="mt-5 mb-4 flex gap-3 justify-center">
                     <div className="bg-background/30 rounded-lg px-5 py-2.5 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-[10px] md:text-xs text-muted-foreground uppercase">eFG%</p>
-                       <p className="text-xl md:text-2xl font-display text-primary">52.5%</p>
+                       <p className="text-xl md:text-2xl font-display text-primary">52.6%</p>
                     </div>
                     <div className="bg-background/30 rounded-lg px-5 py-2.5 text-center border border-border/20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10 hover:scale-105 transition-all duration-300">
                       <p className="text-[10px] md:text-xs text-muted-foreground uppercase">TS%</p>
-                       <p className="text-xl md:text-2xl font-display text-primary">53.5%</p>
+                       <p className="text-xl md:text-2xl font-display text-primary">53.7%</p>
                     </div>
                   </div>
                 </div>
