@@ -1023,11 +1023,11 @@ const Statistics = () => {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed bottom-3 right-3 md:bottom-5 md:right-5 z-50 w-[243px] md:w-[324px] bg-secondary border border-border/30 rounded-lg shadow-2xl shadow-black/40 overflow-hidden cursor-default"
           >
-            <div className="p-4">
-              <div className="flex items-center justify-between mb-2.5">
-                <div className="flex items-center gap-2 flex-1 min-w-0">
-                  <FileSpreadsheet className="w-5 h-5 text-primary shrink-0" />
-                  <h3 className="font-display text-[15px] uppercase tracking-wider leading-none">Preuzmi kompletnu statistiku</h3>
+            <div className="p-3 md:p-4">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-1.5 md:gap-2 flex-1 min-w-0">
+                  <FileSpreadsheet className="w-4 h-4 md:w-5 md:h-5 text-primary shrink-0" />
+                  <h3 className="font-display text-[11px] md:text-[15px] uppercase tracking-wider leading-none">Preuzmi kompletnu statistiku</h3>
                 </div>
                 <button
                   onClick={() => setShowDownloadDialog(false)}
