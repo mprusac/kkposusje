@@ -284,7 +284,7 @@ const allTopCategories = [
 
 const Statistics = () => {
   const [activeMainTab, setActiveMainTab] = useState("standings");
-  const [activePlayersTab, setActivePlayersTab] = useState("squad");
+  const [activePlayersTab, setActivePlayersTab] = useState("top");
   const [matchPage, setMatchPage] = useState(0);
   const [hoveredFormIndex, setHoveredFormIndex] = useState<number | null>(null);
   const [leagueCategory, setLeagueCategory] = useState<"seniori" | "seniorke">("seniori");
@@ -309,7 +309,9 @@ const Statistics = () => {
 
   // Scroll to top on page load
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   // Calculate extra matches based on active tab
