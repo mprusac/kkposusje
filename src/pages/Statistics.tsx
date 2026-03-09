@@ -781,7 +781,7 @@ const Statistics = () => {
                       <div className="space-y-1.5">
                         {[
                           { label: "Iz igre (FG)", value: "386 / 851", avg: "29.7 / 65.5", pct: "45.4%" },
-                          { label: "Za 2 poena", value: "262 / 468", avg: "20.2 / 36.0", pct: "56.0%" },
+                          { label: "Za 2 poena", value: "242 / 436", avg: "18.6 / 33.5", pct: "55.5%" },
                           { label: "Za 3 poena", value: "124 / 383", avg: "9.5 / 29.5", pct: "32.4%" },
                           { label: "Slobodna bacanja", value: "114 / 197", avg: "8.8 / 15.2", pct: "57.9%" },
                         ].map((stat, i) => (
