@@ -1021,7 +1021,7 @@ const Statistics = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.95 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed bottom-5 right-5 z-50 w-[324px] bg-secondary border border-border/30 rounded-lg shadow-2xl shadow-black/40 overflow-hidden cursor-default"
+            className="fixed bottom-3 right-3 md:bottom-5 md:right-5 z-50 w-[243px] md:w-[324px] bg-secondary border border-border/30 rounded-lg shadow-2xl shadow-black/40 overflow-hidden cursor-default"
           >
             <div className="p-4">
               <div className="flex items-center justify-between mb-2.5">
