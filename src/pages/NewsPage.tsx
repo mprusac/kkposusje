@@ -253,19 +253,19 @@ const NewsPage = () => {
             <p className="text-muted-foreground text-lg">Ostani u toku sa svim događanjima iz kluba</p>
           </motion.div>
 
-          <div className="flex justify-center gap-2 md:gap-3 mb-12">
+          <div className="flex justify-center gap-1 md:gap-2 mb-12">
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (
-                <button key={category.id} onClick={() => setActiveCategory(category.id)} className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${activeCategory === category.id ? "bg-primary text-primary-foreground" : "bg-secondary/50 text-foreground hover:bg-secondary hover:text-primary"}`}>
-                  <IconComponent size={18} />
+                <button key={category.id} onClick={() => setActiveCategory(category.id)} className={`flex items-center gap-1.5 px-3 md:px-5 py-2 md:py-3 rounded-full text-xs md:text-base font-medium transition-all duration-300 ${activeCategory === category.id ? "bg-primary text-primary-foreground" : "bg-secondary/50 text-foreground hover:bg-secondary hover:text-primary"}`}>
+                  <IconComponent size={16} />
                   {category.label}
                 </button>
               );
             })}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-5xl mx-auto">
             {filteredNews.map((item, index) => (
               <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }}>
                 <Link to={`/vijesti/${item.id}`} className="group block bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30">
