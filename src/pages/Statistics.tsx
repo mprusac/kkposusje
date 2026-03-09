@@ -986,7 +986,7 @@ const Statistics = () => {
                             <h4 className="font-display text-xs md:text-base text-center mb-2 md:mb-3 uppercase tracking-wider">{category.title}</h4>
                             <div className="space-y-1 md:space-y-2">
                               {category.data.map((player) => (
-                                <div key={player.rank} className="flex items-end md:items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
+                                <div key={player.rank} className="flex items-start md:items-center gap-1 md:gap-2 hover:bg-background/30 p-1 md:p-1.5 rounded-lg transition-all duration-200 hover:scale-[1.02]">
                                   <span className="text-primary font-bold w-3 md:w-4 text-xs md:text-sm mb-0.5 md:mb-0">{player.rank}</span>
                                   <div className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-secondary overflow-hidden flex-shrink-0 mb-0.5 md:mb-0">
                                     {player.image ? (
@@ -999,7 +999,7 @@ const Statistics = () => {
                                     <p className="font-medium text-[10px] md:text-sm truncate">{player.name}</p>
                                     <p className="text-[9px] md:text-xs text-primary">{player.position}</p>
                                   </div>
-                                  <span className="text-sm md:text-lg font-display text-primary mb-0.5 md:mb-0">{player.value}</span>
+                                  <span className="self-end text-sm md:text-lg font-display text-primary leading-none pb-0.5 md:pb-0">{player.value}</span>
                                 </div>
                               ))}
                             </div>

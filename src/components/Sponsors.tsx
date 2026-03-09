@@ -142,7 +142,7 @@ const Sponsors = () => {
                   <span className="text-primary">SPONZOR</span>
                 </h3>
                 <p className="text-muted-foreground text-base mt-1">
-                  <span className="md:hidden">Pogledaj sponzorske pakete<br />i podrži klub</span>
+                  <span className="md:hidden">Pogledaj sponzorske<br />pakete i podrži klub</span>
                   <span className="hidden md:inline">Pogledaj sponzorske pakete i podrži klub</span>
                 </p>
               </div>
