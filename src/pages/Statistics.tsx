@@ -864,16 +864,6 @@ const Statistics = () => {
                   <div className="p-3 border-b border-border/30">
                     <div className="flex gap-2 justify-center">
                       <button
-                        onClick={() => setActivePlayersTab("squad")}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 ${
-                          activePlayersTab === "squad" 
-                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
-                            : "bg-background/30 text-muted-foreground hover:text-foreground hover:bg-background/50"
-                        }`}
-                      >
-                        Roster
-                      </button>
-                      <button
                         onClick={() => setActivePlayersTab("top")}
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 ${
                           activePlayersTab === "top" 
@@ -882,6 +872,16 @@ const Statistics = () => {
                         }`}
                       >
                         Top igrači
+                      </button>
+                      <button
+                        onClick={() => setActivePlayersTab("squad")}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 ${
+                          activePlayersTab === "squad" 
+                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" 
+                            : "bg-background/30 text-muted-foreground hover:text-foreground hover:bg-background/50"
+                        }`}
+                      >
+                        Roster
                       </button>
                     </div>
                   </div>
