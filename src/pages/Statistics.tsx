@@ -888,13 +888,13 @@ const Statistics = () => {
 
                   {activePlayersTab === "squad" ? (
                     <div className="overflow-x-auto">
-                      <Table className="min-w-[600px]">
+                      <Table>
                         <TableHeader>
                           <TableRow className="hover:bg-transparent border-border/30">
-                            <TableHead className="w-14 text-center text-sm md:text-base font-bold">Broj</TableHead>
-                            <TableHead className="w-14 text-sm md:text-base font-bold"></TableHead>
-                            <TableHead className="text-sm md:text-base font-bold">Igrač</TableHead>
-                            <TableHead className="text-center text-sm md:text-base font-bold">Nacionalnost</TableHead>
+                            <TableHead className="w-10 md:w-14 text-center text-xs md:text-base font-bold">Broj</TableHead>
+                            <TableHead className="w-8 md:w-14 text-xs md:text-base font-bold"></TableHead>
+                            <TableHead className="text-xs md:text-base font-bold">Igrač</TableHead>
+                            <TableHead className="text-center text-xs md:text-base font-bold">Nac.</TableHead>
                             <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Visina</TableHead>
                             <TableHead className="text-center text-sm md:text-base font-bold hidden lg:table-cell">Datum rođenja</TableHead>
                             <TableHead className="text-center text-sm md:text-base font-bold hidden md:table-cell">Dob</TableHead>
