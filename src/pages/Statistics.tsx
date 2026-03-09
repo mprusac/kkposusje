@@ -603,9 +603,9 @@ const Statistics = () => {
                   <div className="p-3 border-b border-border/30">
                     <div className="flex items-center gap-2">
                       <a href="https://www.kshb.ba/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
-                        <img src={logoKSHB} alt="" className="w-5 h-5 md:w-6 md:h-6 object-contain" />
+                        <img src={logoKSHB} alt="" className="w-8 h-8 md:w-10 md:h-10 object-contain" />
                       </a>
-                      <span className="text-sm md:text-base text-foreground">Liga Košarkaškog saveza Herceg Bosne</span>
+                      <span className="text-xs md:text-sm text-foreground">Liga Košarkaškog saveza Herceg Bosne</span>
                       <span className="text-xs md:text-sm text-muted-foreground bg-background/50 px-2 py-0.5 rounded">25/26</span>
                       <Select value={leagueCategory} onValueChange={(v) => setLeagueCategory(v as "seniori" | "seniorke")}>
                         <SelectTrigger className="w-24 md:w-28 h-7 md:h-8 text-sm md:text-base bg-background/50 border-border/30 ml-1">
