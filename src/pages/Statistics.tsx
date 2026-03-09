@@ -610,7 +610,7 @@ const Statistics = () => {
                       <span className="text-xs md:text-sm text-foreground">Liga Košarkaškog saveza Herceg Bosne</span>
                       <span className="text-xs md:text-sm text-muted-foreground bg-background/50 px-2 py-0.5 rounded">25/26</span>
                       <Select value={leagueCategory} onValueChange={(v) => setLeagueCategory(v as "seniori" | "seniorke")}>
-                        <SelectTrigger className="w-[90px] md:w-28 h-7 md:h-8 text-xs md:text-base bg-background/50 border-border/30 ml-1">
+                        <SelectTrigger className="w-[108px] md:w-28 h-7 md:h-8 text-[11px] md:text-base bg-background/50 border-border/30 ml-1">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-secondary border-border/50">
