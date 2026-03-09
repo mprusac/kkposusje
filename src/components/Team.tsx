@@ -60,7 +60,7 @@ const players: Player[] = [
     image: playerBegic,
     sofascoreLink: "https://www.sofascore.com/basketball/player/ante-begic/2046150",
     description: "Iskusni Posušanin i pouzdano krilo koji preuzima odgovornost i zabija kad je najpotrebnije.",
-    stats: { ppg: 12, rpg: 7, apg: 3, mpg: "" },
+    stats: { ppg: 13, rpg: 7, apg: 3, mpg: "" },
   },
   {
     id: 4,
@@ -80,7 +80,7 @@ const players: Player[] = [
     image: playerProtrka,
     sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855",
     description: "Mladi centar svijetle budućnosti koji već prikazuje zrelost na parketu, veliki klupski talent.",
-    stats: { ppg: 9, rpg: 7, apg: 0, bpg: 1, mpg: "" },
+    stats: { ppg: 9, rpg: 6, apg: 0, bpg: 1, mpg: "" },
   },
   {
     id: 6,
@@ -90,7 +90,7 @@ const players: Player[] = [
     image: playerPavkovic,
     sofascoreLink: "https://www.sofascore.com/basketball/player/josip-pavkovic/1845527",
     description: "Perspektivan i nadaren mladi igrač koji se svojim doprinosom timu razvija u prvoligaškog košarkaša.",
-    stats: { ppg: 5, rpg: 4, apg: 1, mpg: "" },
+    stats: { ppg: 4, rpg: 4, apg: 1, mpg: "" },
   },
   {
     id: 7,
@@ -130,7 +130,7 @@ const players: Player[] = [
     image: "",
     sofascoreLink: "https://www.sofascore.com/basketball/player/luka-ramljak/2364289",
     description: "16-godišnji bek šuter i posuški talent s pozivom u kadetsku reprezentaciju BiH.",
-    stats: { ppg: 6, rpg: 2, apg: 1, mpg: "" },
+    stats: { ppg: 5, rpg: 2, apg: 1, mpg: "" },
   },
   {
     id: 11,
