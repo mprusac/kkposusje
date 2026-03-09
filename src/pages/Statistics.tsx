@@ -624,14 +624,14 @@ const Statistics = () => {
                       <Table>
                         <TableHeader>
                           <TableRow className="hover:bg-transparent border-border/30">
-                            <TableHead className="w-6 md:w-10 text-center text-[10px] md:text-sm font-bold px-1 md:px-4">#</TableHead>
-                            <TableHead className="text-[10px] md:text-sm font-bold px-1 md:px-4">Ekipa</TableHead>
-                            <TableHead className="text-center w-6 md:w-10 text-[10px] md:text-sm font-bold px-1 md:px-4">UT</TableHead>
-                            <TableHead className="text-center w-6 md:w-10 text-[10px] md:text-sm font-bold px-1 md:px-4">W</TableHead>
-                            <TableHead className="text-center w-6 md:w-10 text-[10px] md:text-sm font-bold px-1 md:px-4">L</TableHead>
-                            <TableHead className="text-center w-8 md:w-14 text-[10px] md:text-sm font-bold px-1 md:px-4">+/-</TableHead>
-                            <TableHead className="text-center w-28 text-sm font-bold hidden sm:table-cell">Zadnjih 5</TableHead>
-                            <TableHead className="text-center w-8 md:w-14 text-[10px] md:text-sm font-bold px-1 md:px-4">BOD</TableHead>
+                            <TableHead className="w-6 md:w-10 text-center text-[10px] md:text-sm font-bold px-0.5 md:px-4 py-1 md:py-3">#</TableHead>
+                            <TableHead className="text-[10px] md:text-sm font-bold px-0.5 md:px-4 py-1 md:py-3">Ekipa</TableHead>
+                            <TableHead className="text-center w-5 md:w-10 text-[10px] md:text-sm font-bold px-0 md:px-4 py-1 md:py-3">UT</TableHead>
+                            <TableHead className="text-center w-5 md:w-10 text-[10px] md:text-sm font-bold px-0 md:px-4 py-1 md:py-3">W</TableHead>
+                            <TableHead className="text-center w-5 md:w-10 text-[10px] md:text-sm font-bold px-0 md:px-4 py-1 md:py-3">L</TableHead>
+                            <TableHead className="text-center w-7 md:w-14 text-[10px] md:text-sm font-bold px-0 md:px-4 py-1 md:py-3">+/-</TableHead>
+                            <TableHead className="text-center w-28 text-sm font-bold hidden sm:table-cell py-1 md:py-3">Zadnjih 5</TableHead>
+                            <TableHead className="text-center w-7 md:w-14 text-[10px] md:text-sm font-bold px-0 md:px-4 py-1 md:py-3">BOD</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
