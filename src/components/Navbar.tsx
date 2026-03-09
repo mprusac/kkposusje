@@ -151,7 +151,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`font-display text-xl tracking-widest transition-all duration-300 px-3 py-2 rounded-md ${
+                  className={`font-display text-lg tracking-widest transition-all duration-300 px-3 py-1 rounded-md ${
                     isActive
                       ? "text-primary bg-primary/10"
                       : "text-foreground hover:text-primary hover:bg-primary/10"
