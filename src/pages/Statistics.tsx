@@ -1064,7 +1064,7 @@ const Statistics = () => {
               </div>
               <button
                 onClick={handleDownloadStats}
-                className="w-full flex items-center justify-center gap-2 px-3.5 py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-sm uppercase tracking-wider cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 md:px-3.5 md:py-3 rounded-md bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-primary/10 transition-all duration-300 font-display text-xs md:text-sm uppercase tracking-wider cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 Preuzmi datoteku
