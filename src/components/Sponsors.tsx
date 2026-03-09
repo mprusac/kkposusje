@@ -142,7 +142,8 @@ const Sponsors = () => {
                   <span className="text-primary">SPONZOR</span>
                 </h3>
                 <p className="text-muted-foreground text-base mt-1">
-                  Pogledaj sponzorske pakete i podrži klub
+                  <span className="md:hidden">Pogledaj sponzorske pakete<br />i podrži klub</span>
+                  <span className="hidden md:inline">Pogledaj sponzorske pakete i podrži klub</span>
                 </p>
               </div>
               <div className={`p-2 rounded-full bg-primary/20 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>

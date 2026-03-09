@@ -287,10 +287,13 @@ const Results = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <h2 className="section-title text-center mb-16">
+        <h2 className="section-title text-center mb-4">
           <span className="section-title-white">ZADNJE </span>
           <span className="section-title-gold">UTAKMICE</span>
         </h2>
+        <p className="text-muted-foreground text-sm md:text-base text-center mb-12 md:mb-16">
+          Pregled posljednjih susreta našeg tima
+        </p>
 
         <div className="relative max-w-[1200px] mx-auto px-12 md:px-20">
           {/* Scroll Buttons - Visible on all devices */}
