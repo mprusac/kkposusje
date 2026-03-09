@@ -255,9 +255,9 @@ const topDefRebounds: TopPlayer[] = [
 ];
 
 const topOffRebounds: TopPlayer[] = [
-  { rank: 1, name: "Luka Bašić", position: "Bek", value: 1.7, image: playerBasicLuka },
-  { rank: 2, name: "Mirko Đerek", position: "Centar", value: 1.5, image: playerDerek },
-  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 1.5, image: playerKovac },
+  { rank: 1, name: "Luka Bašić", position: "Bek", value: 1.8, image: playerBasicLuka },
+  { rank: 2, name: "Mirko Đerek", position: "Centar", value: 1.7, image: playerDerek },
+  { rank: 3, name: "Ante Kovač", position: "Krilo", value: 1.4, image: playerKovac },
 ];
 
 const topDoubleDoubles: TopPlayer[] = [
