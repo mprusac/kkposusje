@@ -64,16 +64,6 @@ const players: Player[] = [
   },
   {
     id: 4,
-    name: "Mirko Đerek",
-    position: "Center",
-    number: "13",
-    image: playerDerek,
-    sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853",
-    description: "Veteran i vođa na terenu koji pouzdano pokriva poziciju centra te donosi sigurnost pod košem.",
-    stats: { ppg: 8, rpg: 4, apg: 2, mpg: "" },
-  },
-  {
-    id: 5,
     name: "Marko Protrka",
     position: "Center",
     number: "18",
@@ -81,6 +71,16 @@ const players: Player[] = [
     sofascoreLink: "https://www.sofascore.com/basketball/player/marko-protrka/1578855",
     description: "Mladi centar svijetle budućnosti koji već prikazuje zrelost na parketu, veliki klupski talent.",
     stats: { ppg: 9, rpg: 6, apg: 0, bpg: 1, mpg: "" },
+  },
+  {
+    id: 5,
+    name: "Mirko Đerek",
+    position: "Center",
+    number: "13",
+    image: playerDerek,
+    sofascoreLink: "https://www.sofascore.com/basketball/player/mirko-derek/1578853",
+    description: "Veteran i vođa na terenu koji pouzdano pokriva poziciju centra te donosi sigurnost pod košem.",
+    stats: { ppg: 8, rpg: 4, apg: 2, mpg: "" },
   },
   {
     id: 6,
