@@ -16,6 +16,17 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const id = href.slice(1);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   return (
     <footer className="bg-card py-16 border-t border-border">
       <div className="container mx-auto px-4">
