@@ -321,7 +321,7 @@ const Team = () => {
                 )}
 
                 {/* Player Image */}
-                <div className="relative h-[380px] md:h-64 overflow-hidden">
+                <div className="relative h-[280px] md:h-64 overflow-hidden">
                   {player.image ? (
                     <img
                       src={player.image}
@@ -372,7 +372,7 @@ const Team = () => {
 
                   {/* Description */}
                   {player.description && (
-                    <p className="mt-2 md:mt-3 text-xs text-muted-foreground leading-relaxed line-clamp-2 md:line-clamp-3">
+                    <p className="mt-2 md:mt-3 text-xs text-muted-foreground leading-relaxed line-clamp-3 md:line-clamp-3">
                       {player.description}
                     </p>
                   )}
