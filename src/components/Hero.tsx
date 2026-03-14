@@ -62,7 +62,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      <div className="relative z-10 container mx-auto px-4 text-center -mt-20 md:mt-0">
         <div className="max-w-4xl mx-auto">
         <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-display tracking-wider mb-4 animate-fade-in-up">
             <span className="text-foreground">HKK </span>
