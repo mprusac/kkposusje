@@ -90,15 +90,13 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center">
-        <a
-          href="#rezultati"
-          className="text-primary animate-bounce"
-          aria-label="Scroll down"
-        >
-          <ChevronDown size={32} />
-        </a>
-      </div>
+      <a
+        href="#rezultati"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary animate-bounce"
+        aria-label="Scroll down"
+      >
+        <ChevronDown size={32} />
+      </a>
     </section>
   );
 };
