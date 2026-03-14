@@ -67,6 +67,7 @@ const Footer = () => {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleHashClick(e, link.href)}
                   className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   {link.label}
