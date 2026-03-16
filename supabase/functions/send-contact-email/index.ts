@@ -158,7 +158,7 @@ serve(async (req) => {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'KK Posušje <onboarding@resend.dev>',
+        from: 'KK Posušje <kontakt@kkposusje.ba>',
         to: ['mprusac23@student.foi.hr'],
         subject: `[Kontakt forma] ${subject}`,
         reply_to: email,
@@ -180,7 +180,7 @@ serve(async (req) => {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'KK Posušje <onboarding@resend.dev>',
+        from: 'KK Posušje <kontakt@kkposusje.ba>',
         to: [email],
         subject: `Potvrda poruke - KK Posušje`,
         html: userConfirmationHtml(name, subject, message),
