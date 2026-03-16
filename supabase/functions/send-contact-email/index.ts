@@ -86,6 +86,7 @@ function ownerEmailHtml(name: string, email: string, subject: string, message: s
 }
 
 function userConfirmationHtml(name: string, subject: string, message: string): string {
+  const LOGO_URL = 'https://tchaaceoqtjwpqjztijh.supabase.co/storage/v1/object/public/email-assets/logo.png';
   return `
 <!DOCTYPE html>
 <html lang="hr">
@@ -96,14 +97,17 @@ function userConfirmationHtml(name: string, subject: string, message: string): s
       <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
         <!-- Header -->
         <tr><td style="background-color:${BRAND_GOLD};padding:28px 32px;border-radius:12px 12px 0 0;text-align:center;">
-          <h1 style="margin:0;font-size:24px;font-weight:800;color:${BRAND_DARK};letter-spacing:2px;text-transform:uppercase;">KK POSUŠJE</h1>
-          <p style="margin:6px 0 0;font-size:13px;color:${BRAND_DARK};opacity:0.7;">Košarkaški klub Posušje</p>
+          <h1 style="margin:0 0 12px;font-size:24px;font-weight:800;color:${BRAND_DARK};letter-spacing:2px;text-transform:uppercase;">KK POSUŠJE</h1>
+          <img src="${LOGO_URL}" alt="KK Posušje" width="60" height="60" style="display:inline-block;border:none;outline:none;" />
         </td></tr>
         <!-- Body -->
         <tr><td style="background-color:${BRAND_CARD};padding:32px;border-radius:0 0 12px 12px;">
-          <h2 style="margin:0 0 8px;font-size:20px;color:${BRAND_WHITE};font-weight:700;">Hvala vam, ${name}! 🏀</h2>
+          <h2 style="margin:0 0 4px;font-size:20px;color:${BRAND_WHITE};font-weight:700;">Hvala vam, ${name}!</h2>
+          <p style="margin:0 0 8px;font-size:14px;line-height:1.6;color:${BRAND_TEXT};">
+            Vaša poruka je uspješno zaprimljena.
+          </p>
           <p style="margin:0 0 24px;font-size:14px;line-height:1.6;color:${BRAND_TEXT};">
-            Vaša poruka je uspješno zaprimljena. Odgovorit ćemo vam u najkraćem mogućem roku.
+            Odgovorit ćemo vam u najkraćem mogućem roku.
           </p>
           <!-- Summary -->
           <div style="background-color:${BRAND_MUTED};border-radius:8px;padding:20px;border-left:3px solid ${BRAND_GOLD};">
@@ -116,7 +120,7 @@ function userConfirmationHtml(name: string, subject: string, message: string): s
           <!-- CTA -->
           <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:24px;">
             <tr><td align="center">
-              <a href="https://kkposusje.lovable.app" style="display:inline-block;padding:12px 32px;background-color:${BRAND_GOLD};color:${BRAND_DARK};font-size:14px;font-weight:700;text-decoration:none;border-radius:8px;text-transform:uppercase;letter-spacing:1px;">🌐 Posjetite našu stranicu</a>
+              <a href="https://kkposusje.lovable.app" style="display:inline-block;padding:12px 32px;background-color:${BRAND_GOLD};color:${BRAND_DARK};font-size:14px;font-weight:700;text-decoration:none;border-radius:8px;text-transform:uppercase;letter-spacing:1px;">Posjetite našu stranicu</a>
             </td></tr>
           </table>
         </td></tr>
