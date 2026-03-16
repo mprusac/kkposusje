@@ -346,7 +346,7 @@
 
 /* Firefox scrollbar */
 * {
-  scrollbar-width: thin;
+  scrollbar-width: auto;
   scrollbar-color: hsl(var(--primary)) hsl(var(--background));
 }
 
