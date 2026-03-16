@@ -27,13 +27,13 @@ function ownerEmailHtml(name: string, email: string, subject: string, message: s
         <tr><td style="background-color:${BRAND_GOLD};padding:24px 32px;border-radius:12px 12px 0 0;">
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="vertical-align:top;">
-                <h1 style="margin:0;font-size:22px;font-weight:800;color:${BRAND_DARK};letter-spacing:1px;text-transform:uppercase;">NOVA PORUKA</h1>
-                <p style="margin:4px 0 0;font-size:13px;color:${BRAND_DARK};opacity:0.7;">Kontakt forma · KK Posušje</p>
-                <p style="margin:4px 0 0;font-size:11px;color:${BRAND_DARK};opacity:0.6;">${date}</p>
+              <td style="vertical-align:middle;">
+                <h1 style="margin:0;font-size:22px;font-weight:800;color:${BRAND_WHITE};letter-spacing:1px;text-transform:uppercase;">NOVA PORUKA</h1>
+                <p style="margin:4px 0 0;font-size:13px;color:${BRAND_DARK};font-weight:700;">Kontakt forma · KK Posušje</p>
+                <p style="margin:4px 0 0;font-size:11px;color:${BRAND_DARK};font-weight:700;">${date}</p>
               </td>
-              <td align="right" style="vertical-align:top;width:60px;">
-                <img src="${LOGO_URL}" alt="KK Posušje" width="50" height="50" style="display:block;border:none;outline:none;" />
+              <td align="right" style="vertical-align:middle;width:70px;">
+                <img src="${LOGO_URL}" alt="KK Posušje" width="65" height="65" style="display:block;border:none;outline:none;" />
               </td>
             </tr>
           </table>
