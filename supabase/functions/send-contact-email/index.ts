@@ -51,7 +51,7 @@ function ownerEmailHtml(name: string, email: string, subject: string, message: s
             <tr>
               <td style="padding:12px 16px;background-color:${BRAND_MUTED};border-bottom:1px solid ${BRAND_DARK};">
                 <span style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:${BRAND_GOLD};font-weight:700;">Email</span>
-                <p style="margin:4px 0 0;font-size:15px;color:${BRAND_WHITE};"><a href="mailto:${email}" style="color:${BRAND_GOLD};text-decoration:none;">${email}</a></p>
+                <p style="margin:4px 0 0;font-size:15px;color:${BRAND_WHITE};"><a href="mailto:${email}" style="color:${BRAND_WHITE};text-decoration:none;">${email}</a></p>
               </td>
             </tr>
             <tr>
