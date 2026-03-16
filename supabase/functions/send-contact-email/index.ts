@@ -18,7 +18,7 @@ function ownerEmailHtml(name: string, email: string, subject: string, message: s
   return `
 <!DOCTYPE html>
 <html lang="hr">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><style>:root{color-scheme:light only;}[data-ogsc] body,.MessageViewBody,.msg-body{background-color:${BRAND_DARK}!important;color:${BRAND_WHITE}!important;}u+.body .gm-dark{background:${BRAND_DARK}!important;}</style></head>
 <body style="margin:0;padding:0;background-color:${BRAND_DARK};font-family:'Helvetica Neue',Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background-color:${BRAND_DARK};padding:40px 20px;">
     <tr><td align="center">
