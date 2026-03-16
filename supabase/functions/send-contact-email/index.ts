@@ -113,9 +113,9 @@ function userConfirmationHtml(name: string, subject: string, message: string): s
           <div style="background-color:${BRAND_MUTED};border-radius:8px;padding:20px;border-left:3px solid ${BRAND_GOLD};text-align:left;">
             <span style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:${BRAND_GOLD};font-weight:700;">Vaša poruka</span>
             <p style="margin:8px 0 4px;font-size:13px;color:${BRAND_TEXT};">
-              <strong style="color:${BRAND_TEXT};">Predmet:</strong> <span style="color:${BRAND_WHITE};">${subject}</span>
+              <strong style="color:${BRAND_WHITE};">Predmet:</strong> <span style="color:${BRAND_TEXT};">${subject}</span>
             </p>
-            <p style="margin:0;font-size:13px;line-height:1.6;color:${BRAND_TEXT};">${message.replace(/\n/g, '<br />')}</p>
+            <p style="margin:0;font-size:13px;line-height:1.6;color:${BRAND_WHITE};">${message.replace(/\n/g, '<br />')}</p>
           </div>
           <!-- CTA -->
           <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:24px;">
