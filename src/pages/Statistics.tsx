@@ -318,6 +318,7 @@ const Statistics = () => {
   const getExtraMatches = () => {
     if (activeMainTab === "statistics") return 4;
     if (activeMainTab === "players" && activePlayersTab === "squad") return 9;
+    if (activeMainTab === "players" && activePlayersTab === "top") return 4;
     return 0;
   };
   const extraMatchesCount = getExtraMatches();
