@@ -198,10 +198,10 @@ className="bg-background/50 border-border focus:border-primary focus-visible:rin
               <div>
                 <h4 className="font-display text-sm md:text-base text-foreground mb-0.5 tracking-wide">Email</h4>
                 <a
-                  href="mailto:kkposusje@gmail.com"
+                  href="mailto:kk.posusje@gmail.com"
                   className="text-muted-foreground text-xs md:text-sm hover:text-primary transition-colors"
                 >
-                  kkposusje@gmail.com
+                  kk.posusje@gmail.com
                 </a>
               </div>
             </div>
