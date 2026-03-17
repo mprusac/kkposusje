@@ -37,6 +37,7 @@ import najavaGrude from "@/assets/news-najava-grude.jpg";
 import najavaGrudeGameday from "@/assets/news-najava-grude-gameday.jpg";
 import pobjeda_GrudeCard from "@/assets/news-pobjeda-grude-card.jpg";
 import sponzorCalipso from "@/assets/news-sponzor-calipso.jpg";
+import najavaCapljina from "@/assets/news-najava-capljina-gameday.jpg";
 
 interface NewsItem {
   id: number;
