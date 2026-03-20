@@ -123,13 +123,13 @@ interface TopPlayer {
 
 // Form data - based on actual results with scores
 const formData = [
-  { opponent: "HKK Ljubuški", logo: logoLjubuski, result: "L" as const, homeTeam: "HKK Ljubuški", awayTeam: "HKK Posušje", homeScore: 85, awayScore: 81 },
-  { opponent: "HKK Široki II", logo: logoSiroki, result: "L" as const, homeTeam: "HKK Posušje", awayTeam: "HKK Široki II", homeScore: 54, awayScore: 69, competition: "Kup KSHB 🏆" },
   { opponent: "HKK Tomislav", logo: logoTomislav, result: "L" as const, homeTeam: "HKK Tomislav", awayTeam: "HKK Posušje", homeScore: 60, awayScore: 55 },
   { opponent: "HKK Mostar", logo: logoMostar, result: "W" as const, homeTeam: "HKK Posušje", awayTeam: "HKK Mostar", homeScore: 90, awayScore: 84 },
   { opponent: "HKK Široki II", logo: logoSiroki, result: "L" as const, homeTeam: "HKK Široki II", awayTeam: "HKK Posušje", homeScore: 70, awayScore: 62 },
   { opponent: "HKK Rama", logo: logoRama, result: "W" as const, homeTeam: "HKK Rama", awayTeam: "HKK Posušje", homeScore: 60, awayScore: 94 },
   { opponent: "HKK Grude", logo: logoGrude, result: "W" as const, homeTeam: "HKK Posušje", awayTeam: "HKK Grude", homeScore: 80, awayScore: 67 },
+  { opponent: "HKK Čapljina", logo: logoCapljina, result: "W" as const, homeTeam: "HKK Čapljina", awayTeam: "HKK Posušje", homeScore: 61, awayScore: 83 },
+  { opponent: "HKK Ljubuški", logo: logoLjubuski, result: "W" as const, homeTeam: "HKK Posušje", awayTeam: "HKK Ljubuški", homeScore: 88, awayScore: 78 },
 ];
 
 // All matches - upcoming first, then played from newest to oldest
@@ -489,7 +489,7 @@ const Statistics = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2 }}
-                  className="divide-y divide-border/20 flex-1 flex flex-col justify-center"
+                  className="divide-y divide-border/20 flex-1 flex flex-col justify-start"
                 >
                   {displayedMatches.map((match) => {
                     const result = getMatchResult(match);
