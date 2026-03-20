@@ -46,6 +46,28 @@ const teamLogos: Record<string, string> = {
 
 const results: MatchResult[] = [
   {
+    id: 22,
+    date: "20.03.2026",
+    homeTeam: "HKK Posušje",
+    awayTeam: "HKK Ljubuški",
+    homeScore: 88,
+    awayScore: 78,
+    isHome: true,
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542",
+    competition: "Liga KSHB",
+  },
+  {
+    id: 21,
+    date: "17.03.2026",
+    homeTeam: "HKK Čapljina",
+    awayTeam: "HKK Posušje",
+    homeScore: 61,
+    awayScore: 83,
+    isHome: false,
+    sofaScoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15717259",
+    competition: "Liga KSHB",
+  },
+  {
     id: 20,
     date: "08.03.2026",
     homeTeam: "HKK Posušje",

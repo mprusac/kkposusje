@@ -134,10 +134,9 @@ const formData = [
 
 // All matches - upcoming first, then played from newest to oldest
 const matches: Match[] = [
-  // Upcoming matches
-  { id: 13, date: "17.03.2026", time: "19:00", homeTeam: "Čapljina", awayTeam: "HKK Posušje", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15717259" },
-  { id: 14, date: "22.03.2026", time: "19:00", homeTeam: "HKK Posušje", awayTeam: "HKK Ljubuški", isUpcoming: true, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542" },
   // Played matches (newest first)
+  { id: 22, date: "20.03.2026", homeTeam: "HKK Posušje", awayTeam: "HKK Ljubuški", homeScore: 88, awayScore: 78, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542", competition: "Liga KSHB" },
+  { id: 21, date: "17.03.2026", homeTeam: "HKK Čapljina", awayTeam: "HKK Posušje", homeScore: 61, awayScore: 83, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15717259", competition: "Liga KSHB" },
   { id: 20, date: "08.03.2026", homeTeam: "HKK Posušje", awayTeam: "HKK Grude", homeScore: 80, awayScore: 67, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517", competition: "Liga KSHB" },
   { id: 19, date: "01.03.2026", homeTeam: "HKK Rama", awayTeam: "HKK Posušje", homeScore: 60, awayScore: 94, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014515", competition: "Liga KSHB" },
   { id: 18, date: "22.02.2026", homeTeam: "HKK Široki II", awayTeam: "HKK Posušje", homeScore: 70, awayScore: 62, isUpcoming: false, sofascoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014507", competition: "Liga KSHB" },
@@ -155,14 +154,14 @@ const matches: Match[] = [
 
 // Standings data
 const standings: Standing[] = [
-  { position: 1, team: "HKK Ljubuški", played: 13, won: 10, lost: 3, diff: 123, last5: ["W", "W", "L", "L", "W"], points: 23 },
+  { position: 1, team: "HKK Ljubuški", played: 14, won: 10, lost: 4, diff: 113, last5: ["L", "W", "W", "L", "L"], points: 24 },
   { position: 2, team: "HKK Mostar", played: 13, won: 9, lost: 4, diff: 196, last5: ["L", "W", "W", "W", "L"], points: 22 },
-  { position: 3, team: "HKK Grude", played: 13, won: 9, lost: 4, diff: 59, last5: ["L", "W", "L", "L", "W"], points: 22 },
-  { position: 4, team: "HKK Tomislav", played: 13, won: 8, lost: 5, diff: 22, last5: ["W", "L", "W", "W", "W"], points: 21 },
-  { position: 5, team: "HKK Široki II", played: 13, won: 6, lost: 7, diff: 83, last5: ["W", "W", "W", "W", "L"], points: 19 },
-  { position: 6, team: "HKK Posušje", played: 12, won: 6, lost: 6, diff: 108, last5: ["L", "W", "L", "L", "W"], points: 18 },
+  { position: 3, team: "HKK Posušje", played: 14, won: 8, lost: 6, diff: 140, last5: ["W", "W", "W", "W", "L"], points: 22 },
+  { position: 4, team: "HKK Grude", played: 13, won: 9, lost: 4, diff: 59, last5: ["L", "W", "L", "L", "W"], points: 22 },
+  { position: 5, team: "HKK Tomislav", played: 13, won: 8, lost: 5, diff: 22, last5: ["W", "L", "W", "W", "W"], points: 21 },
+  { position: 6, team: "HKK Široki II", played: 13, won: 6, lost: 7, diff: 83, last5: ["W", "W", "W", "W", "L"], points: 19 },
   { position: 7, team: "HKK Rama", played: 13, won: 3, lost: 10, diff: -92, last5: ["L", "L", "L", "L", "L"], points: 16 },
-  { position: 8, team: "Čapljina", played: 12, won: 0, lost: 12, diff: -499, last5: ["L", "L", "L", "L", "L"], points: 12 },
+  { position: 8, team: "Čapljina", played: 13, won: 0, lost: 13, diff: -521, last5: ["L", "L", "L", "L", "L"], points: 13 },
 ];
 
 // Women standings data
