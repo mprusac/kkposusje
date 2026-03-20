@@ -322,12 +322,13 @@ const Statistics = () => {
   };
   const extraMatchesCount = getExtraMatches();
   
-  // Sort matches: Page 0 = 1 upcoming + 5 past, Page 1+ = remaining past then remaining upcoming
+  // Sort matches: Page 0 = upcoming + past (6 total), Page 1+ = remaining
   const upcomingMatches = matches.filter(m => m.isUpcoming);
   const playedMatches = matches.filter(m => !m.isUpcoming);
   
-  const baseFirstPageMatches = [...upcomingMatches.slice(0, 1), ...playedMatches.slice(0, 5)];
-  const remainingMatchesPool = [...playedMatches.slice(5), ...upcomingMatches.slice(1)];
+  const baseCount = Math.max(0, 6 - upcomingMatches.length);
+  const baseFirstPageMatches = [...upcomingMatches, ...playedMatches.slice(0, baseCount)];
+  const remainingMatchesPool = [...playedMatches.slice(baseCount)];
   
   // On page 0, append extra matches from the remaining pool
   const firstPageMatches = [...baseFirstPageMatches, ...remainingMatchesPool.slice(0, extraMatchesCount)];

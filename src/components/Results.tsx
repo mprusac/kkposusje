@@ -54,6 +54,7 @@ const results: MatchResult[] = [
     awayScore: 78,
     isHome: true,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542",
+    youtubeLink: "https://www.youtube.com/watch?v=1jks9zzXLDw",
     competition: "Liga KSHB",
   },
   {
@@ -65,6 +66,7 @@ const results: MatchResult[] = [
     awayScore: 83,
     isHome: false,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15717259",
+    youtubeLink: "https://www.youtube.com/watch?v=fYoOtDkPZJ0",
     competition: "Liga KSHB",
   },
   {
