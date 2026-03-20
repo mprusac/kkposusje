@@ -54,6 +54,7 @@ const results: MatchResult[] = [
     awayScore: 78,
     isHome: true,
     sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542",
+    youtubeLink: "https://www.youtube.com/watch?v=1jks9zzXLDw",
     competition: "Liga KSHB",
   },
   {
