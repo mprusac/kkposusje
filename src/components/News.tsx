@@ -39,6 +39,7 @@ import pobjeda_GrudeCard from "@/assets/news-pobjeda-grude-card.jpg";
 import sponzorCalipso from "@/assets/news-sponzor-calipso.jpg";
 import najavaCapljina from "@/assets/news-najava-capljina-gameday.jpg";
 import pobjedaCapljina from "@/assets/news/capljina-result-march2026.jpg";
+import pobjedaLjubuski from "@/assets/news/ljubuski-result-march2026.jpg";
 
 interface NewsItem {
   id: number;
@@ -59,6 +60,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 46, title: "Pobjeda Žutih u posljednjoj utakmici sezone! 🌕⚫", excerpt: "Košarkaši Posušja pobjedili su ekipu Ljubuškog rezultatom 88:78 u posljednjem kolu regularnog dijela sezone.", date: "20. 03. 2026.", category: "utakmica", image: pobjedaLjubuski, imagePosition: "top" },
   { id: 45, title: "Pobjeda nad Čapljinom! 🌕⚫", excerpt: "Košarkaši Posušja jučer su na domaćem terenu ostvarili pobjedu nad ekipom Čapljine rezultatom 83:61.", date: "18. 03. 2026.", category: "utakmica", image: pobjedaCapljina, imagePosition: "top" },
   { id: 44, title: "Žuti sutra protiv Čapljine na domaćem terenu! 🌕⚫", excerpt: "Košarkaši Posušja sutra igraju predzadnju utakmicu ove sezone. Na domaćem terenu igramo protiv ekipe Čapljine.", date: "16. 03. 2026.", category: "najava", image: najavaCapljina, imagePosition: "bottom" },
   { id: 43, title: "Sponzorska suradnja sa Caffe Bar Calipso! 🤝", excerpt: "S velikim zadovoljstvom objavljujemo suradnju sa Caffe Bar Calipso! Hvala na ukazanom povjerenju i podršci!", date: "10. 03. 2026.", category: "klub", image: sponzorCalipso, imagePosition: "center" },
