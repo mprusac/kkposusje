@@ -296,7 +296,7 @@ const NewsPage = () => {
                       <Calendar size={14} />
                       {item.date}
                     </div>
-                    <h3 className="text-xl font-display text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}{item.flagImage && <img src={item.flagImage} alt="flag" className="inline-block w-5 h-3 ml-1.5 align-middle" />}</h3>
+                    <h3 className="text-xl font-display text-foreground mb-3 line-clamp-2 group-hover:text-primary transition-colors">{item.title}{item.flagImage && <img src={item.flagImage} alt="flag" className="inline-block h-4 md:h-5 ml-1.5 align-middle object-contain" />}</h3>
                     <p className="text-muted-foreground text-sm mb-4 line-clamp-3">{item.excerpt}</p>
                     <div className="mt-auto inline-flex items-center gap-2 text-primary text-sm font-medium group-hover:gap-3 transition-all">
                       Pročitaj više <ArrowRight size={16} />
