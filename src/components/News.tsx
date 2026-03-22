@@ -31,6 +31,7 @@ import porazSirokiAway from "@/assets/news-poraz-siroki-away.jpg";
 import porazSirokiCard from "@/assets/news-poraz-siroki-card.jpg";
 import berlinCardNew from "@/assets/berlin/berlin-card-new.jpg";
 import deFlag from "@/assets/flags/de-flag.png";
+import croFlag from "@/assets/flags/cro-flag.png";
 import pobjeda_RamaCard from "@/assets/news-pobjeda-rama-card.jpg";
 import priznanjeCard from "@/assets/news-priznanje-card.jpg";
 import najavaGrude from "@/assets/news-najava-grude.jpg";
@@ -61,7 +62,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
-  { id: 47, title: "Josip Mamić na radaru HKS-a! 🇭🇷", excerpt: "S velikim ponosom objavljujemo vijest da je naš talentirani predkadet Josip Mamić dobio službeni poziv Hrvatskog košarkaškog saveza!", date: "22. 03. 2026.", category: "klub", image: josipMamicHks, imagePosition: "top" },
+  { id: 47, title: "Josip Mamić na radaru HKS-a!", excerpt: "S velikim ponosom objavljujemo vijest da je naš talentirani predkadet Josip Mamić dobio službeni poziv Hrvatskog košarkaškog saveza!", date: "22. 03. 2026.", category: "klub", image: josipMamicHks, imagePosition: "top", flagImage: croFlag },
   { id: 46, title: "Pobjeda Žutih u posljednjoj utakmici sezone! 🌕⚫", excerpt: "Košarkaši Posušja pobjedili su ekipu Ljubuškog rezultatom 88:78 u posljednjem kolu regularnog dijela sezone.", date: "20. 03. 2026.", category: "utakmica", image: pobjedaLjubuski, imagePosition: "bottom" },
   { id: 45, title: "Pobjeda nad Čapljinom! 🌕⚫", excerpt: "Košarkaši Posušja jučer su na domaćem terenu ostvarili pobjedu nad ekipom Čapljine rezultatom 83:61.", date: "18. 03. 2026.", category: "utakmica", image: pobjedaCapljina, imagePosition: "bottom" },
   { id: 44, title: "Žuti sutra protiv Čapljine na domaćem terenu! 🌕⚫", excerpt: "Košarkaši Posušja sutra igraju predzadnju utakmicu ove sezone. Na domaćem terenu igramo protiv ekipe Čapljine.", date: "16. 03. 2026.", category: "najava", image: najavaCapljina, imagePosition: "bottom" },
