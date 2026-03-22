@@ -40,6 +40,7 @@ import sponzorCalipso from "@/assets/news-sponzor-calipso.jpg";
 import najavaCapljina from "@/assets/news-najava-capljina-gameday.jpg";
 import pobjedaCapljina from "@/assets/news/capljina-result-march2026.jpg";
 import pobjedaLjubuski from "@/assets/news/ljubuski-result-march2026.jpg";
+import josipMamicHks from "@/assets/news/josip-mamic-hks.jpg";
 
 interface NewsItem {
   id: number;
