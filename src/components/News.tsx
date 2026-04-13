@@ -43,6 +43,7 @@ import pobjedaCapljina from "@/assets/news/capljina-result-march2026.jpg";
 import pobjedaLjubuski from "@/assets/news/ljubuski-result-march2026.jpg";
 import josipMamicHks from "@/assets/news/josip-mamic-hks.jpg";
 import sponzorCroatiaOsiguranje from "@/assets/news-sponzor-croatia-osiguranje.jpg";
+import pavkovicIgokeaCard from "@/assets/news/pavkovic-igokea-card.jpg";
 
 interface NewsItem {
   id: number;
