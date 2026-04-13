@@ -66,6 +66,7 @@ import najavaCapljina from "@/assets/news-najava-capljina-gameday.jpg";
 import pobjedaCapljina from "@/assets/news/capljina-result-march2026.jpg";
 import pobjedaLjubuski from "@/assets/news/ljubuski-result-march2026.jpg";
 import josipMamicHks from "@/assets/news/josip-mamic-hks.jpg";
+import sponzorCroatiaOsiguranje from "@/assets/news-sponzor-croatia-osiguranje.jpg";
 
 interface NewsItem {
   id: number;
