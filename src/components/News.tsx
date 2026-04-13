@@ -63,6 +63,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 49, title: "Ponosni na našeg Josipa! 🏀", excerpt: "Naš Josip Pavković nastupa na završnici Youth Basketball Champions League u dresu Igokee.", date: "07. 04. 2026.", category: "klub", image: pavkovicIgokeaCard, imagePosition: "top" },
   { id: 48, title: "Sponzorska suradnja s Croatia Osiguranjem! 🤝", excerpt: "S neizmjernim ponosom objavljujemo suradnju s apsolutnim liderom u svom sektoru – Croatia Osiguranjem!", date: "30. 03. 2026.", category: "klub", image: sponzorCroatiaOsiguranje, imagePosition: "center" },
   { id: 47, title: "Josip Mamić na radaru HKS-a!", excerpt: "S velikim ponosom objavljujemo vijest da je naš talentirani predkadet Josip Mamić dobio službeni poziv Hrvatskog košarkaškog saveza!", date: "22. 03. 2026.", category: "klub", image: josipMamicHks, imagePosition: "top", flagImage: croFlag },
   { id: 46, title: "Pobjeda Žutih u posljednjoj utakmici sezone! 🌕⚫", excerpt: "Košarkaši Posušja pobjedili su ekipu Ljubuškog rezultatom 88:78 u posljednjem kolu regularnog dijela sezone.", date: "20. 03. 2026.", category: "utakmica", image: pobjedaLjubuski, imagePosition: "bottom" },
