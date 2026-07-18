@@ -173,6 +173,7 @@ function FileInputButton({
 }
 
 export default function AdminPanel() {
+  const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(() => sessionStorage.getItem("admin_token"));
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });
   const [loggingIn, setLoggingIn] = useState(false);
