@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Trophy, Users, Megaphone, Newspaper, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import newsLaguna from "@/assets/news-laguna.jpg";
 import newsLagunaCard from "@/assets/news-laguna-card.jpg";
@@ -162,6 +163,27 @@ const ArticleDetail = ({ article }: { article: NewsItem }) => {
 
   return (
     <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
+      <SEO
+        title={`${article.title} — KK Posušje`}
+        description={(article.content || article.title).replace(/\n+/g, ' ').slice(0, 155)}
+        path={`/vijesti/${article.id}`}
+        image={typeof article.image === 'string' ? article.image : undefined}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          headline: article.title,
+          datePublished: article.date,
+          image: typeof article.image === 'string' ? article.image : undefined,
+          author: { "@type": "Organization", name: "KK Posušje" },
+          publisher: {
+            "@type": "Organization",
+            name: "KK Posušje",
+            logo: { "@type": "ImageObject", url: "https://kkposusje.ba/favicon.png" },
+          },
+          mainEntityOfPage: `https://kkposusje.ba/vijesti/${article.id}`,
+        }}
+      />
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>
@@ -258,6 +280,11 @@ const NewsPage = () => {
 
   return (
     <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
+      <SEO
+        title="Vijesti — KK Posušje"
+        description="Najnovije vijesti, najave utakmica, izvještaji i priopćenja Košarkaškog kluba Posušje."
+        path="/vijesti"
+      />
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}>

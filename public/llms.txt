@@ -1,0 +1,17 @@
+# Košarkaški klub Posušje
+
+> Službena web stranica Košarkaškog kluba Posušje (KK Posušje / HKK Posušje) — vijesti, raspored, rezultati, tablica, igrači i škola košarke u Posušju, Bosna i Hercegovina.
+
+KK Posušje je košarkaški klub iz Posušja koji nastupa u Premijer ligi BiH. Stranica sadrži novosti o klubu, statistiku sezone, informacije o momčadi te galeriju s utakmica i događanja.
+
+## Pages
+
+- [Naslovnica](/): Pregled kluba, najnovije vijesti, zadnje utakmice, momčad, sponzori i kontakt.
+- [Vijesti](/vijesti): Novosti, najave i izvještaji s utakmica.
+- [Statistika](/statistika): Tablica lige, raspored utakmica, statistike igrača i sezone.
+- [Galerija](/galerija): Fotografije s utakmica, priprema i događanja kluba.
+
+## Optional
+
+- [Instagram](https://www.instagram.com/kkposusje/)
+- [Facebook](https://www.facebook.com/kosarkaposusje/)

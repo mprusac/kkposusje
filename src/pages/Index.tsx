@@ -12,6 +12,7 @@ import Sponsors from "@/components/Sponsors";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   const location = useLocation();
@@ -59,6 +60,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-secondary/20 to-background">
+      <SEO
+        title="Košarkaški klub Posušje — Službena web stranica"
+        description="Službena stranica KK Posušje. Vijesti, raspored utakmica, rezultati, tablica lige, momčad i škola košarke u Posušju."
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Košarkaški klub Posušje",
+          url: "https://kkposusje.ba/",
+        }}
+      />
       <ScrollProgressBar />
       <Navbar />
       <main>

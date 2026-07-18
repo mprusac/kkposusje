@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Camera, X, ChevronLeft, ChevronRight } from "lucide-react";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 
 import eventTomislav from "@/assets/event-tomislav.png";
@@ -435,6 +436,11 @@ const GalleryPage = () => {
   // Otherwise show the events list
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Galerija — KK Posušje"
+        description="Fotografije s utakmica, priprema i događanja Košarkaškog kluba Posušje."
+        path="/galerija"
+      />
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">
           {/* Back link */}
