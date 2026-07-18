@@ -845,8 +845,8 @@ function GalleryForm({
   const [uploadingCover, setUploadingCover] = useState(false);
   const [progress, setProgress] = useState("");
 
-  const handleCover = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleCover = async (files: File[]) => {
+    const file = files[0];
     if (!file) return;
     setUploadingCover(true);
     try {
@@ -860,12 +860,10 @@ function GalleryForm({
       toast.error("Greška", { description: (err as Error).message });
     } finally {
       setUploadingCover(false);
-      e.target.value = "";
     }
   };
 
-  const handleImagesUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
+  const handleImagesUpload = async (files: File[]) => {
     if (!files.length) return;
     setProgress(`0/${files.length}`);
     try {
@@ -878,7 +876,6 @@ function GalleryForm({
       toast.error("Greška", { description: (err as Error).message });
     } finally {
       setProgress("");
-      e.target.value = "";
     }
   };
 
