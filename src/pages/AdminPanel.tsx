@@ -648,8 +648,8 @@ function NewsForm({
   const [uploadingCover, setUploadingCover] = useState(false);
   const [galleryProgress, setGalleryProgress] = useState("");
 
-  const handleCover = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleCover = async (files: File[]) => {
+    const file = files[0];
     if (!file) return;
     setUploadingCover(true);
     try {
@@ -663,12 +663,10 @@ function NewsForm({
       toast.error("Greška uploada", { description: (err as Error).message });
     } finally {
       setUploadingCover(false);
-      e.target.value = "";
     }
   };
 
-  const handleGalleryUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
+  const handleGalleryUpload = async (files: File[]) => {
     if (!files.length) return;
     setGalleryProgress(`0/${files.length}`);
     try {
@@ -681,7 +679,6 @@ function NewsForm({
       toast.error("Greška uploada", { description: (err as Error).message });
     } finally {
       setGalleryProgress("");
-      e.target.value = "";
     }
   };
 
