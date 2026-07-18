@@ -172,6 +172,69 @@ function FileInputButton({
   );
 }
 
+function DropZone({
+  accept = "image/*",
+  multiple,
+  onFiles,
+  disabled,
+  icon,
+  hint,
+}: {
+  accept?: string;
+  multiple?: boolean;
+  onFiles: (files: File[]) => void;
+  disabled?: boolean;
+  icon: ReactNode;
+  hint?: string;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [dragOver, setDragOver] = useState(false);
+
+  const handleFiles = (fileList: FileList | null) => {
+    if (!fileList || !fileList.length) return;
+    const arr = Array.from(fileList).filter((f) => f.type.startsWith("image/"));
+    if (arr.length) onFiles(multiple ? arr : [arr[0]]);
+  };
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={() => !disabled && inputRef.current?.click()}
+      onKeyDown={(e) => {
+        if ((e.key === "Enter" || e.key === " ") && !disabled) inputRef.current?.click();
+      }}
+      onDragOver={(e) => { e.preventDefault(); if (!disabled) setDragOver(true); }}
+      onDragLeave={() => setDragOver(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        setDragOver(false);
+        if (disabled) return;
+        handleFiles(e.dataTransfer.files);
+      }}
+      className={`w-full rounded-lg border-2 border-dashed transition-colors cursor-pointer
+        flex flex-col items-center justify-center gap-2 py-8 px-4 text-center
+        ${dragOver ? "border-primary bg-primary/10" : "border-border bg-muted/20 hover:bg-muted/40 hover:border-primary/60"}
+        ${disabled ? "opacity-50 pointer-events-none" : ""}`}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        onChange={(e) => { handleFiles(e.target.files); e.target.value = ""; }}
+        disabled={disabled}
+        className="hidden"
+      />
+      <div className="text-muted-foreground">{icon}</div>
+      <p className="text-sm text-muted-foreground">
+        {hint ?? (multiple ? "Klikni ili povuci slike ovdje" : "Klikni ili povuci sliku ovdje")}
+      </p>
+    </div>
+  );
+}
+
+
 function CategorySelect({
   value, onChange, categories,
 }: { value: string; onChange: (v: string) => void; categories: string[] }) {
