@@ -633,7 +633,7 @@ function NewsForm({
               </button>
             </div>
           )}
-          <Input type="file" accept="image/*" onChange={handleCover} disabled={uploadingCover} />
+          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
           {uploadingCover && <p className="text-sm text-muted-foreground">Uploading...</p>}
         </div>
 
@@ -656,7 +656,7 @@ function NewsForm({
 
         <div className="space-y-2">
           <Label>Galerija u vijesti</Label>
-          <Input type="file" accept="image/*" multiple onChange={handleGalleryUpload} disabled={!!galleryProgress} />
+          <FileInputButton accept="image/*" multiple onChange={handleGalleryUpload} disabled={!!galleryProgress}>Odaberi datoteke</FileInputButton>
           {galleryProgress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
               <Loader2 className="w-3 h-3 animate-spin" /> Uploading {galleryProgress}
@@ -798,12 +798,12 @@ function GalleryForm({
               </button>
             </div>
           )}
-          <Input type="file" accept="image/*" onChange={handleCover} disabled={uploadingCover} />
+          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
         </div>
 
         <div className="space-y-2">
           <Label>Slike galerije</Label>
-          <Input type="file" accept="image/*" multiple onChange={handleImagesUpload} disabled={!!progress} />
+          <FileInputButton accept="image/*" multiple onChange={handleImagesUpload} disabled={!!progress}>Odaberi datoteke</FileInputButton>
           {progress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
               <Loader2 className="w-3 h-3 animate-spin" /> Uploading {progress}
