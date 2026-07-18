@@ -172,6 +172,69 @@ function FileInputButton({
   );
 }
 
+function DropZone({
+  accept = "image/*",
+  multiple,
+  onFiles,
+  disabled,
+  icon,
+  hint,
+}: {
+  accept?: string;
+  multiple?: boolean;
+  onFiles: (files: File[]) => void;
+  disabled?: boolean;
+  icon: ReactNode;
+  hint?: string;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [dragOver, setDragOver] = useState(false);
+
+  const handleFiles = (fileList: FileList | null) => {
+    if (!fileList || !fileList.length) return;
+    const arr = Array.from(fileList).filter((f) => f.type.startsWith("image/"));
+    if (arr.length) onFiles(multiple ? arr : [arr[0]]);
+  };
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={() => !disabled && inputRef.current?.click()}
+      onKeyDown={(e) => {
+        if ((e.key === "Enter" || e.key === " ") && !disabled) inputRef.current?.click();
+      }}
+      onDragOver={(e) => { e.preventDefault(); if (!disabled) setDragOver(true); }}
+      onDragLeave={() => setDragOver(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        setDragOver(false);
+        if (disabled) return;
+        handleFiles(e.dataTransfer.files);
+      }}
+      className={`w-full rounded-lg border-2 border-dashed transition-colors cursor-pointer
+        flex flex-col items-center justify-center gap-2 py-8 px-4 text-center
+        ${dragOver ? "border-primary bg-primary/10" : "border-border bg-muted/20 hover:bg-muted/40 hover:border-primary/60"}
+        ${disabled ? "opacity-50 pointer-events-none" : ""}`}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        onChange={(e) => { handleFiles(e.target.files); e.target.value = ""; }}
+        disabled={disabled}
+        className="hidden"
+      />
+      <div className="text-muted-foreground">{icon}</div>
+      <p className="text-sm text-muted-foreground">
+        {hint ?? (multiple ? "Klikni ili povuci slike ovdje" : "Klikni ili povuci sliku ovdje")}
+      </p>
+    </div>
+  );
+}
+
+
 function CategorySelect({
   value, onChange, categories,
 }: { value: string; onChange: (v: string) => void; categories: string[] }) {
@@ -412,7 +475,11 @@ export default function AdminPanel() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/"))}
+              onClick={() => {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+                if (window.history.length > 1) navigate(-1);
+                else navigate("/");
+              }}
             >
               <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
             </Button>
@@ -585,8 +652,8 @@ function NewsForm({
   const [uploadingCover, setUploadingCover] = useState(false);
   const [galleryProgress, setGalleryProgress] = useState("");
 
-  const handleCover = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleCover = async (files: File[]) => {
+    const file = files[0];
     if (!file) return;
     setUploadingCover(true);
     try {
@@ -600,12 +667,10 @@ function NewsForm({
       toast.error("Greška uploada", { description: (err as Error).message });
     } finally {
       setUploadingCover(false);
-      e.target.value = "";
     }
   };
 
-  const handleGalleryUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
+  const handleGalleryUpload = async (files: File[]) => {
     if (!files.length) return;
     setGalleryProgress(`0/${files.length}`);
     try {
@@ -618,7 +683,6 @@ function NewsForm({
       toast.error("Greška uploada", { description: (err as Error).message });
     } finally {
       setGalleryProgress("");
-      e.target.value = "";
     }
   };
 
@@ -715,33 +779,48 @@ function NewsForm({
               </button>
             </div>
           )}
-          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
-          {uploadingCover && <p className="text-sm text-muted-foreground">Uploading...</p>}
+          <DropZone
+            onFiles={handleCover}
+            disabled={uploadingCover}
+            icon={<Upload className="w-8 h-8" />}
+            hint="Klikni ili povuci sliku ovdje"
+          />
+          {uploadingCover && <p className="text-sm text-muted-foreground">Prijenos u tijeku...</p>}
         </div>
 
         <div className="space-y-2">
           <Label>Pozicija slike</Label>
           <div className="flex gap-4">
-            {(["top", "center", "bottom"] as const).map((p) => (
-              <label key={p} className="flex items-center gap-2 cursor-pointer">
+            {([
+              { v: "top", label: "Vrh" },
+              { v: "center", label: "Sredina" },
+              { v: "bottom", label: "Dno" },
+            ] as const).map((p) => (
+              <label key={p.v} className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
                   name="pos"
-                  checked={form.image_position === p}
-                  onChange={() => setForm({ ...form, image_position: p })}
+                  checked={form.image_position === p.v}
+                  onChange={() => setForm({ ...form, image_position: p.v })}
                 />
-                <span className="text-sm capitalize">{p}</span>
+                <span className="text-sm">{p.label}</span>
               </label>
             ))}
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label>Galerija u vijesti</Label>
-          <FileInputButton accept="image/*" multiple onChange={handleGalleryUpload} disabled={!!galleryProgress}>Odaberi datoteke</FileInputButton>
+          <Label>Slike članka (galerija)</Label>
+          <DropZone
+            multiple
+            onFiles={handleGalleryUpload}
+            disabled={!!galleryProgress}
+            icon={<ImagePlus className="w-8 h-8" />}
+            hint="Klikni ili povuci slike ovdje"
+          />
           {galleryProgress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Loader2 className="w-3 h-3 animate-spin" /> Uploading {galleryProgress}
+              <Loader2 className="w-3 h-3 animate-spin" /> Prijenos {galleryProgress}
             </p>
           )}
           <PaginatedImageGrid images={form.gallery_images} onRemove={removeGalleryImage} />
@@ -770,8 +849,8 @@ function GalleryForm({
   const [uploadingCover, setUploadingCover] = useState(false);
   const [progress, setProgress] = useState("");
 
-  const handleCover = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleCover = async (files: File[]) => {
+    const file = files[0];
     if (!file) return;
     setUploadingCover(true);
     try {
@@ -785,12 +864,10 @@ function GalleryForm({
       toast.error("Greška", { description: (err as Error).message });
     } finally {
       setUploadingCover(false);
-      e.target.value = "";
     }
   };
 
-  const handleImagesUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
+  const handleImagesUpload = async (files: File[]) => {
     if (!files.length) return;
     setProgress(`0/${files.length}`);
     try {
@@ -803,7 +880,6 @@ function GalleryForm({
       toast.error("Greška", { description: (err as Error).message });
     } finally {
       setProgress("");
-      e.target.value = "";
     }
   };
 
@@ -880,15 +956,26 @@ function GalleryForm({
               </button>
             </div>
           )}
-          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
+          <DropZone
+            onFiles={handleCover}
+            disabled={uploadingCover}
+            icon={<Upload className="w-8 h-8" />}
+            hint="Klikni ili povuci sliku ovdje"
+          />
         </div>
 
         <div className="space-y-2">
           <Label>Slike galerije</Label>
-          <FileInputButton accept="image/*" multiple onChange={handleImagesUpload} disabled={!!progress}>Odaberi datoteke</FileInputButton>
+          <DropZone
+            multiple
+            onFiles={handleImagesUpload}
+            disabled={!!progress}
+            icon={<ImagePlus className="w-8 h-8" />}
+            hint="Klikni ili povuci slike ovdje"
+          />
           {progress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Loader2 className="w-3 h-3 animate-spin" /> Uploading {progress}
+              <Loader2 className="w-3 h-3 animate-spin" /> Prijenos {progress}
             </p>
           )}
           <PaginatedImageGrid images={form.images} onRemove={removeImage} />
