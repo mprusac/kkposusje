@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Download, FileSpreadsheet, X, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -371,6 +372,11 @@ const Statistics = () => {
 
   return (
     <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
+      <SEO
+        title="Statistika i tablica lige — KK Posušje"
+        description="Tablica Premijer lige BiH, raspored utakmica, rezultati i statistike igrača KK Posušje u sezoni 2025/26."
+        path="/statistika"
+      />
       {/* Header */}
       <header className="bg-secondary/50 border-b border-border/50 sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto px-4 py-3">
