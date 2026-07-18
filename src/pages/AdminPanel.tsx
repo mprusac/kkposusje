@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, memo, ChangeEvent } from "react";
+import { useCallback, useEffect, useMemo, useState, memo, ChangeEvent, useRef, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -134,6 +134,39 @@ function PaginatedImageGrid({
           Prikaži još ({remaining} preostalo)
         </Button>
       )}
+    </div>
+  );
+}
+
+function FileInputButton({
+  accept,
+  multiple,
+  onChange,
+  disabled,
+  children,
+}: {
+  accept?: string;
+  multiple?: boolean;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+  children: ReactNode;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return (
+    <div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        onChange={onChange}
+        disabled={disabled}
+        className="hidden"
+      />
+      <Button type="button" onClick={() => inputRef.current?.click()} disabled={disabled}>
+        <Upload className="w-4 h-4 mr-2" />
+        {children}
+      </Button>
     </div>
   );
 }
@@ -312,11 +345,14 @@ export default function AdminPanel() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
-        <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
-          <h1 className="font-semibold text-lg">Admin Panel</h1>
-          <Button variant="outline" size="sm" onClick={logout}>
-            <LogOut className="w-4 h-4 mr-2" /> Odjava
-          </Button>
+        <div className="max-w-5xl mx-auto grid grid-cols-3 items-center px-4 py-3">
+          <div />
+          <h1 className="font-semibold text-xl text-primary text-center">Admin Panel</h1>
+          <div className="flex justify-end">
+            <Button variant="outline" size="sm" onClick={logout}>
+              <LogOut className="w-4 h-4 mr-2" /> Odjava
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -328,7 +364,7 @@ export default function AdminPanel() {
         )}
 
         <Tabs defaultValue="news" className="w-full">
-          <TabsList>
+          <TabsList className="mb-4">
             <TabsTrigger value="news"><Newspaper className="w-4 h-4 mr-2" /> Vijesti</TabsTrigger>
             <TabsTrigger value="galleries"><ImagePlus className="w-4 h-4 mr-2" /> Galerije</TabsTrigger>
           </TabsList>
@@ -597,7 +633,7 @@ function NewsForm({
               </button>
             </div>
           )}
-          <Input type="file" accept="image/*" onChange={handleCover} disabled={uploadingCover} />
+          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
           {uploadingCover && <p className="text-sm text-muted-foreground">Uploading...</p>}
         </div>
 
@@ -620,7 +656,7 @@ function NewsForm({
 
         <div className="space-y-2">
           <Label>Galerija u vijesti</Label>
-          <Input type="file" accept="image/*" multiple onChange={handleGalleryUpload} disabled={!!galleryProgress} />
+          <FileInputButton accept="image/*" multiple onChange={handleGalleryUpload} disabled={!!galleryProgress}>Odaberi datoteke</FileInputButton>
           {galleryProgress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
               <Loader2 className="w-3 h-3 animate-spin" /> Uploading {galleryProgress}
@@ -762,12 +798,12 @@ function GalleryForm({
               </button>
             </div>
           )}
-          <Input type="file" accept="image/*" onChange={handleCover} disabled={uploadingCover} />
+          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
         </div>
 
         <div className="space-y-2">
           <Label>Slike galerije</Label>
-          <Input type="file" accept="image/*" multiple onChange={handleImagesUpload} disabled={!!progress} />
+          <FileInputButton accept="image/*" multiple onChange={handleImagesUpload} disabled={!!progress}>Odaberi datoteke</FileInputButton>
           {progress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
               <Loader2 className="w-3 h-3 animate-spin" /> Uploading {progress}
