@@ -475,7 +475,11 @@ export default function AdminPanel() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/"))}
+              onClick={() => {
+                sessionStorage.setItem("restoreHomeScroll", "true");
+                if (window.history.length > 1) navigate(-1);
+                else navigate("/");
+              }}
             >
               <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
             </Button>
