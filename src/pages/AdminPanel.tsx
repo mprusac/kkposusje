@@ -775,33 +775,48 @@ function NewsForm({
               </button>
             </div>
           )}
-          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
-          {uploadingCover && <p className="text-sm text-muted-foreground">Uploading...</p>}
+          <DropZone
+            onFiles={handleCover}
+            disabled={uploadingCover}
+            icon={<Upload className="w-8 h-8" />}
+            hint="Klikni ili povuci sliku ovdje"
+          />
+          {uploadingCover && <p className="text-sm text-muted-foreground">Prijenos u tijeku...</p>}
         </div>
 
         <div className="space-y-2">
           <Label>Pozicija slike</Label>
           <div className="flex gap-4">
-            {(["top", "center", "bottom"] as const).map((p) => (
-              <label key={p} className="flex items-center gap-2 cursor-pointer">
+            {([
+              { v: "top", label: "Vrh" },
+              { v: "center", label: "Sredina" },
+              { v: "bottom", label: "Dno" },
+            ] as const).map((p) => (
+              <label key={p.v} className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
                   name="pos"
-                  checked={form.image_position === p}
-                  onChange={() => setForm({ ...form, image_position: p })}
+                  checked={form.image_position === p.v}
+                  onChange={() => setForm({ ...form, image_position: p.v })}
                 />
-                <span className="text-sm capitalize">{p}</span>
+                <span className="text-sm">{p.label}</span>
               </label>
             ))}
           </div>
         </div>
 
         <div className="space-y-2">
-          <Label>Galerija u vijesti</Label>
-          <FileInputButton accept="image/*" multiple onChange={handleGalleryUpload} disabled={!!galleryProgress}>Odaberi datoteke</FileInputButton>
+          <Label>Slike članka (galerija)</Label>
+          <DropZone
+            multiple
+            onFiles={handleGalleryUpload}
+            disabled={!!galleryProgress}
+            icon={<ImagePlus className="w-8 h-8" />}
+            hint="Klikni ili povuci slike ovdje"
+          />
           {galleryProgress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Loader2 className="w-3 h-3 animate-spin" /> Uploading {galleryProgress}
+              <Loader2 className="w-3 h-3 animate-spin" /> Prijenos {galleryProgress}
             </p>
           )}
           <PaginatedImageGrid images={form.gallery_images} onRemove={removeGalleryImage} />
