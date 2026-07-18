@@ -623,14 +623,11 @@ function NewsForm({
           </div>
           <div className="space-y-1.5">
             <Label>Kategorija</Label>
-            <Select value={form.category} onValueChange={(v) => setForm({ ...form, category: v })}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                {existingCategories.map((c) => (
-                  <SelectItem key={c} value={c}>{c}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <CategorySelect
+              value={form.category}
+              onChange={(v) => setForm({ ...form, category: v })}
+              categories={existingCategories}
+            />
           </div>
         </div>
 
