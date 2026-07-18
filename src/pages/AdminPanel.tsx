@@ -347,8 +347,16 @@ export default function AdminPanel() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
-        <div className="max-w-5xl mx-auto grid grid-cols-3 items-center px-4 py-3">
-          <div />
+        <div className="max-w-6xl mx-auto grid grid-cols-3 items-center px-4 py-3">
+          <div className="flex justify-start">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/"))}
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+            </Button>
+          </div>
           <h1 className="font-semibold text-xl text-primary text-center">Admin Panel</h1>
           <div className="flex justify-end">
             <Button variant="outline" size="sm" onClick={logout}>
@@ -358,26 +366,39 @@ export default function AdminPanel() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto p-4">
+      <main className="max-w-6xl mx-auto p-4">
         {loading && (
           <div className="flex items-center gap-2 text-muted-foreground py-4">
             <Loader2 className="w-4 h-4 animate-spin" /> Učitavanje...
           </div>
         )}
 
-        <Tabs defaultValue="news" className="w-full">
-          <TabsList className="mb-4">
-            <TabsTrigger value="news"><Newspaper className="w-4 h-4 mr-2" /> Vijesti</TabsTrigger>
-            <TabsTrigger value="galleries"><ImagePlus className="w-4 h-4 mr-2" /> Galerije</TabsTrigger>
-          </TabsList>
+        {/* Top action buttons */}
+        <div className="flex justify-center gap-3 flex-wrap mb-8">
+          <Button variant="outline" onClick={() => { setEditing(null); setView("news-form"); }}>
+            <Newspaper className="w-4 h-4 mr-2" /> Nova vijest
+          </Button>
+          <Button variant="outline" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
+            <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
+          </Button>
+        </div>
 
-          <TabsContent value="news" className="space-y-3">
-            <div className="flex items-center gap-2 flex-wrap">
-              <Button onClick={() => { setEditing(null); setView("news-form"); }}>
-                <Plus className="w-4 h-4 mr-2" /> Dodaj novu vijest
-              </Button>
-              <Button variant="outline" onClick={() => setCategoryModal(true)}>
-                <Tag className="w-4 h-4 mr-2" /> Upravljaj kategorijama
+        {/* Two column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Vijesti */}
+          <section className="space-y-3">
+            <div className="flex items-center justify-center gap-2">
+              <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+                Vijesti
+              </h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-7 w-7"
+                onClick={() => setCategoryModal(true)}
+                title="Upravljaj kategorijama"
+              >
+                <Tag className="w-4 h-4" />
               </Button>
             </div>
 
@@ -389,37 +410,38 @@ export default function AdminPanel() {
               {news.map((n) => (
                 <Card key={n.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {n.image_url ? (
-                    <img src={n.image_url} className="aspect-square w-16 rounded object-cover border border-border" />
+                    <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border" />
                   ) : (
-                    <div className="aspect-square w-16 rounded bg-muted" />
+                    <div className="aspect-square w-14 rounded bg-muted" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-medium truncate">{n.title}</span>
-                      {n.pinned && <Pin className="w-4 h-4 fill-current text-primary" />}
+                      <span className="font-medium truncate text-sm">{n.title}</span>
+                      {n.pinned && <Pin className="w-3.5 h-3.5 fill-current text-primary" />}
                     </div>
                     <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
                       <span>{n.date}</span>
-                      <Badge variant="secondary">{n.category}</Badge>
+                      <Badge variant="secondary" className="text-xs">{n.category}</Badge>
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Button variant="ghost" size="icon" onClick={() => { setEditing(n); setView("news-form"); }}>
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditing(n); setView("news-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => setConfirmDelete({ kind: "news", id: n.id })}>
-                      <Trash2 className="w-4 h-4 text-destructive" />
+                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "news", id: n.id })}>
+                      <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
                 </Card>
               ))}
             </div>
-          </TabsContent>
+          </section>
 
-          <TabsContent value="galleries" className="space-y-3">
-            <Button onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
-              <Plus className="w-4 h-4 mr-2" /> Dodaj novu galeriju
-            </Button>
+          {/* Galerije */}
+          <section className="space-y-3">
+            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+              Galerije
+            </h2>
 
             {galleries.length === 0 && !loading && (
               <p className="text-muted-foreground py-8 text-center">Nema galerija.</p>
@@ -429,30 +451,31 @@ export default function AdminPanel() {
               {galleries.map((g) => (
                 <Card key={g.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {g.cover_image ? (
-                    <img src={g.cover_image} className="aspect-square w-16 rounded object-cover border border-border" />
+                    <img src={g.cover_image} className="aspect-square w-14 rounded object-cover border border-border" />
                   ) : (
-                    <div className="aspect-square w-16 rounded bg-muted" />
+                    <div className="aspect-square w-14 rounded bg-muted" />
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium truncate">{g.title}</div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      {g.date} · {g.images.length} slika
+                    <div className="font-medium truncate text-sm">{g.title}</div>
+                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                      {g.date} <ImagePlus className="w-3 h-3 inline text-primary" /> {g.images.length}
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Button variant="ghost" size="icon" onClick={() => { setEditingGallery(g); setView("gallery-form"); }}>
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingGallery(g); setView("gallery-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" onClick={() => setConfirmDelete({ kind: "gallery", id: g.id })}>
-                      <Trash2 className="w-4 h-4 text-destructive" />
+                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "gallery", id: g.id })}>
+                      <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
                 </Card>
               ))}
             </div>
-          </TabsContent>
-        </Tabs>
+          </section>
+        </div>
       </main>
+
 
       <AlertDialog open={!!confirmDelete} onOpenChange={(o) => !o && setConfirmDelete(null)}>
         <AlertDialogContent>
