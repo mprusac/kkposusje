@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState, memo, ChangeEvent, useRef } from "react";
+import { useCallback, useEffect, useMemo, useState, memo, ChangeEvent, useRef, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -149,7 +149,7 @@ function FileInputButton({
   multiple?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
