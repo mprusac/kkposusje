@@ -172,6 +172,66 @@ function FileInputButton({
   );
 }
 
+function CategorySelect({
+  value, onChange, categories,
+}: { value: string; onChange: (v: string) => void; categories: string[] }) {
+  const [adding, setAdding] = useState(false);
+  const [newValue, setNewValue] = useState("");
+  const merged = useMemo(
+    () => Array.from(new Set([...(value ? [value] : []), ...categories])),
+    [value, categories],
+  );
+
+  if (adding) {
+    return (
+      <div className="flex gap-2">
+        <Input
+          autoFocus
+          value={newValue}
+          onChange={(e) => setNewValue(e.target.value)}
+          placeholder="Nova kategorija"
+        />
+        <Button
+          type="button"
+          size="sm"
+          onClick={() => {
+            const v = newValue.trim();
+            if (!v) return;
+            onChange(v);
+            setAdding(false);
+            setNewValue("");
+          }}
+        >
+          Dodaj
+        </Button>
+        <Button type="button" size="sm" variant="ghost" onClick={() => { setAdding(false); setNewValue(""); }}>
+          <X className="w-4 h-4" />
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <Select
+      value={value}
+      onValueChange={(v) => {
+        if (v === "__new__") { setAdding(true); return; }
+        onChange(v);
+      }}
+    >
+      <SelectTrigger><SelectValue /></SelectTrigger>
+      <SelectContent>
+        {merged.map((c) => (
+          <SelectItem key={c} value={c}>{c}</SelectItem>
+        ))}
+        <SelectItem value="__new__" className="text-primary">
+          + Dodaj novu kategoriju
+        </SelectItem>
+      </SelectContent>
+    </Select>
+  );
+}
+
 export default function AdminPanel() {
   const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(() => sessionStorage.getItem("admin_token"));
