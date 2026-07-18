@@ -138,6 +138,39 @@ function PaginatedImageGrid({
   );
 }
 
+function FileInputButton({
+  accept,
+  multiple,
+  onChange,
+  disabled,
+  children,
+}: {
+  accept?: string;
+  multiple?: boolean;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
+  children: React.ReactNode;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  return (
+    <div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        multiple={multiple}
+        onChange={onChange}
+        disabled={disabled}
+        className="hidden"
+      />
+      <Button type="button" onClick={() => inputRef.current?.click()} disabled={disabled}>
+        <Upload className="w-4 h-4 mr-2" />
+        {children}
+      </Button>
+    </div>
+  );
+}
+
 export default function AdminPanel() {
   const [token, setToken] = useState<string | null>(() => sessionStorage.getItem("admin_token"));
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });
