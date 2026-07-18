@@ -952,15 +952,26 @@ function GalleryForm({
               </button>
             </div>
           )}
-          <FileInputButton accept="image/*" onChange={handleCover} disabled={uploadingCover}>Odaberi sliku</FileInputButton>
+          <DropZone
+            onFiles={handleCover}
+            disabled={uploadingCover}
+            icon={<Upload className="w-8 h-8" />}
+            hint="Klikni ili povuci sliku ovdje"
+          />
         </div>
 
         <div className="space-y-2">
           <Label>Slike galerije</Label>
-          <FileInputButton accept="image/*" multiple onChange={handleImagesUpload} disabled={!!progress}>Odaberi datoteke</FileInputButton>
+          <DropZone
+            multiple
+            onFiles={handleImagesUpload}
+            disabled={!!progress}
+            icon={<ImagePlus className="w-8 h-8" />}
+            hint="Klikni ili povuci slike ovdje"
+          />
           {progress && (
             <p className="text-sm text-muted-foreground flex items-center gap-2">
-              <Loader2 className="w-3 h-3 animate-spin" /> Uploading {progress}
+              <Loader2 className="w-3 h-3 animate-spin" /> Prijenos {progress}
             </p>
           )}
           <PaginatedImageGrid images={form.images} onRemove={removeImage} />
