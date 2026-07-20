@@ -484,7 +484,7 @@ export default function AdminPanel() {
               <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
             </Button>
           </div>
-          <h1 className="font-semibold text-xl text-primary text-center">Admin Panel</h1>
+          <h1 className="font-semibold text-2xl text-primary text-center">Admin Panel</h1>
           <div className="flex justify-end">
             <Button variant="outline" size="sm" onClick={logout}>
               <LogOut className="w-4 h-4 mr-2" /> Odjava
@@ -722,7 +722,7 @@ function NewsForm({
           <Button variant="ghost" size="sm" onClick={onCancel}>
             <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
           </Button>
-          <h2 className="font-semibold">{initial ? "Uredi vijest" : "Nova vijest"}</h2>
+          <h2 className="font-semibold text-2xl">{initial ? "Uredi vijest" : "Nova vijest"}</h2>
           <Button size="sm" onClick={save} disabled={saving}>
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             Spremi
@@ -919,7 +919,7 @@ function GalleryForm({
           <Button variant="ghost" size="sm" onClick={onCancel}>
             <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
           </Button>
-          <h2 className="font-semibold">{initial ? "Uredi galeriju" : "Nova galerija"}</h2>
+          <h2 className="font-semibold text-2xl">{initial ? "Uredi galeriju" : "Nova galerija"}</h2>
           <Button size="sm" onClick={save} disabled={saving}>
             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
             Spremi

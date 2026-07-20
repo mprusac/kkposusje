@@ -7,7 +7,7 @@ const footerLinks = [
   { label: "Vijesti", href: "#vijesti" },
   { label: "Galerija", href: "#galerija" },
   { label: "Kontakt", href: "#kontakt" },
-  { label: "Admin panel", href: "/admin" },
+  { label: "Admin", href: "/admin" },
 ];
 
 const socialLinks = [
