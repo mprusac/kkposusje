@@ -172,6 +172,15 @@
   .shadow-gold {
     box-shadow: var(--shadow-gold);
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Animations */
