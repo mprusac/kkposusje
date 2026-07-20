@@ -68,6 +68,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 52, title: "Kadeti na turniru u Čapljini! 🟡", excerpt: "Pred našim kadetima je uzbudljiv košarkaški vikend na jakom Memorijalnom turniru \"Marijo Čolić - Manda\" u Čapljini.", date: "11. 06. 2026.", category: "najava", image: kadetiCapljinaTurnir, imagePosition: "center" },
   { id: 51, title: "Škola košarke u Zadru! 🏀", excerpt: "Naši mladi košarkaši gostovali su u kultnoj dvorani Krešo Ćosić u Zadru, gdje su odmjerili snage s ekipom Puntamike.", date: "20. 07. 2026.", category: "klub", image: skolaKosarkeZadar, imagePosition: "center" },
   { id: 50, title: "Čestitke HKK Široki! 🍀🏀", excerpt: "Iskrene čestitke HKK Široki na velikoj pobjedi u Domžalama i plasmanu u finale ABA 2 Lige!", date: "14. 04. 2026.", category: "klub", image: cestitkeSiroki, imagePosition: "top" },
   { id: 49, title: "Ponosni na našeg Josipa! 🏀", excerpt: "Naš Josip Pavković nastupa na završnici Youth Basketball Champions League u dresu Igokee.", date: "07. 04. 2026.", category: "klub", image: pavkovicIgokeaCard, imagePosition: "top" },
