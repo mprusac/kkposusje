@@ -76,6 +76,7 @@ import pavkovicIgokea3 from "@/assets/news/pavkovic-igokea-3.jpg";
 import cestitkeSiroki from "@/assets/news/cestitke-siroki.jpg";
 import skolaKosarkeZadar from "@/assets/news/skola-kosarke-zadar.jpg";
 import kadetiCapljinaTurnir from "@/assets/news/kadeti-capljina-turnir.jpg";
+import srebroKadetiCapljina from "@/assets/news/srebro-kadeti-capljina.jpg";
 
 interface NewsItem {
   id: number;
