@@ -50,6 +50,7 @@ import skolaKosarkeZadar from "@/assets/news/skola-kosarke-zadar.jpg";
 import kadetiCapljinaTurnir from "@/assets/news/kadeti-capljina-turnir.jpg";
 import srebroKadetiCapljina from "@/assets/news/srebro-kadeti-capljina.jpg";
 import pozivPredkadetiCard from "@/assets/news/poziv-predkadeti-card.jpg";
+import summerBasketMostarCard from "@/assets/news/summer-basket-mostar-card.jpg";
 
 interface NewsItem {
   id: number;
