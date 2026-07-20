@@ -46,6 +46,7 @@ import josipMamicHks from "@/assets/news/josip-mamic-hks.jpg";
 import sponzorCroatiaOsiguranje from "@/assets/news-sponzor-croatia-osiguranje.jpg";
 import pavkovicIgokeaCard from "@/assets/news/pavkovic-igokea-card.jpg";
 import cestitkeSiroki from "@/assets/news/cestitke-siroki.jpg";
+import skolaKosarkeZadar from "@/assets/news/skola-kosarke-zadar.jpg";
 
 interface NewsItem {
   id: number;
@@ -66,6 +67,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 51, title: "Škola košarke u Zadru! 🏀", excerpt: "Naši mladi košarkaši gostovali su u kultnoj dvorani Krešo Ćosić u Zadru, gdje su odmjerili snage s ekipom Puntamike.", date: "20. 07. 2026.", category: "klub", image: skolaKosarkeZadar, imagePosition: "center" },
   { id: 50, title: "Čestitke HKK Široki! 🍀🏀", excerpt: "Iskrene čestitke HKK Široki na velikoj pobjedi u Domžalama i plasmanu u finale ABA 2 Lige!", date: "14. 04. 2026.", category: "klub", image: cestitkeSiroki, imagePosition: "top" },
   { id: 49, title: "Ponosni na našeg Josipa! 🏀", excerpt: "Naš Josip Pavković nastupa na završnici Youth Basketball Champions League u dresu Igokee.", date: "07. 04. 2026.", category: "klub", image: pavkovicIgokeaCard, imagePosition: "top" },
   { id: 48, title: "Sponzorska suradnja s Croatia Osiguranjem! 🤝", excerpt: "S neizmjernim ponosom objavljujemo suradnju s apsolutnim liderom u svom sektoru – Croatia Osiguranjem!", date: "30. 03. 2026.", category: "klub", image: sponzorCroatiaOsiguranje, imagePosition: "center" },
