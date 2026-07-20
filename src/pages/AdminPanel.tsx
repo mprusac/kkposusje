@@ -234,6 +234,43 @@ function DropZone({
   );
 }
 
+function AutoResizeTextarea({
+  value,
+  onChange,
+  placeholder,
+}: {
+  value: string;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  placeholder?: string;
+}) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  const resize = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, []);
+
+  useEffect(() => {
+    resize();
+  }, [value, resize]);
+
+  return (
+    <Textarea
+      ref={ref}
+      rows={6}
+      value={value}
+      onChange={(e) => {
+        onChange(e);
+        resize();
+      }}
+      placeholder={placeholder}
+      className="min-h-[168px] overflow-hidden resize-none"
+    />
+  );
+}
+
 
 function CategorySelect({
   value, onChange, categories,
@@ -756,7 +793,10 @@ function NewsForm({
 
         <div className="space-y-1.5">
           <Label>Kratki opis</Label>
-          <Textarea rows={3} value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} />
+          <AutoResizeTextarea
+            value={form.excerpt}
+            onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
+          />
         </div>
 
         <div className="flex items-center gap-3">
