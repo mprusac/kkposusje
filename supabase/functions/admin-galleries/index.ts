@@ -87,6 +87,15 @@ Deno.serve(async (req) => {
       return json({ success: true });
     }
 
+    if (endpoint === 'signed-upload') {
+      const { path, bucket } = await req.json();
+      const b = bucket === 'news-images' ? 'news-images' : 'gallery-images';
+      const safePath = String(path).replace(/^\/+/, '');
+      const { data, error } = await supabase.storage.from(b).createSignedUploadUrl(safePath);
+      if (error) throw error;
+      return json({ ...data, bucket: b, path: safePath });
+    }
+
     return json({ error: 'Not found' }, 404);
   } catch (e) {
     return json({ error: (e as Error).message }, 500);

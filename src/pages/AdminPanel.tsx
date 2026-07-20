@@ -66,6 +66,22 @@ async function signedUrl(bucket: string, path: string) {
   if (error) throw error;
   return data.signedUrl;
 }
+async function adminUploadFile(bucket: string, path: string, file: File): Promise<string> {
+  const token = sessionStorage.getItem("admin_token");
+  if (!token) throw new Error("Niste prijavljeni");
+  const endpointBase = bucket === "gallery-images" ? GALLERY_URL : NEWS_URL;
+  const res = await fetch(`${endpointBase}/signed-upload`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ path, bucket }),
+  });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body?.error ?? `HTTP ${res.status}`);
+  const { token: uploadToken, path: safePath } = body;
+  const { error } = await supabase.storage.from(bucket).uploadToSignedUrl(safePath, uploadToken, file);
+  if (error) throw error;
+  return await signedUrl(bucket, safePath);
+}
 async function uploadFilesBatch(
   files: File[],
   bucket: string,
@@ -80,9 +96,7 @@ async function uploadFilesBatch(
     const results = await Promise.all(
       batch.map(async (file, idx) => {
         const path = `${pathPrefix}${Date.now()}-${Math.random().toString(36).slice(2, 6)}-${file.name}`;
-        const { error } = await supabase.storage.from(bucket).upload(path, file);
-        if (error) throw error;
-        const url = await signedUrl(bucket, path);
+        const url = await adminUploadFile(bucket, path, file);
         done++;
         onProgress(done, files.length);
         return { url, at: i + idx };
@@ -694,9 +708,7 @@ function NewsForm({
     setUploadingCover(true);
     try {
       const path = `cover/${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("news-images").upload(path, file);
-      if (error) throw error;
-      const url = await signedUrl("news-images", path);
+      const url = await adminUploadFile("news-images", path, file);
       setForm((f) => ({ ...f, image_url: url }));
       toast.success("Slika prenesena");
     } catch (err) {
@@ -894,9 +906,7 @@ function GalleryForm({
     setUploadingCover(true);
     try {
       const path = `cover-${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("gallery-images").upload(path, file);
-      if (error) throw error;
-      const url = await signedUrl("gallery-images", path);
+      const url = await adminUploadFile("gallery-images", path, file);
       setForm((f) => ({ ...f, cover_image: url }));
       toast.success("Naslovna slika prenesena");
     } catch (err) {
