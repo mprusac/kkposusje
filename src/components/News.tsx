@@ -1,5 +1,5 @@
-import { Calendar, ArrowRight, Trophy, Megaphone, Newspaper } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Trophy, Megaphone, Newspaper } from "lucide-react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { fetchAdminNews, parseDate, type AdminNewsItem } from "@/lib/adminNews";
