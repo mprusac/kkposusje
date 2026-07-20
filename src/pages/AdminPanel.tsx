@@ -477,8 +477,7 @@ export default function AdminPanel() {
               size="sm"
               onClick={() => {
                 sessionStorage.setItem("restoreHomeScroll", "true");
-                if (window.history.length > 1) navigate(-1);
-                else navigate("/");
+                navigate("/");
               }}
             >
               <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
