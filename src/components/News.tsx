@@ -46,6 +46,7 @@ import josipMamicHks from "@/assets/news/josip-mamic-hks.jpg";
 import sponzorCroatiaOsiguranje from "@/assets/news-sponzor-croatia-osiguranje.jpg";
 import pavkovicIgokeaCard from "@/assets/news/pavkovic-igokea-card.jpg";
 import cestitkeSiroki from "@/assets/news/cestitke-siroki.jpg";
+import skolaKosarkeZadar from "@/assets/news/skola-kosarke-zadar.jpg";
 
 interface NewsItem {
   id: number;
