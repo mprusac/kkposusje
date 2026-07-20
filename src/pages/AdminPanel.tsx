@@ -708,9 +708,7 @@ function NewsForm({
     setUploadingCover(true);
     try {
       const path = `cover/${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("news-images").upload(path, file);
-      if (error) throw error;
-      const url = await signedUrl("news-images", path);
+      const url = await adminUploadFile("news-images", path, file);
       setForm((f) => ({ ...f, image_url: url }));
       toast.success("Slika prenesena");
     } catch (err) {
@@ -908,9 +906,7 @@ function GalleryForm({
     setUploadingCover(true);
     try {
       const path = `cover-${Date.now()}-${file.name}`;
-      const { error } = await supabase.storage.from("gallery-images").upload(path, file);
-      if (error) throw error;
-      const url = await signedUrl("gallery-images", path);
+      const url = await adminUploadFile("gallery-images", path, file);
       setForm((f) => ({ ...f, cover_image: url }));
       toast.success("Naslovna slika prenesena");
     } catch (err) {
