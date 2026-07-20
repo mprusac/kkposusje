@@ -154,6 +154,21 @@ const News = () => {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [latestNews.length]);
 
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const resetCarousel = () => {
+      container.scrollTo({ left: 0, behavior: "instant" as ScrollBehavior });
+      setActiveIndex(0);
+    };
+
+    resetCarousel();
+    const frame = window.requestAnimationFrame(resetCarousel);
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [latestNews.length, isMobile]);
+
   const scrollToIndex = (index: number) => {
     const boundedIndex = Math.max(0, Math.min(index, latestNews.length - 1));
     const targetCard = cardRefs.current[boundedIndex];
