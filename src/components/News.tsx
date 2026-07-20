@@ -112,7 +112,7 @@ const News = () => {
   useEffect(() => { fetchAdminNews().then(setAdminNews); }, []);
 
   const mergedNews = useMemo(() => {
-    const local = mergedNews.map(n => ({ ...n, id: n.id as number | string }));
+    const local = allNews.map(n => ({ ...n, id: n.id as number | string }));
     return [...(adminNews as any[]), ...local].sort((a: any, b: any) => parseDate(b.date) - parseDate(a.date));
   }, [adminNews]);
 
