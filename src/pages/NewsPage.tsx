@@ -80,6 +80,8 @@ import srebroKadetiCapljina from "@/assets/news/srebro-kadeti-capljina.jpg";
 import pozivPredkadetiCard from "@/assets/news/poziv-predkadeti-card.jpg";
 import pozivPredkadetiKondza from "@/assets/news/poziv-predkadeti-kondza.jpg";
 import pozivPredkadetiBisko from "@/assets/news/poziv-predkadeti-bisko.jpg";
+import summerBasketMostarCard from "@/assets/news/summer-basket-mostar-card.jpg";
+import summerBasketMostar1 from "@/assets/news/summer-basket-mostar-1.jpg";
 
 interface NewsItem {
   id: number;
