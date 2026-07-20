@@ -756,7 +756,10 @@ function NewsForm({
 
         <div className="space-y-1.5">
           <Label>Kratki opis</Label>
-          <Textarea rows={3} value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} />
+          <AutoResizeTextarea
+            value={form.excerpt}
+            onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
+          />
         </div>
 
         <div className="flex items-center gap-3">
