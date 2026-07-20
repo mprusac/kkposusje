@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { fetchAdminNews, parseDate, type AdminNewsItem } from "@/lib/adminNews";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Trophy, Users, Megaphone, Newspaper, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
