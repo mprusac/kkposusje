@@ -1,7 +1,8 @@
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Trophy, Users, Megaphone, Newspaper } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { fetchAdminNews, parseDate, type AdminNewsItem } from "@/lib/adminNews";
 import newsLagunaCard from "@/assets/news-laguna-card.jpg";
 import newsMostarAction from "@/assets/news-mostar-action.png";
 import tomislavCard from "@/assets/tomislav/tomislav-7.png";
