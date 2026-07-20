@@ -112,7 +112,7 @@ const News = () => {
   useEffect(() => { fetchAdminNews().then(setAdminNews); }, []);
 
   const mergedNews = useMemo(() => {
-    const local = allNews.map(n => ({ ...n, id: n.id as number | string }));
+    const local = mergedNews.map(n => ({ ...n, id: n.id as number | string }));
     return [...(adminNews as any[]), ...local].sort((a: any, b: any) => parseDate(b.date) - parseDate(a.date));
   }, [adminNews]);
 
@@ -151,7 +151,7 @@ const News = () => {
   }, []);
 
   const scrollToIndex = (index: number) => {
-    const boundedIndex = Math.max(0, Math.min(index, allNews.length - 1));
+    const boundedIndex = Math.max(0, Math.min(index, mergedNews.length - 1));
     const targetCard = cardRefs.current[boundedIndex];
     const container = scrollRef.current;
 
@@ -211,9 +211,9 @@ const News = () => {
           </button>
           <button
             onClick={() => scroll("right")}
-            disabled={isMobile && activeIndex === allNews.length - 1}
+            disabled={isMobile && activeIndex === mergedNews.length - 1}
             className={`flex absolute -right-2 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
-              isMobile && activeIndex === allNews.length - 1
+              isMobile && activeIndex === mergedNews.length - 1
                 ? "opacity-40 cursor-not-allowed"
                 : "hover:bg-primary/90 hover:scale-110"
             }`}
@@ -223,7 +223,7 @@ const News = () => {
           </button>
 
           <div ref={scrollRef} className="flex gap-0 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-            {allNews.map((item, index) => (
+            {mergedNews.map((item, index) => (
               <Link
                 to={`/vijesti/${item.id}`}
                 key={item.id}
