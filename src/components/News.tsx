@@ -1,7 +1,8 @@
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight, Trophy, Users, Megaphone, Newspaper } from "lucide-react";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { fetchAdminNews, parseDate, type AdminNewsItem } from "@/lib/adminNews";
 import newsLagunaCard from "@/assets/news-laguna-card.jpg";
 import newsMostarAction from "@/assets/news-mostar-action.png";
 import tomislavCard from "@/assets/tomislav/tomislav-7.png";
@@ -106,6 +107,15 @@ const News = () => {
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [adminNews, setAdminNews] = useState<AdminNewsItem[]>([]);
+
+  useEffect(() => { fetchAdminNews().then(setAdminNews); }, []);
+
+  const mergedNews = useMemo(() => {
+    const local = allNews.map(n => ({ ...n, id: n.id as number | string }));
+    return [...(adminNews as any[]), ...local].sort((a: any, b: any) => parseDate(b.date) - parseDate(a.date));
+  }, [adminNews]);
+
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -141,7 +151,7 @@ const News = () => {
   }, []);
 
   const scrollToIndex = (index: number) => {
-    const boundedIndex = Math.max(0, Math.min(index, allNews.length - 1));
+    const boundedIndex = Math.max(0, Math.min(index, mergedNews.length - 1));
     const targetCard = cardRefs.current[boundedIndex];
     const container = scrollRef.current;
 
@@ -201,9 +211,9 @@ const News = () => {
           </button>
           <button
             onClick={() => scroll("right")}
-            disabled={isMobile && activeIndex === allNews.length - 1}
+            disabled={isMobile && activeIndex === mergedNews.length - 1}
             className={`flex absolute -right-2 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
-              isMobile && activeIndex === allNews.length - 1
+              isMobile && activeIndex === mergedNews.length - 1
                 ? "opacity-40 cursor-not-allowed"
                 : "hover:bg-primary/90 hover:scale-110"
             }`}
@@ -213,7 +223,7 @@ const News = () => {
           </button>
 
           <div ref={scrollRef} className="flex gap-0 md:gap-6 overflow-x-auto scrollbar-hide scroll-smooth pb-4 snap-x snap-mandatory md:justify-start" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-            {allNews.map((item, index) => (
+            {mergedNews.map((item, index) => (
               <Link
                 to={`/vijesti/${item.id}`}
                 key={item.id}

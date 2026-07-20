@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { fetchAdminNews, parseDate, type AdminNewsItem } from "@/lib/adminNews";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Trophy, Users, Megaphone, Newspaper, ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -266,6 +267,7 @@ const NewsPage = () => {
   const { articleId } = useParams();
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>("sve");
+  const [adminNews, setAdminNews] = useState<AdminNewsItem[]>([]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
@@ -273,12 +275,20 @@ const NewsPage = () => {
     document.body.scrollTop = 0;
   }, []);
 
+  useEffect(() => { fetchAdminNews().then(setAdminNews); }, []);
+
+  const mergedNews = useMemo(() => {
+    return [...(adminNews as any[]), ...(allNews as any[])].sort(
+      (a: any, b: any) => parseDate(b.date) - parseDate(a.date)
+    );
+  }, [adminNews]);
+
   if (articleId) {
-    const article = allNews.find(n => n.id === parseInt(articleId));
+    const article = mergedNews.find((n: any) => String(n.id) === articleId);
     if (article) return <ArticleDetail article={article} />;
   }
 
-  const filteredNews = activeCategory === "sve" ? allNews : allNews.filter(item => item.category === activeCategory);
+  const filteredNews = activeCategory === "sve" ? mergedNews : mergedNews.filter((item: any) => item.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-background" style={{ zoom: 0.9 }}>
