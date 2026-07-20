@@ -70,6 +70,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 54, title: "Poziv za naše predkadete! 🟡", excerpt: "Naši predkadeti Ivan Kondža i Ante Biško dobili su službeni poziv na kontrolni trening U-14 selekcije za regiju Hercegovina.", date: "16. 06. 2026.", category: "klub", image: pozivPredkadetiCard, imagePosition: "center" },
   { id: 53, title: "Srebro za naše kadete u Čapljini! 🥈", excerpt: "Naša kadetska selekcija osvojila je sjajno 2. mjesto na jakom Memorijalnom turniru \"Marijo Čolić - Manda\" u Čapljini.", date: "15. 06. 2026.", category: "klub", image: srebroKadetiCapljina, imagePosition: "center" },
   { id: 52, title: "Kadeti na turniru u Čapljini! 🟡", excerpt: "Pred našim kadetima je uzbudljiv košarkaški vikend na jakom Memorijalnom turniru \"Marijo Čolić - Manda\" u Čapljini.", date: "11. 06. 2026.", category: "najava", image: kadetiCapljinaTurnir, imagePosition: "center" },
   { id: 51, title: "Škola košarke u Zadru! 🏀", excerpt: "Naši mladi košarkaši gostovali su u kultnoj dvorani Krešo Ćosić u Zadru, gdje su odmjerili snage s ekipom Puntamike.", date: "06. 06. 2026.", category: "klub", image: skolaKosarkeZadar, imagePosition: "center" },
