@@ -107,6 +107,15 @@ const News = () => {
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [adminNews, setAdminNews] = useState<AdminNewsItem[]>([]);
+
+  useEffect(() => { fetchAdminNews().then(setAdminNews); }, []);
+
+  const mergedNews = useMemo(() => {
+    const local = allNews.map(n => ({ ...n, id: n.id as number | string }));
+    return [...(adminNews as any[]), ...local].sort((a: any, b: any) => parseDate(b.date) - parseDate(a.date));
+  }, [adminNews]);
+
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
