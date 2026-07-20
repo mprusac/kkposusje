@@ -170,17 +170,13 @@ const News = () => {
   };
 
   const scroll = (direction: "left" | "right") => {
-    if (isMobile) {
-      scrollToIndex(direction === "left" ? activeIndex - 1 : activeIndex + 1);
-      return;
-    }
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -380 : 380,
-        behavior: "smooth",
-      });
-    }
+    const step = isMobile ? 1 : 3;
+    scrollToIndex(direction === "left" ? activeIndex - step : activeIndex + step);
   };
+
+  const maxIndex = Math.max(0, latestNews.length - (isMobile ? 1 : 3));
+  const atStart = activeIndex <= 0;
+  const atEnd = activeIndex >= maxIndex;
 
   return (
     <section id="vijesti" className="py-20">
@@ -203,9 +199,9 @@ const News = () => {
         <div className="relative max-w-[1100px] mx-auto px-12 md:px-16">
           <button
             onClick={() => scroll("left")}
-            disabled={isMobile && activeIndex === 0}
+            disabled={atStart}
             className={`flex absolute -left-2 md:left-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
-              isMobile && activeIndex === 0
+              atStart
                 ? "opacity-40 cursor-not-allowed"
                 : "hover:bg-primary/90 hover:scale-110"
             }`}
@@ -215,9 +211,9 @@ const News = () => {
           </button>
           <button
             onClick={() => scroll("right")}
-            disabled={isMobile && activeIndex === latestNews.length - 1}
+            disabled={atEnd}
             className={`flex absolute -right-2 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground transition-all duration-300 shadow-lg ${
-              isMobile && activeIndex === latestNews.length - 1
+              atEnd
                 ? "opacity-40 cursor-not-allowed"
                 : "hover:bg-primary/90 hover:scale-110"
             }`}
