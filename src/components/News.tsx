@@ -44,6 +44,7 @@ import pobjedaLjubuski from "@/assets/news/ljubuski-result-march2026.jpg";
 import josipMamicHks from "@/assets/news/josip-mamic-hks.jpg";
 import sponzorCroatiaOsiguranje from "@/assets/news-sponzor-croatia-osiguranje.jpg";
 import pavkovicIgokeaCard from "@/assets/news/pavkovic-igokea-card.jpg";
+import cestitkeSiroki from "@/assets/news/cestitke-siroki.jpg";
 
 interface NewsItem {
   id: number;
@@ -64,6 +65,7 @@ const categoryConfig: Record<string, { label: string; icon: typeof Trophy }> = {
 };
 
 const allNews: NewsItem[] = [
+  { id: 50, title: "Čestitke HKK Široki! 🍀🏀", excerpt: "Iskrene čestitke HKK Široki na velikoj pobjedi u Domžalama i plasmanu u finale ABA 2 Lige!", date: "14. 04. 2026.", category: "klub", image: cestitkeSiroki, imagePosition: "top" },
   { id: 49, title: "Ponosni na našeg Josipa! 🏀", excerpt: "Naš Josip Pavković nastupa na završnici Youth Basketball Champions League u dresu Igokee.", date: "07. 04. 2026.", category: "klub", image: pavkovicIgokeaCard, imagePosition: "top" },
   { id: 48, title: "Sponzorska suradnja s Croatia Osiguranjem! 🤝", excerpt: "S neizmjernim ponosom objavljujemo suradnju s apsolutnim liderom u svom sektoru – Croatia Osiguranjem!", date: "30. 03. 2026.", category: "klub", image: sponzorCroatiaOsiguranje, imagePosition: "center" },
   { id: 47, title: "Josip Mamić na radaru HKS-a!", excerpt: "S velikim ponosom objavljujemo vijest da je naš talentirani predkadet Josip Mamić dobio službeni poziv Hrvatskog košarkaškog saveza!", date: "22. 03. 2026.", category: "klub", image: josipMamicHks, imagePosition: "top", flagImage: croFlag },
