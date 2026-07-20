@@ -47,6 +47,7 @@ import sponzorCroatiaOsiguranje from "@/assets/news-sponzor-croatia-osiguranje.j
 import pavkovicIgokeaCard from "@/assets/news/pavkovic-igokea-card.jpg";
 import cestitkeSiroki from "@/assets/news/cestitke-siroki.jpg";
 import skolaKosarkeZadar from "@/assets/news/skola-kosarke-zadar.jpg";
+import kadetiCapljinaTurnir from "@/assets/news/kadeti-capljina-turnir.jpg";
 
 interface NewsItem {
   id: number;
