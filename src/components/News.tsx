@@ -259,7 +259,7 @@ const News = () => {
                 ref={(el) => {
                   cardRefs.current[index] = el as unknown as HTMLAnchorElement;
                 }}
-                className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30 snap-start flex flex-col"
+                className="group flex-shrink-0 bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-primary/50 hover:border-primary shadow-gold-soft snap-start flex flex-col"
                 style={{
                   width: isMobile ? "100%" : "calc((100% - 3rem) / 3)",
                   minWidth: isMobile ? "100%" : "260px",
