@@ -18,7 +18,7 @@ import {
 import { toast } from "sonner";
 import {
   Plus, Edit, Trash2, Save, X, Upload, Pin, ArrowLeft, LogOut,
-  ImagePlus, Newspaper, Loader2, Tag, Calendar,
+  ImagePlus, Newspaper, Loader2, Tag, Calendar, Users, Trophy,
 } from "lucide-react";
 import logoGrude from "@/assets/logos/hkk_grude.png";
 import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
