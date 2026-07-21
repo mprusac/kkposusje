@@ -425,9 +425,10 @@ export default function AdminPanel() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [galleries, setGalleries] = useState<GalleryItem[]>([]);
   const [matches, setMatches] = useState<MatchItem[]>([]);
+  const [players, setPlayers] = useState<PlayerItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const [view, setView] = useState<"main" | "news-form" | "gallery-form" | "match-form">("main");
+  const [view, setView] = useState<"main" | "news-form" | "gallery-form" | "match-form" | "player-form">("main");
   const [editing, setEditing] = useState<NewsItem | null>(null);
 
   useEffect(() => {
@@ -439,8 +440,9 @@ export default function AdminPanel() {
   }, []);
   const [editingGallery, setEditingGallery] = useState<GalleryItem | null>(null);
   const [editingMatch, setEditingMatch] = useState<MatchItem | null>(null);
+  const [editingPlayer, setEditingPlayer] = useState<PlayerItem | null>(null);
 
-  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery" | "match"; id: string } | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery" | "match" | "player"; id: string } | null>(null);
   const [categoryModal, setCategoryModal] = useState(false);
 
   const logout = useCallback(() => {
@@ -449,6 +451,7 @@ export default function AdminPanel() {
     setNews([]);
     setGalleries([]);
     setMatches([]);
+    setPlayers([]);
     setView("main");
   }, []);
 
@@ -485,14 +488,19 @@ export default function AdminPanel() {
     const data = await apiFetch(`${MATCHES_URL}/list`);
     setMatches(data);
   }, [apiFetch]);
+  const fetchPlayers = useCallback(async () => {
+    const data = await apiFetch(`${PLAYERS_URL}/list`);
+    setPlayers(data);
+  }, [apiFetch]);
 
   useEffect(() => {
     if (!token) return;
     setLoading(true);
-    Promise.all([fetchNews(), fetchGalleries(), fetchMatches()])
+    Promise.all([fetchNews(), fetchGalleries(), fetchMatches(), fetchPlayers()])
       .catch((e) => toast.error("Greška pri učitavanju", { description: e.message }))
       .finally(() => setLoading(false));
-  }, [token, fetchNews, fetchGalleries, fetchMatches]);
+  }, [token, fetchNews, fetchGalleries, fetchMatches, fetchPlayers]);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
