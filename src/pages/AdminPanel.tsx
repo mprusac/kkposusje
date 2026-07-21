@@ -719,7 +719,7 @@ export default function AdminPanel() {
             )}
 
             <div className="space-y-2">
-              {news.map((n) => (
+              {news.slice(0, 10).map((n) => (
                 <Card key={n.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {n.image_url ? (
                     <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
