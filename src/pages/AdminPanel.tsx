@@ -618,6 +618,9 @@ export default function AdminPanel() {
           <Button variant="outline" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
             <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
           </Button>
+          <Button variant="outline" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
+            <Newspaper className="w-4 h-4 mr-2" /> Nova utakmica
+          </Button>
         </div>
 
         {/* Two column layout */}
