@@ -543,15 +543,34 @@ export default function AdminPanel() {
     );
   }
 
+  if (view === "match-form") {
+    return (
+      <MatchForm
+        initial={editingMatch}
+        onCancel={() => { setView("main"); setEditingMatch(null); }}
+        onSaved={async () => {
+          await fetchMatches();
+          setView("main");
+          setEditingMatch(null);
+        }}
+        apiFetch={apiFetch}
+      />
+    );
+  }
+
   // ---------- MAIN VIEW ----------
   const handleDelete = async () => {
     if (!confirmDelete) return;
     try {
-      const url = confirmDelete.kind === "news" ? `${NEWS_URL}/delete` : `${GALLERY_URL}/delete`;
+      const url =
+        confirmDelete.kind === "news" ? `${NEWS_URL}/delete`
+        : confirmDelete.kind === "gallery" ? `${GALLERY_URL}/delete`
+        : `${MATCHES_URL}/delete`;
       await apiFetch(url, { method: "POST", body: JSON.stringify({ id: confirmDelete.id }) });
       toast.success("Obrisano");
       if (confirmDelete.kind === "news") await fetchNews();
-      else await fetchGalleries();
+      else if (confirmDelete.kind === "gallery") await fetchGalleries();
+      else await fetchMatches();
     } catch (e) {
       toast.error("Greška", { description: (e as Error).message });
     } finally {
