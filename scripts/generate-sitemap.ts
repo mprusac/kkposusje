@@ -76,7 +76,13 @@ function generateSitemap(entries: SitemapEntry[]) {
 }
 
 async function main() {
-  const [newsIds, galleryIds] = await Promise.all([fetchNewsIds(), fetchGalleryIds()]);
+  const [dbNewsIds, dbGalleryIds] = await Promise.all([fetchNewsIds(), fetchGalleryIds()]);
+
+  const localNewsIds = allNews.map((n) => n.id);
+  const localGalleryIds = events.map((e) => e.id);
+
+  const allNewsIds = Array.from(new Set([...localNewsIds, ...dbNewsIds]));
+  const allGalleryIds = Array.from(new Set([...localGalleryIds, ...dbGalleryIds]));
 
   const now = new Date().toISOString().split("T")[0];
 
@@ -85,12 +91,12 @@ async function main() {
     { path: "/vijesti", lastmod: now, changefreq: "weekly", priority: "0.9" },
     { path: "/statistika", lastmod: now, changefreq: "weekly", priority: "0.8" },
     { path: "/galerija", lastmod: now, changefreq: "monthly", priority: "0.7" },
-    ...newsIds.map((id) => ({ path: `/vijesti/${id}`, changefreq: "monthly" as const, priority: "0.6" })),
-    ...galleryIds.map((id) => ({ path: `/galerija/${id}`, changefreq: "monthly" as const, priority: "0.6" })),
+    ...allNewsIds.map((id) => ({ path: `/vijesti/${id}`, changefreq: "monthly" as const, priority: "0.6" })),
+    ...allGalleryIds.map((id) => ({ path: `/galerija/${id}`, changefreq: "monthly" as const, priority: "0.6" })),
   ];
 
   writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
-  console.log(`sitemap.xml written with ${entries.length} entries`);
+  console.log(`sitemap.xml written with ${entries.length} entries (${allNewsIds.length} news, ${allGalleryIds.length} galleries)`);
 }
 
 main().catch((err) => {
