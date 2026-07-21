@@ -23,7 +23,12 @@ import {
 
 const NEWS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-news`;
 const GALLERY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-galleries`;
+const MATCHES_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-matches`;
 const DEFAULT_CATEGORIES = ["2026", "2025", "Najava"];
+const OPPONENT_OPTIONS = [
+  "HKK Grude", "HKK Ljubuški", "HKK Mostar", "HKK Rama",
+  "HKK Široki II", "HKK Tomislav", "HKK Čapljina",
+];
 const PAGE_SIZE = 30;
 const SIGNED_URL_TTL = 60 * 60 * 24 * 365 * 10; // 10 years
 
