@@ -755,9 +755,13 @@ export default function AdminPanel() {
                     </div>
                     <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
                       <span>{isoToDMY(m.match_date)}</span>
-                      <Badge variant="secondary" className="text-xs uppercase">
-                        {m.competition === "kup" ? "Kup KSHB" : "Liga KSHB"}
-                      </Badge>
+                      <span className="text-[10px] font-bold text-white bg-primary px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                        {m.competition === "kup" ? (
+                          <>Kup KSHB <span aria-hidden>🏆</span></>
+                        ) : (
+                          <>Liga KSHB <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain" /></>
+                        )}
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
