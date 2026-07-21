@@ -437,14 +437,18 @@ export default function AdminPanel() {
     const data = await apiFetch(`${GALLERY_URL}/list`);
     setGalleries(data);
   }, [apiFetch]);
+  const fetchMatches = useCallback(async () => {
+    const data = await apiFetch(`${MATCHES_URL}/list`);
+    setMatches(data);
+  }, [apiFetch]);
 
   useEffect(() => {
     if (!token) return;
     setLoading(true);
-    Promise.all([fetchNews(), fetchGalleries()])
+    Promise.all([fetchNews(), fetchGalleries(), fetchMatches()])
       .catch((e) => toast.error("Greška pri učitavanju", { description: e.message }))
       .finally(() => setLoading(false));
-  }, [token, fetchNews, fetchGalleries]);
+  }, [token, fetchNews, fetchGalleries, fetchMatches]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
