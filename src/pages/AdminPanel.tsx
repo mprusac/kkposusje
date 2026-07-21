@@ -82,6 +82,17 @@ interface MatchItem {
   sofascore_link: string | null;
   opponent_logo_url: string | null;
 }
+interface PlayerStat { label: string; value: string }
+interface PlayerItem {
+  id: string;
+  name: string;
+  position: string | null;
+  description: string | null;
+  image_url: string | null;
+  jersey_number: number | null;
+  statistics: PlayerStat[];
+  sort_order: number;
+}
 
 function todayISO() {
   const d = new Date();
