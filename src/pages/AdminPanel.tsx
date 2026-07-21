@@ -1299,7 +1299,23 @@ function MatchForm({
   const [competition, setCompetition] = useState<"liga" | "kup">(initial?.competition ?? "liga");
   const [youtubeLink, setYoutubeLink] = useState(initial?.youtube_link ?? "");
   const [sofascoreLink, setSofascoreLink] = useState(initial?.sofascore_link ?? "");
+  const [opponentLogoUrl, setOpponentLogoUrl] = useState<string | null>(initial?.opponent_logo_url ?? null);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
   const dateInputRef = useRef<HTMLInputElement>(null);
+
+  const handleLogoUpload = async (file: File) => {
+    setUploadingLogo(true);
+    try {
+      const path = `logos/${Date.now()}-${Math.random().toString(36).slice(2, 6)}-${file.name}`;
+      const url = await adminUploadFile("team-logos", path, file);
+      setOpponentLogoUrl(url);
+      toast.success("Logo prenesen");
+    } catch (e) {
+      toast.error("Greška uploada", { description: (e as Error).message });
+    } finally {
+      setUploadingLogo(false);
+    }
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1320,6 +1336,7 @@ function MatchForm({
         competition,
         youtube_link: youtubeLink.trim() || null,
         sofascore_link: sofascoreLink.trim() || null,
+        opponent_logo_url: useCustom ? opponentLogoUrl : null,
       };
       const endpoint = initial ? "update" : "create";
       await apiFetch(`${MATCHES_URL}/${endpoint}`, {
