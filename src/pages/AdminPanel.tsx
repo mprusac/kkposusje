@@ -23,7 +23,12 @@ import {
 
 const NEWS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-news`;
 const GALLERY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-galleries`;
+const MATCHES_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-matches`;
 const DEFAULT_CATEGORIES = ["2026", "2025", "Najava"];
+const OPPONENT_OPTIONS = [
+  "HKK Grude", "HKK Ljubuški", "HKK Mostar", "HKK Rama",
+  "HKK Široki II", "HKK Tomislav", "HKK Čapljina",
+];
 const PAGE_SIZE = 30;
 const SIGNED_URL_TTL = 60 * 60 * 24 * 365 * 10; // 10 years
 
@@ -47,7 +52,28 @@ interface GalleryItem {
   cover_image: string | null;
   created_at: string;
 }
+interface MatchItem {
+  id: string;
+  match_date: string; // YYYY-MM-DD
+  opponent: string;
+  is_home: boolean;
+  posusje_score: number | null;
+  opponent_score: number | null;
+  competition: "liga" | "kup";
+  youtube_link: string | null;
+  sofascore_link: string | null;
+  opponent_logo_url: string | null;
+}
 
+function todayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function isoToDMY(iso: string) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${d}.${m}.${y}`;
+}
 function todayDMY() {
   const d = new Date();
   return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
@@ -354,9 +380,10 @@ export default function AdminPanel() {
 
   const [news, setNews] = useState<NewsItem[]>([]);
   const [galleries, setGalleries] = useState<GalleryItem[]>([]);
+  const [matches, setMatches] = useState<MatchItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const [view, setView] = useState<"main" | "news-form" | "gallery-form">("main");
+  const [view, setView] = useState<"main" | "news-form" | "gallery-form" | "match-form">("main");
   const [editing, setEditing] = useState<NewsItem | null>(null);
 
   useEffect(() => {
@@ -367,8 +394,9 @@ export default function AdminPanel() {
     return () => { meta.remove(); };
   }, []);
   const [editingGallery, setEditingGallery] = useState<GalleryItem | null>(null);
+  const [editingMatch, setEditingMatch] = useState<MatchItem | null>(null);
 
-  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery"; id: string } | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery" | "match"; id: string } | null>(null);
   const [categoryModal, setCategoryModal] = useState(false);
 
   const logout = useCallback(() => {
@@ -376,6 +404,7 @@ export default function AdminPanel() {
     setToken(null);
     setNews([]);
     setGalleries([]);
+    setMatches([]);
     setView("main");
   }, []);
 
@@ -408,14 +437,18 @@ export default function AdminPanel() {
     const data = await apiFetch(`${GALLERY_URL}/list`);
     setGalleries(data);
   }, [apiFetch]);
+  const fetchMatches = useCallback(async () => {
+    const data = await apiFetch(`${MATCHES_URL}/list`);
+    setMatches(data);
+  }, [apiFetch]);
 
   useEffect(() => {
     if (!token) return;
     setLoading(true);
-    Promise.all([fetchNews(), fetchGalleries()])
+    Promise.all([fetchNews(), fetchGalleries(), fetchMatches()])
       .catch((e) => toast.error("Greška pri učitavanju", { description: e.message }))
       .finally(() => setLoading(false));
-  }, [token, fetchNews, fetchGalleries]);
+  }, [token, fetchNews, fetchGalleries, fetchMatches]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -510,15 +543,34 @@ export default function AdminPanel() {
     );
   }
 
+  if (view === "match-form") {
+    return (
+      <MatchForm
+        initial={editingMatch}
+        onCancel={() => { setView("main"); setEditingMatch(null); }}
+        onSaved={async () => {
+          await fetchMatches();
+          setView("main");
+          setEditingMatch(null);
+        }}
+        apiFetch={apiFetch}
+      />
+    );
+  }
+
   // ---------- MAIN VIEW ----------
   const handleDelete = async () => {
     if (!confirmDelete) return;
     try {
-      const url = confirmDelete.kind === "news" ? `${NEWS_URL}/delete` : `${GALLERY_URL}/delete`;
+      const url =
+        confirmDelete.kind === "news" ? `${NEWS_URL}/delete`
+        : confirmDelete.kind === "gallery" ? `${GALLERY_URL}/delete`
+        : `${MATCHES_URL}/delete`;
       await apiFetch(url, { method: "POST", body: JSON.stringify({ id: confirmDelete.id }) });
       toast.success("Obrisano");
       if (confirmDelete.kind === "news") await fetchNews();
-      else await fetchGalleries();
+      else if (confirmDelete.kind === "gallery") await fetchGalleries();
+      else await fetchMatches();
     } catch (e) {
       toast.error("Greška", { description: (e as Error).message });
     } finally {
@@ -565,6 +617,9 @@ export default function AdminPanel() {
           </Button>
           <Button variant="outline" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
             <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
+          </Button>
+          <Button variant="outline" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
+            <Newspaper className="w-4 h-4 mr-2" /> Nova utakmica
           </Button>
         </div>
 
@@ -659,6 +714,48 @@ export default function AdminPanel() {
             </div>
           </section>
         </div>
+
+        {/* Utakmice */}
+        <section className="space-y-3 mt-8">
+          <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+            Utakmice
+          </h2>
+          {matches.length === 0 && !loading && (
+            <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
+          )}
+          <div className="space-y-2 max-w-3xl mx-auto">
+            {matches.map((m) => {
+              const scoreText = m.posusje_score != null && m.opponent_score != null
+                ? `${m.posusje_score}:${m.opponent_score}`
+                : "—";
+              const home = m.is_home ? "HKK Posušje" : m.opponent;
+              const away = m.is_home ? m.opponent : "HKK Posušje";
+              return (
+                <Card key={m.id} className="p-3 bg-card border-border flex items-center gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium truncate text-sm">
+                      {home} vs {away} — {scoreText}
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                      <span>{isoToDMY(m.match_date)}</span>
+                      <Badge variant="secondary" className="text-xs uppercase">
+                        {m.competition === "kup" ? "Kup KSHB" : "Liga KSHB"}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
       </main>
 
 
@@ -1168,5 +1265,222 @@ function CategoriesModal({
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  );
+}
+
+// ==================== MATCH FORM ====================
+function MatchForm({
+  initial,
+  onCancel,
+  onSaved,
+  apiFetch,
+}: {
+  initial: MatchItem | null;
+  onCancel: () => void;
+  onSaved: () => Promise<void>;
+  apiFetch: (u: string, i?: RequestInit) => Promise<any>;
+}) {
+  const [saving, setSaving] = useState(false);
+  const [opponent, setOpponent] = useState(initial?.opponent ?? OPPONENT_OPTIONS[0]);
+  const [customOpponent, setCustomOpponent] = useState(
+    initial && !OPPONENT_OPTIONS.includes(initial.opponent) ? initial.opponent : "",
+  );
+  const [useCustom, setUseCustom] = useState(
+    !!(initial && !OPPONENT_OPTIONS.includes(initial.opponent)),
+  );
+  const [isHome, setIsHome] = useState(initial?.is_home ?? true);
+  const [posusjeScore, setPosusjeScore] = useState<string>(
+    initial?.posusje_score != null ? String(initial.posusje_score) : "",
+  );
+  const [opponentScore, setOpponentScore] = useState<string>(
+    initial?.opponent_score != null ? String(initial.opponent_score) : "",
+  );
+  const [matchDate, setMatchDate] = useState(initial?.match_date ?? todayISO());
+  const [competition, setCompetition] = useState<"liga" | "kup">(initial?.competition ?? "liga");
+  const [youtubeLink, setYoutubeLink] = useState(initial?.youtube_link ?? "");
+  const [sofascoreLink, setSofascoreLink] = useState(initial?.sofascore_link ?? "");
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const finalOpponent = useCustom ? customOpponent.trim() : opponent;
+    if (!finalOpponent) {
+      toast.error("Unesite ime protivnika");
+      return;
+    }
+    setSaving(true);
+    try {
+      const body = {
+        id: initial?.id,
+        opponent: finalOpponent,
+        is_home: isHome,
+        posusje_score: posusjeScore === "" ? null : Number(posusjeScore),
+        opponent_score: opponentScore === "" ? null : Number(opponentScore),
+        match_date: matchDate,
+        competition,
+        youtube_link: youtubeLink.trim() || null,
+        sofascore_link: sofascoreLink.trim() || null,
+      };
+      const endpoint = initial ? "update" : "create";
+      await apiFetch(`${MATCHES_URL}/${endpoint}`, {
+        method: "POST",
+        body: JSON.stringify(body),
+      });
+      toast.success(initial ? "Utakmica ažurirana" : "Utakmica dodana");
+      await onSaved();
+    } catch (e) {
+      toast.error("Greška", { description: (e as Error).message });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+        <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
+          <Button variant="outline" size="sm" onClick={onCancel}>
+            <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+          </Button>
+          <h1 className="font-semibold text-2xl text-primary">
+            {initial ? "Uredi utakmicu" : "Nova utakmica"}
+          </h1>
+          <div className="w-20" />
+        </div>
+      </header>
+
+      <main className="max-w-3xl mx-auto p-4">
+        <form onSubmit={submit} className="space-y-5">
+          <div className="space-y-2">
+            <Label>Protivnik</Label>
+            {!useCustom ? (
+              <div className="flex gap-2">
+                <select
+                  className="flex-1 h-10 px-3 rounded-md border border-border bg-background text-foreground"
+                  value={opponent}
+                  onChange={(e) => setOpponent(e.target.value)}
+                >
+                  {OPPONENT_OPTIONS.map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </select>
+                <Button type="button" variant="outline" onClick={() => setUseCustom(true)}>
+                  Drugi...
+                </Button>
+              </div>
+            ) : (
+              <div className="flex gap-2">
+                <Input
+                  value={customOpponent}
+                  onChange={(e) => setCustomOpponent(e.target.value)}
+                  placeholder="Naziv ekipe"
+                />
+                <Button type="button" variant="outline" onClick={() => setUseCustom(false)}>
+                  Iz liste
+                </Button>
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Domaćin / gost</Label>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant={isHome ? "default" : "outline"}
+                onClick={() => setIsHome(true)}
+              >
+                HKK Posušje domaćin
+              </Button>
+              <Button
+                type="button"
+                variant={!isHome ? "default" : "outline"}
+                onClick={() => setIsHome(false)}
+              >
+                HKK Posušje gost
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label>Posušje rezultat</Label>
+              <Input
+                type="number"
+                min={0}
+                value={posusjeScore}
+                onChange={(e) => setPosusjeScore(e.target.value)}
+                placeholder="prazno = najavljena"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Protivnik rezultat</Label>
+              <Input
+                type="number"
+                min={0}
+                value={opponentScore}
+                onChange={(e) => setOpponentScore(e.target.value)}
+                placeholder="prazno = najavljena"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Datum</Label>
+            <Input
+              type="date"
+              value={matchDate}
+              onChange={(e) => setMatchDate(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Natjecanje</Label>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant={competition === "liga" ? "default" : "outline"}
+                onClick={() => setCompetition("liga")}
+              >
+                Liga KSHB
+              </Button>
+              <Button
+                type="button"
+                variant={competition === "kup" ? "default" : "outline"}
+                onClick={() => setCompetition("kup")}
+              >
+                🏆 Kup KSHB
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>YouTube link</Label>
+            <Input
+              value={youtubeLink}
+              onChange={(e) => setYoutubeLink(e.target.value)}
+              placeholder="https://youtube.com/..."
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>SofaScore link</Label>
+            <Input
+              value={sofascoreLink}
+              onChange={(e) => setSofascoreLink(e.target.value)}
+              placeholder="https://sofascore.com/..."
+            />
+          </div>
+
+          <div className="flex gap-3 justify-end pt-4">
+            <Button type="button" variant="outline" onClick={onCancel}>Odustani</Button>
+            <Button type="submit" disabled={saving}>
+              {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {initial ? "Spremi" : "Dodaj"}
+            </Button>
+          </div>
+        </form>
+      </main>
+    </div>
   );
 }

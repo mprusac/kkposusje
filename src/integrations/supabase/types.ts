@@ -44,6 +44,51 @@ export type Database = {
         }
         Relationships: []
       }
+      matches: {
+        Row: {
+          competition: string
+          created_at: string
+          id: string
+          is_home: boolean
+          match_date: string
+          opponent: string
+          opponent_logo_url: string | null
+          opponent_score: number | null
+          posusje_score: number | null
+          sofascore_link: string | null
+          updated_at: string
+          youtube_link: string | null
+        }
+        Insert: {
+          competition?: string
+          created_at?: string
+          id?: string
+          is_home?: boolean
+          match_date: string
+          opponent: string
+          opponent_logo_url?: string | null
+          opponent_score?: number | null
+          posusje_score?: number | null
+          sofascore_link?: string | null
+          updated_at?: string
+          youtube_link?: string | null
+        }
+        Update: {
+          competition?: string
+          created_at?: string
+          id?: string
+          is_home?: boolean
+          match_date?: string
+          opponent?: string
+          opponent_logo_url?: string | null
+          opponent_score?: number | null
+          posusje_score?: number | null
+          sofascore_link?: string | null
+          updated_at?: string
+          youtube_link?: string | null
+        }
+        Relationships: []
+      }
       news: {
         Row: {
           category: string

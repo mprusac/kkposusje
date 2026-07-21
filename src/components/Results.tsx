@@ -2,225 +2,8 @@ import { ExternalLink, ChevronLeft, ChevronRight, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
-// Import team logos
-import logoGrude from "@/assets/logos/hkk_grude.png";
-import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
-import logoMostar from "@/assets/logos/hkk_mostar.png";
-import logoRama from "@/assets/logos/hkk_rama.png";
-import logoSiroki from "@/assets/logos/hkk_siroki.png";
-import logoTomislav from "@/assets/logos/hkk_tomislav.png";
-import logoPosusje from "@/assets/logos/kk_posusje.png";
-import logoCapljina from "@/assets/logos/hkk_capljina.png";
 import logoKSHB from "@/assets/logos/kshb_logo.png";
-
-interface MatchResult {
-  id: number;
-  date: string;
-  homeTeam: string;
-  awayTeam: string;
-  homeScore: number;
-  awayScore: number;
-  isHome: boolean;
-  sofaScoreLink: string;
-  youtubeLink?: string;
-  competition?: string;
-}
-
-// Logo mapping
-const teamLogos: Record<string, string> = {
-  "HKK Grude": logoGrude,
-  "HKK Ljubuški": logoLjubuski,
-  "HKK Mostar": logoMostar,
-  "HKK Rama": logoRama,
-  "HKK Široki": logoSiroki,
-  "HKK Široki II": logoSiroki,
-  "KK Široki": logoSiroki,
-  "HKK Tomislav": logoTomislav,
-  "KK Tomislavgrad": logoTomislav,
-  "HKK Posušje": logoPosusje,
-  "KK Posušje": logoPosusje,
-  "HKK Čapljina": logoCapljina,
-  "KK Čapljina": logoCapljina,
-};
-
-const results: MatchResult[] = [
-  {
-    id: 22,
-    date: "20.03.2026",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Ljubuški",
-    homeScore: 88,
-    awayScore: 78,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014542",
-    youtubeLink: "https://www.youtube.com/watch?v=1jks9zzXLDw",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 21,
-    date: "17.03.2026",
-    homeTeam: "HKK Čapljina",
-    awayTeam: "HKK Posušje",
-    homeScore: 61,
-    awayScore: 83,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15717259",
-    youtubeLink: "https://www.youtube.com/watch?v=fYoOtDkPZJ0",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 20,
-    date: "08.03.2026",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Grude",
-    homeScore: 80,
-    awayScore: 67,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014517",
-    youtubeLink: "https://www.youtube.com/watch?v=xKw2LGbjTXo",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 19,
-    date: "01.03.2026",
-    homeTeam: "HKK Rama",
-    awayTeam: "HKK Posušje",
-    homeScore: 60,
-    awayScore: 94,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014515",
-    youtubeLink: "https://www.youtube.com/watch?v=TCng7GXf2uU",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 18,
-    date: "22.02.2026",
-    homeTeam: "HKK Široki II",
-    awayTeam: "HKK Posušje",
-    homeScore: 70,
-    awayScore: 62,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014507",
-    youtubeLink: "https://www.youtube.com/watch?v=xdO6qF1POOc",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 16,
-    date: "15.02.2026",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Mostar",
-    homeScore: 90,
-    awayScore: 84,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014506",
-    youtubeLink: "https://www.youtube.com/watch?v=ncFUEOKNpCo",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 17,
-    date: "08.02.2026",
-    homeTeam: "HKK Tomislav",
-    awayTeam: "HKK Posušje",
-    homeScore: 60,
-    awayScore: 55,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:15014499",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 0,
-    date: "20.01.2026",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Široki II",
-    homeScore: 54,
-    awayScore: 69,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/hr/basketball/match/kk-posusje-hkk-siroki/lIcsTEid#id:15400673",
-    competition: "Kup KSHB 🏆",
-  },
-  {
-    id: 1,
-    date: "14.12.2025",
-    homeTeam: "HKK Ljubuški",
-    awayTeam: "HKK Posušje",
-    homeScore: 85,
-    awayScore: 81,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-ljubuski-kk-posusje/TEidsOiOi#id:15014496",
-    youtubeLink: "https://www.youtube.com/live/X2TcwA2sgH0?si=qE7iKg4f61kOe0Ap",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 2,
-    date: "07.12.2025",
-    homeTeam: "HKK Čapljina",
-    awayTeam: "HKK Posušje",
-    homeScore: 33,
-    awayScore: 107,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/kk-posusje-hkk-capljina/nOHcsTEid#id:15185580",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 3,
-    date: "30.11.2025",
-    homeTeam: "HKK Grude",
-    awayTeam: "HKK Posušje",
-    homeScore: 60,
-    awayScore: 56,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-grude-kk-posusje/TEidsMiOi#id:15014486",
-    youtubeLink: "https://www.youtube.com/live/1PvUKvtkBkQ?si=he8SIzhogLNQcjw3",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 4,
-    date: "23.11.2025",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Rama",
-    homeScore: 90,
-    awayScore: 77,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-rama-kk-posusje/TEidsNiOi#id:15014481",
-    youtubeLink: "https://www.youtube.com/live/7k5R_SHgrEE?si=GGB5YTpvDl_TG0Bt",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 5,
-    date: "15.11.2025",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Široki II",
-    homeScore: 79,
-    awayScore: 72,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-siroki-ii-kk-posusje/TEidsJiOi#id:15014461",
-    youtubeLink: "https://www.youtube.com/live/M4P4ciZs5Cw?si=jP7sKatpeSwoIt46",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 6,
-    date: "09.11.2025",
-    homeTeam: "HKK Mostar",
-    awayTeam: "HKK Posušje",
-    homeScore: 92,
-    awayScore: 78,
-    isHome: false,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-mostar-kk-posusje/TEidsMbxh#id:15014458",
-    competition: "Liga KSHB",
-  },
-  {
-    id: 7,
-    date: "02.11.2025",
-    homeTeam: "HKK Posušje",
-    awayTeam: "HKK Tomislav",
-    homeScore: 81,
-    awayScore: 85,
-    isHome: true,
-    sofaScoreLink: "https://www.sofascore.com/basketball/match/hkk-tomislav-tomislavgrad-kk-posusje/TEidsLiOi#id:14973017",
-    competition: "Liga KSHB",
-  },
-];
+import { fetchMatches, getTeamLogoFor, type DisplayMatch } from "@/lib/adminMatches";
 
 const Results = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -228,6 +11,13 @@ const Results = () => {
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [results, setResults] = useState<DisplayMatch[]>([]);
+
+  useEffect(() => {
+    fetchMatches()
+      .then((all) => setResults(all.filter((m) => !m.isUpcoming)))
+      .catch(() => setResults([]));
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -287,8 +77,8 @@ const Results = () => {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getTeamLogo = (teamName: string) => {
-    return teamLogos[teamName] || null;
+  const getTeamLogo = (teamName: string, match: DisplayMatch) => {
+    return getTeamLogoFor(match, teamName);
   };
 
   const getLogoScale = (teamName: string) => {
@@ -355,8 +145,8 @@ const Results = () => {
             {results.map((match, index) => {
               const isWin = (match.isHome && match.homeScore > match.awayScore) ||
                 (!match.isHome && match.awayScore > match.homeScore);
-              const homeLogo = getTeamLogo(match.homeTeam);
-              const awayLogo = getTeamLogo(match.awayTeam);
+              const homeLogo = getTeamLogo(match.homeTeam, match);
+              const awayLogo = getTeamLogo(match.awayTeam, match);
               
               return (
                 <a
@@ -364,7 +154,7 @@ const Results = () => {
                   ref={(el) => {
                     cardRefs.current[index] = el;
                   }}
-                  href={match.sofaScoreLink}
+                  href={match.sofascoreLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-start ${
