@@ -18,8 +18,16 @@ import {
 import { toast } from "sonner";
 import {
   Plus, Edit, Trash2, Save, X, Upload, Pin, ArrowLeft, LogOut,
-  ImagePlus, Newspaper, Loader2, Tag, Calendar,
+  ImagePlus, Newspaper, Loader2, Tag, Calendar, Youtube, Trophy,
 } from "lucide-react";
+import logoGrude from "@/assets/logos/hkk_grude.png";
+import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
+import logoMostar from "@/assets/logos/hkk_mostar.png";
+import logoRama from "@/assets/logos/hkk_rama.png";
+import logoSiroki from "@/assets/logos/hkk_siroki.png";
+import logoTomislav from "@/assets/logos/hkk_tomislav.png";
+import logoCapljina from "@/assets/logos/hkk_capljina.png";
+import logoKSHB from "@/assets/logos/kshb_logo.png";
 
 const NEWS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-news`;
 const GALLERY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-galleries`;
@@ -29,6 +37,15 @@ const OPPONENT_OPTIONS = [
   "HKK Grude", "HKK Ljubuški", "HKK Mostar", "HKK Rama",
   "HKK Široki II", "HKK Tomislav", "HKK Čapljina",
 ];
+const OPPONENT_LOGOS: Record<string, string> = {
+  "HKK Grude": logoGrude,
+  "HKK Ljubuški": logoLjubuski,
+  "HKK Mostar": logoMostar,
+  "HKK Rama": logoRama,
+  "HKK Široki II": logoSiroki,
+  "HKK Tomislav": logoTomislav,
+  "HKK Čapljina": logoCapljina,
+};
 const PAGE_SIZE = 30;
 const SIGNED_URL_TTL = 60 * 60 * 24 * 365 * 10; // 10 years
 
@@ -1372,15 +1389,30 @@ function MatchForm({
             <Label>Protivnik</Label>
             {!useCustom ? (
               <div className="flex gap-2">
-                <select
-                  className="flex-1 h-10 px-3 rounded-md border border-border bg-background text-foreground"
-                  value={opponent}
-                  onChange={(e) => setOpponent(e.target.value)}
-                >
-                  {OPPONENT_OPTIONS.map((o) => (
-                    <option key={o} value={o}>{o}</option>
-                  ))}
-                </select>
+                <Select value={opponent} onValueChange={setOpponent}>
+                  <SelectTrigger className="flex-1">
+                    <SelectValue>
+                      <span className="flex items-center gap-2">
+                        {OPPONENT_LOGOS[opponent] && (
+                          <img src={OPPONENT_LOGOS[opponent]} alt="" className="w-6 h-6 object-contain" />
+                        )}
+                        {opponent}
+                      </span>
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {OPPONENT_OPTIONS.map((o) => (
+                      <SelectItem key={o} value={o}>
+                        <span className="flex items-center gap-2">
+                          {OPPONENT_LOGOS[o] && (
+                            <img src={OPPONENT_LOGOS[o]} alt="" className="w-6 h-6 object-contain" />
+                          )}
+                          {o}
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <Button type="button" variant="outline" onClick={() => setUseCustom(true)}>
                   Drugi...
                 </Button>
@@ -1486,17 +1518,26 @@ function MatchForm({
           <div className="space-y-2">
             <Label>Datum</Label>
             <div className="relative">
-              <Calendar
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none"
-              />
               <Input
                 ref={dateInputRef}
                 type="date"
                 value={matchDate}
                 onChange={(e) => setMatchDate(e.target.value)}
                 required
-                className="pl-10 date-input-custom-icon"
+                className="pr-10 date-input-custom-icon"
               />
+              <button
+                type="button"
+                onClick={() => {
+                  const el = dateInputRef.current as any;
+                  if (el?.showPicker) el.showPicker();
+                  else el?.focus();
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded hover:bg-muted"
+                aria-label="Odaberi datum"
+              >
+                <Calendar className="w-5 h-5 text-white" />
+              </button>
             </div>
           </div>
 
@@ -1508,20 +1549,29 @@ function MatchForm({
                 variant={competition === "liga" ? "default" : "outline"}
                 onClick={() => setCompetition("liga")}
               >
-                Liga KSHB
+                <span className="flex items-center gap-2">
+                  Liga KSHB
+                  <img src={logoKSHB} alt="KSHB" className="w-5 h-5 object-contain" />
+                </span>
               </Button>
               <Button
                 type="button"
                 variant={competition === "kup" ? "default" : "outline"}
                 onClick={() => setCompetition("kup")}
               >
-                🏆 Kup KSHB
+                <span className="flex items-center gap-2">
+                  Kup KSHB
+                  <Trophy className="w-4 h-4" />
+                </span>
               </Button>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label>YouTube link</Label>
+            <Label className="flex items-center gap-2">
+              <Youtube className="w-4 h-4 text-[#FF0000]" />
+              YouTube link
+            </Label>
             <Input
               value={youtubeLink}
               onChange={(e) => setYoutubeLink(e.target.value)}
@@ -1530,7 +1580,14 @@ function MatchForm({
           </div>
 
           <div className="space-y-2">
-            <Label>SofaScore link</Label>
+            <Label className="flex items-center gap-2">
+              <img
+                src="https://www.sofascore.com/favicon.ico"
+                alt=""
+                className="w-4 h-4 object-contain"
+              />
+              SofaScore link
+            </Label>
             <Input
               value={sofascoreLink}
               onChange={(e) => setSofascoreLink(e.target.value)}
