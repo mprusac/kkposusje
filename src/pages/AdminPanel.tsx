@@ -1565,7 +1565,7 @@ function MatchForm({
               >
                 <span className="flex items-center gap-2">
                   Kup KSHB
-                  <Trophy className="w-4 h-4" />
+                  <span aria-hidden>🏆</span>
                 </span>
               </Button>
             </div>
