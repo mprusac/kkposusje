@@ -1725,3 +1725,213 @@ function MatchForm({
     </div>
   );
 }
+
+/* ============================ PLAYER FORM ============================ */
+function PlayerForm({
+  initial, onCancel, onSaved, apiFetch,
+}: {
+  initial: PlayerItem | null;
+  onCancel: () => void;
+  onSaved: () => Promise<void>;
+  apiFetch: (url: string, init?: RequestInit) => Promise<any>;
+}) {
+  const [form, setForm] = useState({
+    name: initial?.name ?? "",
+    position: initial?.position ?? "",
+    description: initial?.description ?? "",
+    image_url: initial?.image_url ?? "",
+    jersey_number: initial?.jersey_number != null ? String(initial.jersey_number) : "",
+    sort_order: initial?.sort_order != null ? String(initial.sort_order) : "0",
+  });
+  const [stats, setStats] = useState<PlayerStat[]>(
+    initial?.statistics && initial.statistics.length > 0
+      ? initial.statistics
+      : [{ label: "", value: "" }],
+  );
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
+  const handleImage = async (files: File[]) => {
+    const file = files[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const path = `players/${Date.now()}-${file.name}`;
+      const url = await adminUploadFile("player-images", path, file);
+      setForm((f) => ({ ...f, image_url: url }));
+      toast.success("Slika prenesena");
+    } catch (e) {
+      toast.error("Greška uploada", { description: (e as Error).message });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const updateStat = (i: number, patch: Partial<PlayerStat>) => {
+    setStats((prev) => prev.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
+  };
+  const removeStat = (i: number) => setStats((prev) => prev.filter((_, idx) => idx !== i));
+  const addStat = () => setStats((prev) => [...prev, { label: "", value: "" }]);
+
+  const save = async () => {
+    if (!form.name.trim()) {
+      toast.error("Ime igrača je obavezno");
+      return;
+    }
+    setSaving(true);
+    try {
+      const cleanStats = stats
+        .filter((s) => s.label.trim())
+        .map((s) => ({ label: s.label.trim(), value: s.value.trim() }));
+      const body = {
+        name: form.name.trim(),
+        position: form.position.trim() || null,
+        description: form.description.trim() || null,
+        image_url: form.image_url || null,
+        jersey_number: form.jersey_number === "" ? null : Number(form.jersey_number),
+        sort_order: form.sort_order === "" ? 0 : Number(form.sort_order),
+        statistics: cleanStats,
+      };
+      if (initial) {
+        await apiFetch(`${PLAYERS_URL}/update`, {
+          method: "POST",
+          body: JSON.stringify({ id: initial.id, ...body }),
+        });
+        toast.success("Igrač ažuriran");
+      } else {
+        await apiFetch(`${PLAYERS_URL}/create`, { method: "POST", body: JSON.stringify(body) });
+        toast.success("Igrač dodan!");
+      }
+      await onSaved();
+    } catch (e) {
+      toast.error("Greška spremanja", { description: (e as Error).message });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+        <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
+          <Button variant="ghost" size="sm" onClick={onCancel}>
+            <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+          </Button>
+          <h2 className="font-semibold text-2xl">{initial ? "Uredi igrača" : "Novi igrač"}</h2>
+          <Button size="sm" onClick={save} disabled={saving}>
+            {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
+            Spremi
+          </Button>
+        </div>
+      </header>
+
+      <main className="max-w-3xl mx-auto p-4 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3">
+          <div className="space-y-1.5">
+            <Label>Ime i prezime *</Label>
+            <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Broj dresa</Label>
+            <Input
+              type="number"
+              inputMode="numeric"
+              className="w-24"
+              value={form.jersey_number}
+              onChange={(e) => setForm({ ...form, jersey_number: e.target.value })}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Redoslijed</Label>
+            <Input
+              type="number"
+              inputMode="numeric"
+              className="w-24"
+              value={form.sort_order}
+              onChange={(e) => setForm({ ...form, sort_order: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label>Pozicija</Label>
+          <Input
+            value={form.position}
+            onChange={(e) => setForm({ ...form, position: e.target.value })}
+            placeholder="npr. Bek, Krilo, Centar..."
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <Label>Opis</Label>
+          <AutoResizeTextarea
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            placeholder="Kratki opis igrača, biografija..."
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Slika igrača</Label>
+          {form.image_url && (
+            <div className="relative w-40">
+              <img src={form.image_url} className="w-40 h-40 object-cover rounded border border-border" />
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, image_url: "" })}
+                className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-1"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </div>
+          )}
+          <DropZone
+            onFiles={handleImage}
+            disabled={uploading}
+            icon={<Upload className="w-8 h-8" />}
+            hint="Klikni ili povuci sliku ovdje"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label>Statistika</Label>
+            <Button type="button" size="sm" variant="outline" onClick={addStat}>
+              <Plus className="w-4 h-4 mr-1" /> Dodaj stavku
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Slobodne stavke — npr. Poeni po utakmici · 12.4, Skokovi · 5.1, Utakmice · 18
+          </p>
+          <div className="space-y-2">
+            {stats.map((s, i) => (
+              <div key={i} className="flex gap-2 items-center">
+                <Input
+                  className="flex-1"
+                  placeholder="Naziv (npr. Poeni)"
+                  value={s.label}
+                  onChange={(e) => updateStat(i, { label: e.target.value })}
+                />
+                <Input
+                  className="w-40"
+                  placeholder="Vrijednost"
+                  value={s.value}
+                  onChange={(e) => updateStat(i, { value: e.target.value })}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => removeStat(i)}
+                  aria-label="Ukloni stavku"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
