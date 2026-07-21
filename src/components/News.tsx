@@ -304,7 +304,7 @@ const News = () => {
                     })()}
                   </span>
                 </div>
-                <div className="p-4 md:p-6 flex flex-col flex-1">
+                <div className="p-4 md:p-6 flex flex-col flex-1 bg-secondary">
                   <div className="flex items-center gap-2 text-muted-foreground text-xs md:text-sm mb-2 md:mb-3">
                     <Calendar size={12} className="md:hidden" />
                     <Calendar size={14} className="hidden md:block" />
