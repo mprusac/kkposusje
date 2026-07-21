@@ -1299,6 +1299,7 @@ function MatchForm({
   const [competition, setCompetition] = useState<"liga" | "kup">(initial?.competition ?? "liga");
   const [youtubeLink, setYoutubeLink] = useState(initial?.youtube_link ?? "");
   const [sofascoreLink, setSofascoreLink] = useState(initial?.sofascore_link ?? "");
+  const dateInputRef = useRef<HTMLInputElement>(null);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
