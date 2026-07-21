@@ -1267,3 +1267,220 @@ function CategoriesModal({
     </Dialog>
   );
 }
+
+// ==================== MATCH FORM ====================
+function MatchForm({
+  initial,
+  onCancel,
+  onSaved,
+  apiFetch,
+}: {
+  initial: MatchItem | null;
+  onCancel: () => void;
+  onSaved: () => Promise<void>;
+  apiFetch: (u: string, i?: RequestInit) => Promise<any>;
+}) {
+  const [saving, setSaving] = useState(false);
+  const [opponent, setOpponent] = useState(initial?.opponent ?? OPPONENT_OPTIONS[0]);
+  const [customOpponent, setCustomOpponent] = useState(
+    initial && !OPPONENT_OPTIONS.includes(initial.opponent) ? initial.opponent : "",
+  );
+  const [useCustom, setUseCustom] = useState(
+    !!(initial && !OPPONENT_OPTIONS.includes(initial.opponent)),
+  );
+  const [isHome, setIsHome] = useState(initial?.is_home ?? true);
+  const [posusjeScore, setPosusjeScore] = useState<string>(
+    initial?.posusje_score != null ? String(initial.posusje_score) : "",
+  );
+  const [opponentScore, setOpponentScore] = useState<string>(
+    initial?.opponent_score != null ? String(initial.opponent_score) : "",
+  );
+  const [matchDate, setMatchDate] = useState(initial?.match_date ?? todayISO());
+  const [competition, setCompetition] = useState<"liga" | "kup">(initial?.competition ?? "liga");
+  const [youtubeLink, setYoutubeLink] = useState(initial?.youtube_link ?? "");
+  const [sofascoreLink, setSofascoreLink] = useState(initial?.sofascore_link ?? "");
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const finalOpponent = useCustom ? customOpponent.trim() : opponent;
+    if (!finalOpponent) {
+      toast.error("Unesite ime protivnika");
+      return;
+    }
+    setSaving(true);
+    try {
+      const body = {
+        id: initial?.id,
+        opponent: finalOpponent,
+        is_home: isHome,
+        posusje_score: posusjeScore === "" ? null : Number(posusjeScore),
+        opponent_score: opponentScore === "" ? null : Number(opponentScore),
+        match_date: matchDate,
+        competition,
+        youtube_link: youtubeLink.trim() || null,
+        sofascore_link: sofascoreLink.trim() || null,
+      };
+      const endpoint = initial ? "update" : "create";
+      await apiFetch(`${MATCHES_URL}/${endpoint}`, {
+        method: "POST",
+        body: JSON.stringify(body),
+      });
+      toast.success(initial ? "Utakmica ažurirana" : "Utakmica dodana");
+      await onSaved();
+    } catch (e) {
+      toast.error("Greška", { description: (e as Error).message });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+        <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
+          <Button variant="outline" size="sm" onClick={onCancel}>
+            <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+          </Button>
+          <h1 className="font-semibold text-2xl text-primary">
+            {initial ? "Uredi utakmicu" : "Nova utakmica"}
+          </h1>
+          <div className="w-20" />
+        </div>
+      </header>
+
+      <main className="max-w-3xl mx-auto p-4">
+        <form onSubmit={submit} className="space-y-5">
+          <div className="space-y-2">
+            <Label>Protivnik</Label>
+            {!useCustom ? (
+              <div className="flex gap-2">
+                <select
+                  className="flex-1 h-10 px-3 rounded-md border border-border bg-background text-foreground"
+                  value={opponent}
+                  onChange={(e) => setOpponent(e.target.value)}
+                >
+                  {OPPONENT_OPTIONS.map((o) => (
+                    <option key={o} value={o}>{o}</option>
+                  ))}
+                </select>
+                <Button type="button" variant="outline" onClick={() => setUseCustom(true)}>
+                  Drugi...
+                </Button>
+              </div>
+            ) : (
+              <div className="flex gap-2">
+                <Input
+                  value={customOpponent}
+                  onChange={(e) => setCustomOpponent(e.target.value)}
+                  placeholder="Naziv ekipe"
+                />
+                <Button type="button" variant="outline" onClick={() => setUseCustom(false)}>
+                  Iz liste
+                </Button>
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label>Domaćin / gost</Label>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant={isHome ? "default" : "outline"}
+                onClick={() => setIsHome(true)}
+              >
+                HKK Posušje domaćin
+              </Button>
+              <Button
+                type="button"
+                variant={!isHome ? "default" : "outline"}
+                onClick={() => setIsHome(false)}
+              >
+                HKK Posušje gost
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-2">
+              <Label>Posušje rezultat</Label>
+              <Input
+                type="number"
+                min={0}
+                value={posusjeScore}
+                onChange={(e) => setPosusjeScore(e.target.value)}
+                placeholder="prazno = najavljena"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Protivnik rezultat</Label>
+              <Input
+                type="number"
+                min={0}
+                value={opponentScore}
+                onChange={(e) => setOpponentScore(e.target.value)}
+                placeholder="prazno = najavljena"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Datum</Label>
+            <Input
+              type="date"
+              value={matchDate}
+              onChange={(e) => setMatchDate(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>Natjecanje</Label>
+            <div className="flex gap-2">
+              <Button
+                type="button"
+                variant={competition === "liga" ? "default" : "outline"}
+                onClick={() => setCompetition("liga")}
+              >
+                Liga KSHB
+              </Button>
+              <Button
+                type="button"
+                variant={competition === "kup" ? "default" : "outline"}
+                onClick={() => setCompetition("kup")}
+              >
+                🏆 Kup KSHB
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>YouTube link</Label>
+            <Input
+              value={youtubeLink}
+              onChange={(e) => setYoutubeLink(e.target.value)}
+              placeholder="https://youtube.com/..."
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>SofaScore link</Label>
+            <Input
+              value={sofascoreLink}
+              onChange={(e) => setSofascoreLink(e.target.value)}
+              placeholder="https://sofascore.com/..."
+            />
+          </div>
+
+          <div className="flex gap-3 justify-end pt-4">
+            <Button type="button" variant="outline" onClick={onCancel}>Odustani</Button>
+            <Button type="submit" disabled={saving}>
+              {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+              {initial ? "Spremi" : "Dodaj"}
+            </Button>
+          </div>
+        </form>
+      </main>
+    </div>
+  );
+}
