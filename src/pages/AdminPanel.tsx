@@ -18,7 +18,7 @@ import {
 import { toast } from "sonner";
 import {
   Plus, Edit, Trash2, Save, X, Upload, Pin, ArrowLeft, LogOut,
-  ImagePlus, Newspaper, Loader2, Tag, Calendar,
+  ImagePlus, Newspaper, Loader2, Tag, Calendar, Users, Trophy,
 } from "lucide-react";
 import logoGrude from "@/assets/logos/hkk_grude.png";
 import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
@@ -32,6 +32,7 @@ import logoKSHB from "@/assets/logos/kshb_logo.png";
 const NEWS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-news`;
 const GALLERY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-galleries`;
 const MATCHES_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-matches`;
+const PLAYERS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-players`;
 const DEFAULT_CATEGORIES = ["2026", "2025", "Najava"];
 const OPPONENT_OPTIONS = [
   "HKK Grude", "HKK Ljubuški", "HKK Mostar", "HKK Rama",
@@ -81,6 +82,17 @@ interface MatchItem {
   sofascore_link: string | null;
   opponent_logo_url: string | null;
 }
+interface PlayerStat { label: string; value: string }
+interface PlayerItem {
+  id: string;
+  name: string;
+  position: string | null;
+  description: string | null;
+  image_url: string | null;
+  jersey_number: number | null;
+  statistics: PlayerStat[];
+  sort_order: number;
+}
 
 function todayISO() {
   const d = new Date();
@@ -112,7 +124,10 @@ async function signedUrl(bucket: string, path: string) {
 async function adminUploadFile(bucket: string, path: string, file: File): Promise<string> {
   const token = sessionStorage.getItem("admin_token");
   if (!token) throw new Error("Niste prijavljeni");
-  const endpointBase = bucket === "gallery-images" ? GALLERY_URL : bucket === "team-logos" ? MATCHES_URL : NEWS_URL;
+  const endpointBase =
+    bucket === "gallery-images" ? GALLERY_URL :
+    bucket === "team-logos" ? MATCHES_URL :
+    bucket === "player-images" ? PLAYERS_URL : NEWS_URL;
   const res = await fetch(`${endpointBase}/signed-upload`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
@@ -410,9 +425,10 @@ export default function AdminPanel() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [galleries, setGalleries] = useState<GalleryItem[]>([]);
   const [matches, setMatches] = useState<MatchItem[]>([]);
+  const [players, setPlayers] = useState<PlayerItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const [view, setView] = useState<"main" | "news-form" | "gallery-form" | "match-form">("main");
+  const [view, setView] = useState<"main" | "news-form" | "gallery-form" | "match-form" | "player-form">("main");
   const [editing, setEditing] = useState<NewsItem | null>(null);
 
   useEffect(() => {
@@ -424,8 +440,9 @@ export default function AdminPanel() {
   }, []);
   const [editingGallery, setEditingGallery] = useState<GalleryItem | null>(null);
   const [editingMatch, setEditingMatch] = useState<MatchItem | null>(null);
+  const [editingPlayer, setEditingPlayer] = useState<PlayerItem | null>(null);
 
-  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery" | "match"; id: string } | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery" | "match" | "player"; id: string } | null>(null);
   const [categoryModal, setCategoryModal] = useState(false);
 
   const logout = useCallback(() => {
@@ -434,6 +451,7 @@ export default function AdminPanel() {
     setNews([]);
     setGalleries([]);
     setMatches([]);
+    setPlayers([]);
     setView("main");
   }, []);
 
@@ -470,14 +488,19 @@ export default function AdminPanel() {
     const data = await apiFetch(`${MATCHES_URL}/list`);
     setMatches(data);
   }, [apiFetch]);
+  const fetchPlayers = useCallback(async () => {
+    const data = await apiFetch(`${PLAYERS_URL}/list`);
+    setPlayers(data);
+  }, [apiFetch]);
 
   useEffect(() => {
     if (!token) return;
     setLoading(true);
-    Promise.all([fetchNews(), fetchGalleries(), fetchMatches()])
+    Promise.all([fetchNews(), fetchGalleries(), fetchMatches(), fetchPlayers()])
       .catch((e) => toast.error("Greška pri učitavanju", { description: e.message }))
       .finally(() => setLoading(false));
-  }, [token, fetchNews, fetchGalleries, fetchMatches]);
+  }, [token, fetchNews, fetchGalleries, fetchMatches, fetchPlayers]);
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -587,6 +610,21 @@ export default function AdminPanel() {
     );
   }
 
+  if (view === "player-form") {
+    return (
+      <PlayerForm
+        initial={editingPlayer}
+        onCancel={() => { setView("main"); setEditingPlayer(null); }}
+        onSaved={async () => {
+          await fetchPlayers();
+          setView("main");
+          setEditingPlayer(null);
+        }}
+        apiFetch={apiFetch}
+      />
+    );
+  }
+
   // ---------- MAIN VIEW ----------
   const handleDelete = async () => {
     if (!confirmDelete) return;
@@ -594,12 +632,14 @@ export default function AdminPanel() {
       const url =
         confirmDelete.kind === "news" ? `${NEWS_URL}/delete`
         : confirmDelete.kind === "gallery" ? `${GALLERY_URL}/delete`
-        : `${MATCHES_URL}/delete`;
+        : confirmDelete.kind === "match" ? `${MATCHES_URL}/delete`
+        : `${PLAYERS_URL}/delete`;
       await apiFetch(url, { method: "POST", body: JSON.stringify({ id: confirmDelete.id }) });
       toast.success("Obrisano");
       if (confirmDelete.kind === "news") await fetchNews();
       else if (confirmDelete.kind === "gallery") await fetchGalleries();
-      else await fetchMatches();
+      else if (confirmDelete.kind === "match") await fetchMatches();
+      else await fetchPlayers();
     } catch (e) {
       toast.error("Greška", { description: (e as Error).message });
     } finally {
@@ -610,7 +650,7 @@ export default function AdminPanel() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
-        <div className="max-w-6xl mx-auto grid grid-cols-3 items-center px-4 py-3">
+        <div className="max-w-[1600px] mx-auto grid grid-cols-3 items-center px-4 py-3">
           <div className="flex justify-start">
             <Button
               variant="outline"
@@ -632,7 +672,7 @@ export default function AdminPanel() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto p-4">
+      <main className="max-w-[1600px] mx-auto p-4">
         {loading && (
           <div className="flex items-center gap-2 text-muted-foreground py-4">
             <Loader2 className="w-4 h-4 animate-spin" /> Učitavanje...
@@ -648,14 +688,17 @@ export default function AdminPanel() {
             <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
           </Button>
           <Button variant="outline" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
-            <Newspaper className="w-4 h-4 mr-2" /> Nova utakmica
+            <Trophy className="w-4 h-4 mr-2" /> Nova utakmica
+          </Button>
+          <Button variant="outline" onClick={() => { setEditingPlayer(null); setView("player-form"); }}>
+            <Users className="w-4 h-4 mr-2" /> Novi igrač
           </Button>
         </div>
 
-        {/* Two column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Four column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {/* Vijesti */}
-          <section className="space-y-3">
+          <section className="space-y-3 min-w-0">
             <div className="flex items-center justify-center gap-2">
               <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
                 Vijesti
@@ -679,9 +722,9 @@ export default function AdminPanel() {
               {news.map((n) => (
                 <Card key={n.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {n.image_url ? (
-                    <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border" />
+                    <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
                   ) : (
-                    <div className="aspect-square w-14 rounded bg-muted" />
+                    <div className="aspect-square w-14 rounded bg-muted shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -693,7 +736,7 @@ export default function AdminPanel() {
                       <Badge variant="secondary" className="text-xs">{n.category}</Badge>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 shrink-0">
                     <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditing(n); setView("news-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -707,7 +750,7 @@ export default function AdminPanel() {
           </section>
 
           {/* Galerije */}
-          <section className="space-y-3">
+          <section className="space-y-3 min-w-0">
             <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
               Galerije
             </h2>
@@ -720,9 +763,9 @@ export default function AdminPanel() {
               {galleries.map((g) => (
                 <Card key={g.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {g.cover_image ? (
-                    <img src={g.cover_image} className="aspect-square w-14 rounded object-cover border border-border" />
+                    <img src={g.cover_image} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
                   ) : (
-                    <div className="aspect-square w-14 rounded bg-muted" />
+                    <div className="aspect-square w-14 rounded bg-muted shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="font-medium truncate text-sm">{g.title}</div>
@@ -730,7 +773,7 @@ export default function AdminPanel() {
                       {g.date} <ImagePlus className="w-3 h-3 inline text-primary" /> {g.images.length}
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 shrink-0">
                     <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingGallery(g); setView("gallery-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -742,54 +785,102 @@ export default function AdminPanel() {
               ))}
             </div>
           </section>
-        </div>
 
-        {/* Utakmice */}
-        <section className="space-y-3 mt-8">
-          <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
-            Utakmice
-          </h2>
-          {matches.length === 0 && !loading && (
-            <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
-          )}
-          <div className="space-y-2 max-w-3xl mx-auto">
-            {matches.map((m) => {
-              const scoreText = m.posusje_score != null && m.opponent_score != null
-                ? `${m.posusje_score}:${m.opponent_score}`
-                : "—";
-              const home = m.is_home ? "HKK Posušje" : m.opponent;
-              const away = m.is_home ? m.opponent : "HKK Posušje";
-              return (
-                <Card key={m.id} className="p-3 bg-card border-border flex items-center gap-3">
+          {/* Utakmice */}
+          <section className="space-y-3 min-w-0">
+            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+              Utakmice
+            </h2>
+            {matches.length === 0 && !loading && (
+              <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
+            )}
+            <div className="space-y-2">
+              {matches.map((m) => {
+                const scoreText = m.posusje_score != null && m.opponent_score != null
+                  ? `${m.posusje_score}:${m.opponent_score}`
+                  : "—";
+                const opponentLogo = m.opponent_logo_url ?? OPPONENT_LOGOS[m.opponent] ?? null;
+                return (
+                  <Card key={m.id} className="p-2.5 bg-card border-border flex items-center gap-2">
+                    {opponentLogo ? (
+                      <img src={opponentLogo} className="w-10 h-10 rounded object-contain border border-border bg-background shrink-0" />
+                    ) : (
+                      <div className="w-10 h-10 rounded bg-muted shrink-0" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate text-sm">
+                        {m.is_home ? "vs" : "@"} {m.opponent}
+                        <span className="ml-1 text-muted-foreground">{scoreText}</span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground mt-0.5 flex items-center gap-1.5">
+                        <span>{isoToDMY(m.match_date)}</span>
+                        <span className="text-[9px] font-bold text-foreground bg-gold-dark px-1.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                          {m.competition === "kup" ? (
+                            <>Kup <span aria-hidden>🏆</span></>
+                          ) : (
+                            <>Liga <img src={logoKSHB} alt="KSHB" className="w-3 h-3 object-contain" /></>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                        <Edit className="w-3.5 h-3.5" />
+                      </Button>
+                      <Button variant="destructive" size="icon" className="h-7 w-7" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Igrači */}
+          <section className="space-y-3 min-w-0">
+            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+              Igrači
+            </h2>
+            {players.length === 0 && !loading && (
+              <p className="text-muted-foreground py-8 text-center">Nema igrača.</p>
+            )}
+            <div className="space-y-2">
+              {players.map((p) => (
+                <Card key={p.id} className="p-3 bg-card border-border flex items-center gap-3">
+                  {p.image_url ? (
+                    <img src={p.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
+                  ) : (
+                    <div className="aspect-square w-14 rounded bg-muted shrink-0 flex items-center justify-center">
+                      <Users className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                  )}
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium truncate text-sm">
-                      {home} vs {away} — {scoreText}
+                    <div className="font-medium truncate text-sm flex items-center gap-1.5">
+                      {p.jersey_number != null && (
+                        <span className="text-primary font-bold">#{p.jersey_number}</span>
+                      )}
+                      <span className="truncate">{p.name}</span>
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
-                      <span>{isoToDMY(m.match_date)}</span>
-                      <span className="text-[10px] font-bold text-foreground bg-gold-dark px-2 py-0.5 rounded-full inline-flex items-center gap-1">
-                        {m.competition === "kup" ? (
-                          <>Kup KSHB <span aria-hidden>🏆</span></>
-                        ) : (
-                          <>Liga KSHB <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain" /></>
-                        )}
-                      </span>
-                    </div>
+                    {p.position && (
+                      <div className="text-xs text-muted-foreground mt-1 truncate">{p.position}</div>
+                    )}
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingPlayer(p); setView("player-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "player", id: p.id })}>
                       <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
                 </Card>
-              );
-            })}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
+
 
 
       <AlertDialog open={!!confirmDelete} onOpenChange={(o) => !o && setConfirmDelete(null)}>
@@ -1630,6 +1721,216 @@ function MatchForm({
             </Button>
           </div>
         </form>
+      </main>
+    </div>
+  );
+}
+
+/* ============================ PLAYER FORM ============================ */
+function PlayerForm({
+  initial, onCancel, onSaved, apiFetch,
+}: {
+  initial: PlayerItem | null;
+  onCancel: () => void;
+  onSaved: () => Promise<void>;
+  apiFetch: (url: string, init?: RequestInit) => Promise<any>;
+}) {
+  const [form, setForm] = useState({
+    name: initial?.name ?? "",
+    position: initial?.position ?? "",
+    description: initial?.description ?? "",
+    image_url: initial?.image_url ?? "",
+    jersey_number: initial?.jersey_number != null ? String(initial.jersey_number) : "",
+    sort_order: initial?.sort_order != null ? String(initial.sort_order) : "0",
+  });
+  const [stats, setStats] = useState<PlayerStat[]>(
+    initial?.statistics && initial.statistics.length > 0
+      ? initial.statistics
+      : [{ label: "", value: "" }],
+  );
+  const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
+  const handleImage = async (files: File[]) => {
+    const file = files[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const path = `players/${Date.now()}-${file.name}`;
+      const url = await adminUploadFile("player-images", path, file);
+      setForm((f) => ({ ...f, image_url: url }));
+      toast.success("Slika prenesena");
+    } catch (e) {
+      toast.error("Greška uploada", { description: (e as Error).message });
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const updateStat = (i: number, patch: Partial<PlayerStat>) => {
+    setStats((prev) => prev.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
+  };
+  const removeStat = (i: number) => setStats((prev) => prev.filter((_, idx) => idx !== i));
+  const addStat = () => setStats((prev) => [...prev, { label: "", value: "" }]);
+
+  const save = async () => {
+    if (!form.name.trim()) {
+      toast.error("Ime igrača je obavezno");
+      return;
+    }
+    setSaving(true);
+    try {
+      const cleanStats = stats
+        .filter((s) => s.label.trim())
+        .map((s) => ({ label: s.label.trim(), value: s.value.trim() }));
+      const body = {
+        name: form.name.trim(),
+        position: form.position.trim() || null,
+        description: form.description.trim() || null,
+        image_url: form.image_url || null,
+        jersey_number: form.jersey_number === "" ? null : Number(form.jersey_number),
+        sort_order: form.sort_order === "" ? 0 : Number(form.sort_order),
+        statistics: cleanStats,
+      };
+      if (initial) {
+        await apiFetch(`${PLAYERS_URL}/update`, {
+          method: "POST",
+          body: JSON.stringify({ id: initial.id, ...body }),
+        });
+        toast.success("Igrač ažuriran");
+      } else {
+        await apiFetch(`${PLAYERS_URL}/create`, { method: "POST", body: JSON.stringify(body) });
+        toast.success("Igrač dodan!");
+      }
+      await onSaved();
+    } catch (e) {
+      toast.error("Greška spremanja", { description: (e as Error).message });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+        <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
+          <Button variant="ghost" size="sm" onClick={onCancel}>
+            <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+          </Button>
+          <h2 className="font-semibold text-2xl">{initial ? "Uredi igrača" : "Novi igrač"}</h2>
+          <Button size="sm" onClick={save} disabled={saving}>
+            {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
+            Spremi
+          </Button>
+        </div>
+      </header>
+
+      <main className="max-w-3xl mx-auto p-4 space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3">
+          <div className="space-y-1.5">
+            <Label>Ime i prezime *</Label>
+            <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Broj dresa</Label>
+            <Input
+              type="number"
+              inputMode="numeric"
+              className="w-24"
+              value={form.jersey_number}
+              onChange={(e) => setForm({ ...form, jersey_number: e.target.value })}
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label>Redoslijed</Label>
+            <Input
+              type="number"
+              inputMode="numeric"
+              className="w-24"
+              value={form.sort_order}
+              onChange={(e) => setForm({ ...form, sort_order: e.target.value })}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label>Pozicija</Label>
+          <Input
+            value={form.position}
+            onChange={(e) => setForm({ ...form, position: e.target.value })}
+            placeholder="npr. Bek, Krilo, Centar..."
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <Label>Opis</Label>
+          <AutoResizeTextarea
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            placeholder="Kratki opis igrača, biografija..."
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Slika igrača</Label>
+          {form.image_url && (
+            <div className="relative w-40">
+              <img src={form.image_url} className="w-40 h-40 object-cover rounded border border-border" />
+              <button
+                type="button"
+                onClick={() => setForm({ ...form, image_url: "" })}
+                className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-1"
+              >
+                <X className="w-3 h-3" />
+              </button>
+            </div>
+          )}
+          <DropZone
+            onFiles={handleImage}
+            disabled={uploading}
+            icon={<Upload className="w-8 h-8" />}
+            hint="Klikni ili povuci sliku ovdje"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label>Statistika</Label>
+            <Button type="button" size="sm" variant="outline" onClick={addStat}>
+              <Plus className="w-4 h-4 mr-1" /> Dodaj stavku
+            </Button>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Slobodne stavke — npr. Poeni po utakmici · 12.4, Skokovi · 5.1, Utakmice · 18
+          </p>
+          <div className="space-y-2">
+            {stats.map((s, i) => (
+              <div key={i} className="flex gap-2 items-center">
+                <Input
+                  className="flex-1"
+                  placeholder="Naziv (npr. Poeni)"
+                  value={s.label}
+                  onChange={(e) => updateStat(i, { label: e.target.value })}
+                />
+                <Input
+                  className="w-40"
+                  placeholder="Vrijednost"
+                  value={s.value}
+                  onChange={(e) => updateStat(i, { value: e.target.value })}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => removeStat(i)}
+                  aria-label="Ukloni stavku"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
       </main>
     </div>
   );
