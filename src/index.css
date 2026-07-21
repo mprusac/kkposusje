@@ -359,9 +359,15 @@
   scrollbar-color: hsl(var(--primary)) hsl(var(--background));
 }
 
-/* Custom date input with left calendar icon */
+/* Custom date input with visible native picker */
 .date-input-custom-icon::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+.date-input-native-picker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+  opacity: 1;
 }
 
 /* Autofill dark background */
