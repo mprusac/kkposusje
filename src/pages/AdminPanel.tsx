@@ -32,6 +32,7 @@ import logoKSHB from "@/assets/logos/kshb_logo.png";
 const NEWS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-news`;
 const GALLERY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-galleries`;
 const MATCHES_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-matches`;
+const PLAYERS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-players`;
 const DEFAULT_CATEGORIES = ["2026", "2025", "Najava"];
 const OPPONENT_OPTIONS = [
   "HKK Grude", "HKK Ljubuški", "HKK Mostar", "HKK Rama",
