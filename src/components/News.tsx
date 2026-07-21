@@ -125,7 +125,9 @@ const News = () => {
 
   const latestNews = useMemo(() => {
     const local = allNews.map((n) => ({ ...n, id: n.id as number | string }));
-    const merged = [...(adminNews as any[]), ...local].sort(
+    const adminTitles = new Set(adminNews.map((n: any) => (n.title || "").trim()));
+    const localFiltered = local.filter((n: any) => !adminTitles.has((n.title || "").trim()));
+    const merged = [...(adminNews as any[]), ...localFiltered].sort(
       (a: any, b: any) => parseDate(b.date) - parseDate(a.date)
     );
     return merged;
