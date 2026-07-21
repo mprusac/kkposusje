@@ -1427,12 +1427,19 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label>Datum</Label>
-            <Input
-              type="date"
-              value={matchDate}
-              onChange={(e) => setMatchDate(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <Calendar
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none"
+              />
+              <Input
+                ref={dateInputRef}
+                type="date"
+                value={matchDate}
+                onChange={(e) => setMatchDate(e.target.value)}
+                required
+                className="pl-10 date-input-custom-icon"
+              />
+            </div>
           </div>
 
           <div className="space-y-2">
