@@ -18,7 +18,7 @@ import {
 import { toast } from "sonner";
 import {
   Plus, Edit, Trash2, Save, X, Upload, Pin, ArrowLeft, LogOut,
-  ImagePlus, Newspaper, Loader2, Tag, Calendar, Trophy,
+  ImagePlus, Newspaper, Loader2, Tag, Calendar,
 } from "lucide-react";
 import logoGrude from "@/assets/logos/hkk_grude.png";
 import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
@@ -1336,6 +1336,19 @@ function MatchForm({
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const dateInputRef = useRef<HTMLInputElement>(null);
 
+  const openDatePicker = () => {
+    const el = dateInputRef.current;
+    if (!el) return;
+    el.focus();
+    if (typeof el.showPicker === "function") {
+      try {
+        el.showPicker();
+      } catch {
+        // Native picker can reject outside direct user activation; focus keeps manual entry working.
+      }
+    }
+  };
+
   const handleLogoUpload = async (file: File) => {
     setUploadingLogo(true);
     try {
@@ -1542,9 +1555,14 @@ function MatchForm({
                 required
                 className="pl-10 pr-3 date-input-native-picker cursor-pointer"
               />
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-foreground">
+              <button
+                type="button"
+                onClick={openDatePicker}
+                className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded hover:bg-muted"
+                aria-label="Odaberi datum"
+              >
                 <Calendar className="w-5 h-5 text-white" />
-              </span>
+              </button>
             </div>
           </div>
 
