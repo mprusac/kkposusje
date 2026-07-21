@@ -18,7 +18,7 @@ import {
 import { toast } from "sonner";
 import {
   Plus, Edit, Trash2, Save, X, Upload, Pin, ArrowLeft, LogOut,
-  ImagePlus, Newspaper, Loader2, Tag, Calendar, Youtube, Trophy,
+  ImagePlus, Newspaper, Loader2, Tag, Calendar,
 } from "lucide-react";
 import logoGrude from "@/assets/logos/hkk_grude.png";
 import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
@@ -389,6 +389,18 @@ function CategorySelect({
   );
 }
 
+function YouTubeLogo({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+      <path
+        fill="#ff0000"
+        d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8Z"
+      />
+      <path fill="currentColor" d="M9.6 15.6V8.4L15.8 12l-6.2 3.6Z" />
+    </svg>
+  );
+}
+
 export default function AdminPanel() {
   const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(() => sessionStorage.getItem("admin_token"));
@@ -755,7 +767,7 @@ export default function AdminPanel() {
                     </div>
                     <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
                       <span>{isoToDMY(m.match_date)}</span>
-                      <span className="text-[10px] font-bold text-white bg-primary px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                      <span className="text-[10px] font-bold text-foreground bg-gold-dark px-2 py-0.5 rounded-full inline-flex items-center gap-1">
                         {m.competition === "kup" ? (
                           <>Kup KSHB <span aria-hidden>🏆</span></>
                         ) : (
@@ -1324,6 +1336,19 @@ function MatchForm({
   const [uploadingLogo, setUploadingLogo] = useState(false);
   const dateInputRef = useRef<HTMLInputElement>(null);
 
+  const openDatePicker = () => {
+    const el = dateInputRef.current;
+    if (!el) return;
+    el.focus();
+    if (typeof el.showPicker === "function") {
+      try {
+        el.showPicker();
+      } catch {
+        // Native picker can reject outside direct user activation; focus keeps manual entry working.
+      }
+    }
+  };
+
   const handleLogoUpload = async (file: File) => {
     setUploadingLogo(true);
     try {
@@ -1521,32 +1546,19 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label>Datum</Label>
-            <div
-              className="relative cursor-pointer"
-              onClick={() => {
-                const el = dateInputRef.current as any;
-                if (el?.showPicker) { try { el.showPicker(); return; } catch {} }
-                el?.focus();
-              }}
-            >
+            <div className="relative">
               <Input
                 ref={dateInputRef}
                 type="date"
                 value={matchDate}
                 onChange={(e) => setMatchDate(e.target.value)}
                 required
-                className="pl-10 date-input-custom-icon cursor-pointer"
+                className="pl-10 pr-3 date-input-native-picker cursor-pointer"
               />
               <button
                 type="button"
-                tabIndex={-1}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const el = dateInputRef.current as any;
-                  if (el?.showPicker) { try { el.showPicker(); return; } catch {} }
-                  el?.focus();
-                }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded hover:bg-muted pointer-events-auto"
+                onClick={openDatePicker}
+                className="absolute left-2 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded hover:bg-muted"
                 aria-label="Odaberi datum"
               >
                 <Calendar className="w-5 h-5 text-white" />
@@ -1561,6 +1573,7 @@ function MatchForm({
                 type="button"
                 variant={competition === "liga" ? "default" : "outline"}
                 onClick={() => setCompetition("liga")}
+                className={competition === "liga" ? "bg-gold-dark text-foreground hover:bg-gold-dark/90" : undefined}
               >
                 <span className="flex items-center gap-2">
                   Liga KSHB
@@ -1571,6 +1584,7 @@ function MatchForm({
                 type="button"
                 variant={competition === "kup" ? "default" : "outline"}
                 onClick={() => setCompetition("kup")}
+                className={competition === "kup" ? "bg-gold-dark text-foreground hover:bg-gold-dark/90" : undefined}
               >
                 <span className="flex items-center gap-2">
                   Kup KSHB
@@ -1582,7 +1596,7 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Youtube className="w-4 h-4 text-white" fill="#FF0000" />
+              <YouTubeLogo className="w-4 h-4 text-foreground" />
               YouTube link
             </Label>
             <Input
