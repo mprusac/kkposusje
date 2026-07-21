@@ -513,7 +513,7 @@ const Statistics = () => {
                         <div>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
                             <span>{match.date}</span>
-                            {match.time && <span>{match.time}</span>}
+                            {(match as any).time && <span>{(match as any).time}</span>}
                             {match.competition?.includes("Kup") ? (
                               <span className="text-xs font-bold text-foreground bg-primary/10 px-1.5 py-0.5 rounded inline-flex items-center gap-1">
                                 {match.competition}
