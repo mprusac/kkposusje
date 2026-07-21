@@ -1573,7 +1573,7 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Youtube className="w-4 h-4 text-[#FF0000]" />
+              <Youtube className="w-4 h-4 text-white" fill="#FF0000" />
               YouTube link
             </Label>
             <Input
