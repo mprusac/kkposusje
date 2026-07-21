@@ -358,6 +358,14 @@ export default function AdminPanel() {
 
   const [view, setView] = useState<"main" | "news-form" | "gallery-form">("main");
   const [editing, setEditing] = useState<NewsItem | null>(null);
+
+  useEffect(() => {
+    const meta = document.createElement("meta");
+    meta.name = "robots";
+    meta.content = "noindex, nofollow";
+    document.head.appendChild(meta);
+    return () => { meta.remove(); };
+  }, []);
   const [editingGallery, setEditingGallery] = useState<GalleryItem | null>(null);
 
   const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery"; id: string } | null>(null);

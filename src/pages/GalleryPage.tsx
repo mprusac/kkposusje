@@ -88,7 +88,7 @@ type ImageWithOrientation = {
   orientation: "vertical" | "horizontal";
 };
 
-const events = [
+export const events = [
   {
     id: "berlin",
     homeTeam: "ALBA Berlin",
