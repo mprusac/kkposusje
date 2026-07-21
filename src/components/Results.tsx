@@ -77,8 +77,8 @@ const Results = () => {
     return () => container.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const getTeamLogo = (teamName: string) => {
-    return teamLogos[teamName] || null;
+  const getTeamLogo = (teamName: string, match: DisplayMatch) => {
+    return getTeamLogoFor(match, teamName);
   };
 
   const getLogoScale = (teamName: string) => {
