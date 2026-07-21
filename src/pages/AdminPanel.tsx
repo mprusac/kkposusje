@@ -1389,15 +1389,30 @@ function MatchForm({
             <Label>Protivnik</Label>
             {!useCustom ? (
               <div className="flex gap-2">
-                <select
-                  className="flex-1 h-10 px-3 rounded-md border border-border bg-background text-foreground"
-                  value={opponent}
-                  onChange={(e) => setOpponent(e.target.value)}
-                >
-                  {OPPONENT_OPTIONS.map((o) => (
-                    <option key={o} value={o}>{o}</option>
-                  ))}
-                </select>
+                <Select value={opponent} onValueChange={setOpponent}>
+                  <SelectTrigger className="flex-1">
+                    <SelectValue>
+                      <span className="flex items-center gap-2">
+                        {OPPONENT_LOGOS[opponent] && (
+                          <img src={OPPONENT_LOGOS[opponent]} alt="" className="w-6 h-6 object-contain" />
+                        )}
+                        {opponent}
+                      </span>
+                    </SelectValue>
+                  </SelectTrigger>
+                  <SelectContent>
+                    {OPPONENT_OPTIONS.map((o) => (
+                      <SelectItem key={o} value={o}>
+                        <span className="flex items-center gap-2">
+                          {OPPONENT_LOGOS[o] && (
+                            <img src={OPPONENT_LOGOS[o]} alt="" className="w-6 h-6 object-contain" />
+                          )}
+                          {o}
+                        </span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <Button type="button" variant="outline" onClick={() => setUseCustom(true)}>
                   Drugi...
                 </Button>
