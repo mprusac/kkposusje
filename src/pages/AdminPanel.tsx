@@ -688,14 +688,17 @@ export default function AdminPanel() {
             <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
           </Button>
           <Button variant="outline" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
-            <Newspaper className="w-4 h-4 mr-2" /> Nova utakmica
+            <Trophy className="w-4 h-4 mr-2" /> Nova utakmica
+          </Button>
+          <Button variant="outline" onClick={() => { setEditingPlayer(null); setView("player-form"); }}>
+            <Users className="w-4 h-4 mr-2" /> Novi igrač
           </Button>
         </div>
 
-        {/* Two column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Four column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {/* Vijesti */}
-          <section className="space-y-3">
+          <section className="space-y-3 min-w-0">
             <div className="flex items-center justify-center gap-2">
               <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
                 Vijesti
@@ -719,9 +722,9 @@ export default function AdminPanel() {
               {news.map((n) => (
                 <Card key={n.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {n.image_url ? (
-                    <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border" />
+                    <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
                   ) : (
-                    <div className="aspect-square w-14 rounded bg-muted" />
+                    <div className="aspect-square w-14 rounded bg-muted shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -733,7 +736,7 @@ export default function AdminPanel() {
                       <Badge variant="secondary" className="text-xs">{n.category}</Badge>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 shrink-0">
                     <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditing(n); setView("news-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -747,7 +750,7 @@ export default function AdminPanel() {
           </section>
 
           {/* Galerije */}
-          <section className="space-y-3">
+          <section className="space-y-3 min-w-0">
             <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
               Galerije
             </h2>
@@ -760,9 +763,9 @@ export default function AdminPanel() {
               {galleries.map((g) => (
                 <Card key={g.id} className="p-3 bg-card border-border flex items-center gap-3">
                   {g.cover_image ? (
-                    <img src={g.cover_image} className="aspect-square w-14 rounded object-cover border border-border" />
+                    <img src={g.cover_image} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
                   ) : (
-                    <div className="aspect-square w-14 rounded bg-muted" />
+                    <div className="aspect-square w-14 rounded bg-muted shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="font-medium truncate text-sm">{g.title}</div>
@@ -770,7 +773,7 @@ export default function AdminPanel() {
                       {g.date} <ImagePlus className="w-3 h-3 inline text-primary" /> {g.images.length}
                     </div>
                   </div>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 shrink-0">
                     <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingGallery(g); setView("gallery-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
@@ -782,54 +785,102 @@ export default function AdminPanel() {
               ))}
             </div>
           </section>
-        </div>
 
-        {/* Utakmice */}
-        <section className="space-y-3 mt-8">
-          <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
-            Utakmice
-          </h2>
-          {matches.length === 0 && !loading && (
-            <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
-          )}
-          <div className="space-y-2 max-w-3xl mx-auto">
-            {matches.map((m) => {
-              const scoreText = m.posusje_score != null && m.opponent_score != null
-                ? `${m.posusje_score}:${m.opponent_score}`
-                : "—";
-              const home = m.is_home ? "HKK Posušje" : m.opponent;
-              const away = m.is_home ? m.opponent : "HKK Posušje";
-              return (
-                <Card key={m.id} className="p-3 bg-card border-border flex items-center gap-3">
+          {/* Utakmice */}
+          <section className="space-y-3 min-w-0">
+            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+              Utakmice
+            </h2>
+            {matches.length === 0 && !loading && (
+              <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
+            )}
+            <div className="space-y-2">
+              {matches.map((m) => {
+                const scoreText = m.posusje_score != null && m.opponent_score != null
+                  ? `${m.posusje_score}:${m.opponent_score}`
+                  : "—";
+                const opponentLogo = m.opponent_logo_url ?? OPPONENT_LOGOS[m.opponent] ?? null;
+                return (
+                  <Card key={m.id} className="p-2.5 bg-card border-border flex items-center gap-2">
+                    {opponentLogo ? (
+                      <img src={opponentLogo} className="w-10 h-10 rounded object-contain border border-border bg-background shrink-0" />
+                    ) : (
+                      <div className="w-10 h-10 rounded bg-muted shrink-0" />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium truncate text-sm">
+                        {m.is_home ? "vs" : "@"} {m.opponent}
+                        <span className="ml-1 text-muted-foreground">{scoreText}</span>
+                      </div>
+                      <div className="text-[11px] text-muted-foreground mt-0.5 flex items-center gap-1.5">
+                        <span>{isoToDMY(m.match_date)}</span>
+                        <span className="text-[9px] font-bold text-foreground bg-gold-dark px-1.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                          {m.competition === "kup" ? (
+                            <>Kup <span aria-hidden>🏆</span></>
+                          ) : (
+                            <>Liga <img src={logoKSHB} alt="KSHB" className="w-3 h-3 object-contain" /></>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                        <Edit className="w-3.5 h-3.5" />
+                      </Button>
+                      <Button variant="destructive" size="icon" className="h-7 w-7" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Igrači */}
+          <section className="space-y-3 min-w-0">
+            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+              Igrači
+            </h2>
+            {players.length === 0 && !loading && (
+              <p className="text-muted-foreground py-8 text-center">Nema igrača.</p>
+            )}
+            <div className="space-y-2">
+              {players.map((p) => (
+                <Card key={p.id} className="p-3 bg-card border-border flex items-center gap-3">
+                  {p.image_url ? (
+                    <img src={p.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
+                  ) : (
+                    <div className="aspect-square w-14 rounded bg-muted shrink-0 flex items-center justify-center">
+                      <Users className="w-5 h-5 text-muted-foreground" />
+                    </div>
+                  )}
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium truncate text-sm">
-                      {home} vs {away} — {scoreText}
+                    <div className="font-medium truncate text-sm flex items-center gap-1.5">
+                      {p.jersey_number != null && (
+                        <span className="text-primary font-bold">#{p.jersey_number}</span>
+                      )}
+                      <span className="truncate">{p.name}</span>
                     </div>
-                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
-                      <span>{isoToDMY(m.match_date)}</span>
-                      <span className="text-[10px] font-bold text-foreground bg-gold-dark px-2 py-0.5 rounded-full inline-flex items-center gap-1">
-                        {m.competition === "kup" ? (
-                          <>Kup KSHB <span aria-hidden>🏆</span></>
-                        ) : (
-                          <>Liga KSHB <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain" /></>
-                        )}
-                      </span>
-                    </div>
+                    {p.position && (
+                      <div className="text-xs text-muted-foreground mt-1 truncate">{p.position}</div>
+                    )}
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                  <div className="flex items-center gap-1 shrink-0">
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingPlayer(p); setView("player-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "player", id: p.id })}>
                       <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
                 </Card>
-              );
-            })}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        </div>
       </main>
+
 
 
       <AlertDialog open={!!confirmDelete} onOpenChange={(o) => !o && setConfirmDelete(null)}>
