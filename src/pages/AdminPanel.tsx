@@ -755,9 +755,13 @@ export default function AdminPanel() {
                     </div>
                     <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
                       <span>{isoToDMY(m.match_date)}</span>
-                      <Badge variant="secondary" className="text-xs uppercase">
-                        {m.competition === "kup" ? "Kup KSHB" : "Liga KSHB"}
-                      </Badge>
+                      <span className="text-[10px] font-bold text-white bg-primary px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                        {m.competition === "kup" ? (
+                          <>Kup KSHB <span aria-hidden>🏆</span></>
+                        ) : (
+                          <>Liga KSHB <img src={logoKSHB} alt="KSHB" className="w-3.5 h-3.5 object-contain" /></>
+                        )}
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-1">
@@ -1517,23 +1521,32 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label>Datum</Label>
-            <div className="relative">
+            <div
+              className="relative cursor-pointer"
+              onClick={() => {
+                const el = dateInputRef.current as any;
+                if (el?.showPicker) { try { el.showPicker(); return; } catch {} }
+                el?.focus();
+              }}
+            >
               <Input
                 ref={dateInputRef}
                 type="date"
                 value={matchDate}
                 onChange={(e) => setMatchDate(e.target.value)}
                 required
-                className="pr-10 date-input-custom-icon"
+                className="pl-10 date-input-custom-icon cursor-pointer"
               />
               <button
                 type="button"
-                onClick={() => {
+                tabIndex={-1}
+                onClick={(e) => {
+                  e.stopPropagation();
                   const el = dateInputRef.current as any;
-                  if (el?.showPicker) el.showPicker();
-                  else el?.focus();
+                  if (el?.showPicker) { try { el.showPicker(); return; } catch {} }
+                  el?.focus();
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded hover:bg-muted"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded hover:bg-muted pointer-events-auto"
                 aria-label="Odaberi datum"
               >
                 <Calendar className="w-5 h-5 text-white" />
@@ -1561,7 +1574,7 @@ function MatchForm({
               >
                 <span className="flex items-center gap-2">
                   Kup KSHB
-                  <Trophy className="w-4 h-4" />
+                  <span aria-hidden>🏆</span>
                 </span>
               </Button>
             </div>
@@ -1569,7 +1582,7 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Youtube className="w-4 h-4 text-[#FF0000]" />
+              <Youtube className="w-4 h-4 text-white" fill="#FF0000" />
               YouTube link
             </Label>
             <Input
