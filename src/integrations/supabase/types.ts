@@ -131,6 +131,45 @@ export type Database = {
         }
         Relationships: []
       }
+      players: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          jersey_number: number | null
+          name: string
+          position: string | null
+          sort_order: number
+          statistics: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          jersey_number?: number | null
+          name: string
+          position?: string | null
+          sort_order?: number
+          statistics?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          jersey_number?: number | null
+          name?: string
+          position?: string | null
+          sort_order?: number
+          statistics?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
