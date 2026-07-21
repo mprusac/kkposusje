@@ -380,9 +380,10 @@ export default function AdminPanel() {
 
   const [news, setNews] = useState<NewsItem[]>([]);
   const [galleries, setGalleries] = useState<GalleryItem[]>([]);
+  const [matches, setMatches] = useState<MatchItem[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const [view, setView] = useState<"main" | "news-form" | "gallery-form">("main");
+  const [view, setView] = useState<"main" | "news-form" | "gallery-form" | "match-form">("main");
   const [editing, setEditing] = useState<NewsItem | null>(null);
 
   useEffect(() => {
@@ -393,8 +394,9 @@ export default function AdminPanel() {
     return () => { meta.remove(); };
   }, []);
   const [editingGallery, setEditingGallery] = useState<GalleryItem | null>(null);
+  const [editingMatch, setEditingMatch] = useState<MatchItem | null>(null);
 
-  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery"; id: string } | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<{ kind: "news" | "gallery" | "match"; id: string } | null>(null);
   const [categoryModal, setCategoryModal] = useState(false);
 
   const logout = useCallback(() => {
@@ -402,6 +404,7 @@ export default function AdminPanel() {
     setToken(null);
     setNews([]);
     setGalleries([]);
+    setMatches([]);
     setView("main");
   }, []);
 
