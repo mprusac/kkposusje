@@ -1521,23 +1521,32 @@ function MatchForm({
 
           <div className="space-y-2">
             <Label>Datum</Label>
-            <div className="relative">
+            <div
+              className="relative cursor-pointer"
+              onClick={() => {
+                const el = dateInputRef.current as any;
+                if (el?.showPicker) { try { el.showPicker(); return; } catch {} }
+                el?.focus();
+              }}
+            >
               <Input
                 ref={dateInputRef}
                 type="date"
                 value={matchDate}
                 onChange={(e) => setMatchDate(e.target.value)}
                 required
-                className="pr-10 date-input-custom-icon"
+                className="pl-10 date-input-custom-icon cursor-pointer"
               />
               <button
                 type="button"
-                onClick={() => {
+                tabIndex={-1}
+                onClick={(e) => {
+                  e.stopPropagation();
                   const el = dateInputRef.current as any;
-                  if (el?.showPicker) el.showPicker();
-                  else el?.focus();
+                  if (el?.showPicker) { try { el.showPicker(); return; } catch {} }
+                  el?.focus();
                 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded hover:bg-muted"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded hover:bg-muted pointer-events-auto"
                 aria-label="Odaberi datum"
               >
                 <Calendar className="w-5 h-5 text-white" />
