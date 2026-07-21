@@ -95,7 +95,7 @@ async function signedUrl(bucket: string, path: string) {
 async function adminUploadFile(bucket: string, path: string, file: File): Promise<string> {
   const token = sessionStorage.getItem("admin_token");
   if (!token) throw new Error("Niste prijavljeni");
-  const endpointBase = bucket === "gallery-images" ? GALLERY_URL : NEWS_URL;
+  const endpointBase = bucket === "gallery-images" ? GALLERY_URL : bucket === "team-logos" ? MATCHES_URL : NEWS_URL;
   const res = await fetch(`${endpointBase}/signed-upload`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
