@@ -714,6 +714,48 @@ export default function AdminPanel() {
             </div>
           </section>
         </div>
+
+        {/* Utakmice */}
+        <section className="space-y-3 mt-8">
+          <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+            Utakmice
+          </h2>
+          {matches.length === 0 && !loading && (
+            <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
+          )}
+          <div className="space-y-2 max-w-3xl mx-auto">
+            {matches.map((m) => {
+              const scoreText = m.posusje_score != null && m.opponent_score != null
+                ? `${m.posusje_score}:${m.opponent_score}`
+                : "—";
+              const home = m.is_home ? "HKK Posušje" : m.opponent;
+              const away = m.is_home ? m.opponent : "HKK Posušje";
+              return (
+                <Card key={m.id} className="p-3 bg-card border-border flex items-center gap-3">
+                  <div className="flex-1 min-w-0">
+                    <div className="font-medium truncate text-sm">
+                      {home} vs {away} — {scoreText}
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1 flex items-center gap-2">
+                      <span>{isoToDMY(m.match_date)}</span>
+                      <Badge variant="secondary" className="text-xs uppercase">
+                        {m.competition === "kup" ? "Kup KSHB" : "Liga KSHB"}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
       </main>
 
 
