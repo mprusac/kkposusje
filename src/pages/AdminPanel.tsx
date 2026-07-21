@@ -1399,6 +1399,47 @@ function MatchForm({
             )}
           </div>
 
+          {useCustom && (
+            <div className="space-y-2">
+              <Label>Logo ekipe (kvadratna slika, PNG s prozirnom pozadinom preporučeno)</Label>
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-background/60 border border-border flex items-center justify-center overflow-hidden p-2 flex-shrink-0">
+                  {opponentLogoUrl ? (
+                    <img src={opponentLogoUrl} alt="Logo" className="w-full h-full object-contain" />
+                  ) : (
+                    <span className="text-xs text-muted-foreground text-center">bez loga</span>
+                  )}
+                </div>
+                <div className="flex-1 flex flex-col gap-2">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    disabled={uploadingLogo}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) handleLogoUpload(f);
+                    }}
+                  />
+                  {opponentLogoUrl && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setOpponentLogoUrl(null)}
+                    >
+                      Ukloni logo
+                    </Button>
+                  )}
+                  {uploadingLogo && <p className="text-sm text-muted-foreground">Prijenos u tijeku...</p>}
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Logo će biti prikazan u okrugloj ikoni na kartici utakmice (~56 px). Preporučujemo kvadratnu sliku ≥ 200×200.
+              </p>
+            </div>
+          )}
+
+
           <div className="space-y-2">
             <Label>Domaćin / gost</Label>
             <div className="flex gap-2">
