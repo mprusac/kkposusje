@@ -95,7 +95,7 @@ async function signedUrl(bucket: string, path: string) {
 async function adminUploadFile(bucket: string, path: string, file: File): Promise<string> {
   const token = sessionStorage.getItem("admin_token");
   if (!token) throw new Error("Niste prijavljeni");
-  const endpointBase = bucket === "gallery-images" ? GALLERY_URL : NEWS_URL;
+  const endpointBase = bucket === "gallery-images" ? GALLERY_URL : bucket === "team-logos" ? MATCHES_URL : NEWS_URL;
   const res = await fetch(`${endpointBase}/signed-upload`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
@@ -1299,7 +1299,23 @@ function MatchForm({
   const [competition, setCompetition] = useState<"liga" | "kup">(initial?.competition ?? "liga");
   const [youtubeLink, setYoutubeLink] = useState(initial?.youtube_link ?? "");
   const [sofascoreLink, setSofascoreLink] = useState(initial?.sofascore_link ?? "");
+  const [opponentLogoUrl, setOpponentLogoUrl] = useState<string | null>(initial?.opponent_logo_url ?? null);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
   const dateInputRef = useRef<HTMLInputElement>(null);
+
+  const handleLogoUpload = async (file: File) => {
+    setUploadingLogo(true);
+    try {
+      const path = `logos/${Date.now()}-${Math.random().toString(36).slice(2, 6)}-${file.name}`;
+      const url = await adminUploadFile("team-logos", path, file);
+      setOpponentLogoUrl(url);
+      toast.success("Logo prenesen");
+    } catch (e) {
+      toast.error("Greška uploada", { description: (e as Error).message });
+    } finally {
+      setUploadingLogo(false);
+    }
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -1320,6 +1336,7 @@ function MatchForm({
         competition,
         youtube_link: youtubeLink.trim() || null,
         sofascore_link: sofascoreLink.trim() || null,
+        opponent_logo_url: useCustom ? opponentLogoUrl : null,
       };
       const endpoint = initial ? "update" : "create";
       await apiFetch(`${MATCHES_URL}/${endpoint}`, {
@@ -1381,6 +1398,47 @@ function MatchForm({
               </div>
             )}
           </div>
+
+          {useCustom && (
+            <div className="space-y-2">
+              <Label>Logo ekipe (kvadratna slika, PNG s prozirnom pozadinom preporučeno)</Label>
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-background/60 border border-border flex items-center justify-center overflow-hidden p-2 flex-shrink-0">
+                  {opponentLogoUrl ? (
+                    <img src={opponentLogoUrl} alt="Logo" className="w-full h-full object-contain" />
+                  ) : (
+                    <span className="text-xs text-muted-foreground text-center">bez loga</span>
+                  )}
+                </div>
+                <div className="flex-1 flex flex-col gap-2">
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    disabled={uploadingLogo}
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) handleLogoUpload(f);
+                    }}
+                  />
+                  {opponentLogoUrl && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setOpponentLogoUrl(null)}
+                    >
+                      Ukloni logo
+                    </Button>
+                  )}
+                  {uploadingLogo && <p className="text-sm text-muted-foreground">Prijenos u tijeku...</p>}
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Logo će biti prikazan u okrugloj ikoni na kartici utakmice (~56 px). Preporučujemo kvadratnu sliku ≥ 200×200.
+              </p>
+            </div>
+          )}
+
 
           <div className="space-y-2">
             <Label>Domaćin / gost</Label>
