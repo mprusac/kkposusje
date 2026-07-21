@@ -291,7 +291,9 @@ const NewsPage = () => {
   useEffect(() => { fetchAdminNews().then(setAdminNews); }, []);
 
   const mergedNews = useMemo(() => {
-    return [...(adminNews as any[]), ...(allNews as any[])].sort(
+    const adminTitles = new Set((adminNews as any[]).map((n: any) => (n.title || "").trim()));
+    const localFiltered = (allNews as any[]).filter((n: any) => !adminTitles.has((n.title || "").trim()));
+    return [...(adminNews as any[]), ...localFiltered].sort(
       (a: any, b: any) => parseDate(b.date) - parseDate(a.date)
     );
   }, [adminNews]);
