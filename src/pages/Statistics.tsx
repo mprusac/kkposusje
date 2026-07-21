@@ -263,6 +263,39 @@ const Statistics = () => {
   const [leagueCategory, setLeagueCategory] = useState<"seniori" | "seniorke">("seniori");
   const [topPlayersPage, setTopPlayersPage] = useState(0);
   const [showDownloadDialog, setShowDownloadDialog] = useState(false);
+  const [dynamicMatches, setDynamicMatches] = useState<DisplayMatch[]>([]);
+
+  useEffect(() => {
+    fetchMatches().then(setDynamicMatches).catch(() => setDynamicMatches([]));
+  }, []);
+
+  // Backwards-compatible aliases so existing JSX below keeps working
+  const matches = useMemo(() => {
+    return dynamicMatches.map((m) => ({
+      id: m.id as unknown as number,
+      date: m.date,
+      homeTeam: m.homeTeam,
+      awayTeam: m.awayTeam,
+      homeScore: m.isUpcoming ? undefined : m.homeScore,
+      awayScore: m.isUpcoming ? undefined : m.awayScore,
+      isUpcoming: m.isUpcoming,
+      sofascoreLink: m.sofascoreLink,
+      competition: m.competition,
+      _display: m,
+    }));
+  }, [dynamicMatches]);
+
+  const formData = useMemo(() => {
+    return buildForm(dynamicMatches, 7).map((f) => ({
+      opponent: f.opponent,
+      logo: getTeamLogoFor(dynamicMatches.find((m) => m.id === f.id)!, f.opponent),
+      result: f.result,
+      homeTeam: f.homeTeam,
+      awayTeam: f.awayTeam,
+      homeScore: f.homeScore,
+      awayScore: f.awayScore,
+    }));
+  }, [dynamicMatches]);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowDownloadDialog(true), 3000);
