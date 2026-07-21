@@ -1,6 +1,9 @@
+import "./shim";
 import { createClient } from "@supabase/supabase-js";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
+import { allNews } from "../src/pages/NewsPage.tsx";
+import { events } from "../src/pages/GalleryPage.tsx";
 
 const BASE_URL = "https://kkposusje.ba";
 
