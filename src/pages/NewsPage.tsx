@@ -342,7 +342,7 @@ const NewsPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto">
             {filteredNews.map((item, index) => (
               <motion.div key={item.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.05 }}>
-                <Link to={`/vijesti/${item.id}`} className="group block bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30">
+                <Link to={`/vijesti/${item.id}`} className="group flex flex-col h-[340px] md:h-[440px] bg-background rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover-lift border border-transparent hover:border-primary/30">
                   <div className="relative h-48 overflow-hidden">
                     <img src={item.cardImage || item.image} alt={item.title} className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${item.cardImagePosition === 'center' ? 'object-center' : item.cardImagePosition === 'upper' ? 'object-[center_5%]' : item.cardImagePosition === 'top' ? 'object-top' : item.cardImagePosition === 'lower' ? 'object-[center_35%]' : item.cardImagePosition === 'bottom' ? 'object-bottom' : 'object-[center_25%]'}`} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -350,7 +350,7 @@ const NewsPage = () => {
                       {(() => { const cat = item.category; const icons: Record<string, typeof Trophy> = { utakmica: Trophy, najava: Megaphone, klub: Newspaper }; const labels: Record<string, string> = { utakmica: "Utakmice", najava: "Najave", klub: "Klub" }; const Icon = icons[cat]; return <><Icon size={12} strokeWidth={3} />{labels[cat]}</>; })()}
                     </span>
                   </div>
-                  <div className="p-5 flex flex-col bg-secondary">
+                  <div className="p-5 flex flex-col flex-1 bg-secondary">
                     <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
                       <Calendar size={14} />
                       {item.date}
