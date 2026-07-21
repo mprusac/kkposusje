@@ -145,8 +145,8 @@ const Results = () => {
             {results.map((match, index) => {
               const isWin = (match.isHome && match.homeScore > match.awayScore) ||
                 (!match.isHome && match.awayScore > match.homeScore);
-              const homeLogo = getTeamLogo(match.homeTeam);
-              const awayLogo = getTeamLogo(match.awayTeam);
+              const homeLogo = getTeamLogo(match.homeTeam, match);
+              const awayLogo = getTeamLogo(match.awayTeam, match);
               
               return (
                 <a
@@ -154,7 +154,7 @@ const Results = () => {
                   ref={(el) => {
                     cardRefs.current[index] = el;
                   }}
-                  href={match.sofaScoreLink}
+                  href={match.sofascoreLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`group flex-shrink-0 rounded-xl md:rounded-2xl p-4 md:p-6 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 border backdrop-blur-sm shadow-lg hover:shadow-xl snap-start ${
