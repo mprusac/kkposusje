@@ -18,8 +18,16 @@ import {
 import { toast } from "sonner";
 import {
   Plus, Edit, Trash2, Save, X, Upload, Pin, ArrowLeft, LogOut,
-  ImagePlus, Newspaper, Loader2, Tag, Calendar,
+  ImagePlus, Newspaper, Loader2, Tag, Calendar, Youtube, Trophy,
 } from "lucide-react";
+import logoGrude from "@/assets/logos/hkk_grude.png";
+import logoLjubuski from "@/assets/logos/hkk_ljubuski.png";
+import logoMostar from "@/assets/logos/hkk_mostar.png";
+import logoRama from "@/assets/logos/hkk_rama.png";
+import logoSiroki from "@/assets/logos/hkk_siroki.png";
+import logoTomislav from "@/assets/logos/hkk_tomislav.png";
+import logoCapljina from "@/assets/logos/hkk_capljina.png";
+import logoKSHB from "@/assets/logos/kshb_logo.png";
 
 const NEWS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-news`;
 const GALLERY_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-galleries`;
@@ -29,6 +37,15 @@ const OPPONENT_OPTIONS = [
   "HKK Grude", "HKK Ljubuški", "HKK Mostar", "HKK Rama",
   "HKK Široki II", "HKK Tomislav", "HKK Čapljina",
 ];
+const OPPONENT_LOGOS: Record<string, string> = {
+  "HKK Grude": logoGrude,
+  "HKK Ljubuški": logoLjubuski,
+  "HKK Mostar": logoMostar,
+  "HKK Rama": logoRama,
+  "HKK Široki II": logoSiroki,
+  "HKK Tomislav": logoTomislav,
+  "HKK Čapljina": logoCapljina,
+};
 const PAGE_SIZE = 30;
 const SIGNED_URL_TTL = 60 * 60 * 24 * 365 * 10; // 10 years
 
