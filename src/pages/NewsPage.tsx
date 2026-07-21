@@ -350,7 +350,7 @@ const NewsPage = () => {
                       {(() => { const cat = item.category; const icons: Record<string, typeof Trophy> = { utakmica: Trophy, najava: Megaphone, klub: Newspaper }; const labels: Record<string, string> = { utakmica: "Utakmice", najava: "Najave", klub: "Klub" }; const Icon = icons[cat]; return <><Icon size={12} strokeWidth={3} />{labels[cat]}</>; })()}
                     </span>
                   </div>
-                  <div className="p-5 flex flex-col">
+                  <div className="p-5 flex flex-col bg-secondary">
                     <div className="flex items-center gap-2 text-muted-foreground text-sm mb-3">
                       <Calendar size={14} />
                       {item.date}
