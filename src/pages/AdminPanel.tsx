@@ -52,7 +52,28 @@ interface GalleryItem {
   cover_image: string | null;
   created_at: string;
 }
+interface MatchItem {
+  id: string;
+  match_date: string; // YYYY-MM-DD
+  opponent: string;
+  is_home: boolean;
+  posusje_score: number | null;
+  opponent_score: number | null;
+  competition: "liga" | "kup";
+  youtube_link: string | null;
+  sofascore_link: string | null;
+  opponent_logo_url: string | null;
+}
 
+function todayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+function isoToDMY(iso: string) {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  return `${d}.${m}.${y}`;
+}
 function todayDMY() {
   const d = new Date();
   return `${String(d.getDate()).padStart(2, "0")}.${String(d.getMonth() + 1).padStart(2, "0")}.${d.getFullYear()}`;
