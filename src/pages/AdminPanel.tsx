@@ -1518,17 +1518,26 @@ function MatchForm({
           <div className="space-y-2">
             <Label>Datum</Label>
             <div className="relative">
-              <Calendar
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-white pointer-events-none"
-              />
               <Input
                 ref={dateInputRef}
                 type="date"
                 value={matchDate}
                 onChange={(e) => setMatchDate(e.target.value)}
                 required
-                className="pl-10 date-input-custom-icon"
+                className="pr-10 date-input-custom-icon"
               />
+              <button
+                type="button"
+                onClick={() => {
+                  const el = dateInputRef.current as any;
+                  if (el?.showPicker) el.showPicker();
+                  else el?.focus();
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded hover:bg-muted"
+                aria-label="Odaberi datum"
+              >
+                <Calendar className="w-5 h-5 text-white" />
+              </button>
             </div>
           </div>
 
@@ -1540,20 +1549,29 @@ function MatchForm({
                 variant={competition === "liga" ? "default" : "outline"}
                 onClick={() => setCompetition("liga")}
               >
-                Liga KSHB
+                <span className="flex items-center gap-2">
+                  Liga KSHB
+                  <img src={logoKSHB} alt="KSHB" className="w-5 h-5 object-contain" />
+                </span>
               </Button>
               <Button
                 type="button"
                 variant={competition === "kup" ? "default" : "outline"}
                 onClick={() => setCompetition("kup")}
               >
-                🏆 Kup KSHB
+                <span className="flex items-center gap-2">
+                  Kup KSHB
+                  <Trophy className="w-4 h-4" />
+                </span>
               </Button>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label>YouTube link</Label>
+            <Label className="flex items-center gap-2">
+              <Youtube className="w-4 h-4 text-[#FF0000]" />
+              YouTube link
+            </Label>
             <Input
               value={youtubeLink}
               onChange={(e) => setYoutubeLink(e.target.value)}
@@ -1562,7 +1580,14 @@ function MatchForm({
           </div>
 
           <div className="space-y-2">
-            <Label>SofaScore link</Label>
+            <Label className="flex items-center gap-2">
+              <img
+                src="https://www.sofascore.com/favicon.ico"
+                alt=""
+                className="w-4 h-4 object-contain"
+              />
+              SofaScore link
+            </Label>
             <Input
               value={sofascoreLink}
               onChange={(e) => setSofascoreLink(e.target.value)}
