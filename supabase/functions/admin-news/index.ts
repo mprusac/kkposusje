@@ -14,8 +14,7 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
 );
 
-function getExpectedToken(): string {
-  const day = new Date().toISOString().slice(0, 10);
+function getExpectedTokenForDay(day: string): string {
   const data = `${ADMIN_USERNAME}:${ADMIN_PASSWORD}:${day}`;
   let hash = 0;
   for (let i = 0; i < data.length; i++) {
@@ -25,10 +24,21 @@ function getExpectedToken(): string {
   return `admin_${Math.abs(hash).toString(36)}_${day.replace(/-/g, '')}`;
 }
 
+function getExpectedToken(): string {
+  return getExpectedTokenForDay(new Date().toISOString().slice(0, 10));
+}
+
 function verifyAdminToken(req: Request): boolean {
   const auth = req.headers.get('Authorization');
   if (!auth?.startsWith('Bearer admin_')) return false;
-  return auth.replace('Bearer ', '') === getExpectedToken();
+  const provided = auth.replace('Bearer ', '');
+  const now = new Date();
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(now);
+    d.setUTCDate(d.getUTCDate() - i);
+    if (provided === getExpectedTokenForDay(d.toISOString().slice(0, 10))) return true;
+  }
+  return false;
 }
 
 function json(body: unknown, status = 200) {
