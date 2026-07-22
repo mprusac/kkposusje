@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kkposusje.ba/</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://kkposusje.ba/vijesti</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://kkposusje.ba/statistika</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kkposusje.ba/galerija</loc>
-    <lastmod>2026-07-21</lastmod>
+    <lastmod>2026-07-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -215,6 +215,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://kkposusje.ba/vijesti/0b06f48f-7ca7-45c0-a6ee-5f5b62b21aef</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/vijesti/f8a7ffe1-0768-4e4d-b881-bcfdf7196885</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/vijesti/db6ec5dc-5538-4bbe-bf4f-29ca6dc0e660</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://kkposusje.ba/vijesti/86de0faa-9e77-4829-8ec4-cf9e295c637e</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -246,21 +261,6 @@
   </url>
   <url>
     <loc>https://kkposusje.ba/vijesti/e711d28a-a879-4ec3-9c13-3ececbf75ee0</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kkposusje.ba/vijesti/f8a7ffe1-0768-4e4d-b881-bcfdf7196885</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kkposusje.ba/vijesti/db6ec5dc-5538-4bbe-bf4f-29ca6dc0e660</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://kkposusje.ba/vijesti/0b06f48f-7ca7-45c0-a6ee-5f5b62b21aef</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -301,6 +301,36 @@
   </url>
   <url>
     <loc>https://kkposusje.ba/galerija/tomislav</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/galerija/0e5008fd-2ba5-418a-86b6-0604cabd3161</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/galerija/fc932ba1-730c-4a7d-a8e8-f1f0bb49d73f</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/galerija/84862047-75b8-4976-847a-c57e982e53d1</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/galerija/03491ab7-ca84-46a3-8ef7-a6c5be9281b4</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/galerija/0c8362b3-33ff-4f8e-b98a-92dcd8815373</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://kkposusje.ba/galerija/511faa49-d8b9-4f8b-a15e-21c7a73e122c</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
