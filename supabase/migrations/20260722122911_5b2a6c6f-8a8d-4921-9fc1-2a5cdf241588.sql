@@ -1,0 +1,2 @@
+DROP POLICY IF EXISTS "Public read news+gallery+logos" ON storage.objects;
+CREATE POLICY "Public read news+gallery+logos+players" ON storage.objects FOR SELECT TO public USING (bucket_id = ANY (ARRAY['news-images','gallery-images','team-logos','player-images']));
