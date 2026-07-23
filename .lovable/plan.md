@@ -1,83 +1,123 @@
-## Cilj
 
-U admin panelu dodati odjeljak **Utakmice** koji omogućuje dodavanje/brisanje odigranih utakmica. Promjene se automatski reflektiraju na:
-- Početnoj (`Results.tsx` — "Zadnje utakmice")
-- Statistici (`pages/Statistics.tsx` — "Utakmice" tablica + "Nedavna forma")
+Ispod je gotov prompt koji možeš zalijepiti u drugi Lovable projekt. Ne dira ništa na HKK Posušje stranici — samo opisuje što treba napraviti tamo.
 
-## Povratne informacije na tvoj plan
+---
 
-Plan je dobar, ali evo par stvari koje fale ili treba razjasniti:
+# Prompt za drugi projekt
 
-1. **Migracija postojećih utakmica** — trenutno je ~15 utakmica hardkodirano u `Results.tsx` i `Statistics.tsx`. Prijedlog: automatski seed-ati sve u novu tablicu `matches` pri prvoj migraciji, pa admin ima kompletan popis od starta (može brisati što želi). Kod se onda oslanja isključivo na bazu.
+Nadogradi postojeći admin panel (koji već ima Vijesti i Galerije) i dodaj dvije nove sekcije: **Utakmice** i **Igrači**. Sve mora ići preko Lovable Cloud (Supabase) — tablice, storage, RLS i Edge Functions sa service_role ključem. Admin login ostaje isti kao sada (username/password iz Cloud secrets, token-based auth, token vrijedi 7 dana). Dizajn prilagodi bojama i tipografiji postojećeg projekta, ali **struktura, funkcionalnosti i UX moraju biti identični** onome što je opisano dolje.
 
-2. **Domaća vs. gostujuća** — mora postojati toggle "Igramo doma / u gostima" jer se logika kartice i tablice mijenja (redoslijed timova i logotipa).
+Cijeli admin panel neka bude na `/admin` ruti, organiziran u **4 stupca** (Vijesti, Galerije, Utakmice, Igrači), s posebnim naslovom svake sekcije i gumbom "Natrag" gore lijevo koji vraća korisnika na prethodnu poziciju (koristi `sessionStorage` za scroll poziciju).
 
-3. **Nedavna forma se izvodi automatski** iz zadnjih 5 utakmica po datumu (W/L + rezultat) — ne treba je posebno unositi. Trenutno je hardkodirana; prebacit ću ju na izračun iz baze.
+## 1) Nadogradnja postojeće sekcije VIJESTI
 
-4. **Predstojeće utakmice** — trenutno `Statistics.tsx` ima i `isUpcoming` utakmice (bez rezultata). Predlažem da forma podržava i to: ako ne upišeš rezultat, utakmica je "predstojeća".
+Dodaj/promijeni sljedeće u formi za dodavanje i uređivanje vijesti:
 
-5. **Validacija** — datum u formatu `DD.MM.YYYY.`, rezultati kao ne‑negativni brojevi, YouTube/SofaScore URL-ovi opcionalni ali validirani.
+- **Pozicija naslovne slike** — padajući izbornik s opcijama na hrvatskom: `Vrh`, `Sredina`, `Dno`. Vrijednost se sprema u kolonu `image_position` (`top` / `center` / `bottom`) i primjenjuje se kao Tailwind `object-top` / `object-center` / `object-bottom` na naslovnoj slici u karticama vijesti.
+- **Textbox za sažetak (excerpt)** — napravi `AutoResizeTextarea` komponentu koja po defaultu ima `rows={6}` (duplo više nego prije) i automatski se produljuje prema dolje kako korisnik piše duži tekst (`onInput` postavlja `height = scrollHeight`).
+- **Upload naslovne slike** — zamijeni obični `<input type="file">` s **DropZone** komponentom koja podržava i klik i drag-and-drop. Vizualno neka izgleda kao istaknuti gumb/kartica s ikonom i tekstom "Povuci sliku ovdje ili klikni za odabir". Prihvaća samo slike. Upload ide preko `signed-upload` endpointa (service role vrati signed upload URL, klijent uploada direktno u bucket).
+- **Kategorije** — dodaj padajući izbornik postojećih kategorija + polje/gumb "Dodaj novu kategoriju" koji dinamički dopušta unos nove vrijednosti.
+- **Pinned** — checkbox koji označava vijest kao pinned.
+- U listi vijesti u admin panelu prikazuj **zadnjih 10 vijesti** s malim thumbnail-om slike u kartici i u modalu za uređivanje.
 
-6. **Sortiranje** — utakmice u bazi po `match_date` desc; forma uzima zadnjih 5 odigranih.
+## 2) Nadogradnja postojeće sekcije GALERIJE
 
-7. **Sigurnost** — pisanje samo preko edge funkcije `matches-admin` sa service role (isti pattern kao vijesti/galerije). Javno čitanje dopušteno (SELECT policy za `anon` + `authenticated`).
+- **DropZone** za slike (isti kao kod vijesti) s podrškom za **bulk upload** — korisnik može odjednom povući ili odabrati više datoteka; svaka se uploada zasebno preko signed URL-a i dodaje u `images` array galerije.
+- **Naslovna slika galerije (cover_image)** — dodaj poseban upload (isto DropZone, jedna slika) koji se koristi kao naslovna kartica galerije na javnoj stranici. Ako nije zadana, fallback je prva slika iz `images`.
+- U listi galerija u admin panelu prikaži **sve galerije** s thumbnailom naslovne slike, brojem slika, datumom, gumbima Uredi / Obriši.
+- U modalu za uređivanje: mogućnost brisanja pojedinih slika iz galerije, promjene redoslijeda, promjene naslovne slike i naslova/datuma.
 
-8. **Brisanje** — u admin listi svaka utakmica ima gumb "Obriši" s potvrdom (AlertDialog). Nema soft-delete — jednostavno DELETE.
+## 3) NOVA sekcija: UTAKMICE
 
-## Što ću implementirati
+Napravi kompletno od nule.
 
-### 1. Baza (`matches` tablica)
+### Baza (Supabase migration)
 
-Kolone: `id`, `match_date` (date), `opponent` (text — jedan od ponuđenih klubova), `is_home` (bool), `posusje_score` (int, nullable → predstojeća), `opponent_score` (int, nullable), `competition` (enum: `liga` | `kup`), `youtube_link` (text, nullable), `sofascore_link` (text, nullable), `created_at`, `updated_at`.
+Tablica `public.matches`:
+- `id uuid PK default gen_random_uuid()`
+- `match_date date NOT NULL`
+- `opponent text NOT NULL`
+- `is_home boolean NOT NULL default true`
+- `posusje_score integer` (nullable — ako je null, utakmica je nadolazeća) — preimenuj u svoj kontekst ako klub nije Posušje, npr. `home_team_score` prema potrebi; zadrži logiku "naš tim vs protivnik"
+- `opponent_score integer` (nullable)
+- `competition text NOT NULL default 'liga'` (`'liga'` ili `'kup'`)
+- `youtube_link text`, `sofascore_link text`, `opponent_logo_url text`
+- `created_at`, `updated_at` timestampz s triggerom
+- **GRANTs** u istoj migraciji: nakon CREATE TABLE odmah `GRANT SELECT ON public.matches TO anon, authenticated;` `GRANT ALL ON public.matches TO service_role;`
+- Zatim `ALTER TABLE ... ENABLE ROW LEVEL SECURITY` i policies: SELECT za sve (`using (true)`), restrictive INSERT/UPDATE/DELETE za `anon` i `authenticated` sa `false` (sve pisanje ide isključivo preko Edge Functiona sa service_role).
 
-Policies: javni SELECT; INSERT/UPDATE/DELETE zabranjeni za anon/authenticated (samo service_role preko edge funkcije).
+Storage bucket `team-logos` (public read) za logoe protivničkih ekipa.
 
-Seed migracija ubacuje sve postojeće utakmice iz `Results.tsx` + `Statistics.tsx`.
+### Edge Function `admin-matches`
 
-### 2. Edge funkcija `matches-admin`
+Endpointi: `list`, `create`, `update`, `delete`, `signed-upload` (za `team-logos`). Svi zahtijevaju admin token (7-day rolling token kao ostale funkcije). `sanitize()` funkcija koja pretvara scoreove u int ili null, trimma stringove, forsira competition na `'liga'` ili `'kup'`.
 
-Iste provjere admin kredencijala kao `news-admin` (ADMIN_USERNAME/ADMIN_PASSWORD secrets). Akcije: `list`, `create`, `update`, `delete`.
+### Admin UI — MatchForm
 
-### 3. Admin UI (`/admin`)
+- **Datum** — `<input type="date">` s custom `Calendar` ikonom bijele boje **desno** uz tekst (native picker se otvara klikom na cijeli input). Native indicator sakrij CSS-om, custom ikonu pozicioniraj `absolute right-3` i klik na nju forsira `showPicker()`.
+- **Padajući izbornik protivnika** — lista tvojih klupskih rivala; **ispred svakog naziva prikaži logo** ekipe (statički mapirani logoi + fallback na `opponent_logo_url` iz baze).
+- **Domaćin / gost** — toggle ili radio.
+- **Rezultat** — dva broja (naš i protivnički); prazno = nadolazeća utakmica.
+- **Natjecanje** — Liga ili Kup. U prikazu koristi "badge" stila:
+  - tamno zlatna pozadina (`bg-gold-dark` — dodaj utility ako ne postoji), bijeli tekst,
+  - iza teksta "Kup" prikaži emoji 🏆,
+  - iza teksta "Liga" prikaži logo lige (statički import).
+- **YouTube link** — pored polja prikaži custom SVG YouTube logo (crveni popunjeni, bez bijelih okvira).
+- **SofaScore link** — pored polja SofaScore logo.
+- **Upload logotipa protivnika** — DropZone koji uploada u `team-logos` bucket i sprema URL u `opponent_logo_url`. U preview prikazu logo neka bude **kružan** i po dimenzijama identičan onome što se prikazuje u karticama utakmica na javnoj stranici.
 
-- Nova kartica na dashboardu: **Utakmice** (pored Vijesti i Galerija)
-- Ruta `/admin/utakmice` — lista svih utakmica sa gumbom "Obriši" i "Dodaj novu"
-- Forma:
-  - Padajući izbornik **Protivnik** — popunjen svim timovima iz `teamLogos` mape (Grude, Ljubuški, Mostar, Rama, Široki II, Tomislav, Čapljina + mogućnost dodavanja novog s uploadom logotipa u `team-logos` bucket)
-  - Toggle **Domaća / Gostujuća**
-  - Datum (DatePicker → format `DD.MM.YYYY.`)
-  - Rezultat Posušje / Rezultat protivnika (ostavi prazno = predstojeća utakmica)
-  - Radio: **Liga KSHB** / **Kup KSHB 🏆**
-  - YouTube link (opcionalno)
-  - SofaScore link (opcionalno)
+### Admin UI — Lista utakmica
 
-### 4. Frontend refactor
+Kartice s: datum, badge natjecanja (isti stil kao gore), naš tim vs protivnik s logoima, rezultat (ili "Nadolazeća"), gumbi Uredi / Obriši, ikone YouTube/SofaScore ako linkovi postoje.
 
-- Novi `src/lib/adminMatches.ts` (fetch + mapiranje iz baze u postojeći `MatchResult` / `Match` shape)
-- `Results.tsx`: uklonjen hardkodirani `results` array, čita iz Supabase; dizajn kartica ostaje **identičan**
-- `pages/Statistics.tsx`: `matches` i `formData` se izvode iz baze; `formData` = zadnjih 5 odigranih, mapirano u W/L kao dosad
-- Loading state (skeleton) dok podaci ne stignu
+### Frontend integracija
 
-### 5. Novi timovi / logotipi
+Napravi `src/lib/adminMatches.ts` s tipovima `MatchRow`, `DisplayMatch`, funkcijama `fetchMatches()`, `toDisplay()`, `buildForm()`, `getTeamLogoFor()`, i statičkom mapom `staticTeamLogos` za logoe rivala. Sve javne komponente (npr. "Zadnje utakmice", tablica utakmica, "Nedavna forma") fetchaju iz Supabasea umjesto iz hardkodiranog niza.
 
-Ako admin dodaje protivnika kojeg nema, upload logotip u `team-logos` bucket. Mapa `teamLogos` postaje dinamična (spaja hardkodirane + URL-ove iz baze).
+## 4) NOVA sekcija: IGRAČI
 
-## Tehnički detalji
+### Baza
 
-```
-supabase/
-  migrations/<ts>_matches.sql       -- CREATE TABLE + GRANT + RLS + seed
-  functions/matches-admin/index.ts  -- CRUD s admin auth
-src/
-  lib/adminMatches.ts               -- fetch + tip mapping
-  pages/AdminMatches.tsx            -- lista + forma
-  components/admin/MatchForm.tsx
-  components/Results.tsx            -- refactor na async
-  pages/Statistics.tsx              -- refactor na async
-```
+Tablica `public.players`:
+- `id uuid PK`
+- `name text NOT NULL`
+- `position text`
+- `description text`
+- `image_url text`
+- `jersey_number integer`
+- `statistics jsonb NOT NULL default '[]'` — array objekata `{ label: string, value: string }`
+- `sort_order integer NOT NULL default 0`
+- `created_at`, `updated_at`
+- **GRANTs** + RLS iste logike kao `matches` (public SELECT, sve pisanje samo preko Edge Functiona).
 
-Redoslijed migracije: `CREATE TABLE public.matches` → `GRANT SELECT` za anon+authenticated, `GRANT ALL` za service_role → `ENABLE RLS` → `CREATE POLICY` (samo public SELECT) → seed `INSERT`.
+Storage bucket `player-images` — **mora imati public SELECT policy** na `storage.objects` da slike ne vraćaju 404 nakon uploada.
 
-## Otvoreno pitanje
+### Edge Function `admin-players`
 
-Želiš li da admin može i **editirati** postojeću utakmicu (npr. ispraviti rezultat), ili samo dodati/brisati? Preporučujem edit — inače ispravka znači obriši + ponovno dodaj.
+Endpointi: `list` (sortirano po `sort_order` pa `created_at`), `create`, `update`, `delete`, `signed-upload`. Isti auth mehanizam. `sanitize()` čisti statistiku — filtrira prazne labele i pretvara sve vrijednosti u trimmed string.
+
+### Admin UI — PlayerForm
+
+- Ime, pozicija (padajući izbornik), broj dresa, opis (autoresize textarea), sort_order.
+- **Slika igrača** — DropZone upload u `player-images` bucket; preview mora biti u istom formatu kao na javnoj stranici (npr. portret s crop-om).
+- **Statistika** — dinamička lista redova `{ label, value }` s gumbima "Dodaj stat" i "Ukloni". Label je slobodan tekst (npr. "Poeni po utakmici"), value tekstualno polje.
+
+### Admin UI — Lista igrača
+
+Prikazuj **sve igrače** kao kartice s thumbnailom, imenom, brojem dresa, pozicijom, gumbima Uredi / Obriši. Unutar modala za uređivanje slika je vidljiva.
+
+### Frontend integracija
+
+Komponenta "Tim" / "Igrači" na javnoj stranici fetcha iz Supabasea (`fetchPlayers()`), ne iz hardkodiranog niza.
+
+## 5) Zajednička pravila
+
+- **Nikad ne hardkodiraj admin credentials** — koristi Cloud secrets `ADMIN_USERNAME` i `ADMIN_PASSWORD`. Login endpoint vraća token koji je hash od `username:password:YYYY-MM-DD`; verify prihvaća tokene današnjeg dana i 6 prethodnih dana (rolling 7-day window).
+- **Svaki CREATE TABLE u public schemi mora u ISTOJ migraciji dobiti GRANTs prije ENABLE RLS i policies.** Bez toga Data API vraća permission error.
+- Sve pisanje u bazu ide isključivo preko Edge Functiona sa `SUPABASE_SERVICE_ROLE_KEY`; klijent nikad ne piše direktno.
+- Storage upload ide preko `signed-upload` endpointa (server izda signed URL, klijent PUT-a datoteku).
+- Sav UI tekst na **hrvatskom**.
+- Dizajn (boje, fontovi, radiusi) prilagodi postojećem design systemu drugog projekta — ne kopiraj boje s HKK Posušje stranice. Layout, komponente i tijek rada moraju ostati isti.
+- Nakon svake nove tablice regeneriraj TypeScript tipove i tek onda piši kod koji ih koristi.
+
+Kad završiš, u footeru dodaj brzi link "Admin" koji vodi na `/admin`, i osiguraj da je `/admin` blokiran u `robots.txt` te ima `noindex` meta tag.
