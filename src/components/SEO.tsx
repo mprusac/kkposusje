@@ -18,7 +18,7 @@ const SEO = ({ title, description, path, image = DEFAULT_IMAGE, type = "website"
 
   return (
     <Helmet>
-      <title>{title}</title>
+      <title>HKK Posušje</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
       <meta property="og:title" content={title} />
