@@ -263,11 +263,8 @@ const Statistics = () => {
   const [leagueCategory, setLeagueCategory] = useState<"seniori" | "seniorke">("seniori");
   const [topPlayersPage, setTopPlayersPage] = useState(0);
   const [showDownloadDialog, setShowDownloadDialog] = useState(false);
-  const [dynamicMatches, setDynamicMatches] = useState<DisplayMatch[]>([]);
+  const { matches: dynamicMatches } = useMatches();
 
-  useEffect(() => {
-    fetchMatches().then(setDynamicMatches).catch(() => setDynamicMatches([]));
-  }, []);
 
   // Backwards-compatible aliases so existing JSX below keeps working
   const matches = useMemo(() => {
