@@ -210,21 +210,13 @@ const Team = () => {
   };
 
   const scroll = (direction: "left" | "right") => {
-    if (isMobile) {
-      const newIndex = direction === "left" 
-        ? Math.max(0, activeIndex - 1) 
-        : Math.min(players.length - 1, activeIndex + 1);
-      scrollToIndex(newIndex);
-    } else if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
-    }
+    const newIndex = direction === "left"
+      ? Math.max(0, activeIndex - 1)
+      : Math.min(players.length - 1, activeIndex + 1);
+    scrollToIndex(newIndex);
   };
 
   useEffect(() => {
-    if (!isMobile) return;
     const container = scrollRef.current;
     if (!container) return;
     const handleScroll = () => {
@@ -240,7 +232,7 @@ const Team = () => {
     };
     container.addEventListener("scroll", handleScroll, { passive: true });
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [isMobile]);
+  }, []);
 
   return (
     <section id="tim" className="py-20">
