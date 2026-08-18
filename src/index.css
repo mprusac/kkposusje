@@ -222,6 +222,39 @@
   }
 }
 
+/* Admin shell: smooth focus + hover feedback on all controls */
+.admin-shell input,
+.admin-shell textarea,
+.admin-shell select {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.admin-shell input:hover:not(:disabled),
+.admin-shell textarea:hover:not(:disabled),
+.admin-shell select:hover:not(:disabled) {
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+.admin-shell input:focus-visible,
+.admin-shell textarea:focus-visible,
+.admin-shell select:focus-visible {
+  border-color: hsl(var(--primary) / 0.8);
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.25), 0 0 18px -4px hsl(var(--primary) / 0.45);
+}
+
+.admin-shell button {
+  transition: all 0.2s ease-out;
+}
+
+.admin-shell button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.admin-shell label {
+  transition: color 0.2s ease;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .admin-enter,
   .admin-card,
