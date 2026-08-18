@@ -210,21 +210,13 @@ const Team = () => {
   };
 
   const scroll = (direction: "left" | "right") => {
-    if (isMobile) {
-      const newIndex = direction === "left" 
-        ? Math.max(0, activeIndex - 1) 
-        : Math.min(players.length - 1, activeIndex + 1);
-      scrollToIndex(newIndex);
-    } else if (scrollRef.current) {
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
-    }
+    const newIndex = direction === "left"
+      ? Math.max(0, activeIndex - 1)
+      : Math.min(players.length - 1, activeIndex + 1);
+    scrollToIndex(newIndex);
   };
 
   useEffect(() => {
-    if (!isMobile) return;
     const container = scrollRef.current;
     if (!container) return;
     const handleScroll = () => {
@@ -240,7 +232,7 @@ const Team = () => {
     };
     container.addEventListener("scroll", handleScroll, { passive: true });
     return () => container.removeEventListener("scroll", handleScroll);
-  }, [isMobile]);
+  }, []);
 
   return (
     <section id="tim" className="py-20">
@@ -270,16 +262,16 @@ const Team = () => {
           {/* Scroll Buttons */}
           <button
             onClick={() => scroll("left")}
-            disabled={isMobile && activeIndex === 0}
-            className={`flex absolute left-0 md:left-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg ${isMobile && activeIndex === 0 ? 'opacity-40' : ''}`}
+            disabled={activeIndex === 0}
+            className={`flex absolute left-0 md:left-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg ${activeIndex === 0 ? 'opacity-40' : ''}`}
           >
             <ChevronLeft size={16} className="md:hidden" />
             <ChevronLeft size={24} className="hidden md:block" />
           </button>
           <button
             onClick={() => scroll("right")}
-            disabled={isMobile && activeIndex === players.length - 1}
-            className={`flex absolute right-0 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg ${isMobile && activeIndex === players.length - 1 ? 'opacity-40' : ''}`}
+            disabled={activeIndex === players.length - 1}
+            className={`flex absolute right-0 md:right-0 top-[40%] md:top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary items-center justify-center text-primary-foreground hover:bg-primary/90 hover:scale-110 transition-all duration-300 shadow-lg ${activeIndex === players.length - 1 ? 'opacity-40' : ''}`}
           >
             <ChevronRight size={16} className="md:hidden" />
             <ChevronRight size={24} className="hidden md:block" />
