@@ -284,9 +284,11 @@ function DropZone({
         if (disabled) return;
         handleFiles(e.dataTransfer.files);
       }}
-      className={`w-full rounded-lg border-2 border-dashed transition-colors cursor-pointer
+      className={`w-full rounded-lg border-2 border-dashed transition-all duration-300 ease-out cursor-pointer
         flex flex-col items-center justify-center gap-2 py-8 px-4 text-center
-        ${dragOver ? "border-primary bg-primary/10" : "border-border bg-muted/20 hover:bg-muted/40 hover:border-primary/60"}
+        ${dragOver
+          ? "border-primary bg-primary/10 scale-[1.01] shadow-[0_0_24px_-4px_hsl(var(--primary)/0.45)]"
+          : "border-border bg-muted/20 hover:bg-muted/40 hover:border-primary/60 hover:shadow-[0_0_18px_-6px_hsl(var(--primary)/0.35)]"}
         ${disabled ? "opacity-50 pointer-events-none" : ""}`}
     >
       <input
