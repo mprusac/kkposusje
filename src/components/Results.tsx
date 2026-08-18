@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import logoKSHB from "@/assets/logos/kshb_logo.png";
-import { fetchMatches, getTeamLogoFor, type DisplayMatch } from "@/lib/adminMatches";
+import { getTeamLogoFor, type DisplayMatch } from "@/lib/adminMatches";
+import { useMatches } from "@/hooks/useMatches";
 
 const Results = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -11,13 +12,9 @@ const Results = () => {
   const { elementRef, isVisible } = useScrollReveal();
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [results, setResults] = useState<DisplayMatch[]>([]);
+  const { matches: allMatches } = useMatches();
+  const results = allMatches.filter((m) => !m.isUpcoming);
 
-  useEffect(() => {
-    fetchMatches()
-      .then((all) => setResults(all.filter((m) => !m.isUpcoming)))
-      .catch(() => setResults([]));
-  }, []);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);

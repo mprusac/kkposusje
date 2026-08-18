@@ -1,7 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, ChevronRight, ExternalLink, Download, FileSpreadsheet, X, CheckCircle } from "lucide-react";
-import { fetchMatches, buildForm, getTeamLogoFor, type DisplayMatch } from "@/lib/adminMatches";
+import { buildForm, getTeamLogoFor, type DisplayMatch } from "@/lib/adminMatches";
+import { useMatches } from "@/hooks/useMatches";
+
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Footer from "@/components/Footer";
@@ -263,11 +265,8 @@ const Statistics = () => {
   const [leagueCategory, setLeagueCategory] = useState<"seniori" | "seniorke">("seniori");
   const [topPlayersPage, setTopPlayersPage] = useState(0);
   const [showDownloadDialog, setShowDownloadDialog] = useState(false);
-  const [dynamicMatches, setDynamicMatches] = useState<DisplayMatch[]>([]);
+  const { matches: dynamicMatches } = useMatches();
 
-  useEffect(() => {
-    fetchMatches().then(setDynamicMatches).catch(() => setDynamicMatches([]));
-  }, []);
 
   // Backwards-compatible aliases so existing JSX below keeps working
   const matches = useMemo(() => {
