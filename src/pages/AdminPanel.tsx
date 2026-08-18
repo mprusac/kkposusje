@@ -529,8 +529,8 @@ export default function AdminPanel() {
   // ---------- LOGIN VIEW ----------
   if (!token) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-sm p-6 space-y-4 bg-card border border-border shadow-lg">
+      <div className="admin-shell min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="admin-enter w-full max-w-sm p-6 space-y-4 bg-card border border-border shadow-[0_20px_60px_-20px_hsl(0_0%_0%/0.9),0_0_40px_-16px_hsl(var(--primary)/0.35)] transition-shadow duration-500 hover:shadow-[0_24px_70px_-20px_hsl(0_0%_0%/0.95),0_0_50px_-12px_hsl(var(--primary)/0.5)]">
           <div className="space-y-1 text-center">
             <h1 className="text-2xl font-semibold text-foreground">Admin Panel</h1>
             <p className="text-sm text-muted-foreground">Prijavite se za nastavak</p>
@@ -651,7 +651,7 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-[0_6px_20px_-14px_hsl(0_0%_0%/0.9)] transition-shadow duration-300">
         <div className="max-w-[1600px] mx-auto grid grid-cols-3 items-center px-4 py-3">
           <div className="flex justify-start">
@@ -1045,7 +1045,7 @@ function NewsForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="ghost" size="sm" onClick={onCancel}>
@@ -1243,7 +1243,7 @@ function GalleryForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="ghost" size="sm" onClick={onCancel}>
@@ -1542,7 +1542,7 @@ function MatchForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="outline" size="sm" onClick={onCancel}>
@@ -1863,7 +1863,7 @@ function PlayerForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="ghost" size="sm" onClick={onCancel}>
