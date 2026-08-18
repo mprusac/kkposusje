@@ -652,23 +652,26 @@ export default function AdminPanel() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-[0_6px_20px_-14px_hsl(0_0%_0%/0.9)] transition-shadow duration-300">
         <div className="max-w-[1600px] mx-auto grid grid-cols-3 items-center px-4 py-3">
           <div className="flex justify-start">
             <Button
               variant="outline"
               size="sm"
+              className="admin-action-btn"
               onClick={() => {
                 sessionStorage.setItem("restoreHomeScroll", "true");
                 navigate("/");
               }}
             >
-              <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+              <ArrowLeft className="w-4 h-4 mr-2 transition-transform duration-200 group-hover:-translate-x-0.5" /> Natrag
             </Button>
           </div>
-          <h1 className="font-semibold text-2xl text-primary text-center">Admin Panel</h1>
+          <h1 className="font-semibold text-2xl text-primary text-center transition-all duration-300 hover:drop-shadow-[0_0_12px_hsl(var(--primary)/0.5)]">
+            Admin Panel
+          </h1>
           <div className="flex justify-end">
-            <Button variant="outline" size="sm" onClick={logout}>
+            <Button variant="outline" size="sm" className="admin-action-btn" onClick={logout}>
               <LogOut className="w-4 h-4 mr-2" /> Odjava
             </Button>
           </div>
@@ -677,26 +680,27 @@ export default function AdminPanel() {
 
       <main className="max-w-[1600px] mx-auto p-4">
         {loading && (
-          <div className="flex items-center gap-2 text-muted-foreground py-4">
+          <div className="flex items-center gap-2 text-muted-foreground py-4 animate-fade-in">
             <Loader2 className="w-4 h-4 animate-spin" /> Učitavanje...
           </div>
         )}
 
         {/* Top action buttons */}
         <div className="flex justify-center gap-3 flex-wrap mb-8">
-          <Button variant="outline" onClick={() => { setEditing(null); setView("news-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter" onClick={() => { setEditing(null); setView("news-form"); }}>
             <Newspaper className="w-4 h-4 mr-2" /> Nova vijest
           </Button>
-          <Button variant="outline" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter [animation-delay:60ms]" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
             <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
           </Button>
-          <Button variant="outline" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter [animation-delay:120ms]" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
             <Trophy className="w-4 h-4 mr-2" /> Nova utakmica
           </Button>
-          <Button variant="outline" onClick={() => { setEditingPlayer(null); setView("player-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter [animation-delay:180ms]" onClick={() => { setEditingPlayer(null); setView("player-form"); }}>
             <Users className="w-4 h-4 mr-2" /> Novi igrač
           </Button>
         </div>
+
 
         {/* Four column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
