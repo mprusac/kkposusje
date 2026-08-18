@@ -169,17 +169,18 @@ const ImageThumb = memo(function ImageThumb({
   src, onRemove,
 }: { src: string; onRemove: () => void }) {
   return (
-    <div className="relative group">
+    <div className="relative group overflow-hidden rounded-lg">
       <img
         src={src}
         loading="lazy"
         decoding="async"
-        className="w-full h-16 rounded-lg object-cover border border-border"
+        className="w-full h-16 rounded-lg object-cover border border-border transition-transform duration-300 ease-out group-hover:scale-110"
       />
+      <div className="absolute inset-0 rounded-lg bg-background/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <button
         type="button"
         onClick={onRemove}
-        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition"
+        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 hover:shadow-[0_0_12px_-2px_hsl(var(--destructive)/0.7)]"
         aria-label="Ukloni sliku"
       >
         <X className="w-3 h-3" />
