@@ -169,17 +169,18 @@ const ImageThumb = memo(function ImageThumb({
   src, onRemove,
 }: { src: string; onRemove: () => void }) {
   return (
-    <div className="relative group">
+    <div className="relative group overflow-hidden rounded-lg">
       <img
         src={src}
         loading="lazy"
         decoding="async"
-        className="w-full h-16 rounded-lg object-cover border border-border"
+        className="w-full h-16 rounded-lg object-cover border border-border transition-transform duration-300 ease-out group-hover:scale-110"
       />
+      <div className="absolute inset-0 rounded-lg bg-background/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <button
         type="button"
         onClick={onRemove}
-        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition"
+        className="absolute top-1 right-1 bg-destructive text-destructive-foreground rounded-full p-0.5 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 hover:shadow-[0_0_12px_-2px_hsl(var(--destructive)/0.7)]"
         aria-label="Ukloni sliku"
       >
         <X className="w-3 h-3" />
@@ -284,9 +285,11 @@ function DropZone({
         if (disabled) return;
         handleFiles(e.dataTransfer.files);
       }}
-      className={`w-full rounded-lg border-2 border-dashed transition-colors cursor-pointer
+      className={`w-full rounded-lg border-2 border-dashed transition-all duration-300 ease-out cursor-pointer
         flex flex-col items-center justify-center gap-2 py-8 px-4 text-center
-        ${dragOver ? "border-primary bg-primary/10" : "border-border bg-muted/20 hover:bg-muted/40 hover:border-primary/60"}
+        ${dragOver
+          ? "border-primary bg-primary/10 scale-[1.01] shadow-[0_0_24px_-4px_hsl(var(--primary)/0.45)]"
+          : "border-border bg-muted/20 hover:bg-muted/40 hover:border-primary/60 hover:shadow-[0_0_18px_-6px_hsl(var(--primary)/0.35)]"}
         ${disabled ? "opacity-50 pointer-events-none" : ""}`}
     >
       <input
@@ -526,8 +529,8 @@ export default function AdminPanel() {
   // ---------- LOGIN VIEW ----------
   if (!token) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="w-full max-w-sm p-6 space-y-4 bg-card border border-border shadow-lg">
+      <div className="admin-shell min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="admin-enter w-full max-w-sm p-6 space-y-4 bg-card border border-border shadow-[0_20px_60px_-20px_hsl(0_0%_0%/0.9),0_0_40px_-16px_hsl(var(--primary)/0.35)] transition-shadow duration-500 hover:shadow-[0_24px_70px_-20px_hsl(0_0%_0%/0.95),0_0_50px_-12px_hsl(var(--primary)/0.5)]">
           <div className="space-y-1 text-center">
             <h1 className="text-2xl font-semibold text-foreground">Admin Panel</h1>
             <p className="text-sm text-muted-foreground">Prijavite se za nastavak</p>
@@ -648,24 +651,27 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
+      <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border shadow-[0_6px_20px_-14px_hsl(0_0%_0%/0.9)] transition-shadow duration-300">
         <div className="max-w-[1600px] mx-auto grid grid-cols-3 items-center px-4 py-3">
           <div className="flex justify-start">
             <Button
               variant="outline"
               size="sm"
+              className="admin-action-btn"
               onClick={() => {
                 sessionStorage.setItem("restoreHomeScroll", "true");
                 navigate("/");
               }}
             >
-              <ArrowLeft className="w-4 h-4 mr-2" /> Natrag
+              <ArrowLeft className="w-4 h-4 mr-2 transition-transform duration-200 group-hover:-translate-x-0.5" /> Natrag
             </Button>
           </div>
-          <h1 className="font-semibold text-2xl text-primary text-center">Admin Panel</h1>
+          <h1 className="font-semibold text-2xl text-primary text-center transition-all duration-300 hover:drop-shadow-[0_0_12px_hsl(var(--primary)/0.5)]">
+            Admin Panel
+          </h1>
           <div className="flex justify-end">
-            <Button variant="outline" size="sm" onClick={logout}>
+            <Button variant="outline" size="sm" className="admin-action-btn" onClick={logout}>
               <LogOut className="w-4 h-4 mr-2" /> Odjava
             </Button>
           </div>
@@ -674,39 +680,40 @@ export default function AdminPanel() {
 
       <main className="max-w-[1600px] mx-auto p-4">
         {loading && (
-          <div className="flex items-center gap-2 text-muted-foreground py-4">
+          <div className="flex items-center gap-2 text-muted-foreground py-4 animate-fade-in">
             <Loader2 className="w-4 h-4 animate-spin" /> Učitavanje...
           </div>
         )}
 
         {/* Top action buttons */}
         <div className="flex justify-center gap-3 flex-wrap mb-8">
-          <Button variant="outline" onClick={() => { setEditing(null); setView("news-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter" onClick={() => { setEditing(null); setView("news-form"); }}>
             <Newspaper className="w-4 h-4 mr-2" /> Nova vijest
           </Button>
-          <Button variant="outline" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter [animation-delay:60ms]" onClick={() => { setEditingGallery(null); setView("gallery-form"); }}>
             <ImagePlus className="w-4 h-4 mr-2" /> Nova galerija
           </Button>
-          <Button variant="outline" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter [animation-delay:120ms]" onClick={() => { setEditingMatch(null); setView("match-form"); }}>
             <Trophy className="w-4 h-4 mr-2" /> Nova utakmica
           </Button>
-          <Button variant="outline" onClick={() => { setEditingPlayer(null); setView("player-form"); }}>
+          <Button variant="outline" className="admin-action-btn admin-enter [animation-delay:180ms]" onClick={() => { setEditingPlayer(null); setView("player-form"); }}>
             <Users className="w-4 h-4 mr-2" /> Novi igrač
           </Button>
         </div>
 
+
         {/* Four column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {/* Vijesti */}
-          <section className="space-y-3 min-w-0">
+          <section className="admin-section space-y-3 min-w-0">
             <div className="flex items-center justify-center gap-2">
-              <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+              <h2 className="admin-section-title font-display text-xl text-primary uppercase tracking-wider text-center">
                 Vijesti
               </h2>
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-7 w-7"
+                className="h-7 w-7 transition-all duration-200 hover:scale-110 hover:text-primary"
                 onClick={() => setCategoryModal(true)}
                 title="Upravljaj kategorijama"
               >
@@ -714,33 +721,45 @@ export default function AdminPanel() {
               </Button>
             </div>
 
+            {loading && (
+              <div className="space-y-2">
+                {[0, 1, 2].map((i) => <div key={i} className="admin-skeleton h-[74px]" />)}
+              </div>
+            )}
+
             {news.length === 0 && !loading && (
-              <p className="text-muted-foreground py-8 text-center">Nema vijesti.</p>
+              <p className="text-muted-foreground py-8 text-center animate-fade-in">Nema vijesti.</p>
             )}
 
             <div className="space-y-2">
-              {news.slice(0, 10).map((n) => (
-                <Card key={n.id} className="p-3 bg-card border-border flex items-center gap-3">
+              {news.slice(0, 10).map((n, i) => (
+                <Card
+                  key={n.id}
+                  className="admin-card admin-enter group p-3 bg-card flex items-center gap-3"
+                  style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
+                >
                   {n.image_url ? (
-                    <img src={n.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
+                    <div className="aspect-square w-14 rounded overflow-hidden border border-border shrink-0">
+                      <img src={n.image_url} className="admin-thumb w-full h-full object-cover" />
+                    </div>
                   ) : (
                     <div className="aspect-square w-14 rounded bg-muted shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-medium truncate text-sm">{n.title}</span>
+                      <span className="font-medium truncate text-sm transition-colors duration-200 group-hover:text-primary">{n.title}</span>
                       {n.pinned && <Pin className="w-3.5 h-3.5 fill-current text-primary" />}
                     </div>
                     <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
                       <span>{n.date}</span>
-                      <Badge variant="secondary" className="text-xs">{n.category}</Badge>
+                      <Badge variant="secondary" className="text-xs transition-colors duration-200 group-hover:bg-primary/20">{n.category}</Badge>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 shrink-0">
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditing(n); setView("news-form"); }}>
+                  <div className="flex items-center gap-1 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity duration-200">
+                    <Button variant="outline" size="icon" className="admin-action-btn h-8 w-8" onClick={() => { setEditing(n); setView("news-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "news", id: n.id })}>
+                    <Button variant="destructive" size="icon" className="admin-danger-btn h-8 w-8" onClick={() => setConfirmDelete({ kind: "news", id: n.id })}>
                       <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
@@ -750,34 +769,46 @@ export default function AdminPanel() {
           </section>
 
           {/* Galerije */}
-          <section className="space-y-3 min-w-0">
-            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+          <section className="admin-section space-y-3 min-w-0">
+            <h2 className="admin-section-title font-display text-xl text-primary uppercase tracking-wider text-center">
               Galerije
             </h2>
 
+            {loading && (
+              <div className="space-y-2">
+                {[0, 1, 2].map((i) => <div key={i} className="admin-skeleton h-[74px]" />)}
+              </div>
+            )}
+
             {galleries.length === 0 && !loading && (
-              <p className="text-muted-foreground py-8 text-center">Nema galerija.</p>
+              <p className="text-muted-foreground py-8 text-center animate-fade-in">Nema galerija.</p>
             )}
 
             <div className="space-y-2">
-              {galleries.map((g) => (
-                <Card key={g.id} className="p-3 bg-card border-border flex items-center gap-3">
+              {galleries.map((g, i) => (
+                <Card
+                  key={g.id}
+                  className="admin-card admin-enter group p-3 bg-card flex items-center gap-3"
+                  style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
+                >
                   {g.cover_image ? (
-                    <img src={g.cover_image} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
+                    <div className="aspect-square w-14 rounded overflow-hidden border border-border shrink-0">
+                      <img src={g.cover_image} className="admin-thumb w-full h-full object-cover" />
+                    </div>
                   ) : (
                     <div className="aspect-square w-14 rounded bg-muted shrink-0" />
                   )}
                   <div className="flex-1 min-w-0">
-                    <div className="font-medium truncate text-sm">{g.title}</div>
+                    <div className="font-medium truncate text-sm transition-colors duration-200 group-hover:text-primary">{g.title}</div>
                     <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
                       {g.date} <ImagePlus className="w-3 h-3 inline text-primary" /> {g.images.length}
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 shrink-0">
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingGallery(g); setView("gallery-form"); }}>
+                  <div className="flex items-center gap-1 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity duration-200">
+                    <Button variant="outline" size="icon" className="admin-action-btn h-8 w-8" onClick={() => { setEditingGallery(g); setView("gallery-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "gallery", id: g.id })}>
+                    <Button variant="destructive" size="icon" className="admin-danger-btn h-8 w-8" onClick={() => setConfirmDelete({ kind: "gallery", id: g.id })}>
                       <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
@@ -787,34 +818,43 @@ export default function AdminPanel() {
           </section>
 
           {/* Utakmice */}
-          <section className="space-y-3 min-w-0">
-            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+          <section className="admin-section space-y-3 min-w-0">
+            <h2 className="admin-section-title font-display text-xl text-primary uppercase tracking-wider text-center">
               Utakmice
             </h2>
+            {loading && (
+              <div className="space-y-2">
+                {[0, 1, 2].map((i) => <div key={i} className="admin-skeleton h-[62px]" />)}
+              </div>
+            )}
             {matches.length === 0 && !loading && (
-              <p className="text-muted-foreground py-8 text-center">Nema utakmica.</p>
+              <p className="text-muted-foreground py-8 text-center animate-fade-in">Nema utakmica.</p>
             )}
             <div className="space-y-2">
-              {matches.map((m) => {
+              {matches.map((m, i) => {
                 const scoreText = m.posusje_score != null && m.opponent_score != null
                   ? `${m.posusje_score}:${m.opponent_score}`
                   : "—";
                 const opponentLogo = m.opponent_logo_url ?? OPPONENT_LOGOS[m.opponent] ?? null;
                 return (
-                  <Card key={m.id} className="p-2.5 bg-card border-border flex items-center gap-2">
+                  <Card
+                    key={m.id}
+                    className="admin-card admin-enter group p-2.5 bg-card flex items-center gap-2"
+                    style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
+                  >
                     {opponentLogo ? (
-                      <img src={opponentLogo} className="w-10 h-10 rounded object-contain border border-border bg-background shrink-0" />
+                      <img src={opponentLogo} className="admin-thumb w-10 h-10 rounded object-contain border border-border bg-background shrink-0" />
                     ) : (
                       <div className="w-10 h-10 rounded bg-muted shrink-0" />
                     )}
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium truncate text-sm">
+                      <div className="font-medium truncate text-sm transition-colors duration-200 group-hover:text-primary">
                         {m.is_home ? "vs" : "@"} {m.opponent}
                         <span className="ml-1 text-muted-foreground">{scoreText}</span>
                       </div>
                       <div className="text-[11px] text-muted-foreground mt-0.5 flex items-center gap-1.5">
                         <span>{isoToDMY(m.match_date)}</span>
-                        <span className="text-[9px] font-bold text-foreground bg-gold-dark px-1.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                        <span className="text-[9px] font-bold text-foreground bg-gold-dark px-1.5 py-0.5 rounded-full inline-flex items-center gap-1 transition-shadow duration-300 group-hover:shadow-[0_0_12px_-2px_hsl(var(--primary)/0.6)]">
                           {m.competition === "kup" ? (
                             <>Kup <span aria-hidden>🏆</span></>
                           ) : (
@@ -823,11 +863,11 @@ export default function AdminPanel() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-1 shrink-0">
-                      <Button variant="outline" size="icon" className="h-7 w-7" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
+                    <div className="flex items-center gap-1 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity duration-200">
+                      <Button variant="outline" size="icon" className="admin-action-btn h-7 w-7" onClick={() => { setEditingMatch(m); setView("match-form"); }}>
                         <Edit className="w-3.5 h-3.5" />
                       </Button>
-                      <Button variant="destructive" size="icon" className="h-7 w-7" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
+                      <Button variant="destructive" size="icon" className="admin-danger-btn h-7 w-7" onClick={() => setConfirmDelete({ kind: "match", id: m.id })}>
                         <Trash2 className="w-3.5 h-3.5" />
                       </Button>
                     </div>
@@ -838,18 +878,29 @@ export default function AdminPanel() {
           </section>
 
           {/* Igrači */}
-          <section className="space-y-3 min-w-0">
-            <h2 className="font-display text-xl text-primary uppercase tracking-wider text-center">
+          <section className="admin-section space-y-3 min-w-0">
+            <h2 className="admin-section-title font-display text-xl text-primary uppercase tracking-wider text-center">
               Igrači
             </h2>
+            {loading && (
+              <div className="space-y-2">
+                {[0, 1, 2].map((i) => <div key={i} className="admin-skeleton h-[74px]" />)}
+              </div>
+            )}
             {players.length === 0 && !loading && (
-              <p className="text-muted-foreground py-8 text-center">Nema igrača.</p>
+              <p className="text-muted-foreground py-8 text-center animate-fade-in">Nema igrača.</p>
             )}
             <div className="space-y-2">
-              {players.map((p) => (
-                <Card key={p.id} className="p-3 bg-card border-border flex items-center gap-3">
+              {players.map((p, i) => (
+                <Card
+                  key={p.id}
+                  className="admin-card admin-enter group p-3 bg-card flex items-center gap-3"
+                  style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }}
+                >
                   {p.image_url ? (
-                    <img src={p.image_url} className="aspect-square w-14 rounded object-cover border border-border shrink-0" />
+                    <div className="aspect-square w-14 rounded overflow-hidden border border-border shrink-0">
+                      <img src={p.image_url} className="admin-thumb w-full h-full object-cover" />
+                    </div>
                   ) : (
                     <div className="aspect-square w-14 rounded bg-muted shrink-0 flex items-center justify-center">
                       <Users className="w-5 h-5 text-muted-foreground" />
@@ -860,17 +911,17 @@ export default function AdminPanel() {
                       {p.jersey_number != null && (
                         <span className="text-primary font-bold">#{p.jersey_number}</span>
                       )}
-                      <span className="truncate">{p.name}</span>
+                      <span className="truncate transition-colors duration-200 group-hover:text-primary">{p.name}</span>
                     </div>
                     {p.position && (
                       <div className="text-xs text-muted-foreground mt-1 truncate">{p.position}</div>
                     )}
                   </div>
-                  <div className="flex items-center gap-1 shrink-0">
-                    <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => { setEditingPlayer(p); setView("player-form"); }}>
+                  <div className="flex items-center gap-1 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity duration-200">
+                    <Button variant="outline" size="icon" className="admin-action-btn h-8 w-8" onClick={() => { setEditingPlayer(p); setView("player-form"); }}>
                       <Edit className="w-4 h-4" />
                     </Button>
-                    <Button variant="destructive" size="icon" className="h-8 w-8" onClick={() => setConfirmDelete({ kind: "player", id: p.id })}>
+                    <Button variant="destructive" size="icon" className="admin-danger-btn h-8 w-8" onClick={() => setConfirmDelete({ kind: "player", id: p.id })}>
                       <Trash2 className="w-4 h-4" />
                     </Button>
                   </div>
@@ -879,6 +930,7 @@ export default function AdminPanel() {
             </div>
           </section>
         </div>
+
       </main>
 
 
@@ -993,7 +1045,7 @@ function NewsForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="ghost" size="sm" onClick={onCancel}>
@@ -1191,7 +1243,7 @@ function GalleryForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="ghost" size="sm" onClick={onCancel}>
@@ -1490,7 +1542,7 @@ function MatchForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="outline" size="sm" onClick={onCancel}>
@@ -1811,7 +1863,7 @@ function PlayerForm({
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="admin-shell min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-3xl mx-auto flex items-center justify-between px-4 py-3">
           <Button variant="ghost" size="sm" onClick={onCancel}>
