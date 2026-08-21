@@ -285,15 +285,17 @@ const Statistics = () => {
   }, [dynamicMatches]);
 
   const formData = useMemo(() => {
-    return buildForm(dynamicMatches, 7).map((f) => ({
-      opponent: f.opponent,
-      logo: getTeamLogoFor(dynamicMatches.find((m) => m.id === f.id)!, f.opponent),
-      result: f.result,
-      homeTeam: f.homeTeam,
-      awayTeam: f.awayTeam,
-      homeScore: f.homeScore,
-      awayScore: f.awayScore,
-    }));
+    return buildForm(dynamicMatches, 7)
+      .map((f) => ({
+        opponent: f.opponent,
+        logo: getTeamLogoFor(dynamicMatches.find((m) => m.id === f.id)!, f.opponent),
+        result: f.result,
+        homeTeam: f.homeTeam,
+        awayTeam: f.awayTeam,
+        homeScore: f.homeScore,
+        awayScore: f.awayScore,
+      }))
+      .reverse();
   }, [dynamicMatches]);
 
   useEffect(() => {
